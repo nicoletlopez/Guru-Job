@@ -61,7 +61,14 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right float-right">
                         <!--<li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i> Post A Job</a></li>-->
+                        @if(Auth::guest())
                         <li class="right"><a href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
+                        @else
+                        <li class="right"><a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="ti-unlock"></i> Log Out</a></li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                {{ csrf_field() }}
+                            </form>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -82,7 +89,6 @@
             </ul>
 
         </nav>
-+
     </div>
 </div>
 
