@@ -19,7 +19,11 @@ Route::get('/login','PagesController@login')->name('login');
 Route::get('/register','PagesController@register')->name('register');
 Route::get('/password/reset','PagesController@reset_password')->name('reset-pass');
 */
+//faculty
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/resume',function(){return view('faculty.resume');});
+
+
 Route::get('/home', 'PagesController@index')->name('home');
 Route::get('/test',function(){return view('test');});
 Route::get('/job-details',function(){return view('pages.job-details');});

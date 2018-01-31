@@ -1,6 +1,3 @@
-<br/>
-<div style="background-color:whitesmoke">
-<br/>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -10,7 +7,6 @@
                         <div class="col-md-4 col-sm-6">
                             <div class="form-group">
                                 <input class="form-control" type="text" placeholder="job title / keywords / company name">
-                                <i class="ti-time"></i>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-6">
@@ -49,5 +45,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

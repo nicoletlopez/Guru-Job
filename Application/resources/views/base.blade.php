@@ -48,13 +48,7 @@
 @yield('content')
 
 <footer>
-
-    <section class="footer-Content">
-
-    </section>
-
-
-    <!--<div id="copyright">
+   <div id="copyright">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -63,7 +57,6 @@
             </div>
         </div>
     </div>
--->
 </footer>
 
 

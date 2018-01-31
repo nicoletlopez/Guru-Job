@@ -6,6 +6,6 @@
 @section('active-jobs') active @endsection
 @section('content')
     @include('inc.header')
-    @include('inc.searchbar')
+
     @include('layouts.jobs')
 @endsection

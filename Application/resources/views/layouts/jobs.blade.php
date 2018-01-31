@@ -1,6 +1,12 @@
 <section class="find-job section">
+    <div style="background-color:whitesmoke;">
+        <br/>
+        @include('inc.searchbar')</div>
     <div class="container">
+<br/>
         <h2 class="section-title">Jobs</h2>
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="job-list">
