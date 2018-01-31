@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('base')
 @section('title')- My Account @endsection
 @section('current') My Account @endsection
 @section('current-header') My Account @endsection

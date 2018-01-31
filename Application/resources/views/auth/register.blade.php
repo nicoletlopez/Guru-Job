@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('base')
 @section('title')- My Account @endsection
 @section('current') My Account @endsection
 @section('current-header') My Account @endsection
@@ -7,6 +7,7 @@
     <div id="content" class="my-account">
         <div class="container">
             <div class="row">
+                @include('inc.messages')
                 <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-6 cd-user-modal">
                     <div class="my-account-form">
                         <ul class="cd-switcher">

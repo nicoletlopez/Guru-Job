@@ -32,70 +32,20 @@
 
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('css/colors/red.css')}}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/colors/red.css')}}" media="screen"/>
 </head>
 <body>
 
 <div class="header">
-    <div class="logo-menu">
-        <nav class="navbar navbar-default main-navigation" role="navigation" data-spy="affix" data-offset-top="50">
-            <div class="container">
 
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand logo" href="{{route('index')}}"><h3>Guru App</h3></a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbar">
-
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="{{route('index')}}">
-                                Home
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right float-right">
-                        <!--<li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i> Post A Job</a></li>-->
-                        @if(Auth::guest())
-                        <li class="right"><a href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
-                        @else
-                        <li class="right"><a href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="ti-unlock"></i> Log Out</a></li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                {{ csrf_field() }}
-                            </form>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-
-            <ul class="wpb-mobile-menu">
-                <li>
-                    <a href="{{route('index')}}">Home</a>
-                </li>
-                <!--<li class="btn-m"><a href="post-job.html"><i class="ti-pencil-alt"></i> Post A Job</a></li>-->
-                @if(Auth::guest())
-                <li class="btn-m"><a class="active" href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
-                @else
-                    <li class="btn-m"><a class="active" href="{{route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="ti-unlock"></i> Log Out</a></li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                        {{ csrf_field() }}
-                    </form>
-                @endif
-            </ul>
-
-        </nav>
-    </div>
+        @include('inc.navbar')
+    <section id="intro-bg">
+        @yield('searchbar')
+    </section>
 </div>
 
 
-
 @yield('content')
-
 
 <footer>
 

@@ -19,4 +19,8 @@ Route::get('/login','PagesController@login')->name('login');
 Route::get('/register','PagesController@register')->name('register');
 Route::get('/password/reset','PagesController@reset_password')->name('reset-pass');
 */
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/home', 'PagesController@index')->name('home');
+Route::get('/test',function(){return view('test');});
+Route::get('/job-details',function(){return view('pages.job-details');});
+Route::get('/jobs',function(){return view('pages.job-listings');});
