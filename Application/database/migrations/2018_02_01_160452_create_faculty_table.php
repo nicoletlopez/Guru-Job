@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStatusTable extends Migration
+class CreateFacultyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('status', function (Blueprint $table) {
-            $table->increments('status_id');
-            $table->timestamps();
+        Schema::create('faculty', function (Blueprint $table) {
+            $table->integer('faculty_id')->unsigned();
+            $table->foreign('faculty_id')->references('user_id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status');
+        Schema::dropIfExists('faculty');
     }
 }

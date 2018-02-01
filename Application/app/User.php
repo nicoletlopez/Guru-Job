@@ -31,11 +31,16 @@ class User extends Authenticatable
 
     public function profile()
     {
-        $this->hasOne('App\Profile');
+        return $this->hasOne('App\Profile','user_id','user_id');
     }
 
-    public function Faculty()
+    public function hr()
     {
-        $this->hasOne('App\User');
+        return $this->hasOne('App\Hr','hr_id','user_id');
+    }
+
+    public function faculty()
+    {
+        return $this->hasOne('App\Faculty','faculty_id','user_id');
     }
 }

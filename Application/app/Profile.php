@@ -9,10 +9,10 @@ class Profile extends Model
     //
     protected $table = 'profile';
     protected $primaryKey = 'user_id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function user()
     {
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','user_id', 'user_id');
     }
 }

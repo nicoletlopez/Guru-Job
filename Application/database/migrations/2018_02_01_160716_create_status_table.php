@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfilesTable extends Migration
+class CreateStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile', function (Blueprint $table) {
-            $table->increments('user_id');
-            $table->timestamps();
+        Schema::create('status', function (Blueprint $table) {
+            $table->increments('status_id');
+            $table->integer('faculty_id');
+            $table->foreign('faculty_id')->references('faculty_id')->on('faculty');
+            $table->string('status_name');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile');
+        Schema::dropIfExists('status');
     }
 }

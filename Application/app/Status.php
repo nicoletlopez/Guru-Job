@@ -13,7 +13,7 @@ class Status extends Model
 
     public function faculty()
     {
-        $this->belongsTo('App\Faculty');
+        return $this->belongsTo('App\Faculty','faculty_id','faculty_id');
     }
 
 }
