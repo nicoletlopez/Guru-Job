@@ -2,7 +2,7 @@
 @section('title')- Job Details @endsection
 @section('current') Job Details @endsection
 @section('current-header') Job Details @endsection
-@section('active-jobs')active@endsection
+@section('active-jobs') active @endsection
 
 @section('content')
 @include('inc.header')

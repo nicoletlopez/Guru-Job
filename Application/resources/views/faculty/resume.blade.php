@@ -1,13 +1,15 @@
-@extends('faculty.dashboard')
+@extends('faculty.dashboard-menu')
 @section('title')- Resume @endsection
 @section('current') Resume @endsection
 @section('current-header') Resume @endsection
+@section('resume-active') active @endsection
+
 @section('dashboard-content')
 
         <div class="inner-box my-resume">
             <div class="author-resume">
                 <div class="thumb">
-                    <img src="assets/img/resume/img-1.jpg" alt="">
+                    <img src="{{asset('img/resume/img-1.jpg')}}" alt="">
                 </div>
                 <div class="author-info">
                     <h3>Mark Anderson</h3>

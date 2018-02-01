@@ -1,7 +1,5 @@
 <section class="find-job section">
-    <div style="background-color:whitesmoke;">
-        <br/>
-        @include('inc.searchbar')</div>
+
     <div class="container">
 <br/>
         <h2 class="section-title">Jobs</h2>
@@ -11,7 +9,7 @@
             <div class="col-md-12">
                 <div class="job-list">
                     <div class="thumb">
-                        <a href="job-details"><img src="assets/img/jobs/img-1.jpg" alt=""></a>
+                        <a href="job-details"><img src="{{asset('img/jobs/img-1.jpg')}}" alt=""></a>
                     </div>
                     <div class="job-list-content">
                         <h4><a href="job-details">Need a web designer</a><span class="full-time">Full-Time</span>
@@ -39,7 +37,7 @@
                 </div>
                 <div class="job-list">
                     <div class="thumb">
-                        <a href="job-details"><img src="assets/img/jobs/img-2.jpg" alt=""></a>
+                        <a href="job-details"><img src="{{asset('img/jobs/img-2.jpg')}}" alt=""></a>
                     </div>
                     <div class="job-list-content">
                         <h4><a href="job-details">Front-end developer needed</a><span
@@ -68,7 +66,7 @@
                 </div>
                 <div class="job-list">
                     <div class="thumb">
-                        <a href="job-details"><img src="assets/img/jobs/img-3.jpg" alt=""></a>
+                        <a href="job-details"><img src="{{asset('img/jobs/img-3.jpg')}}" alt=""></a>
                     </div>
                     <div class="job-list-content">
                         <h4><a href="job-details">Senior Accountant</a><span class="part-time">Part-Time</span>
@@ -96,7 +94,7 @@
                 </div>
                 <div class="job-list">
                     <div class="thumb">
-                        <a href="job-details"><img src="assets/img/jobs/img-4.jpg" alt=""></a>
+                        <a href="job-details"><img src="{{asset('img/jobs/img-4.jpg')}}" alt=""></a>
                     </div>
                     <div class="job-list-content">
                         <h4><a href="job-details">Fullstack web developer needed</a><span class="full-time">Full-Time</span>
