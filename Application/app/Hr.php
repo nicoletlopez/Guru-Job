@@ -15,4 +15,9 @@ class Hr extends Model
     {
         return $this->belongsTo('App\User','hr_id','user_id');
     }
+
+    public function subjects()
+    {
+        return $this->hasMany('App\Subject','hr_id','hr_id');
+    }
 }
