@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContactTable extends Migration
+class CreateSkillTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateContactTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact', function (Blueprint $table) {
-            $table->increments('contact_id');
-            $table->integer('faculty_id')->unsigned();
-            $table->foreign('faculty_id')->references('faculty_id')->on('faculty');
-            $table->timestamps();
+        Schema::create('skill', function (Blueprint $table) {
+            $table->increments('skill_id');
+            $table->string('skill_name');
+            $table->text('skill_description');
+            //$table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateContactTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact');
+        Schema::dropIfExists('skill');
     }
 }
