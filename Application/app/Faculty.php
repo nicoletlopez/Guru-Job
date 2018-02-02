@@ -20,4 +20,9 @@ class Faculty extends Model
     {
         return $this->hasOne('App\Status','faculty_id','faculty_id');
     }
+
+    public function contact()
+    {
+        return $this->hasOne('App\Contact','faculty_id','faculty_id');
+    }
 }
