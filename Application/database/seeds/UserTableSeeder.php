@@ -3,12 +3,36 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class UserTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('users')->insert(
+        for($x =0; $x<50; $x++)
+        {
+            DB::table('users')->insert([
+                'name' => str_random(10),
+                'email' => str_random(10) . '@gmail.com',
+                'password' => bcrypt('secret'),
+                'user_type' => 'HR',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            ]);
+        }
+
+        for($x =0; $x<50; $x++)
+        {
+            DB::table('users')->insert([
+                'name' => str_random(10),
+                'email' => str_random(10) . '@gmail.com',
+                'password' => bcrypt('secret'),
+                'user_type' => 'HR',
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            ]);
+        }
+        /*DB::table('users')->insert(
             [
                 'name' => 'Pamity',
                 'email' => 'pamity@mail.com',
@@ -37,6 +61,6 @@ class UserTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
 
-            ]);
+            ]);*/
     }
 }

@@ -13,8 +13,15 @@ class FacultyTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('faculty')->insert([
+        $faculties = DB::table('users')->where('user_type','FACULTY')->get();
+        foreach($faculties as $faculty)
+        {
+            DB::table('faculty')->insert([
+                'faculty_id' => $faculty->user_id
+            ]);
+        }
+        /*DB::table('faculty')->insert([
             'faculty_id' => 1,
-        ]);
+        ]);*/
     }
 }

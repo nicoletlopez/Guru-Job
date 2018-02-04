@@ -31,4 +31,16 @@ class Faculty extends Model
         return $this->belongsToMany('App\Faculty','faculty_has_skill','faculty_id','skill_id')
             ->as('faculty_has_skill')->using('App\FacultyHasSkill');
     }
+
+    public function job()
+    {
+        return $this->hasMany('App\Job','faculty_id','faculty_id');
+    }
+
+    public function files()
+    {
+        return $this->belongsToMany('App\File', 'faculty_has_file','faculty_id', 'file_id')
+            ->withPivot('file_name')->withTimestamps()
+            ->as('faculty_has_file')->using('App\FacultyHasFile');
+    }
 }
