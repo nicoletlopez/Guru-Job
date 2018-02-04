@@ -13,6 +13,13 @@ class Skill extends Model
 
     public function faculties()
     {
-        return $this->belongsToMany('App\Faculty')->as('faculty_has_skill');
+        return $this->belongsToMany('App\Faculty','faculty_has_skill','skill_id','faculty_id')
+            ->as('faculty_has_skill')->using('App\FacultyHasSkill');
+    }
+    public function subjects()
+    {
+        return $this->belongsToMany('App\Subject','job','skill_id','subject_id')
+            ->withPivot('job_title','job_type','start_time','end_time','days')
+            ->as('job')->using('App\Job');
     }
 }

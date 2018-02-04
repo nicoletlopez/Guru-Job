@@ -16,7 +16,7 @@ class ProfileTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
-        Db::table('profile')->insert([
+        DB::table('profile')->insert([
             'user_id' => 2,
             'user_description' => "This is profile of the user Nicole",
             'dob' => Carbon::now(),

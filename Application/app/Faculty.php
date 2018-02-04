@@ -28,6 +28,7 @@ class Faculty extends Model
 
     public function skills()
     {
-        return $this->belongsToMany('App\Skill')->as('faculty_has_skill');
+        return $this->belongsToMany('App\Faculty','faculty_has_skill','faculty_id','skill_id')
+            ->as('faculty_has_skill')->using('App\FacultyHasSkill');
     }
 }
