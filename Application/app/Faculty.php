@@ -26,6 +26,11 @@ class Faculty extends Model
         return $this->hasOne('App\Contact','faculty_id','faculty_id');
     }
 
+    public function profile()
+    {
+        return $this->hasOne('App\Profile');
+    }
+
     public function skills()
     {
         return $this->belongsToMany('App\Faculty','faculty_has_skill','faculty_id','skill_id')

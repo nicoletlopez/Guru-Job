@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Faker\Generator as Faker;
 

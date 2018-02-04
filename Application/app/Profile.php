@@ -11,8 +11,8 @@ class Profile extends Model
     protected $primaryKey = 'user_id';
     public $timestamps = true;
 
-    public function user()
+    public function faculty()
     {
-        return $this->belongsTo('App\User','user_id', 'user_id');
+        return $this->belongsTo('App\Faculty','faculty_id', 'faculty_id');
     }
 }

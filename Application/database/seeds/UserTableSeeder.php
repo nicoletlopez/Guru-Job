@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
                 'name' => str_random(10),
                 'email' => str_random(10) . '@gmail.com',
                 'password' => bcrypt('secret'),
-                'user_type' => 'HR',
+                'user_type' => 'FACULTY',
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ]);
