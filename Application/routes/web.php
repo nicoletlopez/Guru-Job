@@ -26,7 +26,10 @@ Route::get('/bookmarked-jobs',function(){return view('faculty.bookmarked-jobs');
 Route::get('/notifications',function(){return view('faculty.notifications');});
 
 //hr
-//Route::get('/applications',function(){return view('faculty.applications');});
+Route::get('/hr-dashboard', 'HrDashboardController@index')->name('hr-dashboard');
+Route::get('/manage-jobs',function(){return view('hr.manage-jobs');});
+Route::get('/manage-applications',function(){return view('hr.applications');});
+
 
 //pages
 Route::get('/home', 'PagesController@index')->name('home');

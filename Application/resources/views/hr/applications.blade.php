@@ -1,12 +1,30 @@
-@extends('faculty.dashboard-menu')
+@extends('hr.dashboard-menu')
 @section('title')- Manage Applications @endsection
 @section('current') Manage Applications @endsection
 @section('current-header') Manage Applications @endsection
-@section('applications-active') active @endsection
+@section('manage-applications-active') active @endsection
 
 @section('dashboard-content')
-    <div class="job-alerts-item">
+    <div class="job-alerts-item candidates">
         <h3 class="alerts-title">Manage applications</h3>
+        <div class="alerts-list">
+            <div class="row">
+                <div class="col-md-5">
+                    <p>Job Title</p>
+                </div>
+                <div class="col-md-3">
+                    <p>Applicant</p>
+                </div>
+                <div class="col-md-4">
+                    <p>Date Applied</p>
+                </div>
+                <!--
+                <div class="col-md-2">
+                    <p>Featured</p>
+                </div>
+                -->
+            </div>
+        </div>
         <div class="applications-content">
             <div class="row">
                 <div class="col-md-5">
@@ -17,14 +35,12 @@
                     <span>Quick Studio</span>
                 </div>
                 <div class="col-md-3">
-                    <p><span class="full-time">Full-Time</span></p>
+                    <div class="can-img"><a href="#"><img src="{{asset('img/jobs/candidates.png')}}" alt=""></a></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <p>Nov 14th, 2017</p>
                 </div>
-                <div class="col-md-2">
-                    <p>Rejected</p>
-                </div>
+
             </div>
         </div>
         <div class="applications-content">
@@ -37,14 +53,12 @@
                     <span>Quick Studio</span>
                 </div>
                 <div class="col-md-3">
-                    <p><span class="full-time">Full-Time</span></p>
+                    <div class="can-img"><a href="#"><img src="{{asset('img/jobs/candidates.png')}}" alt=""></a></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <p>Nov 14th, 2017</p>
                 </div>
-                <div class="col-md-2">
-                    <p>Processed</p>
-                </div>
+
             </div>
         </div>
         <div class="applications-content">
@@ -57,14 +71,12 @@
                     <span>Quick Studio</span>
                 </div>
                 <div class="col-md-3">
-                    <p><span class="part-time">Part-Time</span></p>
+                    <div class="can-img"><a href="#"><img src="{{asset('img/jobs/candidates.png')}}" alt=""></a></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <p>Nov 14th, 2017</p>
                 </div>
-                <div class="col-md-2">
-                    <p>Rejected</p>
-                </div>
+
             </div>
         </div>
         <div class="applications-content">
@@ -77,14 +89,12 @@
                     <span>Quick Studio</span>
                 </div>
                 <div class="col-md-3">
-                    <p><span class="full-time">Full-Time</span></p>
+                    <div class="can-img"><a href="#"><img src="{{asset('img/jobs/candidates.png')}}" alt=""></a></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <p>Nov 14th, 2017</p>
                 </div>
-                <div class="col-md-2">
-                    <p>Approved</p>
-                </div>
+
             </div>
         </div>
         <div class="applications-content">
@@ -97,14 +107,12 @@
                     <span>Quick Studio</span>
                 </div>
                 <div class="col-md-3">
-                    <p><span class="full-time">Full-Time</span></p>
+                    <div class="can-img"><a href="#"><img src="{{asset('img/jobs/candidates.png')}}" alt=""></a></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <p>Nov 14th, 2017</p>
                 </div>
-                <div class="col-md-2">
-                    <p>Rejected</p>
-                </div>
+
             </div>
         </div>
         <div class="applications-content">
@@ -117,14 +125,12 @@
                     <span>Quick Studio</span>
                 </div>
                 <div class="col-md-3">
-                    <p><span class="part-time">Part-Time</span></p>
+                    <div class="can-img"><a href="#"><img src="{{asset('img/jobs/candidates.png')}}" alt=""></a></div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <p>Nov 14th, 2017</p>
                 </div>
-                <div class="col-md-2">
-                    <p>Rejected</p>
-                </div>
+
             </div>
         </div>
     </div>
