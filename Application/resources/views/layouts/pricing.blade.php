@@ -43,7 +43,7 @@
                         <h3>Subscription Plan</h3>
                     </div>
                     <div class="pricing-header">
-                        <p class="price-value"> <sup>P</sup>1000</p>
+                        <p class="price-value"><sup>P</sup>1000</p>
                         <p class="price-quality">/180 DAYS</p>
                     </div>
                     <ul class="description">
@@ -51,7 +51,11 @@
                         <li>Edit Your Job Listing</li>
                         <li>Manage Applications</li>
                     </ul>
-                    <button class="btn btn-common" type="submit">Get Started</button>
+                    <!--<button class="btn btn-common" type="submit">Get Started</button>-->
+                    <button type="button" class="btn btn-common" data-toggle="modal" data-target=".bs-example-modal-lg">
+                        Get Started
+                    </button>
+                    @include('modals.inquire')
                 </div>
             </div>
         </div>
