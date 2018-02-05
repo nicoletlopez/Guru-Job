@@ -1,2 +1,3 @@
 cd ..
-php artisan migrate:refresh --seed
+call composer dump-autoload
+call php artisan migrate:refresh --seed
