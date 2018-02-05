@@ -29,7 +29,6 @@
                             <ul class="lest item">
                                 <li><a class="@yield('dashboard-active')" href="dashboard">Dashboard</a></li>
                                 <li><a class="@yield('resume-active')" href="resume">My Resume</a></li>
-                                <li><a class="@yield('bookmarked-jobs-active')" href="bookmarked-jobs">Bookmarked Jobs</a></li>
                                 <li><a class="@yield('notifications-active')" href="notifications">Notifications <span class="notinumber">2</span></a>
                                 </li>
                             </ul>

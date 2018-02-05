@@ -36,7 +36,14 @@
                             </a>
 
                             <ul class="dropdown">
-                                <li><a href="{{route('dashboard')}}">Dashboard</a></li>
+
+                                <li>
+                                    @if (Auth::user()->user_type == 'FACULTY')
+                                        <a href="{{route('dashboard')}}">Dashboard</a>
+                                    @else
+                                        <a href="{{route('hr-dashboard')}}">Dashboard</a>
+                                    @endif
+                                </li>
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

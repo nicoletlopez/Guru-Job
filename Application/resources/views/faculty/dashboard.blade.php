@@ -22,14 +22,6 @@
                 </a>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="bookmarked-jobs">
-                    <div class="icon">
-                        <i class="ti-bookmark"></i>
-                    </div>
-                    <h3>Bookmarked Jobs</h3>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <a href="notifications">
                     <div class="icon">
                         <i class="ti-email"></i>
