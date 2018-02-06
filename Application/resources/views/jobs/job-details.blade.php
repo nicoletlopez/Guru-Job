@@ -15,16 +15,16 @@
                     <div class="box">
                         <div class="text-left">
                             <h3><a href="#">Web Developer</a></h3>
-                            <p>LemonKids LLC <em>(View All Jobs)</em></p>
+                            <p>LemonKids LLC <em><!--(View All Jobs)--></em></p>
                             <div class="meta">
-                                <span><a href="#"><i class="ti-location-pin"></i>New York, USA</a></span>
+                                <span><a href="#"><i class="ti-location-pin"></i>Manila, Philippines</a></span>
                                 <span><a href="#"><i class="ti-calendar"></i> Dec 30, 2017 - Feb 20, 2018</a></span>
                             </div>
                             <div class="meta">
                                 <span><a href="#"><i class="ti-time"></i>7:00 a.m. - 10:00 a.m.</a></span>
                                 <span><a href="#"><i class="ti-world"></i>Mon, Wed, Fri</a></span>
                             </div>
-                            <strong class="price"><i class="fa fa-money"></i>P7000 - P7500</strong>
+                            <strong class="price"><i class="fa fa-money"></i>P700/Hour</strong>
                             <a href="#" class="btn btn-common btn-sm">Apply For This Job</a>
                         </div>
                         <div class="clearfix">
@@ -69,7 +69,7 @@
                         <h2 class="medium-title">School Details</h2>
                         <div class="box">
                             <div class="thumb">
-                                <a href="#"><img src="assets/img/jobs/recent-job-detail.jpg" alt="img"></a>
+                                <a href="#"><img src="{{asset('img/jobs/recent-job-detail.jpg')}}" alt="img"></a>
                             </div>
                             <div class="text-box">
                                 <h4><a href="#">LemonKids LLC</a></h4>
