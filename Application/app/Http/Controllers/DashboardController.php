@@ -26,4 +26,10 @@ class DashboardController extends Controller
     {
         return view('faculty.dashboard');
     }
+    public function resume(){
+        return view('faculty.resume');
+    }
+    public function notifications(){
+        return view('faculty.notifications');
+    }
 }

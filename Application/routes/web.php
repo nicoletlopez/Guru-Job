@@ -19,20 +19,25 @@ Route::get('/login','PagesController@login')->name('login');
 Route::get('/register','PagesController@register')->name('register');
 Route::get('/password/reset','PagesController@reset_password')->name('reset-pass');
 */
-//faculty
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('/resume',function(){return view('faculty.resume');});
-Route::get('/bookmarked-jobs',function(){return view('faculty.bookmarked-jobs');});
-Route::get('/notifications',function(){return view('faculty.notifications');});
-
-//hr
-Route::get('/hr-dashboard', 'HrDashboardController@index')->name('hr-dashboard');
-Route::get('/manage-jobs',function(){return view('hr.manage-jobs');});
-Route::get('/manage-applications',function(){return view('hr.applications');});
-
 
 //pages
 Route::get('/home', 'PagesController@index')->name('home');
+
+//faculty
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/resume','DashboardController@resume')->name('resume');
+//Route::get('/bookmarked-jobs',function(){return view('faculty.bookmarked-jobs');});
+Route::get('/notifications','DashboardController@notifications')->name('notifications');
+
+//hr
+Route::get('/hr-dashboard', 'HrDashboardController@index')->name('hr-dashboard');
+Route::get('/manage-jobs', 'HrDashboardController@manage_jobs')->name('manage-jobs');
+Route::get('/manage-applications','HrDashboardController@manage_applications')->name('manage-applications');
+
+//jobs
+Route::get('/jobs','JobsController@index')->name('jobs');
+Route::get('/job-details',function(){return view('jobs.job-details');})->name('job-details');
+
+
+//test
 Route::get('/test',function(){return view('test');});
-Route::get('/job-details',function(){return view('pages.job-details');});
-Route::get('/jobs',function(){return view('pages.job-listings');});

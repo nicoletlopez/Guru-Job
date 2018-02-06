@@ -13,4 +13,11 @@ class HrDashboardController extends Controller
     public function index(){
         return view('hr.dashboard');
     }
+    public function manage_jobs(){
+        return view('hr.manage-jobs');
+    }
+
+    public function manage_applications(){
+        return view('hr.manage-applications');
+    }
 }
