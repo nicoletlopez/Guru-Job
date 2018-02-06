@@ -37,7 +37,7 @@
                             <button class="btn btn-common" data-toggle="modal" data-target=".job-post-form">
                                 <i class="ti-pencil-alt"></i> Post A Job
                             </button>
-                            @include('modals.job-post')
+                            @include('jobs.job-post')
                         </li>
                         @endif
                         <li class="">

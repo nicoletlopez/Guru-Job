@@ -14,9 +14,20 @@
                         <label class="control-label">Job Title</label>
                         <input type="text" class="form-control">
                     </div>
+                    <!--
                     <div class="form-group">
                         <label class="control-label">Location <span>(optional)</span></label>
                         <input type="text" class="form-control" placeholder="e.g. Manila">
+                    </div>
+                    -->
+                    <div class="form-group">
+                        <label class="control-label">Job Type</label>
+                        <div class="radio">
+                            <label style="color:black;"><input type="radio" name="optradio">Full-Time</label>
+                        </div>
+                        <div class="radio">
+                            <label style="color:black;"><input type="radio" name="optradio">Part-Time</label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Specialization</label>
@@ -37,9 +48,33 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="textarea">Job Tags <span>(optional)</span></label>
+                        <label class="control-label" for="textarea">Subjects <span>(optional)</span></label>
                         <input type="text" class="form-control" placeholder="e.g.PHP,Social Media,Management">
                         <p class="note">Comma separate tags, such as required skills or technologies, for this job.</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Work Days</label>
+                        <div class="checkbox">
+                            <label style="color:black;"><input type="checkbox" value="">Monday</label>
+                        </div>
+                        <div class="checkbox">
+                            <label style="color:black;"><input type="checkbox">Tuesday</label>
+                        </div>
+                        <div class="checkbox">
+                            <label style="color:black;"><input type="checkbox">Wednesday</label>
+                        </div>
+                        <div class="checkbox">
+                            <label style="color:black;"><input type="checkbox">Thursday</label>
+                        </div>
+                        <div class="checkbox">
+                            <label style="color:black;"><input type="checkbox">Friday</label>
+                        </div>
+                        <div class="checkbox">
+                            <label style="color:black;"><input type="checkbox">Saturday</label>
+                        </div>
+                        <div class="checkbox">
+                            <label style="color:black;"><input type="checkbox">Sunday</label>
+                        </div>
                     </div>
                     <div class="row">
                     <div class="form-group col-md-6">
@@ -64,19 +99,25 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Description</label>
+                        <label class="control-label">Salary (PHP)</label>
+                        <input type="number" class="form-control">
                     </div>
-                    <textarea></textarea>
+                    <div class="form-group">
+                        {{Form::label('description','Description',['class'=>'control-label'])}}
+                        {{Form::textarea('description','',['id'=>'article-ckeditor','class'=>'form-control','placeholder'=>'Job Description'])}}
+                    </div>
+                    <!--
                     <div class="form-group">
                         <label class="control-label">Closing Date <span>(optional)</span></label>
                         <input type="text" class="form-control" placeholder="yyyy-mm-dd">
                         <p class="note">Deadline for new applicants.</p>
                     </div>
+                    -->
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-common">Submit your Job</button>
+                <button type="submit" class="btn btn-common">Submit your Job</button>
             </div>
         </div>
     </div>
