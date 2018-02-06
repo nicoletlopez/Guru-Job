@@ -9,29 +9,33 @@ class UserTableSeeder extends Seeder
 {
     public function run()
     {
-        for($x =0; $x<50; $x++)
-        {
-            DB::table('users')->insert([
-                'name' => str_random(10),
-                'email' => str_random(10) . '@gmail.com',
-                'password' => bcrypt('secret'),
-                'user_type' => 'FACULTY',
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ]);
-        }
-
-        for($x =0; $x<50; $x++)
-        {
-            DB::table('users')->insert([
-                'name' => str_random(10),
-                'email' => str_random(10) . '@gmail.com',
-                'password' => bcrypt('secret'),
-                'user_type' => 'HR',
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s"),
-            ]);
-        }
+        factory(App\User::class,20)->create([
+            'user_type' => 'HR'
+        ]);
+        factory(App\User::class,20)->create();
+//        for($x =0; $x<50; $x++)
+//        {
+//            DB::table('users')->insert([
+//                'name' => str_random(10),
+//                'email' => str_random(10) . '@gmail.com',
+//                'password' => bcrypt('secret'),
+//                'user_type' => 'FACULTY',
+//                'created_at' => date("Y-m-d H:i:s"),
+//                'updated_at' => date("Y-m-d H:i:s"),
+//            ]);
+//        }
+//
+//        for($x =0; $x<50; $x++)
+//        {
+//            DB::table('users')->insert([
+//                'name' => str_random(10),
+//                'email' => str_random(10) . '@gmail.com',
+//                'password' => bcrypt('secret'),
+//                'user_type' => 'HR',
+//                'created_at' => date("Y-m-d H:i:s"),
+//                'updated_at' => date("Y-m-d H:i:s"),
+//            ]);
+//        }
         /*DB::table('users')->insert(
             [
                 'name' => 'Pamity',
