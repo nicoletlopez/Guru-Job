@@ -20,16 +20,26 @@
                         </a>
                     </li>
                     <li>
-                        <a class="@yield('active-jobs')" href="jobs">
+                        <a class="@yield('active-jobs')" href="{{route('jobs')}}">
                             Job Listings
                         </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <!--<li class="left"><a href="post-job.html"><i class="ti-pencil-alt"></i> Post A Job</a></li>-->
+
+
+
                     @guest
                         <li class="right"><a href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
                     @else
+                        @if (Auth::user()->user_type == 'HR')
+                        <li>
+                            <button class="btn btn-common" data-toggle="modal" data-target=".job-post-form">
+                                <i class="ti-pencil-alt"></i> Post A Job
+                            </button>
+                            @include('modals.job-post')
+                        </li>
+                        @endif
                         <li class="">
                             <a href="{{route('dashboard')}}" class="">
                                 {{ Auth::user()->name }} <span class="caret"></span>

@@ -52,7 +52,7 @@
                         <li>Manage Applications</li>
                     </ul>
                     <!--<button class="btn btn-common" type="submit">Get Started</button>-->
-                    <button type="button" class="btn btn-common" data-toggle="modal" data-target=".bs-example-modal-lg">
+                    <button type="button" class="btn btn-common" data-toggle="modal" data-target=".subscription-form">
                         Get Started
                     </button>
                     @include('modals.inquire')
