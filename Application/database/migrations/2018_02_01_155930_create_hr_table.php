@@ -16,7 +16,7 @@ class CreateHrTable extends Migration
         Schema::create('hr', function (Blueprint $table) {
             $table->integer('hr_id')->unsigned();
             $table->foreign('hr_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->double('balance');
+            $table->double('balance')->default(2000.00);
         });
     }
 
