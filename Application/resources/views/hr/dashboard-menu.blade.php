@@ -27,12 +27,12 @@
                         <div class="inner-box">
                             <h4>Manage Account</h4>
                             <ul class="lest item">
-                                <li><a class="@yield('dashboard-active')" href="hr-dashboard">Dashboard</a></li>
+                                <li><a class="@yield('dashboard-active')" href="{{route('hr-dashboard')}}">Dashboard</a></li>
                             </ul>
                             <h4>Manage Job</h4>
                             <ul class="lest item">
-                                <li><a class="@yield('manage-jobs-active')" href="manage-jobs">Manage Jobs</a></li>
-                                <li><a class="@yield('manage-applications-active')" href="manage-applications">Manage Applications</a></li>
+                                <li><a class="@yield('manage-jobs-active')" href="{{route('manage-jobs')}}">Manage Jobs</a></li>
+                                <li><a class="@yield('manage-applications-active')" href="{{route('manage-applications')}}">Manage Applications</a></li>
 
                             </ul>
                             <ul class="lest">
