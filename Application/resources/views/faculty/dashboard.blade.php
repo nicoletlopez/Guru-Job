@@ -14,7 +14,7 @@
                 <h3>{{ Carbon\Carbon::now()->toFormattedDateString() }}</h3>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="resume">
+                <a href="{{route('resume')}}">
                     <div class="icon">
                         <i class="ti-book"></i>
                     </div>
@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="notifications">
+                <a href="{{route('notifications')}}">
                     <div class="icon">
                         <i class="ti-email"></i>
                     </div>

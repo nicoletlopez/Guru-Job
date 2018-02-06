@@ -27,9 +27,9 @@
                         <div class="inner-box">
                             <h4>Manage Account</h4>
                             <ul class="lest item">
-                                <li><a class="@yield('dashboard-active')" href="dashboard">Dashboard</a></li>
-                                <li><a class="@yield('resume-active')" href="resume">My Resume</a></li>
-                                <li><a class="@yield('notifications-active')" href="notifications">Notifications <span class="notinumber">2</span></a>
+                                <li><a class="@yield('dashboard-active')" href="{{route('dashboard')}}">Dashboard</a></li>
+                                <li><a class="@yield('resume-active')" href="{{route('resume')}}">My Resume</a></li>
+                                <li><a class="@yield('notifications-active')" href="{{route('notifications')}}">Notifications <span class="notinumber">2</span></a>
                                 </li>
                             </ul>
                             <ul class="lest">
