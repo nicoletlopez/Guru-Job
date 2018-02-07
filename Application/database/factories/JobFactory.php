@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Job::class, function (Faker $faker) {
     return [
-        'title' => 'Hiring '.$faker->sentence(),
+        'title' => 'Hiring '.$faker->sentence(3),
         'desc' => $faker->paragraphs(3,true),
         'start_time' => $faker->time($format = 'H:i:s', $max = '12:00:00'), // '20:49:42'
         'end_time' => $faker->time($format = 'H:i:s', $max = '19:30:00'), // '20:49:42'
