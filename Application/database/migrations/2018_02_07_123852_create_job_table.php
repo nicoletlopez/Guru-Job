@@ -14,19 +14,17 @@ class CreateJobTable extends Migration
     public function up()
     {
         Schema::create('job', function (Blueprint $table) {
-            $table->integer('subject_id')->unsigned();
-            $table->foreign('subject_id')->references('subject_id')->on('subject');
-            $table->integer('skill_id')->unsigned();
-            $table->foreign('skill_id')->references('skill_id')->on('skill');
-            $table->integer('faculty_id')->unsigned();
-            $table->foreign('faculty_id')->references('faculty_id')->on('faculty');
-
-            $table->string('job_title');
-            $table->string('job_type');
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->string('title');
+            $table->text('desc')->nullable();
+            $table->string('type')->nullable();
+            $table->string('work_days');
             $table->time('start_time');
             $table->time('end_time');
-            $table->string('days');
-            //$table->timestamps();
+            $table->double('salary');
+
+            $table->foreign('user_id')->references('id')->on('subject');
         });
     }
 

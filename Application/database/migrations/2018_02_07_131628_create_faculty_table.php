@@ -14,8 +14,9 @@ class CreateFacultyTable extends Migration
     public function up()
     {
         Schema::create('faculty', function (Blueprint $table) {
-            $table->integer('faculty_id')->unsigned();
-            $table->foreign('faculty_id')->references('user_id')->on('users')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

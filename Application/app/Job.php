@@ -8,11 +8,22 @@ class Job extends Model
 {
     //
     protected $table = 'job';
-    protected $primaryKey = ['subject_id','skill_id','faculty_id'];
     public $timestamps = false;
 
-    public function faculty()
+    public function subjects()
     {
-        return $this->belongsTo('App\Faculty','faculty_id','faculty_id');
+        return $this->hasMany('App\Subject','subject_id','id');
+    }
+
+    public function hr()
+    {
+        return $this->belongsTo('App\Hr','user_id','user_id');
+    }
+
+    public function faculties()
+    {
+        return $this->belongsToMany('App\Faculty','application','job_id','user_id')
+            ->withPivot('applied_at')
+            ->using('App\Application');
     }
 }

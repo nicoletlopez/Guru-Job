@@ -2,11 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
 
-class FacultyHasSkill extends Pivot
+class FacultyHasSkill extends Model
 {
-    protected $primaryKey = ['faculty_id','skill_id'];
+    //
     protected $table = 'faculty_has_skill';
-    public $timestamps = false;
+    protected $primaryKey = ['user_id','skill_id'];
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStatusTable extends Migration
+class CreateFileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateStatusTable extends Migration
      */
     public function up()
     {
-        Schema::create('status', function (Blueprint $table) {
-            $table->increments('status_id');
-            $table->integer('faculty_id');
-            $table->foreign('faculty_id')->references('faculty_id')->on('faculty');
-            $table->string('status_name');
+        Schema::create('file', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->text('desc')->nullable();
+
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateStatusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status');
+        Schema::dropIfExists('file');
     }
 }

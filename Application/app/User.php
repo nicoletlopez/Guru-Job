@@ -9,7 +9,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -29,19 +29,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function profile()
+    {
+        return $this->hasOne('App\Profile','user_id','id');
+    }
 
     public function hr()
     {
-        return $this->hasOne('App\Hr','hr_id','user_id');
-    }
-
-    public function faculty()
-    {
-        return $this->hasOne('App\Faculty','faculty_id','user_id');
-    }
-
-    public function location()
-    {
-        return $this->hasOne('App\Location','user_id','user_id');
+        return $this->hasOne('App\Hr','user_id','id');
     }
 }

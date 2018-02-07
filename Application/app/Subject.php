@@ -7,19 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     //
-    protected $table = 'subejct';
-    protected $primaryKey = 'subject_id';
+    protected $table = 'subject';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
     public function hr()
     {
-        return $this->belongsTo('App\Hr','hr_id','hr_id');
+        return $this->belongsTo('App\Hr','user_id','user_id');
+    }
+
+    public function job()
+    {
+        return $this->belongsTo('App\Job','job_id','id');
     }
 
     public function skills()
     {
-        return $this->belongsToMany('App\Skill','job','subject_id','skill_id')
-            ->withPivot('job_title','job_type','start_time','end_time','days')
-            ->as('job')->using('App\Job');
+        return $this->belongsToMany('App\Skill','subject_requires_skill','subject_id','skill_id')
+            ->using('App\SubjectRequiresSkill');
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany('App\Schedule','subject_id','id');
     }
 }

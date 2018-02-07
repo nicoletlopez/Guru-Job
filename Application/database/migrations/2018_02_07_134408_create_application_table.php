@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocationTable extends Migration
+class CreateApplicationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateLocationTable extends Migration
      */
     public function up()
     {
-        Schema::create('location', function (Blueprint $table) {
-            $table->increments('location_id');
+        Schema::create('application', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('user_id')->on('users');
-            $table->string('location_name');
-            
-            //$table->timestamps();
+            $table->integer('job_id')->unsigned();
+            $table->date('applied_at');
+
+            $table->foreign('user_id')->references('user_id')->on('faculty');
+            $table->foreign('job_id')->references('id')->on('job');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateLocationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location');
+        Schema::dropIfExists('application');
     }
 }

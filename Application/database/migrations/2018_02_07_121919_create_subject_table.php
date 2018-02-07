@@ -14,12 +14,14 @@ class CreateSubjectTable extends Migration
     public function up()
     {
         Schema::create('subject', function (Blueprint $table) {
-            $table->increments('subject_id');
-            $table->integer('hr_id')->unsigned();
-            $table->foreign('hr_id')->references('hr_id')->on('hr');
-            $table->string('subject_name');
-            $table->text('subject_description');
-            //$table->timestamps();
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('job_id')->unsigned();
+            $table->string('name');
+            $table->text('desc');
+
+            $table->foreign('user_id')->references('user_id')->on('hr');
+            $table->foreign('job_id')->references('id')->on('job');
         });
     }
 

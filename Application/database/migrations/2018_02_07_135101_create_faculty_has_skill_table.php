@@ -14,11 +14,11 @@ class CreateFacultyHasSkillTable extends Migration
     public function up()
     {
         Schema::create('faculty_has_skill', function (Blueprint $table) {
-            $table->integer('faculty_id')->unsigned();
-            $table->foreign('faculty_id')->references('faculty_id')->on('faculty');
+            $table->integer('user_id')->unsigned();
             $table->integer('skill_id')->unsigned();
-            $table->foreign('skill_id')->references('skill_id')->on('skill');
-            //$table->timestamps();
+
+            $table->foreign('user_id')->references('user_id')->on('faculty');
+            $table->foreign('skill_id')->references('id')->on('skill');
         });
     }
 

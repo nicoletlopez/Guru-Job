@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFileTable extends Migration
+class CreateSkillTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateFileTable extends Migration
      */
     public function up()
     {
-        Schema::create('file', function (Blueprint $table) {
-            $table->increments('file_id');
-            $table->string('file_name');
-            $table->timestamps();
+        Schema::create('skill', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->text('desc')->nullable();
         });
     }
 
@@ -27,6 +27,6 @@ class CreateFileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('file');
+        Schema::dropIfExists('skill');
     }
 }

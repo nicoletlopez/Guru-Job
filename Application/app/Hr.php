@@ -8,16 +8,16 @@ class Hr extends Model
 {
     //
     protected $table = 'hr';
-    protected $primaryKey = 'hr_id';
+    protected $primaryKey = 'user_id';
     public $timestamps = false;
 
     public function user()
     {
-        return $this->belongsTo('App\User','hr_id','user_id');
+        return $this->belongsTo('App\User','user_id','user_id');
     }
 
     public function subjects()
     {
-        return $this->hasMany('App\Subject','hr_id','hr_id');
+        return $this->hasMany('App\Subject','user_id','user_id');
     }
 }

@@ -8,6 +8,5 @@ class FacultyHasFile extends Model
 {
     //
     protected $table = 'faculty_has_file';
-    protected $primaryKey = ['file_id','faculty_id'];
-    public $timestamps = true;
+    protected $primaryKey = ['file_id','user_id'];
 }

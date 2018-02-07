@@ -8,44 +8,45 @@ class Faculty extends Model
 {
     //
     protected $table = 'faculty';
-    protected $primaryKey = 'faculty_id';
+    protected $primaryKey = 'user_id';
     public $timestamps = false;
 
     public function user()
     {
-        return $this->belongsTo('App\User','faculty_id','user_id');
+        return $this->belongsTo('App\User','user_id','id');
     }
 
     public function status()
     {
-        return $this->hasOne('App\Status','faculty_id','faculty_id');
+        return $this->hasOne('App\Status','user_id','user_id');
     }
 
-    public function contact()
+    public function certifications()
     {
-        return $this->hasOne('App\Contact','faculty_id','faculty_id');
+        return $this->hasMany('App\Certification','user_id','user_id');
     }
 
-    public function profile()
+    public function resume()
     {
-        return $this->hasOne('App\Profile');
-    }
-
-    public function skills()
-    {
-        return $this->belongsToMany('App\Faculty','faculty_has_skill','faculty_id','skill_id')
-            ->as('faculty_has_skill')->using('App\FacultyHasSkill');
-    }
-
-    public function job()
-    {
-        return $this->hasMany('App\Job','faculty_id','faculty_id');
+        return $this->hasOne('App\Resume','user_id','user_id');
     }
 
     public function files()
     {
-        return $this->belongsToMany('App\File', 'faculty_has_file','faculty_id', 'file_id')
-            ->withPivot('file_name')->withTimestamps()
-            ->as('faculty_has_file')->using('App\FacultyHasFile');
+        return $this->belongsToMany('App\File','faculty_has_file','user_id','file_id')
+            ->as('faculty_has_file')
+            ->using('App\FacultyHasFile');
+    }
+
+    public function jobs()
+    {
+        return $this->belongsToMany('App\Job','application','user_id','job_id')
+            ->using('App\Application');
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany('App\Skill','faculty_has_skill','user_id','skill_id')
+            ->using('App\FacultyHasSkill');
     }
 }
