@@ -28,6 +28,7 @@
                             <h4>Manage Account</h4>
                             <ul class="lest item">
                                 <li><a class="@yield('dashboard-active')" href="{{route('hr-dashboard')}}">Dashboard</a></li>
+                                <li><a class="@yield('hr-profile-active')" href="{{route('hr-profile')}}">School Profile</a></li>
                             </ul>
                             <h4>Manage Job</h4>
                             <ul class="lest item">

@@ -28,7 +28,7 @@
                             <h4>Manage Account</h4>
                             <ul class="lest item">
                                 <li><a class="@yield('dashboard-active')" href="{{route('dashboard')}}">Dashboard</a></li>
-                                <li><a class="@yield('resume-active')" href="{{route('resume')}}">My Resume</a></li>
+                                <li><a class="@yield('profile-active')" href="{{route('profile')}}">My Profile</a></li>
                                 <li><a class="@yield('notifications-active')" href="{{route('notifications')}}">Notifications <span class="notinumber">2</span></a>
                                 </li>
                             </ul>

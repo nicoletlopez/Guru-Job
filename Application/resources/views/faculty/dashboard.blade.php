@@ -14,11 +14,11 @@
                 <h3>{{ Carbon\Carbon::now()->toFormattedDateString() }}</h3>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('resume')}}">
+                <a href="{{route('profile')}}">
                     <div class="icon">
                         <i class="ti-book"></i>
                     </div>
-                    <h3>Resume</h3>
+                    <h3>Profile</h3>
                 </a>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">

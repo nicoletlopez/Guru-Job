@@ -1,8 +1,8 @@
 @extends('faculty.dashboard-menu')
-@section('title')- Resume @endsection
-@section('current') Resume @endsection
-@section('current-header') Resume @endsection
-@section('resume-active') active @endsection
+@section('title')- Profile @endsection
+@section('current') Profile @endsection
+@section('current-header') Profile @endsection
+@section('profile-active') active @endsection
 
 @section('dashboard-content')
 
@@ -14,8 +14,7 @@
                 <div class="author-info">
                     <h3>Mark Anderson</h3>
                     <p class="sub-title">UI/UX Designer</p>
-                    <p><span class="address"><i class="ti-location-pin"></i>Mahattan, NYC, USA</span> <span><i
-                                    class="ti-phone"></i>(+01) 211-123-5678</span></p>
+                    <p><span class="address"><i class="ti-location-pin"></i> Mahattan, NYC, USA</span> <span><i class="ti-mobile"></i> (+01) 211-123-5678</span></p>
                     <div class="social-link">
                         <a class="twitter" target="_blank" data-original-title="twitter" href="#"
                            data-toggle="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a>
