@@ -39,6 +39,7 @@
                 Fusce eget arcu et nibh dapibus maximus consectetur in est. Sed iaculis Luctus nibh sed
                 veneatis. </p>
         </div>
+        <!--
         <div class="work-experence item">
             <h3>Vision <i class="ti-pencil"></i></h3>
             <h4>UI/UX Designer</h4>
@@ -67,5 +68,6 @@
             <p>Bachelor of Computer Science</p>
             <span class="date">2010-2014</span>
         </div>
+        -->
     </div>
 @endsection
