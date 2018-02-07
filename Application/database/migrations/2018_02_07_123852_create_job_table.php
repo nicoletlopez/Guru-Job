@@ -25,6 +25,8 @@ class CreateJobTable extends Migration
             $table->double('salary');
 
             $table->foreign('user_id')->references('id')->on('subject');
+
+            $table->softDeletes();
         });
     }
 

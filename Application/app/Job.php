@@ -10,6 +10,8 @@ class Job extends Model
     protected $table = 'job';
     public $timestamps = false;
 
+    protected $dates = ['deleted_at'];
+
     public function subjects()
     {
         return $this->hasMany('App\Subject','subject_id','id');
