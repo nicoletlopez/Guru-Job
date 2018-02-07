@@ -9,8 +9,12 @@ class UserTableSeeder extends Seeder
 {
     public function run()
     {
+        DB::table('hr')->delete();
+        DB::table('faculty')->delete();
+        DB::table('users')->delete();
+
         factory(App\User::class,20)->create([
-            'user_type' => 'HR'
+            'type' => 'HR'
         ]);
         factory(App\User::class,20)->create();
 //        for($x =0; $x<50; $x++)
