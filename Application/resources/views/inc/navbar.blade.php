@@ -20,7 +20,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="@yield('active-jobs')" href="{{route('jobs')}}">
+                        <a class="@yield('active-jobs')" href="{{route('jobs.index')}}">
                             Job Listings
                         </a>
                     </li>

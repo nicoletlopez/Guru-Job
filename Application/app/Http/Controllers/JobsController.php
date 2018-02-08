@@ -62,7 +62,10 @@ class JobsController extends Controller
      */
     public function show($id)
     {
-        //
+        $context=array(
+            'job'=>Job::find($id)
+        );
+        return view('jobs.job-details')->with($context);
     }
 
     /**

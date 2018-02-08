@@ -11,10 +11,10 @@
                 @foreach($jobs as $job)
                 <div class="job-list">
                     <div class="thumb">
-                        <a href="job-details"><img src="{{asset('img/jobs/img-1.jpg')}}" alt=""></a>
+                        <a href="/jobs/{{$job->id}}"><img src="{{asset('img/jobs/img-1.jpg')}}" alt=""></a>
                     </div>
                     <div class="job-list-content">
-                        <h4><a href="job-details">{{$job->title}}</a>
+                        <h4><a href="/jobs/{{$job->id}}">{{$job->title}}</a>
                             @if($job->type == 'Full-Time')
                                 <span class="full-time">Full-Time</span>
                             @else
@@ -35,7 +35,7 @@
                                 <div class="icon">
                                     <i class="ti-heart"></i>
                                 </div>
-                                <a href="job-details" class="btn btn-common btn-rm">More Detail</a>
+                                <a href="/jobs/{{$job->id}}" class="btn btn-common btn-rm">More Detail</a>
                             </div>
                         </div>
                     </div>
