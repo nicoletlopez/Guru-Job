@@ -21,7 +21,7 @@ class JobsController extends Controller
     {
         $s = $request->input('s');
         $jobs = Job::search($s)->get();
-        return $jobs;
+        return view('jasonsInvasion.search_result')->with('jobs', $jobs);
     }
 
     /**
