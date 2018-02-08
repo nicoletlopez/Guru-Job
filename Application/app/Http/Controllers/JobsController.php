@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Job;
 
 class JobsController extends Controller
 {
@@ -14,6 +15,13 @@ class JobsController extends Controller
     public function index()
     {
         return view('jobs.job-listings');
+    }
+
+    public function search(Request $request)
+    {
+        $s = $request->input('s');
+        $jobs = Job::search($s)->get();
+        return $jobs;
     }
 
     /**

@@ -39,6 +39,8 @@ Route::get('/manage-applications','HrDashboardController@manage_applications')->
 Route::get('/jobs','JobsController@index')->name('jobs');
 Route::get('/job-details',function(){return view('jobs.job-details');})->name('job-details');
 
+Route::get('/search', 'JobsController@search');
+
 
 //test
 Route::get('/test',function(){return view('test');});

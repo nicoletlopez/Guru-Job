@@ -28,4 +28,11 @@ class Job extends Model
             ->withPivot('applied_at')
             ->using('App\Application');
     }
+
+    public function scopeSearch($query, $s){
+//        $s += 1;
+//        $duh = Subject::pluck($s);
+        return $query->where('title', 'like', '%' .$s. '%')
+            ->orWhere('desc', 'like', '%' .$s. '%');
+    }
 }

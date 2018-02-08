@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="content">
-                <form method="">
+                <form action="search" method="get">
                     <div class="row">
                         <div class="col-md-4 col-sm-6">
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="job title / keywords / company name">
+                                <input class="form-control" type="text" name="s" placeholder="job title / keywords / company name">
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-6">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="col-md-1 col-sm-6">
-                            <button type="button" class="btn btn-search-icon"><i class="ti-search"></i></button>
+                            <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
                         </div>
                     </div>
                 </form>
