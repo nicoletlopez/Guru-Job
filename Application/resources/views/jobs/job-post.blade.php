@@ -30,10 +30,10 @@
                 <div class="form-group">
                     {{Form::label('type','Job Type',['class'=>'control-label'])}}
                     <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','',['type'=>"radio"])}}Full-Time</label>
+                        <label style="color:black;">{{Form::radio('type','FT',['type'=>"radio"])}}Full-Time</label>
                     </div>
                     <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','',['type'=>"radio"])}}Part-Time</label>
+                        <label style="color:black;">{{Form::radio('type','PT',['type'=>"radio"])}}Part-Time</label>
                     </div>
                 </div>
                 <div class="form-group">
