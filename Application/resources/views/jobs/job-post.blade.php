@@ -120,6 +120,4 @@
             {!! Form::close() !!}
         </div>
     </div>
-
-    <a href="
 </div>
