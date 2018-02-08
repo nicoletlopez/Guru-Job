@@ -19,10 +19,8 @@ class CreateJobTable extends Migration
             $table->string('title');
             $table->text('desc')->nullable();
             $table->string('type')->nullable();
-            $table->string('work_days');
-            $table->time('start_time');
-            $table->time('end_time');
             $table->double('salary');
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('subject');
 

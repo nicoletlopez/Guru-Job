@@ -18,6 +18,7 @@ class CreateScheduleTable extends Migration
             $table->integer('subject_id')->unsigned();
             $table->time('start_time');
             $table->time('end_time');
+            $table->integer('days')->unsigned();
 
             $table->foreign('subject_id')->references('id')->on('subject');
         });
