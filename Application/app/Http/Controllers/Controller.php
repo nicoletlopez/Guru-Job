@@ -11,8 +11,50 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function number_to_days()
+    function number_to_days($num)
     {
 
+        if ($num === 0) {
+            return 'TBH';
+        }
+
+        $days = array();
+
+        if ($num >= 64) {
+            array_push($days, "Sun");
+            $num -= 64;
+        }
+
+        if ($num >= 32) {
+            array_push($days, "Mon");
+            $num -= 32;
+        }
+
+        if ($num >= 16) {
+            array_push($days, "Tue");
+            $num -= 16;
+        }
+
+        if ($num >= 8) {
+            array_push($days, "Wed");
+            $num -= 8;
+        }
+
+        if ($num >= 4) {
+            array_push($days, "Thu");
+            $num -= 4;
+        }
+
+        if ($num >= 2) {
+            array_push($days, "Fri");
+            $num -= 2;
+        }
+
+        if ($num >= 1) {
+            array_push($days, "Sat");
+            $num -= 1;
+        }
+
+        return $days;
     }
 }
