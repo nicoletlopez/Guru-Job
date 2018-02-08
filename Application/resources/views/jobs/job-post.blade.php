@@ -63,40 +63,6 @@
 
                 </div>
                 <div class="form-group">
-                    {{Form::label('day','Work Days',['class'=>'control-label'])}}
-                    <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day[]','Mon',['type'=>"checkbox"])}}Monday</label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day[]','Tue',['type'=>"checkbox"])}}Tuesday</label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day[]','Wed',['type'=>"checkbox"])}}Wednesday</label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day[]','Thu',['type'=>"checkbox"])}}Thursday</label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day[]','Fri',['type'=>"checkbox"])}}Friday</label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day[]','Sat',['type'=>"checkbox"])}}Saturday</label>
-                    </div>
-                    <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day[]','Sun',['type'=>"checkbox"])}}Sunday</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        {{Form::label('time-from','Job Time From:',['class'=>'control-label'])}}
-                        {{Form::time('time-from','',['class'=>'form-control'])}}
-                    </div>
-                    <div class="form-group col-md-6">
-                        {{Form::label('time-to','Job Time To:',['class'=>'control-label'])}}
-                        {{Form::time('time-to','',['class'=>'form-control'])}}
-                    </div>
-                </div>
-                <div class="form-group">
                     {{Form::label('salary','Salary (PHP)',['class'=>'control-label'])}}
                     {{Form::number('salary','',['min'=>'1','class'=>'form-control'])}}
                 </div>
