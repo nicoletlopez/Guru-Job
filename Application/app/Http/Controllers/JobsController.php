@@ -44,10 +44,11 @@ class JobsController extends Controller
      */
     public function create()
     {
-        $hr=auth()->user();
+        $hr=auth()->user()->hr;
         $context=array(
-            'subjects'=>$hr->subject,
+            'subjects'=>$hr->subjects,
         );
+
         return view('jobs.job-post')->with($context);
     }
 
