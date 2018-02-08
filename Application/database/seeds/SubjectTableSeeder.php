@@ -11,6 +11,19 @@ class SubjectTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('subject')->delete();
+
+
+        $hrs = DB::table('users')->where('type','=','HR')->get();
+
+        foreach($hrs as $hr)
+        {
+            for ($x = 0; $x < 5; $x++)
+            {
+                factory(App\Subject::class)->create([
+                    'user_id' => $hr->id,
+                ]);
+            }
+        }
     }
 }
