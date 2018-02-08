@@ -54,15 +54,21 @@ class JobsController extends Controller
     public function store(Request $request)
     {
         //
-        $user = auth()->user()->name;
+        $user_id = auth()->user();
         $title = $request->input('title');
         $type = $request->input('type');
-        $work_days = $request->input('day');
         $salary = $request->input('salary');
         $desc = $request->input('description');
 
-        return $work_days;
+        $job = new Job;
+        $job->user_id = $user_id;
+        $job->title = $title;
+        $job->desc = $desc;
+        $job->type = $type;
+        $job->salary = $salary;
+        $job->save();
 
+        return $job;
     }
 
     /**
