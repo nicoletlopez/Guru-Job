@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 @endforeach
-                    {{$jobs->links()}}
+                    {!! $jobs->render() !!}
                 @endif
             </div>
         </div>
