@@ -13,9 +13,9 @@ class JobTableSeeder extends Seeder
     {
         DB::table('job')->delete();
 
-        $users = DB::table('users')->inRandomOrder()->limit(15)->get();
+        $hrs = DB::table('hr')->inRandomOrder()->limit(15)->get();
 
-        foreach ($users as $user) {
+        foreach ($hrs as $hr) {
             $a = rand(0, 1);
             if ($a === 0) {
                 $type = 'Part-Time';
@@ -58,7 +58,7 @@ class JobTableSeeder extends Seeder
             }
 
             factory(App\Job::class)->create([
-                'user_id' => $user->id,
+                'user_id' => $hr->user_id,
                 'type' => $type,
                 'work_days' => $wd,
             ]);

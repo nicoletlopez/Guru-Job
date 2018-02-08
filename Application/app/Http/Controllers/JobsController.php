@@ -28,9 +28,11 @@ class JobsController extends Controller
 
     public function search(Request $request)
     {
-        $s = $request->input('s');
-        $jobs = Job::search($s)->get();
-        return view('jasonsInvasion.search_result')->with('jobs', $jobs);
+        $s=$request->input('s');
+        $context = array(
+            'jobs'=>Job::search($s)->paginate(4),
+        );
+        return view('jobs.job-listings')->with($context);
     }
 
     /**
