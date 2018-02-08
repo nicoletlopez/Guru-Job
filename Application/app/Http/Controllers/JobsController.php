@@ -23,7 +23,7 @@ class JobsController extends Controller
        );
         */
         $context = array(
-            'jobs' => Job::orderBy('title')->paginate(4),
+            'jobs' => Job::orderBy('created_at','desc')->paginate(4),
         );
         return view('jobs.job-listings')->with($context);
     }
@@ -75,7 +75,7 @@ class JobsController extends Controller
         $job->salary = $salary;
         $job->save();
 
-        return $job;
+        return redirect('/jobs/'.$job->id);
     }
 
     /**

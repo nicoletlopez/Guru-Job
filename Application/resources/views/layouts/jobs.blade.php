@@ -3,8 +3,6 @@
     <div class="container">
 <br/>
         <h2 class="section-title">Jobs</h2>
-
-
         <div class="row">
             <div class="col-md-12">
                 @if(count($jobs)>0)
