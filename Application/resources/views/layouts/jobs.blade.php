@@ -42,6 +42,8 @@
                 </div>
                 @endforeach
                     {!! $jobs->render() !!}
+                @else
+                    <h3>No Results Found.</h3>
                 @endif
             </div>
         </div>
