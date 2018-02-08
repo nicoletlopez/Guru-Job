@@ -12,6 +12,7 @@ class SubjectTableSeeder extends Seeder
     public function run()
     {
         DB::table('subject')->delete();
+        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "subject";');
 
 
         $hrs = DB::table('users')->where('type','=','HR')->get();
