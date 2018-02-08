@@ -21,7 +21,7 @@
                                 <span class="part-time">Part-Time</span>
                             @endif
                         </h4>
-                        <p>{{$job->desc}}</p>
+                        <p>{!! $job->desc !!}</p>
                         <div class="job-tag">
                             <div class="pull-left">
                                 <div class="meta-tag">
