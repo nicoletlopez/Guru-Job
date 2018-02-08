@@ -12,6 +12,7 @@ class JobTableSeeder extends Seeder
     public function run()
     {
         DB::table('job')->delete();
+        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "job";');
 
         $hrs = DB::table('hr')->inRandomOrder()->limit(15)->get();
 

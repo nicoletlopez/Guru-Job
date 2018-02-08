@@ -12,11 +12,29 @@ class UserTableSeeder extends Seeder
         DB::table('hr')->delete();
         DB::table('faculty')->delete();
         DB::table('users')->delete();
+        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "users";');
+
 
         factory(App\User::class,20)->create([
             'type' => 'HR'
         ]);
+
+        DB::table('users')->insert(
+            [
+                'name' => 'Nicole',
+                'email' => 'nicole@mail.com',
+                'password' => bcrypt('secret'),
+                'type' => 'HR',
+            ]);
+
         factory(App\User::class,20)->create();
+
+        DB::table('users')->insert([
+                'name' => 'Pamity',
+                'email' => 'pamity@mail.com',
+                'password' => bcrypt('secret'),
+            ]);
+
 //        for($x =0; $x<50; $x++)
 //        {
 //            DB::table('users')->insert([
