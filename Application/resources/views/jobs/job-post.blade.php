@@ -8,7 +8,7 @@
                 </button>
                 <h3 class="modal-title" id="myModalLabel">Post a Job</h3>
             </div>
-            {!! Form::open(['class'=>'form-ad','method'=>'POST','enctype'=>'multipart/form-data']) !!}
+            {!! Form::open(['action'=>'JobsController@store','class'=>'form-ad','method'=>'POST','enctype'=>'multipart/form-data']) !!}
             <div class="modal-body">
 
                 <div class="form-group">
@@ -65,25 +65,25 @@
                 <div class="form-group">
                     {{Form::label('day','Work Days',['class'=>'control-label'])}}
                     <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day','',['type'=>"checkbox"])}}Monday</label>
+                        <label style="color:black;">{{Form::checkbox('day[]','Mon',['type'=>"checkbox"])}}Monday</label>
                     </div>
                     <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day','',['type'=>"checkbox"])}}Tuesday</label>
+                        <label style="color:black;">{{Form::checkbox('day[]','Tue',['type'=>"checkbox"])}}Tuesday</label>
                     </div>
                     <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day','',['type'=>"checkbox"])}}Wednesday</label>
+                        <label style="color:black;">{{Form::checkbox('day[]','Wed',['type'=>"checkbox"])}}Wednesday</label>
                     </div>
                     <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day','',['type'=>"checkbox"])}}Thursday</label>
+                        <label style="color:black;">{{Form::checkbox('day[]','Thu',['type'=>"checkbox"])}}Thursday</label>
                     </div>
                     <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day','',['type'=>"checkbox"])}}Friday</label>
+                        <label style="color:black;">{{Form::checkbox('day[]','Fri',['type'=>"checkbox"])}}Friday</label>
                     </div>
                     <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day','',['type'=>"checkbox"])}}Saturday</label>
+                        <label style="color:black;">{{Form::checkbox('day[]','Sat',['type'=>"checkbox"])}}Saturday</label>
                     </div>
                     <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day','',['type'=>"checkbox"])}}Sunday</label>
+                        <label style="color:black;">{{Form::checkbox('day[]','Sun',['type'=>"checkbox"])}}Sunday</label>
                     </div>
                 </div>
                 <div class="row">
@@ -120,4 +120,6 @@
             {!! Form::close() !!}
         </div>
     </div>
+
+    <a href="
 </div>
