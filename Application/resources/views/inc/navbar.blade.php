@@ -26,13 +26,10 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-
-
-
                     @guest
                         <li class="right"><a href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
                     @else
-                        @if (Auth::user()->user_type == 'HR')
+                        @if (Auth::user()->type == 'HR')
                         <li>
                             <button class="btn btn-common" data-toggle="modal" data-target=".job-post-form">
                                 <i class="ti-pencil-alt"></i> Post A Job
@@ -48,7 +45,7 @@
                             <ul class="dropdown">
 
                                 <li>
-                                    @if (Auth::user()->user_type == 'FACULTY')
+                                    @if (Auth::user()->type == 'FACULTY')
                                         <a href="{{route('dashboard')}}">Dashboard</a>
                                     @else
                                         <a href="{{route('hr-dashboard')}}">Dashboard</a>

@@ -31,7 +31,7 @@ class LoginController extends Controller
 
     protected function authenticated($request, $user)
     {
-        if($user->user_type === 'HR') {
+        if($user->type === 'HR') {
             return redirect()->intended('/hr-dashboard');
         }
         return redirect()->intended('/dashboard');
