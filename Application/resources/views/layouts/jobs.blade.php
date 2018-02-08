@@ -27,8 +27,8 @@
                                 <div class="meta-tag">
                                     <!--<span><a href="#"><i class="ti-brush"></i>Art/Design</a></span>-->
                                     <span><i class="ti-location-pin"></i>LOCATION</span>
-                                    <span><i class="ti-time"></i>{{date("g:i a",strtotime($job->start_time))}} - {{date("g:i a",strtotime($job->end_time))}}</span>
-                                    <span><i class="ti-world"></i>{{$job->work_days}}</span>
+                                    <span><i class="ti-time"></i>timeFrom - timeTo</span>
+                                    <span><i class="ti-world"></i>workDays</span>
                                 </div>
                             </div>
                             <div class="pull-right">
@@ -43,7 +43,7 @@
                 @endforeach
                     {!! $jobs->render() !!}
                 @else
-                    <h3>No Results Found.</h3>
+                    <h3>No Jobs Found.</h3>
                 @endif
             </div>
         </div>

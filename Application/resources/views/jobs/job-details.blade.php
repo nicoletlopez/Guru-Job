@@ -27,10 +27,8 @@
                                     <!--<span><a href="#"><i class="ti-calendar"></i> Dec 30, 2017 - Feb 20, 2018</a></span>-->
                                 </div>
                                 <div class="meta">
-                                    <span><a href="#"><i
-                                                    class="ti-time"></i>{{date("g:i a",strtotime($job->start_time))}}
-                                            - {{date("g:i a",strtotime($job->end_time))}}</a></span>
-                                    <span><a href="#"><i class="ti-world"></i>{{$job->work_days}}</a></span>
+                                    <span><a href="#"><i class="ti-time"></i>timeFrom - timeTo</a></span>
+                                    <span><a href="#"><i class="ti-world"></i>workDays</a></span>
                                 </div>
                                 <strong class="price"><i class="fa fa-money"></i>P{{$job->salary}} /
                                     @if($job->type == 'Full-Time')
