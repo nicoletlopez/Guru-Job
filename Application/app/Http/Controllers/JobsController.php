@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Job;
+use App\Hr;
+use Illuminate\Support\Facades\Auth;
 
 class JobsController extends Controller
 {
@@ -42,7 +44,11 @@ class JobsController extends Controller
      */
     public function create()
     {
-        //
+        $hr=auth()->user();
+        $context=array(
+            'subjects'=>$hr->subject,
+        );
+        return view('jobs.job-post')->with($context);
     }
 
     /**

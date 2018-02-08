@@ -1,4 +1,10 @@
-<div class="modal fade job-post-form" tabindex="-1" role="dialog" aria-hidden="true">
+@extends('base')
+@section('title')- Post a Job @endsection
+@section('current') Post a Job @endsection
+@section('current-header') Post a Job @endsection
+
+@section('content')
+    @include('inc.header')
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -30,37 +36,13 @@
                         <label style="color:black;">{{Form::radio('type','',['type'=>"radio"])}}Part-Time</label>
                     </div>
                 </div>
-                <!--
-                <div class="form-group">
-                    <label class="control-label">Specialization</label>
-                    <div class="search-category-container">
-                        <label class="styled-select">
-                            <select class="dropdown-product selectpicker">
-                                <option>All Specializations</option>
-                                <option>Finance</option>
-                                <option>IT & Engineering</option>
-                                <option>Education/Training</option>
-                                <option>Art/Design</option>
-                                <option>Sale/Markting</option>
-                                <option>Healthcare</option>
-                                <option>Science</option>
-                                <option>Food Services</option>
-                            </select>
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="textarea">Subjects <span>(optional)</span></label>
-                    <input type="text" class="form-control" placeholder="e.g.PHP,Social Media,Management">
-                    <p class="note">Comma separate tags, such as required skills or technologies, for this job.</p>
-                </div>
-                -->
                 <div class="form-group">
                     {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
+                    @foreach($subjects as $subject)
                     <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('day','',['type'=>"checkbox"])}}subjects</label>
+                        <label style="color:black;">{{Form::checkbox('day','',['type'=>"checkbox"])}}{{$subject}}</label>
                     </div>
-
+                    @endforeach
                 </div>
                 <div class="form-group">
                     {{Form::label('salary','Salary (PHP)',['class'=>'control-label'])}}
@@ -80,10 +62,10 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 {{Form::submit('Post your Job',['class'=>'btn btn-common'])}}
             </div>
             {!! Form::close() !!}
         </div>
     </div>
-</div>
+@endsection

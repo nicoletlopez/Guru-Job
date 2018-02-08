@@ -31,10 +31,9 @@
                     @else
                         @if (Auth::user()->type == 'HR')
                         <li>
-                            <button class="btn btn-common" data-toggle="modal" data-target=".job-post-form">
+                            <a href="{{route('jobs.create')}}" class="btn btn-common">
                                 <i class="ti-pencil-alt"></i> Post A Job
-                            </button>
-                            @include('jobs.job-post')
+                            </a>
                         </li>
                         @endif
                         <li class="">
