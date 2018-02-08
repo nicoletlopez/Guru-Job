@@ -36,8 +36,9 @@ Route::get('/manage-jobs', 'HrDashboardController@manage_jobs')->name('manage-jo
 Route::get('/manage-applications','HrDashboardController@manage_applications')->name('manage-applications');
 
 //jobs
-Route::get('/jobs','JobsController@index')->name('jobs');
-Route::get('/job-details',function(){return view('jobs.job-details');})->name('job-details');
+//Route::get('/jobs','JobsController@index')->name('jobs');
+//Route::get('/job-details',function(){return view('jobs.job-details');})->name('job-details');
+Route::resource('jobs','JobsController');
 
 Route::get('/search', 'JobsController@search');
 
