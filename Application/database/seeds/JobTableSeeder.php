@@ -26,31 +26,31 @@ class JobTableSeeder extends Seeder
             $b = rand(0, 9);
             switch ($b) {
                 case 0:
-                    $wd = 'M TH';
+                    $wd = 'Mon Thu';
                     break;
                 case 1:
-                    $wd = "T TH";
+                    $wd = "Tue Thu";
                     break;
                 case 2:
-                    $wd = 'M W F';
+                    $wd = 'Mon Wed Fri';
                     break;
                 case 3:
-                    $wd = "M T TH F";
+                    $wd = "Mon Tue Thu Fri";
                     break;
                 case 4:
-                    $wd = 'M';
+                    $wd = 'Mon';
                     break;
                 case 5:
-                    $wd = "T";
+                    $wd = "Tue";
                     break;
                 case 6:
-                    $wd = 'W';
+                    $wd = 'Wed';
                     break;
                 case 7:
-                    $wd = "S";
+                    $wd = "Sat";
                     break;
                 case 8:
-                    $wd = 'M TH S';
+                    $wd = 'Mon Thu Sat';
                     break;
                 default:
                     $wd = 'TBA';
