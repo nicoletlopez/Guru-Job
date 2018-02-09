@@ -21,9 +21,8 @@
                                         <span class="part-time">Part-Time</span>
                                     @endif
                                 </h3>
-                                <p>schoolName <em><!--(View All Jobs)--></em></p>
                                 <div class="meta">
-                                    <span><a href="#"><i class="ti-location-pin"></i>city/state, country</a></span>
+                                    <span><a href="#"><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}, {{$job->hr->user->profile->city}}</a></span>
                                     <!--<span><a href="#"><i class="ti-calendar"></i> Dec 30, 2017 - Feb 20, 2018</a></span>-->
                                 </div>
                                 <div class="meta">
@@ -43,6 +42,14 @@
                                 <h4>Overview</h4>
                                 <p>
                                     {!! $job->desc !!}
+                                </p>
+                                <h4>Subjects</h4>
+                                <p>
+                                <div class="list-group">
+                                    @foreach($subjects as $subject)
+                                        <div class="list-group-item"><i class="ti-agenda"></i> {{$subject->name}}</div>
+                                    @endforeach
+                                </div>
                                 </p>
                                 <!--
                                 <h4>Overview</h4>
@@ -87,13 +94,13 @@
                             <h2 class="medium-title">School Details</h2>
                             <div class="box">
                                 <div class="thumb">
-                                    <a href="#"><img src="{{asset('img/jobs/recent-job-detail.jpg')}}" alt="img"></a>
+                                    <a href="#"><img src="{{$job->hr->user->profile->picture}}" alt="img"></a>
                                 </div>
                                 <div class="text-box">
-                                    <h4><a href="#">LemonKids LLC</a></h4>
-                                    <p>LemonKids LLC. In marketing communications, we dream it and create it. All of the
-                                        company’s promotional and communication needs are completed in-house.
+                                    <h4><a href="#">{{$job->hr->user->name}}</a></h4>
+                                    <p>{!! $job->hr->user->profile->description !!}
                                     </p>
+                                    <!--
                                     <strong>Industry</strong>
                                     <p>Insurance</p>
                                     <strong>Type of Business Entity</strong>
@@ -102,8 +109,9 @@
                                     <p>01 January, 2000</p>
                                     <strong>No. of Employees</strong>
                                     <p>105</p>
+                                    -->
                                     <strong>Location</strong>
-                                    <p>New York, NY </p>
+                                    <p>{{$job->hr->user->profile->street_address}}, {{$job->hr->user->profile->city}} </p>
                                 </div>
                             </div>
                         </div>
