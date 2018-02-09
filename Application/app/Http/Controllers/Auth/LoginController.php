@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -32,9 +33,9 @@ class LoginController extends Controller
     protected function authenticated($request, $user)
     {
         if($user->type === 'HR') {
-            return redirect()->intended('/hr-dashboard');
+            return redirect()->intended(route('hr-dashboard'));
         }
-        return redirect()->intended('/jobs');
+        return redirect()->intended(route('jobs.index'));
     }
 
 
