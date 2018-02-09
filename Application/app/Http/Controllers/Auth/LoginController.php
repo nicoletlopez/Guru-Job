@@ -35,7 +35,7 @@ class LoginController extends Controller
         if($user->type === 'HR') {
             return redirect()->intended(route('hr-dashboard'));
         }
-        return redirect()->intended(route('jobs.index'));
+        return redirect()->intended(route('dashboard'));
     }
 
 
