@@ -29,7 +29,6 @@ class LoginController extends Controller
 
 
     //protected $redirectTo = '/dashboard';
-
     protected function authenticated($request, $user)
     {
         if($user->type === 'HR') {
