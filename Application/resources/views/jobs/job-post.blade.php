@@ -40,7 +40,7 @@
                     {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
                     @foreach($subjects as $subject)
                     <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('subject[]','',['type'=>"checkbox"])}}{{$subject->name}}</label>
+                        <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,false,['type'=>"checkbox"])}}{{$subject->name}}</label>
                     </div>
                     @endforeach
                 </div>

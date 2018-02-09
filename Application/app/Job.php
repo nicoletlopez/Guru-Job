@@ -14,7 +14,7 @@ class Job extends Model
 
     public function subjects()
     {
-        return $this->hasMany('App\Subject','subject_id','id');
+        return $this->hasMany('App\Subject','job_id','id');
     }
 
     public function hr()

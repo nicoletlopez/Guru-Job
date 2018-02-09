@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Subject;
 use Illuminate\Http\Request;
 use App\Job;
 use App\Hr;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class JobsController extends Controller
 {
@@ -23,16 +26,16 @@ class JobsController extends Controller
        );
         */
         $context = array(
-            'jobs' => Job::orderBy('created_at','desc')->paginate(4),
+            'jobs' => Job::orderBy('created_at', 'desc')->paginate(4),
         );
         return view('jobs.job-listings')->with($context);
     }
 
     public function search(Request $request)
     {
-        $s=$request->input('s');
+        $s = $request->input('s');
         $context = array(
-            'jobs'=>Job::search($s)->paginate(4),
+            'jobs' => Job::search($s)->paginate(4),
         );
         return view('jobs.job-listings')->with($context);
     }
@@ -44,9 +47,9 @@ class JobsController extends Controller
      */
     public function create()
     {
-        $hr=auth()->user()->hr;
-        $context=array(
-            'subjects'=>$hr->subjects,
+        $hr = auth()->user()->hr;
+        $context = array(
+            'subjects' => $hr->subjects,
         );
 
         return view('jobs.job-post')->with($context);
@@ -73,9 +76,22 @@ class JobsController extends Controller
         $job->desc = $desc;
         $job->type = $type;
         $job->salary = $salary;
+
         $job->save();
 
-        return redirect('/jobs/'.$job->id);
+        //Edit the foreign keys of the chosen subjects as children of the new job
+        $subject_ids = $request->input('subjects');
+
+        foreach($subject_ids as $subject_id)
+        {
+            $subject = Subject::find($subject_id);
+            $subject->job_id = $job->id;
+            $subject->save();
+        }
+
+
+
+        return redirect('/jobs/' . $job->id);
     }
 
     /**
@@ -84,10 +100,11 @@ class JobsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public
+    function show($id)
     {
-        $context=array(
-            'job'=>Job::find($id)
+        $context = array(
+            'job' => Job::find($id)
         );
         return view('jobs.job-details')->with($context);
     }
@@ -98,7 +115,8 @@ class JobsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public
+    function edit($id)
     {
         //
     }
@@ -110,7 +128,8 @@ class JobsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public
+    function update(Request $request, $id)
     {
         //
     }
@@ -121,7 +140,8 @@ class JobsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         //
     }
