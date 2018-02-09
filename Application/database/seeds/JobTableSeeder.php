@@ -19,9 +19,9 @@ class JobTableSeeder extends Seeder
         foreach ($hrs as $hr) {
             $a = rand(0, 1);
             if ($a === 0) {
-                $type = 'Part-Time';
+                $type = 'PT';
             } else {
-                $type = 'Full-Time';
+                $type = 'FT';
             }
 
             factory(App\Job::class)->create([
