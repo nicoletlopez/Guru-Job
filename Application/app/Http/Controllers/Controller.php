@@ -12,10 +12,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    function format_date($theDate){
+    static function format_date($theDate){
         $format = 'Y-m-d H:i:s';
         $date = DateTime::createFromFormat($format, $theDate);
-        return $date->format('F j, Y g:i a');
+        return $date->format('F j, Y');
     }
 
     function number_to_days($num)

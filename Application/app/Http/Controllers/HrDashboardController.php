@@ -17,7 +17,8 @@ class HrDashboardController extends Controller
         $context=array(
             'user'=>$user,
             'profile'=>$user->profile,
-            'date'=>DateTime::createFromFormat('Y-m-d H:i:s',$user->profile->dob)->format('F j, Y'),
+            'date'=>Controller::format_date($user->profile->dob),
+            /*'date'=>DateTime::createFromFormat('Y-m-d H:i:s',$user->profile->dob)->format('F j, Y'),*/
         );
         return view('hr.profile')->with($context);
     }
