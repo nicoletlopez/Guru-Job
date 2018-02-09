@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DateTime;
 use Illuminate\Http\Request;
-
 class HrDashboardController extends Controller
 {
     public function __construct()
@@ -14,9 +13,11 @@ class HrDashboardController extends Controller
         return view('hr.dashboard');
     }
     public function profile(){
+        $user=auth()->user();
         $context=array(
-            'user'=>auth()->user(),
-            'profile'=>auth()->user()->profile,
+            'user'=>$user,
+            'profile'=>$user->profile,
+            'date'=>DateTime::createFromFormat('Y-m-d H:i:s',$user->profile->dob)->format('F j, Y'),
         );
         return view('hr.profile')->with($context);
     }

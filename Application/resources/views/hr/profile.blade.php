@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-5">
                 <h3>{{$user->name}}</h3>
-                <p class="sub-title">Established in: {{$profile->dob}}</p>
+                <p class="sub-title">Established on: {{$date}}</p>
                 <p><span class="address"><i class="ti-location-pin"></i> {{$profile->street_address}}, {{$profile->city}}</span></p>
                 <p><span class="address"><i class="ti-mobile"></i> {{$profile->contact_number}}</span></p>
                 <!--
