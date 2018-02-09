@@ -9,11 +9,11 @@
                 @foreach($jobs as $job)
                 <div class="job-list">
                     <div class="thumb">
-                        <a href="/jobs/{{$job->id}}"><img src="{{asset('img/jobs/img-1.jpg')}}" alt=""></a>
+                        <a href="/jobs/{{$job->id}}"><img width="100" height="" src="{{$job->hr->user->profile->picture}}" alt=""></a>
                     </div>
                     <div class="job-list-content">
                         <h4><a href="/jobs/{{$job->id}}">{{$job->title}}</a>
-                            @if($job->type == 'Full-Time')
+                            @if($job->type == 'FT')
                                 <span class="full-time">Full-Time</span>
                             @else
                                 <span class="part-time">Part-Time</span>
@@ -24,7 +24,7 @@
                             <div class="pull-left">
                                 <div class="meta-tag">
                                     <!--<span><a href="#"><i class="ti-brush"></i>Art/Design</a></span>-->
-                                    <span><i class="ti-location-pin"></i>LOCATION</span>
+                                    <span><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}, {{$job->hr->user->profile->city}}</span>
                                     <span><i class="ti-time"></i>timeFrom - timeTo</span>
                                     <span><i class="ti-world"></i>workDays</span>
                                 </div>

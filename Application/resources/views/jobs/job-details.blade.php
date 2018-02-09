@@ -15,7 +15,7 @@
                         <div class="box">
                             <div class="text-left">
                                 <h3><a href="#">{{$job->title}}</a>
-                                    @if($job->type == 'Full-Time')
+                                    @if($job->type == 'FT')
                                         <span class="full-time">Full-Time</span>
                                     @else
                                         <span class="part-time">Part-Time</span>
@@ -30,7 +30,7 @@
                                     <span><a href="#"><i class="ti-world"></i>workDays</a></span>
                                 </div>
                                 <strong class="price"><i class="fa fa-money"></i>P{{$job->salary}} /
-                                    @if($job->type == 'Full-Time')
+                                    @if($job->type == 'FT')
                                         Month
                                     @else
                                         Hour
@@ -44,13 +44,15 @@
                                     {!! $job->desc !!}
                                 </p>
                                 <h4>Subjects</h4>
-                                <p>
+                                @if(count($subjects)>0)
                                 <div class="list-group">
                                     @foreach($subjects as $subject)
                                         <div class="list-group-item"><i class="ti-agenda"></i> {{$subject->name}}</div>
                                     @endforeach
                                 </div>
-                                </p>
+                                    @else
+                                    <p>No Subjects Listed.</p>
+                                @endif
                                 <!--
                                 <h4>Overview</h4>
                                 <p>LemonKids LLC. In marketing communications, we dream it and create it. All of the company’s promotional and communication needs are completed in-house by these “creatives” in an advertising agency-based set-up. This includes everything from advertising, promotions and print production to media relations, exhibition coordination and website maintenance. Everyone from artists, writers, designers, media buyers, event coordinators, video producers/editors and public relations specialists work together to bring campaigns and product-centric promotions to life.</p>
