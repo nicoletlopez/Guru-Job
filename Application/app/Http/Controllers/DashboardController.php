@@ -27,7 +27,11 @@ class DashboardController extends Controller
         return view('faculty.dashboard');
     }
     public function profile(){
-        return view('faculty.profile');
+        $context=array(
+            'user'=>auth()->user(),
+            'profile'=>auth()->user()->profile,
+        );
+        return view('faculty.profile')->with($context);
     }
     public function notifications(){
         return view('faculty.notifications');

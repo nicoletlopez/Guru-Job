@@ -9,12 +9,14 @@
         <div class="inner-box my-resume">
             <div class="author-resume">
                 <div class="thumb">
-                    <img src="{{asset('img/resume/img-1.jpg')}}" alt="">
+                    <img height="128" width="128" src="{{$profile->picture}}" alt="">
                 </div>
                 <div class="author-info">
-                    <h3>Mark Anderson</h3>
-                    <p class="sub-title">UI/UX Designer</p>
-                    <p><span class="address"><i class="ti-location-pin"></i> Mahattan, NYC, USA</span> <span><i class="ti-mobile"></i> (+01) 211-123-5678</span></p>
+                    <h3>{{$user->name}}</h3>
+                    <!--<p class="sub-title">UI/UX Designer</p>-->
+                    <p><span class="address"><i class="ti-location-pin"></i> {{$profile->street_address}}, {{$profile->city}}</span> </p>
+                    <p><span class="address"><i class="ti-mobile"></i> {{$profile->contact_number}}</span></p>
+                    <!--
                     <div class="social-link">
                         <a class="twitter" target="_blank" data-original-title="twitter" href="#"
                            data-toggle="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a>
@@ -25,17 +27,12 @@
                         <a class="linkedin" target="_blank" data-original-title="linkedin" href="#"
                            data-toggle="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a>
                     </div>
+                    -->
                 </div>
             </div>
             <div class="about-me item">
                 <h3>About Me <i class="ti-pencil"></i></h3>
-                <p>Nullam semper erat arcu, ac tincidunt sem venenatis vel. Curabitur a dolor ac ligula
-                    fermentum eusmod ac ullamcorper nulla. Integer blandit uitricies aliquam. Pellentesque
-                    quis dui varius, dapibus vilit id, ipsum. Morbi ac eros feugiat, lacinia elit ut,
-                    elementum turpis. Curabitur justo sapien, tempus sit amet ruturm eu, commodo eu lacus.
-                    Morbi in ligula nibh. Maecenas ut mi at odio hendririt eleif end tempor vitae augue.
-                    Fusce eget arcu et nibh dapibus maximus consectetur in est. Sed iaculis Luctus nibh sed
-                    veneatis. </p>
+                {!! $profile->description !!}
             </div>
             <!--
             <div class="work-experence item">

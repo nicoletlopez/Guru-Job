@@ -10,12 +10,14 @@
         <div class="author-resume">
             <div class="row">
             <div class="thumb col-md-7">
-                <img class="im" src="{{asset('self/img/school.jpg')}}" alt="">
+                <img class="" src="{{$profile->picture}}" alt="">
             </div>
             <div class="col-md-5">
                 <h3>schoolName</h3>
-                <p class="sub-title">Established in: January 5, 1998</p>
-                <p><span class="address"><i class="ti-location-pin"></i> Mahattan, NYC, USA</span> <span><i class="ti-mobile"></i> (+01) 211-123-5678</span></p>
+                <p class="sub-title">Established in: {{$profile->dob}}</p>
+                <p><span class="address"><i class="ti-location-pin"></i> {{$profile->street_address}}, {{$profile->city}}</span></p>
+                <p><span class="address"><i class="ti-mobile"></i> {{$profile->contact_number}}</span></p>
+                <!--
                 <div class="social-link">
                     <a class="twitter" target="_blank" data-original-title="twitter" href="#"
                        data-toggle="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a>
@@ -26,6 +28,7 @@
                     <a class="linkedin" target="_blank" data-original-title="linkedin" href="#"
                        data-toggle="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a>
                 </div>
+                -->
             </div>
             </div>
         </div>
