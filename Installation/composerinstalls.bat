@@ -1,2 +1,2 @@
-cd ../application
-composer require "laravelcollective/html":"^5.4.0"
+call cd ../application
+call composer require "laravelcollective/html":"^5.4.0"
