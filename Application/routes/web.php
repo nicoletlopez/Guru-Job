@@ -45,3 +45,4 @@ Route::get('/search', 'JobsController@search');
 
 //test
 Route::get('/test',function(){return view('test');});
+Route::get('/change',function(){return view('change_pass');});
