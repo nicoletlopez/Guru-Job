@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class ChangePasswordController extends Controller
+class UsersController extends Controller
 {
     //
 

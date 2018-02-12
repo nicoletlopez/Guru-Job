@@ -23,6 +23,9 @@ Route::get('/password/reset','PagesController@reset_password')->name('reset-pass
 //pages
 Route::get('/home', 'PagesController@index')->name('home');
 
+//users
+Route::post('/password/change','UsersController@changePassword')->name('change-pass');
+
 //faculty
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/profile','DashboardController@profile')->name('profile');
@@ -44,5 +47,5 @@ Route::get('/search', 'JobsController@search');
 
 
 //test
-Route::get('/test',function(){return view('test');});
+Route::get('/test',function(){return view('hr.create-subject');});
 Route::get('/change',function(){return view('change_pass');});

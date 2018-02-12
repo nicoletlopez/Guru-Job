@@ -1,7 +1,8 @@
 @extends('base')
 
 @section('content')
-    {!! Form::open(['action'=>'ChangePasswordController@changePassword',
+    @include('inc.messages')
+    {!! Form::open(['action'=>'UsersController@changePassword',
                         'method'=>'post']) !!}
     {{Form::label('current-password','Current Password')}}
     {{Form::text('current-password','',['class' => 'form-control',
