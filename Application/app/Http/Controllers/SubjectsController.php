@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateSubject;
+use App\Skill;
+use App\Subject;
 use Illuminate\Http\Request;
 
 class SubjectsController extends Controller
@@ -11,6 +14,12 @@ class SubjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -30,7 +39,9 @@ class SubjectsController extends Controller
     public function create()
     {
         //
-
+        $skills = Skill::all();
+        $context = ['skills'=>$skills];
+        return view('hr.create-subject')->with($context);
     }
 
     /**
@@ -39,14 +50,32 @@ class SubjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSubject $request)
     {
         //
-        $this->validate($request,[
-            'title' => 'required',
-            'body' => 'required',
-            'cover_image' => 'image|nullable|max:1999',
-        ]);
+        $user_id = auth()->user()->id;
+        $name = $request ->input('name');
+        $desc = $request->input('description');
+        $start_time = $request->input('time-from');
+        $end_time = $request->input('time-to');
+        $skills = $request->input('skills');
+        $days = $request->input('days');
+
+        $subject = new Subject();
+        $subject->user_id = auth()->user()->id;
+        $subject->name = $name;
+        $subject->desc = $desc;
+        $subject->start_time = $start_time;
+        $subject->end_time = $end_time;
+        $subject->days = $days;
+
+        $subject->save();
+
+        foreach($skills as $skill)
+        {
+            $subject->attach($skill->id);
+        }
+
     }
 
     /**

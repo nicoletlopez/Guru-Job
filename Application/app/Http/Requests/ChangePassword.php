@@ -13,11 +13,14 @@ class ChangePassword extends FormRequest
      */
     public function authorize()
     {
-        if(Auth()->user()->id != null)
+        if (Auth()->user()->id != null)
         {
             return true;
         }
-        return false;
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -35,17 +38,17 @@ class ChangePassword extends FormRequest
         ];
     }
 
-        public function messages()
-        {
-            $messages =
-                [
-                    'current-password.required' => 'Current password is required',
-                    'new-password.required' => 'New password is required',
-                    'confirm-new-password.required' => 'Confirm new password is required',
-                    'different' => 'Current password and new password must not be the same',
-                    'same' => 'Passwords do not match',
-                    /*'same' => 'Passwords do not match'*/
-                ];
-            return $messages;
-        }
+    public function messages()
+    {
+        $messages =
+            [
+                'current-password.required' => 'Current password is required',
+                'new-password.required' => 'New password is required',
+                'confirm-new-password.required' => 'Confirm new password is required',
+                'different' => 'Current password and new password must not be the same',
+                'same' => 'Passwords do not match',
+                /*'same' => 'Passwords do not match'*/
+            ];
+        return $messages;
+    }
 }
