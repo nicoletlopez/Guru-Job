@@ -48,4 +48,4 @@ Route::get('/search', 'JobsController@search');
 
 //test
 Route::get('/test',function(){return view('hr.create-subject');});
-Route::get('/change',function(){return view('change_pass');});
+Route::get('/change-password','UsersController@showForm');

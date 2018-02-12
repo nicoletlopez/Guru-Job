@@ -9,7 +9,7 @@
                             'placeholder'=>'Current Password'])}}
     {{Form::label('new-password','New Password')}}
     {{Form::text('new-password','',['class' => 'form-control',
-                                'placeholder'=>'Old Password'])}}
+                                'placeholder'=>'New Password'])}}
 
     {{Form::label('confirm-new-password','Confirm New Password')}}
     {{Form::text('confirm-new-password','',['class' => 'form-control',
