@@ -47,5 +47,6 @@ Route::get('/search', 'JobsController@search');
 
 
 //test
-Route::get('/test',function(){return view('hr.create-subject');});
+Route::get('/test',function(){return view('test');});
+Route::get('/create-subject',function(){return view('hr.create-subject');});
 Route::get('/change',function(){return view('change_pass');});
