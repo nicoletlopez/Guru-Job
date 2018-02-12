@@ -17,16 +17,16 @@ class HrDashboardController extends Controller
         $context=array(
             'user'=>$user,
             'profile'=>$user->profile,
-            'date'=>Controller::format_date($user->profile->dob),
+            'date'=>Controller::formatDate($user->profile->dob),
             /*'date'=>DateTime::createFromFormat('Y-m-d H:i:s',$user->profile->dob)->format('F j, Y'),*/
         );
         return view('hr.profile')->with($context);
     }
-    public function manage_jobs(){
+    public function manageJobs(){
         return view('hr.manage-jobs');
     }
 
-    public function manage_applications(){
+    public function manageApplications(){
         return view('hr.manage-applications');
     }
 }

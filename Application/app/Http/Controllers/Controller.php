@@ -12,13 +12,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    static function format_date($theDate){
+    static function formatDate($theDate){
         $format = 'Y-m-d H:i:s';
         $date = DateTime::createFromFormat($format, $theDate);
         return $date->format('F j, Y');
     }
 
-    function number_to_days($num)
+    function numberToDays($num)
     {
 
         if ($num === 0) {
