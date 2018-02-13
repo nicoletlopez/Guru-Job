@@ -9,13 +9,37 @@ class ProfileTableSeeder extends Seeder
     public function run()
     {
         DB::table('profile')->delete();
-        $profiles = DB::table('users')->get();
-        foreach($profiles as $profile)
-        {
+        $fprofiles = DB::table('users')->where('type', '=', 'FACULTY')->get();
+        foreach($fprofiles as $fprofile) {
             factory(App\Profile::class)->create([
-                'user_id' => $profile->id,
+                'user_id' => $fprofile->id,
             ]);
-        }//        DB::table('profile')->insert([
+        }
+
+        $hprofiles = DB::table('users')->where('type', '=', 'HR')
+//            ->andWhere('name', '<>', 'Asia Pacific College')
+//            ->andWhere('name', '<>', 'Philippine Normal University')
+//            ->andWhere('name', '<>', 'National University')
+            ->get();
+
+        $pics = array('/img/schoolLogo/apc.jpg',
+                            '/img/schoolLogo/pnu.jpg',
+                            '/img/schoolLogo/nu.jpg');
+        $i = 1;
+        foreach ($pics as $pic) {
+            factory(App\Profile::class)->create([
+                'user_id' => $i,
+                'picture' => $pic,
+            ]);
+            $i++;
+        }
+
+//        foreach ($hprofiles as $hprofile) {
+//            factory(App\Profile::class)->create([
+//                'user_id' => $hprofile->id,
+//            ]);
+//        }
+        //        DB::table('profile')->insert([
 //            'user_id' => 1,
 //            'user_description' => "This is profile of the user Pamity",
 //            'dob' => Carbon::now(),

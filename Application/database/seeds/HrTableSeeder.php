@@ -12,8 +12,8 @@ class HrTableSeeder extends Seeder
     public function run()
     {
         DB::table('hr')->delete();
-        //
-        $hrs = DB::table('users')->where('type','=','HR')->get();
+
+        $hrs = DB::table('users')->where('type', '=' ,'HR')->get();
         foreach($hrs as $hr)
         {
             DB::table('hr')->insert([

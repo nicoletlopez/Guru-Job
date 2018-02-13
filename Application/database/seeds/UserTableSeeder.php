@@ -12,20 +12,31 @@ class UserTableSeeder extends Seeder
         DB::table('hr')->delete();
         DB::table('faculty')->delete();
         DB::table('users')->delete();
+        //Delete the following code when migrating to another database engine
+        //This is specific to SQLITE
         DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "users";');
 
 
-        factory(App\User::class,20)->create([
-            'type' => 'HR'
-        ]);
 
-        DB::table('users')->insert(
-            [
-                'name' => 'Nicole',
-                'email' => 'nicole@mail.com',
-                'password' => bcrypt('secret'),
-                'type' => 'HR',
-            ]);
+        $schools = array('Asia Pacific College', 'Philippine Normal University', 'National University');
+        foreach ($schools as $school) {
+            $words = explode(" ", $school);
+            $acronym = "";
+            foreach ($words as $w) {
+                $acronym .= $w[0];
+            }
+            $acronym = strtolower($acronym);
+            DB::table('users')->insert(
+                [
+                    'name' => $school,
+                    'email' => $acronym.'@mail.com',
+                    'password' => bcrypt('secret'),
+                    'type' => 'HR',
+                    'remember_token' => str_random(10),
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s"),
+                ]);
+        }
 
         factory(App\User::class,20)->create();
 
