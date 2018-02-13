@@ -5,14 +5,14 @@
                 <div class="right-sideabr">
                     <div class="inner-box">
                         @if(Auth::user()->type == 'HR')
-                            <h4>Manage Account</h4>
+                            <h4>Account</h4>
                             <ul class="lest item">
                                 <li><a class="@yield('dashboard-active')" href="{{route('hr-dashboard')}}">Dashboard</a>
                                 </li>
                                 <li><a class="@yield('hr-profile-active')" href="{{route('hr-profile')}}">School
                                         Profile</a></li>
                             </ul>
-                            <h4>Manage Job</h4>
+                            <h4>Job</h4>
                             <ul class="lest item">
                                 <li><a class="@yield('manage-jobs-active')" href="{{route('manage-jobs')}}">Manage
                                         Jobs</a></li>
@@ -20,8 +20,12 @@
                                        href="{{route('manage-applications')}}">Manage Applications</a></li>
 
                             </ul>
+                            <h4>Subject</h4>
+                            <ul class="lest item">
+                                <li><a class="@yield('manage-subjects-active')" href="#">Manage Subjects</a></li>
+                            </ul>
                         @else
-                            <h4>Manage Account</h4>
+                            <h4>Account</h4>
                             <ul class="lest item">
                                 <li><a class="@yield('dashboard-active')" href="{{route('dashboard')}}">Dashboard</a></li>
                                 <li><a class="@yield('profile-active')" href="{{route('profile')}}">My Profile</a></li>

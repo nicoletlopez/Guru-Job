@@ -6,6 +6,7 @@
             </div>
             <h3>{{ Carbon\Carbon::now()->toFormattedDateString() }}</h3>
         </div>
+        <!--HR-->
         @if(Auth::user()->type == 'HR')
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <a href="{{route('hr-profile')}}">
@@ -29,6 +30,14 @@
                         <i class="ti-bookmark"></i>
                     </div>
                     <h3>Manage Applications</h3>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                <a href="#">
+                    <div class="icon">
+                        <i class="ti-book"></i>
+                    </div>
+                    <h3>Manage Subjects</h3>
                 </a>
             </div>
         @else
