@@ -9,10 +9,10 @@
     <div class="inner-box my-resume">
         <div class="author-resume">
             <div class="row">
-            <div class="thumb col-md-7">
+            <div class="thumb col-md-6">
                 <img class="" src="{{$profile->picture}}" alt="">
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <h3>{{$user->name}}</h3>
                 <p class="sub-title">Established on: {{$date}}</p>
                 <p><span class="address"><i class="ti-location-pin"></i> {{$profile->street_address}}, {{$profile->city}}</span></p>
