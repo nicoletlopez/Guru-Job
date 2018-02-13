@@ -22,7 +22,9 @@
                                     @endif
                                 </h3>
                                 <div class="meta">
-                                    <span><a href="#"><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}, {{$job->hr->user->profile->city}}</a></span>
+                                    <span><a href="#"><i
+                                                    class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}
+                                            , {{$job->hr->user->profile->city}}</a></span>
                                     <!--<span><a href="#"><i class="ti-calendar"></i> Dec 30, 2017 - Feb 20, 2018</a></span>-->
                                 </div>
                                 <div class="meta">
@@ -36,7 +38,14 @@
                                         Hour
                                     @endif
                                 </strong>
-                                <a href="#" class="btn btn-common btn-sm">Apply For This Job</a>
+
+                                @guest
+                                    <a href="#" class="btn btn-common btn-sm">Apply For This Job</a>
+                                @else
+                                    @if(Auth::user()->type == 'FACULTY')
+                                        <a href="#" class="btn btn-common btn-sm">Apply For This Job</a>
+                                    @endif
+                                @endguest
                             </div>
                             <div class="clearfix">
                                 <h4>Overview</h4>
@@ -45,15 +54,16 @@
                                 </p>
                                 <h4>Subjects</h4>
                                 @if(count($subjects)>0)
-                                <div class="list-group">
-                                    @foreach($subjects as $subject)
-                                        <div class="list-group-item"><i class="ti-agenda"></i> {{$subject->name}}</div>
-                                    @endforeach
-                                </div>
-                                    @else
+                                    <div class="list-group">
+                                        @foreach($subjects as $subject)
+                                            <div class="list-group-item"><i class="ti-agenda"></i> {{$subject->name}}
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
                                     <p>No Subjects Listed.</p>
                                 @endif
-                                <!--
+                            <!--
                                 <h4>Overview</h4>
                                 <p>LemonKids LLC. In marketing communications, we dream it and create it. All of the company’s promotional and communication needs are completed in-house by these “creatives” in an advertising agency-based set-up. This includes everything from advertising, promotions and print production to media relations, exhibition coordination and website maintenance. Everyone from artists, writers, designers, media buyers, event coordinators, video producers/editors and public relations specialists work together to bring campaigns and product-centric promotions to life.</p>
                                 <p>If you’re a dreamer, gather up your portfolio and show us your vision. Garmin is adding one more enthusiastic individual to our in-house Communications expert team.</p>
@@ -85,7 +95,14 @@
                                     <li><i class="ti-check-box"></i>Must be able to perform physical activities that require considerable use of your arms and legs and moving your whole body, such as climbing, lifting, balancing, walking, stooping, and handling of materials.</li>
                                 </ul>
                                 -->
-                                <a href="#" class="btn btn-common">Apply for this Job Now</a>
+                                @guest
+                                    <a href="#" class="btn btn-common">Apply for this Job Now</a>
+                                @else
+                                    @if(Auth::user()->type == 'FACULTY')
+                                        <a href="#" class="btn btn-common">Apply for this Job Now</a>
+                                    @endif
+                                @endguest
+
                             </div>
                         </div>
                     </div>
@@ -113,7 +130,8 @@
                                     <p>105</p>
                                     -->
                                     <strong>Location</strong>
-                                    <p>{{$job->hr->user->profile->street_address}}, {{$job->hr->user->profile->city}} </p>
+                                    <p>{{$job->hr->user->profile->street_address}}
+                                        , {{$job->hr->user->profile->city}} </p>
                                 </div>
                             </div>
                         </div>
