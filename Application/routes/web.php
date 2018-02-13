@@ -49,6 +49,5 @@ Route::get('/search', 'JobsController@search');
 
 //test
 Route::get('/test',function(){return view('hr.create-subject');});
-Route::get('/change-password','UsersController@showForm');
 Route::resource('subject','SubjectsController');
 Route::get('/create-subject','SubjectsController@create');

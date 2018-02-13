@@ -29,11 +29,11 @@
                     </div>
                     <div class="row">
                     <div class="form-group col-md-6">
-                        <label class="control-label">State</label>
+                        <label class="control-label">Region</label>
                         <div class="search-category-container">
                             <label class="styled-select">
                                 <select class="dropdown-product selectpicker">
-                                    <option>Select State</option>
+                                    <option>Select Region</option>
                                     <option>Armm</option>
                                     <option>Bicol Region</option>
                                     <option>C.A.R</option>
@@ -54,7 +54,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-common">Inquire Now!</button>
+                <button type="button" class="btn btn-common">Subscribe Now!</button>
             </div>
 
         </div>
