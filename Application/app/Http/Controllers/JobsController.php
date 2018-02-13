@@ -106,6 +106,7 @@ class JobsController extends Controller
         $context = array(
             'job' => Job::find($id),
             'subjects' => Job::find($id)->subjects,
+            'date'=>Controller::formatDate(Job::find($id)->hr->user->profile->dob),
         );
         return view('jobs.job-details')->with($context);
     }
