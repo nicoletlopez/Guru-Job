@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use DateTime;
 use Illuminate\Http\Request;
 class HrDashboardController extends Controller
 {
@@ -23,7 +22,11 @@ class HrDashboardController extends Controller
         return view('hr.profile')->with($context);
     }
     public function manageJobs(){
-        return view('hr.manage-jobs');
+        $hr=auth()->user()->hr;
+        $context=array(
+            'jobs'=>$hr->jobs,
+        );
+        return view('hr.manage-jobs')->with($context);
     }
 
     public function manageApplications(){

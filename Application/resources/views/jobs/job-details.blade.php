@@ -14,7 +14,7 @@
                         <h2 class="medium-title">Job Information</h2>
                         <div class="box">
                             <div class="text-left">
-                                <h3><a href="#">{{$job->title}}</a>
+                                <h3>{{$job->title}}
                                     @if($job->type == 'FT')
                                         <span class="full-time">Full-Time</span>
                                     @else
@@ -22,14 +22,17 @@
                                     @endif
                                 </h3>
                                 <div class="meta">
-                                    <span><a href="#"><i
-                                                    class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}
-                                            , {{$job->hr->user->profile->city}}</a></span>
+                                    <span><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}
+                                            , {{$job->hr->user->profile->city}}</span>
                                     <!--<span><a href="#"><i class="ti-calendar"></i> Dec 30, 2017 - Feb 20, 2018</a></span>-->
+
                                 </div>
                                 <div class="meta">
-                                    <span><a href="#"><i class="ti-time"></i>timeFrom - timeTo</a></span>
-                                    <span><a href="#"><i class="ti-world"></i>workDays</a></span>
+                                    <span><i class="ti-mobile"></i>{{$job->hr->user->profile->contact_number}}</span>
+                                </div>
+                                <div class="meta">
+                                    <span><i class="ti-time"></i>timeFrom - timeTo</span>
+                                    <span><i class="ti-world"></i>workDays</span>
                                 </div>
                                 <strong class="price"><i class="fa fa-money"></i>P{{$job->salary}} /
                                     @if($job->type == 'FT')
@@ -112,11 +115,11 @@
                         <div class="sidebar">
                             <h2 class="medium-title">School Details</h2>
                             <div class="box">
-                                <div class="thumb">
-                                    <a href="#"><img src="{{$job->hr->user->profile->picture}}" alt="img"></a>
+                                <div class="img-thumbnail">
+                                    <img class="img-responsive" src="{{$job->hr->user->profile->picture}}" alt="img">
                                 </div>
                                 <div class="text-box">
-                                    <h4><a href="#">{{$job->hr->user->name}}</a></h4>
+                                    <h4>{{$job->hr->user->name}}</h4>
                                     <p>{!! $job->hr->user->profile->description !!}
                                     </p>
                                     <!--
@@ -129,9 +132,13 @@
                                     <strong>No. of Employees</strong>
                                     <p>105</p>
                                     -->
+                                    <strong>Established on</strong>
+                                    <p> {{$date}}</p>
                                     <strong>Location</strong>
                                     <p>{{$job->hr->user->profile->street_address}}
                                         , {{$job->hr->user->profile->city}} </p>
+                                    <strong>Contact No.</strong>
+                                    <p>{{$job->hr->user->profile->contact_number}}</p>
                                 </div>
                             </div>
                         </div>
