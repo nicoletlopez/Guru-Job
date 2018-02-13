@@ -20,4 +20,8 @@ class Hr extends Model
     {
         return $this->hasMany('App\Subject','user_id','user_id');
     }
+    public function jobs()
+    {
+        return $this->hasMany('App\Job','user_id','user_id');
+    }
 }
