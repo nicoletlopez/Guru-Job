@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Guru App @yield('title')</title>
 
-
+    <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}" />
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/jasny-bootstrap.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}" type="text/css">
