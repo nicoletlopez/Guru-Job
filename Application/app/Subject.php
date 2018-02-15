@@ -26,4 +26,9 @@ class Subject extends Model
         return $this->belongsToMany('App\Skill','subject_requires_skill','subject_id','skill_id')
             ->using('App\SubjectRequiresSkill');
     }
+
+    public function schedules()
+    {
+        return $this->hasMany('App\Schedule','subject_id','id');
+    }
 }
