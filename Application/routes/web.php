@@ -48,6 +48,6 @@ Route::get('/search', 'JobsController@search');
 
 
 //test
-Route::get('/test',function(){return view('hr.create-subject');});
+Route::get('/test',function(){return view('test');});
 Route::resource('subject','SubjectsController');
 Route::get('/create-subject','SubjectsController@create');

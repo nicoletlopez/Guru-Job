@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditJob;
 use App\Subject;
 use Illuminate\Http\Request;
 use App\Job;
@@ -82,13 +83,11 @@ class JobsController extends Controller
         //Edit the foreign keys of the chosen subjects as children of the new job
         $subject_ids = $request->input('subjects');
 
-        foreach($subject_ids as $subject_id)
-        {
+        foreach ($subject_ids as $subject_id) {
             $subject = Subject::find($subject_id);
             $subject->job_id = $job->id;
             $subject->save();
         }
-
 
 
         return redirect('/jobs/' . $job->id);
@@ -106,7 +105,7 @@ class JobsController extends Controller
         $context = array(
             'job' => Job::find($id),
             'subjects' => Job::find($id)->subjects,
-            'date'=>Controller::formatDate(Job::find($id)->hr->user->profile->dob),
+            'date' => Controller::formatDate(Job::find($id)->hr->user->profile->dob),
         );
         return view('jobs.job-details')->with($context);
     }
@@ -120,7 +119,20 @@ class JobsController extends Controller
     public
     function edit($id)
     {
-        //
+        $hr = auth()->user()->hr;
+        $job=Job::find($id);
+        $subjects=$hr->subjects;
+        $subjectsSelected=$job->subjects;
+        $subjectData=array();
+        foreach($subjectsSelected as $subjectSelected){
+            $subjectData[]=$subjectSelected->id;
+        }
+        $context = array(
+            'job' => Job::find($id),
+            'subjects' => $subjects,
+            'subjectData'=>$subjectData,
+        );
+        return view('jobs.job-edit')->with($context);
     }
 
     /**
@@ -131,9 +143,30 @@ class JobsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public
-    function update(Request $request, $id)
+    function update(EditJob $request, $id)
     {
-        //
+        $job_id=Job::find($id);
+        $title = $request->input('title');
+        $type = $request->input('type');
+        $salary = $request->input('salary');
+        $desc = $request->input('description');
+
+        $job=Job::where('id',$job_id);
+        $job->title = $title;
+        $job->desc = $desc;
+        $job->type = $type;
+        $job->salary = $salary;
+
+        $subject_ids = $request->input('subjects');
+
+        foreach ($subject_ids as $subject_id) {
+            $subject = Subject::find($subject_id);
+            $subject->job_id = $job->id;
+            $subject->save();
+        }
+
+        return redirect('/jobs/' . $job->id);
+
     }
 
     /**

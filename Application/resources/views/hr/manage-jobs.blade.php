@@ -26,7 +26,7 @@
                         <div class="can-img"><a href="#"><img src="{{asset('/img/jobs/candidates.png')}}"></a></div>
                     </td>
                     <td>
-                        <button class="btn btn-primary">Edit</button>
+                        <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary">Edit</a>
                         <button class="btn btn-danger">Delete</button>
                     </td>
                 </tr>

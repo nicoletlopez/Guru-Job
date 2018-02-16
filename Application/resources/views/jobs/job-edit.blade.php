@@ -1,10 +1,10 @@
-@extends('base')
-@section('title')- Post a Job @endsection
-@section('current') Post a Job @endsection
-@section('current-header') Post a Job @endsection
+@extends('hr.dashboard-menu')
+@section('title')- Update Job @endsection
+@section('current') Update Job @endsection
+@section('current-header') Update Job @endsection
+@section('manage-jobs-active') active @endsection
 
-@section('content')
-    @include('inc.header')
+@section('dashboard-content')
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -14,9 +14,9 @@
                             aria-hidden="true">×</span>
                 </button>
                 -->
-                <h3 class="modal-title" id="myModalLabel">Post a Job</h3>
+                <h3 class="modal-title" id="myModalLabel">Update "{{$job->title}}" Job</h3>
             </div>
-            {!! Form::open(['action'=>'JobsController@store','class'=>'form-ad','method'=>'POST','enctype'=>'multipart/form-data']) !!}
+            {!! Form::open(['action'=>['JobsController@update',$job->id],'class'=>'form-ad','method'=>'POST','enctype'=>'multipart/form-data']) !!}
             <div class="modal-body">
 
                 <div class="form-group">
@@ -32,27 +32,27 @@
                 <div class="form-group">
                     {{Form::label('type','Job Type',['class'=>'control-label'])}}
                     <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','FT',['type'=>"radio"])}}Full-Time</label>
+                        <label style="color:black;">{{Form::radio('type','FT',true,['type'=>"radio"])}}Full-Time</label>
                     </div>
                     <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','PT',['type'=>"radio"])}}Part-Time</label>
+                        <label style="color:black;">{{Form::radio('type','PT',false,['type'=>"radio"])}}Part-Time</label>
                     </div>
                 </div>
                 <div class="form-group">
                     {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
                     @foreach($subjects as $subject)
-                    <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,false,['type'=>"checkbox"])}}{{$subject->name}}</label>
-                    </div>
+                        <div class="checkbox">
+                            <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,in_array($subject->id,$subjectData),['type'=>"checkbox"])}}{{$subject->name}}</label>
+                        </div>
                     @endforeach
                 </div>
                 <div class="form-group">
                     {{Form::label('salary','Salary (PHP)',['class'=>'control-label'])}}
-                    {{Form::number('salary','',['min'=>'1','class'=>'form-control'])}}
+                    {{Form::number('salary',$job->salary,['min'=>'1','class'=>'form-control'])}}
                 </div>
                 <div class="form-group">
                     {{Form::label('description','Description',['class'=>'control-label'])}}
-                    {{Form::textarea('description','',['id'=>'article-ckeditor','class'=>'form-control','placeholder'=>'Job Description'])}}
+                    {{Form::textarea('description',$job->desc,['id'=>'article-ckeditor','class'=>'form-control','placeholder'=>'Job Description'])}}
                 </div>
                 <!--
                 <div class="form-group">
@@ -65,7 +65,8 @@
             </div>
             <div class="modal-footer">
                 <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                {{Form::submit('Post your Job',['class'=>'btn btn-common'])}}
+                {{Form::hidden('_method','PUT')}}
+                {{Form::submit('Update Job',['class'=>'btn btn-common'])}}
             </div>
             {!! Form::close() !!}
         </div>
