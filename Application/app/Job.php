@@ -25,7 +25,7 @@ class Job extends Model
     public function faculties()
     {
         return $this->belongsToMany('App\Faculty','application','job_id','user_id')
-            ->withPivot('applied_at')
+            ->withTimestamps()
             ->using('App\Application');
     }
 
@@ -35,4 +35,15 @@ class Job extends Model
         return $query->where('title', 'like', '%' .$s. '%')
             ->orWhere('desc', 'like', '%' .$s. '%');
     }
+
+    /*public function jobAtSchedule()
+    {
+        //get all the jobs that a user currently has
+        $jobs = Array();
+        $jobs = auth()->user()->jobs;
+
+        $context = ['jobs',$jobs];
+
+        return view('jobs.job-by-schedule')->with($context);
+    }*/
 }

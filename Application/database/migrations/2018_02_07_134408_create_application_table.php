@@ -16,7 +16,7 @@ class CreateApplicationTable extends Migration
         Schema::create('application', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->integer('job_id')->unsigned();
-            $table->date('applied_at');
+            $table->timestamps();
 
             $table->foreign('user_id')->references('user_id')->on('faculty');
             $table->foreign('job_id')->references('id')->on('job');

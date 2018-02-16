@@ -12,3 +12,5 @@
     </div>
     @include('layouts.jobs')
 @endsection
+
+
