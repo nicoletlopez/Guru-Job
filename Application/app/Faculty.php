@@ -41,6 +41,7 @@ class Faculty extends Model
     public function jobs()
     {
         return $this->belongsToMany('App\Job','application','user_id','job_id')
+            ->withTimestamps()
             ->using('App\Application');
     }
 
@@ -49,4 +50,5 @@ class Faculty extends Model
         return $this->belongsToMany('App\Skill','faculty_has_skill','user_id','skill_id')
             ->using('App\FacultyHasSkill');
     }
+
 }

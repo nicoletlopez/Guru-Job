@@ -116,8 +116,7 @@ class JobsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function edit($id)
+    public function edit($id)
     {
         $hr = auth()->user()->hr;
         $job=Job::find($id);
@@ -142,6 +141,7 @@ class JobsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public
     function update(EditJob $request, $id)
     {
@@ -166,6 +166,19 @@ class JobsController extends Controller
         }
 
         return redirect('/jobs/' . $job->id);
+=======
+    public function update(Request $request, $id)
+    {
+        //
+        $user = auth()->user();
+        $job = Job::find($id);
+
+        //update the relationship (APPLICATION table)
+        $job->faculties->attach($job->id,$user->id);
+
+        return redirect()->route('jobs.show');
+
+>>>>>>> 96c87cb000b8881b3401855b0846ad73b40b3f05
 
     }
 

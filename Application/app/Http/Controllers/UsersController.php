@@ -36,4 +36,10 @@ class UsersController extends Controller
         return redirect()->back()->with("success","Password changed successfully!");
     }
 
+    public function apply(Request $job)
+    {
+        $user = auth()->user();
+        //get the JOB object from a form submission
+    }
+
 }
