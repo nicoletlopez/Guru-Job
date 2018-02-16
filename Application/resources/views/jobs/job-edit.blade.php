@@ -21,7 +21,7 @@
 
                 <div class="form-group">
                     {{Form::label('title','Job Title',['class'=>'control-label'])}}
-                    {{Form::text('title','',['class'=>'form-control'])}}
+                    {{Form::text('title',$job->title,['class'=>'form-control'])}}
                 </div>
                 <!--
                 <div class="form-group">
@@ -31,12 +31,25 @@
                 -->
                 <div class="form-group">
                     {{Form::label('type','Job Type',['class'=>'control-label'])}}
-                    <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','FT',true,['type'=>"radio"])}}Full-Time</label>
-                    </div>
-                    <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','PT',false,['type'=>"radio"])}}Part-Time</label>
-                    </div>
+                    @if($jobType == 'FT')
+                        <div class="radio">
+                            <label style="color:black;">{{Form::radio('type','FT',true,['type'=>"radio"])}}
+                                Full-Time</label>
+                        </div>
+                        <div class="radio">
+                            <label style="color:black;">{{Form::radio('type','PT',false,['type'=>"radio"])}}
+                                Part-Time</label>
+                        </div>
+                    @else
+                        <div class="radio">
+                            <label style="color:black;">{{Form::radio('type','FT',false,['type'=>"radio"])}}
+                                Full-Time</label>
+                        </div>
+                        <div class="radio">
+                            <label style="color:black;">{{Form::radio('type','PT',true,['type'=>"radio"])}}
+                                Part-Time</label>
+                        </div>
+                    @endif
                 </div>
                 <div class="form-group">
                     {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
@@ -46,9 +59,15 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="form-group">
-                    {{Form::label('salary','Salary (PHP)',['class'=>'control-label'])}}
-                    {{Form::number('salary',$job->salary,['min'=>'1','class'=>'form-control'])}}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        {{Form::label('min-salary','Minimum Salary (PHP)',['class'=>'control-label'])}}
+                        {{Form::number('min-salary',$job->floor_salary,['min'=>'1.00','step'=>'.01','class'=>'form-control'])}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{Form::label('max-salary','Maximum Salary (PHP)',['class'=>'control-label'])}}
+                        {{Form::number('max-salary',$job->ceiling_salary,['min'=>'1.00','step'=>'.01','class'=>'form-control'])}}
+                    </div>
                 </div>
                 <div class="form-group">
                     {{Form::label('description','Description',['class'=>'control-label'])}}

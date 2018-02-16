@@ -34,7 +34,7 @@
                                     <span><i class="ti-time"></i>timeFrom - timeTo</span>
                                     <span><i class="ti-world"></i>workDays</span>
                                 </div>
-                                <strong class="price"><i class="fa fa-money"></i>P{{$job->salary}} /
+                                <strong class="price"><i class="fa fa-money"></i>P{{$job->floor_salary}} - {{$job->ceiling_salary}} /
                                     @if($job->type == 'FT')
                                         Month
                                     @else
@@ -47,6 +47,10 @@
                                 @else
                                     @if(Auth::user()->type == 'FACULTY')
                                         <a href="#" class="btn btn-common btn-sm">Apply For This Job</a>
+                                    @else
+                                        @if(Auth::user()->id == $job->user_id)
+                                        <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary btn-sm">Update Job</a>
+                                        @endif
                                     @endif
                                 @endguest
                             </div>
@@ -103,6 +107,10 @@
                                 @else
                                     @if(Auth::user()->type == 'FACULTY')
                                         <a href="#" class="btn btn-common">Apply for this Job Now</a>
+                                    @else
+                                        @if(Auth::user()->id == $job->user_id)
+                                            <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary">Update Job</a>
+                                        @endif
                                     @endif
                                 @endguest
 

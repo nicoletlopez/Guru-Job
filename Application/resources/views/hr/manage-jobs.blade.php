@@ -9,29 +9,40 @@
     <div class="job-alerts-item candidates">
         <h3 class="alerts-title">Manage Jobs</h3>
         <table class="table">
-            <thead class="">
-            <tr>
-                <th><p>Job Name</p></th>
-                <th><p># of Applicants</p></th>
-                <th><p>Applicants</p></th>
-                <th><p>Action</p></th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($jobs as $job)
+            @if(count($jobs)>0)
+                <thead class="">
                 <tr>
-                    <td><a href="/jobs/{{$job->id}}"><h3>{{$job->title}}</h3></a></td>
-                    <td><span class="badge">1</span></td>
-                    <td>
-                        <div class="can-img"><a href="#"><img src="{{asset('/img/jobs/candidates.png')}}"></a></div>
-                    </td>
-                    <td>
-                        <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary">Edit</a>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
+                    <th><p>Job Name</p></th>
+                    <th><p># of Applicants</p></th>
+                    <th><p>Applicants</p></th>
+                    <th><p>Action</p></th>
                 </tr>
-            @endforeach
-            </tbody>
+                </thead>
+                <tbody>
+
+                @foreach($jobs as $job)
+                    <tr>
+                        <td><a href="/jobs/{{$job->id}}"><h3>{{$job->title}}</h3></a></td>
+                        <td><span class="badge">1</span></td>
+                        <td>
+                            <div class="can-img"><a href="#"><img src="{{asset('/img/jobs/candidates.png')}}"></a></div>
+                        </td>
+                        <td>
+                            <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary">Update</a>
+                            {!! Form::open(['action'=>['JobsController@destroy',$job->id],'method'=>'POST']) !!}
+                            {{Form::hidden('_method','DELETE')}}
+                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @endforeach
+                @else
+                    <h4>No Jobs Posted. <a href="{{route('jobs.create')}}" class="btn btn-common">
+                            <i class="ti-pencil-alt"></i> Post A Job
+                        </a></h4>
+
+                @endif
+                </tbody>
         </table>
     </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateJob;
 use App\Http\Requests\EditJob;
 use App\Subject;
 use Illuminate\Http\Request;
@@ -62,13 +63,14 @@ class JobsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateJob $request)
     {
         //
         $user_id = auth()->user()->id;
         $title = $request->input('title');
         $type = $request->input('type');
-        $salary = $request->input('salary');
+        $minSalary=$request->input('min-salary');
+        $maxSalary = $request->input('max-salary');
         $desc = $request->input('description');
 
         $job = new Job;
@@ -76,7 +78,8 @@ class JobsController extends Controller
         $job->title = $title;
         $job->desc = $desc;
         $job->type = $type;
-        $job->salary = $salary;
+        $job->floor_salary = $minSalary;
+        $job->ceiling_salary=$maxSalary;
 
         $job->save();
 
@@ -119,17 +122,19 @@ class JobsController extends Controller
     public function edit($id)
     {
         $hr = auth()->user()->hr;
-        $job=Job::find($id);
-        $subjects=$hr->subjects;
-        $subjectsSelected=$job->subjects;
-        $subjectData=array();
-        foreach($subjectsSelected as $subjectSelected){
-            $subjectData[]=$subjectSelected->id;
+        $job = Job::find($id);
+        $subjects = $hr->subjects;
+        $subjectsSelected = $job->subjects;
+        $subjectData = array();
+        foreach ($subjectsSelected as $subjectSelected) {
+            $subjectData[] = $subjectSelected->id;
         }
+        $jobType = $job->type;
         $context = array(
             'job' => Job::find($id),
             'subjects' => $subjects,
-            'subjectData'=>$subjectData,
+            'subjectData' => $subjectData,
+            'jobType' => $jobType,
         );
         return view('jobs.job-edit')->with($context);
     }
@@ -144,19 +149,28 @@ class JobsController extends Controller
 
     public function update(EditJob $request, $id)
     {
-        $job_id=Job::find($id);
+        $job = Job::find($id);
         $title = $request->input('title');
         $type = $request->input('type');
         $salary = $request->input('salary');
         $desc = $request->input('description');
+        $minSalary=$request->input('min-salary');
+        $maxSalary = $request->input('max-salary');
 
-        $job=Job::where('id',$job_id);
         $job->title = $title;
         $job->desc = $desc;
         $job->type = $type;
-        $job->salary = $salary;
+        $job->floor_salary = $minSalary;
+        $job->ceiling_salary=$maxSalary;
+        $job->save();
+
 
         $subject_ids = $request->input('subjects');
+        $subjects=$job->subjects;
+        foreach($subjects as $subject){
+            $subject->job_id=null;
+            $subject->save();
+        }
 
         foreach ($subject_ids as $subject_id) {
             $subject = Subject::find($subject_id);
@@ -177,7 +191,9 @@ class JobsController extends Controller
     public
     function destroy($id)
     {
-        //
+        $job=Job::find($id);
+        $job->delete();
+        return back();
     }
 
     public function apply(Request $request, $id)

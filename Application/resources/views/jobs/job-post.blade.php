@@ -41,14 +41,20 @@
                 <div class="form-group">
                     {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
                     @foreach($subjects as $subject)
-                    <div class="checkbox">
-                        <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,false,['type'=>"checkbox"])}}{{$subject->name}}</label>
-                    </div>
+                        <div class="checkbox">
+                            <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,false,['type'=>"checkbox"])}}{{$subject->name}}</label>
+                        </div>
                     @endforeach
                 </div>
-                <div class="form-group">
-                    {{Form::label('salary','Salary (PHP)',['class'=>'control-label'])}}
-                    {{Form::number('salary','',['min'=>'1','class'=>'form-control'])}}
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        {{Form::label('min-salary','Minimum Salary (PHP)',['class'=>'control-label'])}}
+                        {{Form::number('min-salary','',['min'=>'1.00','step'=>'.01','class'=>'form-control'])}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{Form::label('max-salary','Maximum Salary (PHP)',['class'=>'control-label'])}}
+                        {{Form::number('max-salary','',['min'=>'1.00','step'=>'.01','class'=>'form-control'])}}
+                    </div>
                 </div>
                 <div class="form-group">
                     {{Form::label('description','Description',['class'=>'control-label'])}}
