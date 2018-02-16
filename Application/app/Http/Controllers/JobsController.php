@@ -179,4 +179,23 @@ class JobsController extends Controller
     {
         //
     }
+
+    public function apply(Request $request, $id)
+    {
+        $user = auth()->user();
+        $job = Job::find($id);
+
+        //can either be revoke (0) or apply (1)
+        if($request->input('apply-option') == 0)
+        {
+            $job->id = null;
+        }
+        elseif($request->input('apply-option') == 1)
+        {
+            $job->user_id = $user->id;
+        }
+        $job->save();
+
+        return view('JobsController@index');
+    }
 }
