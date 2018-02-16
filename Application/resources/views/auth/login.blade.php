@@ -1,7 +1,7 @@
 @extends('base')
-@section('title')- My Account @endsection
-@section('current') My Account @endsection
-@section('current-header') My Account @endsection
+@section('title')- Log In @endsection
+@section('current') Log In @endsection
+@section('current-header') Log In @endsection
 @section('content')
 @include('inc.header')
     <div id="content" class="my-account">
