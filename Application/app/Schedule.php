@@ -10,7 +10,7 @@ class Schedule extends Model
     protected $primaryKey = 'id';
     public $timestamps = 'true';
 
-    public function subjects()
+    public function subject()
 
     {
         return $this->belongsTo('App\Subject','subject_id','id');
