@@ -11,6 +11,7 @@ class Schedule extends Model
     public $timestamps = 'true';
 
     public function subjects()
+
     {
         return $this->belongsTo('App\Subject','subject_id','id');
     }

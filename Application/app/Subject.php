@@ -29,6 +29,6 @@ class Subject extends Model
 
     public function schedules()
     {
-        return $this->hasMany('App\Subject','subject_id','id');
+        return $this->hasMany('App\Schedule','subject_id','id');
     }
 }
