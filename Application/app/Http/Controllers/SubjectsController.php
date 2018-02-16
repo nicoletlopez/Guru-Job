@@ -41,7 +41,7 @@ class SubjectsController extends Controller
         //
         $skills = Skill::all();
         $context = ['skills'=>$skills];
-        return view('hr.create-subject')->with($context);
+        return view('subjects.subject-create')->with($context);
     }
 
     /**
@@ -92,7 +92,7 @@ class SubjectsController extends Controller
             [
                 'subjects'=>$subjects,
             ];
-        return view('subject.subject-details')->with($context);
+        return view('subjects.subject-details')->with($context);
     }
 
     /**
