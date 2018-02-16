@@ -21,8 +21,10 @@ class SubjectTableSeeder extends Seeder
         {
             for ($x = 0; $x < 5; $x++)
             {
+                $job = DB::table('job')->where('user_id','=',$hr->id)->inRandomOrder()->first();
                 factory(App\Subject::class)->create([
                     'user_id' => $hr->id,
+                    'job_id' => $job->id,
                 ]);
             }
         }

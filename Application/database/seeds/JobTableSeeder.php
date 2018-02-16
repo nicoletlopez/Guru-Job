@@ -17,17 +17,19 @@ class JobTableSeeder extends Seeder
         $hrs = DB::table('hr')->inRandomOrder()->limit(15)->get();
 
         foreach ($hrs as $hr) {
-            $a = rand(0, 1);
-            if ($a === 0) {
-                $type = 'PT';
-            } else {
-                $type = 'FT';
-            }
+            for ($k = 0 ; $k < 2; $k++){
+                $a = rand(0, 1);
+                if ($a === 0) {
+                    $type = 'PT';
+                } else {
+                    $type = 'FT';
+                }
 
-            factory(App\Job::class)->create([
-                'user_id' => $hr->user_id,
-                'type' => $type,
-            ]);
+                factory(App\Job::class)->create([
+                    'user_id' => $hr->user_id,
+                    'type' => $type,
+                ]);
+            }
         }
     }
 }
