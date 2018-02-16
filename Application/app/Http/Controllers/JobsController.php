@@ -186,15 +186,16 @@ class JobsController extends Controller
         $job = Job::find($id);
 
         //can either be revoke (0) or apply (1)
+        //REVOKE an application
         if($request->input('apply-option') == 0)
         {
-            $job->id = null;
+            $job->faculties->attach($user->id);
         }
+        //APPLY for job
         elseif($request->input('apply-option') == 1)
         {
-            $job->user_id = $user->id;
+            $job->faculties->detach($user->id);
         }
-        $job->save();
 
         return view('JobsController@index');
     }
