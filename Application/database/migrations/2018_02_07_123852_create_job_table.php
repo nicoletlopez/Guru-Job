@@ -19,7 +19,8 @@ class CreateJobTable extends Migration
             $table->string('title');
             $table->text('desc')->nullable();
             $table->string('type')->nullable();
-            $table->double('salary');
+            $table->double('ceiling_salary');
+            $table->double('floor_salary');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('subject');
