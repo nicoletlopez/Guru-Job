@@ -197,6 +197,6 @@ class JobsController extends Controller
             $job->faculties->detach($user->id);
         }
 
-        return view('JobsController@index');
+        return back();
     }
 }

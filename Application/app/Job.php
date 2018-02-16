@@ -8,6 +8,7 @@ class Job extends Model
 {
     //
     protected $table = 'job';
+    protected $primaryKey = 'id';
     public $timestamps = true;
 
     protected $dates = ['deleted_at'];
