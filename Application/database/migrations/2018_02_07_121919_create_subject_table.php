@@ -19,6 +19,9 @@ class CreateSubjectTable extends Migration
             $table->integer('job_id')->unsigned()->nullable();
             $table->string('name');
             $table->text('desc');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->integer('days');
 
             $table->foreign('user_id')->references('user_id')->on('hr');
             $table->foreign('job_id')->references('id')->on('job');
