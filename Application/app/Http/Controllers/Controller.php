@@ -17,7 +17,11 @@ class Controller extends BaseController
         $date = DateTime::createFromFormat($format, $theDate);
         return $date->format('F j, Y');
     }
-
+    static function unformatDate($theDate){
+        $format='F j, Y';
+        $date=DateTime::createFromFormat($format,$theDate);
+        return $date->format('Y-m-d');
+    }
     function numberToDays($num)
     {
 
