@@ -27,9 +27,11 @@ class DashboardController extends Controller
         return view('faculty.dashboard');
     }
     public function profile(){
+        $user=auth()->user();
         $context=array(
             'user'=>auth()->user(),
             'profile'=>auth()->user()->profile,
+            'date'=>Controller::formatDate($user->profile->dob),
         );
         return view('faculty.profile')->with($context);
     }

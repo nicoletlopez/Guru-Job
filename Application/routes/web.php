@@ -27,6 +27,10 @@ Route::get('/home', 'PagesController@index')->name('home');
 Route::post('/password/change','UsersController@changePassword');
 Route::get('/change-password','UsersController@showForm')->name('change-pass');
 
+//profile
+//Route::resource('profile','ProfileController');
+Route::put('/profile/personal/update','ProfileController@updatePersonal');
+Route::put('/profile/description/update','ProfileController@updateDescription');
 //faculty
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/profile','DashboardController@profile')->name('profile');
