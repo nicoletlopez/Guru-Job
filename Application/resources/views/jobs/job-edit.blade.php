@@ -31,25 +31,14 @@
                 -->
                 <div class="form-group">
                     {{Form::label('type','Job Type',['class'=>'control-label'])}}
-                    @if($jobType == 'FT')
                         <div class="radio">
-                            <label style="color:black;">{{Form::radio('type','FT',true,['type'=>"radio"])}}
+                            <label style="color:black;">{{Form::radio('type','FT',$jobType == 'FT',['type'=>"radio"])}}
                                 Full-Time</label>
                         </div>
                         <div class="radio">
-                            <label style="color:black;">{{Form::radio('type','PT',false,['type'=>"radio"])}}
+                            <label style="color:black;">{{Form::radio('type','PT',$jobType == 'PT',['type'=>"radio"])}}
                                 Part-Time</label>
                         </div>
-                    @else
-                        <div class="radio">
-                            <label style="color:black;">{{Form::radio('type','FT',false,['type'=>"radio"])}}
-                                Full-Time</label>
-                        </div>
-                        <div class="radio">
-                            <label style="color:black;">{{Form::radio('type','PT',true,['type'=>"radio"])}}
-                                Part-Time</label>
-                        </div>
-                    @endif
                 </div>
                 <div class="form-group">
                     {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
