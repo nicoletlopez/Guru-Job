@@ -13,7 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     static function formatDate($theDate){
-        $format = 'Y-m-d H:i:s';
+        $format = 'Y-m-d';
         $date = DateTime::createFromFormat($format, $theDate);
         return $date->format('F j, Y');
     }

@@ -18,7 +18,7 @@
 
                     @if(Auth::user()->type == 'HR')
                         {{Form::label('dob','Established on',['class'=>'control-label'])}}
-                        {{Form::text('dob',$profile->dob,['class'=>'form-control'])}}
+                        {{Form::date('dob',$profile->dob,['class'=>'form-control'])}}
                     @else
                         {{Form::hidden('dob',$profile->dob)}}
                     @endif
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('contact','Contact Number',['class'=>'control-label'])}}
-                    {{Form::text('contact',$profile->contact_number,['class'=>'form-control'])}}
+                    {{Form::text('contact',$profile->contact_number,['class'=>'form-control','data-inputmask'=>"'mask': '(99) 999-9999'"])}}
                 </div>
             </div>
             <div class="modal-footer">
