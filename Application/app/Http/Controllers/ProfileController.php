@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateProfile;
 use App\Http\Requests\EditProfile;
 use Illuminate\Http\Request;
 use App\User;
-
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -26,7 +27,10 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        if(auth()->user()->profile){
+            return redirect()->route('profile');
+        }
+        return view('profile.profile-create');
     }
 
     /**
@@ -35,9 +39,28 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProfile $request)
     {
-        //
+        $user=auth()->user();
+        $profile=$user->profile;
+        $dob=$request->input('dob');
+        $address=$request->input('address');
+        $city=$request->input('city');
+        $contact=$request->input('contact');
+        $description=$request->input('description');
+
+        $profile = new Profile;
+        $profile->user_id=$user->id;
+        $profile->picture='https://lorempixel.com/640/480/?81236';
+        $profile->dob=$dob;
+        $profile->street_address=$address;
+        $profile->city=$city;
+        $profile->contact_number=$contact;
+        $profile->description=$description;
+
+        $profile->save();
+
+        return redirect()->route('profile');
     }
 
     /**
@@ -73,6 +96,17 @@ class ProfileController extends Controller
     {
         //
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
     public function updatePersonal(EditProfile $request){
         $user=auth()->user();
         $profile=auth()->user()->profile;
@@ -103,15 +137,5 @@ class ProfileController extends Controller
         $profile->save();
 
         return back();
-    }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

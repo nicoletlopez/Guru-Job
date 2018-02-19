@@ -28,7 +28,7 @@ Route::post('/password/change','UsersController@changePassword');
 Route::get('/change-password','UsersController@showForm')->name('change-pass');
 
 //profile
-//Route::resource('profile','ProfileController');
+Route::resource('profile','ProfileController');
 Route::put('/profile/personal/update','ProfileController@updatePersonal');
 Route::put('/profile/description/update','ProfileController@updateDescription');
 

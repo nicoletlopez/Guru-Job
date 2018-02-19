@@ -28,21 +28,27 @@ class LoginController extends Controller
      * @var string
      */
 
-    protected function logout(Request $request){
+    protected function logout(Request $request)
+    {
         $this->guard()->logout();
 
         $request->session()->invalidate();
 
-        return redirect(route('hr-dashboard'));
+        return redirect(route('login'));
     }
 
     //protected $redirectTo = '/dashboard';
     protected function authenticated($request, $user)
     {
-        if($user->type == 'HR') {
+        if ($user->type == "HR") {
             return redirect()->intended(route('hr-dashboard'));
+        } elseif ($user->type == "FACULTY") {
+            if (!($user->profile)) {
+                return redirect()->intended(route('profile.create'));
+            } else {
+                return redirect()->intended(route('dashboard'));
+            }
         }
-        return redirect()->intended(route('dashboard'));
     }
 
 
