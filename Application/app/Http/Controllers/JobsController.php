@@ -33,15 +33,6 @@ class JobsController extends Controller
         return view('jobs.job-listings')->with($context);
     }
 
-    public function search(Request $request)
-    {
-        $s = $request->input('s');
-        $context = array(
-            'jobs' => Job::search($s)->paginate(4),
-        );
-        return view('jobs.job-listings')->with($context);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -188,13 +179,14 @@ class JobsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function destroy($id)
+    public function destroy($id)
     {
         $job=Job::find($id);
         $job->delete();
         return back();
     }
+
+    //user applies for a job
 
     public function apply(Request $request, $id)
     {
@@ -215,4 +207,16 @@ class JobsController extends Controller
 
         return back();
     }
+
+
+    //user searches for a job posting using various criteia
+    public function search(Request $request)
+    {
+        $s = $request->input('s');
+        $context = array(
+            'jobs' => Job::search($s)->paginate(4),
+        );
+        return view('jobs.job-listings')->with($context);
+    }
+
 }

@@ -31,6 +31,7 @@ Route::get('/change-password','UsersController@showForm')->name('change-pass');
 //Route::resource('profile','ProfileController');
 Route::put('/profile/personal/update','ProfileController@updatePersonal');
 Route::put('/profile/description/update','ProfileController@updateDescription');
+
 //faculty
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/profile','DashboardController@profile')->name('profile');
@@ -43,15 +44,17 @@ Route::get('/school-profile', 'HrDashboardController@profile')->name('hr-profile
 Route::get('/manage-jobs', 'HrDashboardController@manageJobs')->name('manage-jobs');
 Route::get('/manage-applications','HrDashboardController@manageApplications')->name('manage-applications');
 
+//subject
+Route::resource('subject','SubjectsController');
+Route::get('/create-subject','SubjectsController@create');
+
 //jobs
+Route::resource('jobs','JobsController');
+Route::get('/search', 'JobsController@search')->name('search');
 //Route::get('/jobs','JobsController@index')->name('jobs');
 //Route::get('/job-details',function(){return view('jobs.job-details');})->name('job-details');
-Route::resource('jobs','JobsController');
-
-Route::get('/search', 'JobsController@search');
 
 
 //test
 Route::get('/test',function(){return view('test');});
-Route::resource('subject','SubjectsController');
-Route::get('/create-subject','SubjectsController@create');
+

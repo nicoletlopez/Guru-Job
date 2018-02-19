@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="content">
-                <form action="search" method="get">
+                <form action="{{route("search")}}" method="get">
                     <div class="row">
                         <div class="col-md-11 col-sm-6">
                             <div class="form-group">
