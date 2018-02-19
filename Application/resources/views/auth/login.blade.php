@@ -51,7 +51,7 @@
                                         <label>
                                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                                         </label>
-                                        <!--<p class="cd-form-bottom-message"><a href="{{ route('password.request') }}">Lost your password?</a></p>-->
+                                        <p class="cd-form-bottom-message"><a href="{{ route('password.request') }}">Lost your password?</a></p>
                                     </div>
 
                                 </form>

@@ -25,7 +25,15 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectPath(){
+        if (auth()->user()->type == "HR"){
+            return route('hr-dashboard');
+        }elseif(auth()->user()->type == "FACULTY"){
+            return route('dashboard');
+        }else{
+            return route('home');
+        }
+    }
 
     /**
      * Create a new controller instance.
