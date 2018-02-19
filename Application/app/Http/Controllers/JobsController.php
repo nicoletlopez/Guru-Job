@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateJob;
 use App\Http\Requests\EditJob;
+use App\Mail\NewJobNotification;
 use App\Subject;
+use App\User;
 use Illuminate\Http\Request;
 use App\Job;
 use App\Hr;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class JobsController extends Controller
 {
@@ -54,6 +57,8 @@ class JobsController extends Controller
             'subjects' => $hr->subjects,
         );
 
+
+
         return view('jobs.job-post')->with($context);
     }
 
@@ -92,6 +97,12 @@ class JobsController extends Controller
             $subject->save();
         }
 
+        $users = User::where('type','=','FACULTY')->get();
+        $school = $request->user();
+
+        foreach ($users as $user){
+            Mail::to($user->email)->queue(new NewJobNotification($job,$user,$school));
+        }
 
         return redirect('/jobs/' . $job->id);
     }
