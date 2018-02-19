@@ -24,9 +24,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        if(!auth()->user()->profile){
+            return redirect()->route('profile.create');
+        }
         return view('faculty.dashboard');
     }
     public function profile(){
+        if(!auth()->user()->profile){
+            return redirect()->route('profile.create');
+        }
         $user=auth()->user();
         $context=array(
             'user'=>auth()->user(),
