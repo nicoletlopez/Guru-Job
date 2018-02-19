@@ -30,6 +30,7 @@ class JobsController extends Controller
            'services'=>['Web Design','Programming','SEO']
        );
         */
+
         $context = array(
             'jobs' => Job::orderBy('created_at', 'desc')->paginate(4),
         );
@@ -223,9 +224,10 @@ class JobsController extends Controller
     //user searches for a job posting using various criteia
     public function search(Request $request)
     {
-        $s = $request->input('s');
+        $search_term = $request->input('search-term');
+        $free_day = $request->input('free-day');
         $context = array(
-            'jobs' => Job::search($s)->paginate(4),
+            'jobs' => Job::search($search_term,$free_day)->paginate(4),
         );
         return view('jobs.job-listings')->with($context);
     }

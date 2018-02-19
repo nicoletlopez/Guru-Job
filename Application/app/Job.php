@@ -30,11 +30,11 @@ class Job extends Model
             ->using('App\Application');
     }
 
-    public function scopeSearch($query, $s){
+    public function scopeSearch($query, $search_term, $free_day){
 //        $s += 1;
 //        $duh = Subject::pluck($s);
-        return $query->where('title', 'like', '%' .$s. '%')
-            ->orWhere('desc', 'like', '%' .$s. '%');
+        return $query->where('title', 'like', '%' .$search_term. '%')
+            ->orWhere('desc', 'like', '%' .$search_term. '%');
     }
 
     /*public function jobAtSchedule()

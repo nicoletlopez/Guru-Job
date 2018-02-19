@@ -57,47 +57,30 @@
             <div class="content">
                 {{--<form action="{{route("search")}}" method="get">--}}
                 {!! Form::open(['route'=>'search','method'=>'GET']) !!}
-                    <div class="row">
-                        <div class="col-md-11 col-sm-6">
-                            <div class="form-group">
-                                {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
-                                {{Form::text('s','',['class'=>'form-control','placeholder'=>'job title/keywords'])}}
-                            </div>
-                        </div>
-                        <!--
-                        <div class="col-md-4 col-sm-6">
-                            <div class="search-category-container">
-                                <label class="styled-select">
-                                    <select class="dropdown-product selectpicker">
-                                        <option>All Locations</option>
-                                        <option>Makati</option>
-                                        <option>Manila</option>
-                                    </select>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="search-category-container">
-                                <label class="styled-select">
-                                    <select class="dropdown-product selectpicker">
-                                        <option>All Categories</option>
-                                        <option>Finance</option>
-                                        <option>IT & Engineering</option>
-                                        <option>Education/Training</option>
-                                        <option>Art/Design</option>
-                                        <option>Sale/Markting</option>
-                                        <option>Healthcare</option>
-                                        <option>Science</option>
-                                        <option>Food Services</option>
-                                    </select>
-                                </label>
-                            </div>
-                        </div>
-                        -->
-                        <div class="col-md-1 col-sm-6">
-                            <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
+                <div class="row">
+                    <div class="col-md-9 col-sm-4">
+                        <div class="form-group">
+                            {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
+                            {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'job title/keywords'])}}
                         </div>
                     </div>
+                    <div class="col-md-3 col-sm-1">
+                        <div class="form-group">
+                            {{Form::select('free-day',
+                            ['ALL'=>'All',
+                            'SUN'=>'Sunday',
+                            'MON'=>'Monday',
+                            'TUE'=>'Tuesday',
+                            'WED'=>'Wednesday',
+                            'THU'=>'Thursday',
+                            'FRI'=>'Friday',
+                            'SAT'=>'Saturday'])}}
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-sm-6">
+                        <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
+                    </div>
+                </div>
                 {!! Form::close() !!}
             </div>
         </div>
