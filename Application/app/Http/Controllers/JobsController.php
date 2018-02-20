@@ -231,7 +231,7 @@ class JobsController extends Controller
         $search_term = $request->input('search-term');
         $free_day = $request->input('free-day');
         $context = array(
-            'jobs' => Job::search($search_term,$free_day)->paginate(4),
+            'jobs' => Job::search($search_term,$free_day)->paginate(),
         );
         return view('jobs.job-listings')->with($context);
     }
