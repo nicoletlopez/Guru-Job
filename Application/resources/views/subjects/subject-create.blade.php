@@ -36,47 +36,6 @@
         {{Form::label('description','Description',['class'=>'control-label'])}}
         {{Form::textarea('description','',['class'=>'form-control','placeholder'=>'Subject Description'])}}
     </div>
-    <script type="text/javascript">
-        function showForm()
-        {
-            //Mon
-            if($('#Mon').is(":checked"))
-                $("#MonTime").show();
-            else
-                $("#MonTime").hide();
-            //Tue
-            if($('#Tue').is(":checked"))
-                $("#TueTime").show();
-            else
-                $("#TueTime").hide();
-            //Wed
-            if($('#Wed').is(":checked"))
-                $("#WedTime").show();
-            else
-                $("#WedTime").hide();
-            //Thu
-            if($('#Thu').is(":checked"))
-                $("#ThuTime").show();
-            else
-                $("#ThuTime").hide();
-            //Fri
-            if($('#Fri').is(":checked"))
-                $("#FriTime").show();
-            else
-                $("#FriTime").hide();
-            //Sat
-            if($('#Sat').is(":checked"))
-                $("#SatTime").show();
-            else
-                $("#SatTime").hide();
-            //Sun
-            if($('#Sun').is(":checked"))
-                $("#SunTime").show();
-            else
-                $("#SunTime").hide();
-
-        }
-    </script>
     <div class="form-group">
         {{Form::label('days','Class Days',['class'=>'control-label'])}}
         <div class="checkbox">

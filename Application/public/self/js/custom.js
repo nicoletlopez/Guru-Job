@@ -1,0 +1,39 @@
+function showForm()
+{
+    //Mon
+    if($('#Mon').is(":checked"))
+        $("#MonTime").show(300);
+    else
+        $("#MonTime").hide(200);
+    //Tue
+    if($('#Tue').is(":checked"))
+        $("#TueTime").show(300);
+    else
+        $("#TueTime").hide(200);
+    //Wed
+    if($('#Wed').is(":checked"))
+        $("#WedTime").show(300);
+    else
+        $("#WedTime").hide(200);
+    //Thu
+    if($('#Thu').is(":checked"))
+        $("#ThuTime").show(300);
+    else
+        $("#ThuTime").hide(200);
+    //Fri
+    if($('#Fri').is(":checked"))
+        $("#FriTime").show(300);
+    else
+        $("#FriTime").hide(200);
+    //Sat
+    if($('#Sat').is(":checked"))
+        $("#SatTime").show(300);
+    else
+        $("#SatTime").hide(200);
+    //Sun
+    if($('#Sun').is(":checked"))
+        $("#SunTime").show(300);
+    else
+        $("#SunTime").hide(200);
+
+}
