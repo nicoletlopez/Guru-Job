@@ -1,6 +1,10 @@
-@extends('base')
+@extends('hr.dashboard-menu')
+@section('title')- Add Subject @endsection
+@section('current') Add Subject @endsection
+@section('current-header') Add Subject @endsection
+@section('manage-subjects-active') active @endsection
 
-@section('content')
+@section('dashboard-content')
     {!! Form::open(['action'=>'SubjectsController@store',
                     'method'=>'post']) !!}
     <div class="form-group">
@@ -22,9 +26,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-6">
+        <div class="form-group">
             {{Form::label('description','Description',['class'=>'control-label'])}}
-            {{Form::textarea('description','',['id'=>'article-ckeditor','class'=>'form-control','placeholder'=>'Subject Description'])}}
+            {{Form::textarea('description','',['class'=>'form-control','placeholder'=>'Subject Description'])}}
         </div>
     </div>
     <div class="form-group">

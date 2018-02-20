@@ -22,7 +22,7 @@
                             </ul>
                             <h4>Subject</h4>
                             <ul class="lest item">
-                                <li><a class="@yield('manage-subjects-active')" href="#">Manage Subjects</a></li>
+                                <li><a class="@yield('manage-subjects-active')" href="{{route('subjects.index')}}">Manage Subjects</a></li>
                             </ul>
                         @else
                             <h4>Account</h4>

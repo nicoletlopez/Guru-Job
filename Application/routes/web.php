@@ -45,8 +45,8 @@ Route::get('/manage-jobs', 'HrDashboardController@manageJobs')->name('manage-job
 Route::get('/manage-applications','HrDashboardController@manageApplications')->name('manage-applications');
 
 //subject
-Route::resource('subject','SubjectsController');
-Route::get('/create-subject','SubjectsController@create');
+Route::resource('subjects','SubjectsController');
+//Route::get('/create-subject','SubjectsController@create');
 
 //jobs
 Route::resource('jobs','JobsController');

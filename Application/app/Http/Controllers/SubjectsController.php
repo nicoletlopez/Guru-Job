@@ -22,13 +22,13 @@ class SubjectsController extends Controller
 
     public function index()
     {
-        //
-        $subjects = Subject::orderBy('created_at','desc')->paginate(10);
+        $user=auth()->user()->id;
+        $subjects = Subject::where('user_id',$user)->orderBy('created_at','desc')->paginate(10);
         $context =
             [
                 'subjects'=>$subjects,
             ];
-        return view('subjects.subject-listing');
+        return view('hr.manage-subjects')->with($context);
     }
 
     /**
@@ -92,7 +92,7 @@ class SubjectsController extends Controller
             [
                 'subjects'=>$subjects,
             ];
-        return view('subjects.subject-details')->with($context);
+        return redirect('');
     }
 
     /**
@@ -103,7 +103,9 @@ class SubjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $skills = Skill::all();
+        $context = ['skills'=>$skills];
+        return view('subjects.subject-edit')->with($context);
     }
 
     /**
@@ -126,6 +128,8 @@ class SubjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subject=Subject::find($id);
+        $subject->delete();
+        return back();
     }
 }

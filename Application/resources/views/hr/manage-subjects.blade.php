@@ -1,35 +1,31 @@
 @extends('hr.dashboard-menu')
-@section('title')- Manage Jobs @endsection
-@section('current') Manage Jobs @endsection
-@section('current-header') Manage Jobs @endsection
-@section('manage-jobs-active') active @endsection
+@section('title')- Manage Subjects @endsection
+@section('current') Manage Subjects @endsection
+@section('current-header') Manage Subjects @endsection
+@section('manage-subjects-active') active @endsection
 
 @section('dashboard-content')
 
     <div class="job-alerts-item candidates">
-        <h3 class="alerts-title">Manage Jobs</h3>
+        <h3 class="alerts-title">Manage Subjects <a class="btn btn-success" href="{{route('subjects.create')}}">Add a Subject</a></h3>
         <table class="table">
-            @if(count($jobs)>0)
+            @if(count($subjects)>0)
                 <thead class="">
                 <tr>
-                    <th><p>Job Title</p></th>
-                    <th><p># of Applicants</p></th>
-                    <th><p>Applicants</p></th>
+                    <th><p>Subject Name</p></th>
+                    <th><p>Schedule</p></th>
                     <th><p>Action</p></th>
                 </tr>
                 </thead>
                 <tbody>
 
-                @foreach($jobs as $job)
+                @foreach($subjects as $subject)
                     <tr>
-                        <td><a href="/jobs/{{$job->id}}"><h3>{{$job->title}}</h3></a></td>
-                        <td><span class="badge">1</span></td>
+                        <td><a href="/subjects/{{$subject->id}}"><h3>{{$subject->name}}</h3></a></td>
+                        <td>Day - time</td>
                         <td>
-                            <div class="can-img"><a href="#"><img src="{{asset('/img/jobs/candidates.png')}}"></a></div>
-                        </td>
-                        <td>
-                            <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary">Update</a>
-                            {!! Form::open(['action'=>['JobsController@destroy',$job->id],'method'=>'POST']) !!}
+                            <a href="/subjects/{{$subject->id}}/edit" class="btn btn-primary">Edit</a>
+                            {!! Form::open(['action'=>['SubjectsController@destroy',$subject->id],'method'=>'POST']) !!}
                             {{Form::hidden('_method','DELETE')}}
                             {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
                             {!! Form::close() !!}
