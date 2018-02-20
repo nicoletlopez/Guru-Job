@@ -4,7 +4,7 @@
 Good day, {{$user}}! You may be interested in this new job, posted by {{$school}}, called '[{{$jobTitle}}]({{$url}})'.
 
 @component('mail::button', ['url' => $url])
-Button Text
+Job Details
 @endcomponent
 
 Thanks,<br>

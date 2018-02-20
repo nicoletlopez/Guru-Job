@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateJob;
 use App\Http\Requests\EditJob;
+use App\Mail\AcceptJobNotification;
 use App\Mail\NewJobNotification;
 use App\Subject;
 use App\User;
@@ -202,8 +203,9 @@ class JobsController extends Controller
 
     public function apply(Request $request, $id)
     {
-        $user = auth()->user();
+        $user = $request->user();
         $job = Job::find($id);
+        $school = User::find($job->user_id);
 
         //can either be revoke (0) or apply (1)
         //REVOKE an application
@@ -216,6 +218,8 @@ class JobsController extends Controller
         {
             $job->faculties->detach($user->id);
         }
+
+        Mail::to($school->name)->queue(new AcceptJobNotification($job, $user, $school));
 
         return back();
     }
