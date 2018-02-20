@@ -58,13 +58,13 @@
                 {{--<form action="{{route("search")}}" method="get">--}}
                 {!! Form::open(['route'=>'search','method'=>'GET']) !!}
                 <div class="row">
-                    <div class="col-md-9 col-sm-4">
+                    <div class="col-md-7">
                         <div class="form-group">
                             {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
                             {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'job title/keywords'])}}
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-1">
+                    <div class="col-md-3">
                         <div class="form-group">
                             {{Form::select('free-day',
                             ['ALL'=>'All',
@@ -74,10 +74,12 @@
                             'WED'=>'Wednesday',
                             'THU'=>'Thursday',
                             'FRI'=>'Friday',
-                            'SAT'=>'Saturday'])}}
+                            'SAT'=>'Saturday'],
+                            null,
+                            ['class'=>'form-control'])}}
                         </div>
                     </div>
-                    <div class="col-md-1 col-sm-6">
+                    <div class="col-md-2">
                         <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
                     </div>
                 </div>
