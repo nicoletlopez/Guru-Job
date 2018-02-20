@@ -6,6 +6,7 @@
 
 @section('dashboard-content')
     <div class="modal-dialog modal-lg">
+        <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
         <div class="modal-content">
 
             <div class="modal-header">
