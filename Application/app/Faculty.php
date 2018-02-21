@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App;
 class Faculty extends Model
 {
     //
@@ -13,13 +13,13 @@ class Faculty extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User','user_id','id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
-    public function status()
+    /*public function status()
     {
-        return $this->hasOne('App\Status','user_id','user_id');
-    }
+        return $this->hasOne(Status::class,'user_id','user_id');
+    }*/
 
     public function certifications()
     {
@@ -28,26 +28,23 @@ class Faculty extends Model
 
     public function resume()
     {
-        return $this->hasOne('App\Resume','user_id','user_id');
+        return $this->hasOne(Resume::class,'user_id','user_id');
     }
 
     public function files()
     {
-        return $this->belongsToMany('App\File','faculty_has_file','user_id','file_id')
-            ->using('App\FacultyHasFile');
+        return $this->belongsToMany(File::class,'faculty_has_file','user_id','file_id');
     }
 
     public function jobs()
     {
-        return $this->belongsToMany('App\Job','application','user_id','job_id')
-            ->withTimestamps()
-            ->using('App\Application');
+        return $this->belongsToMany(Job::class,'application','user_id','job_id')
+            ->withTimestamps();
     }
 
     public function skills()
     {
-        return $this->belongsToMany('App\Skill','faculty_has_skill','user_id','skill_id')
-            ->using('App\FacultyHasSkill');
+        return $this->belongsToMany(Skill::class,'faculty_has_skill','user_id','skill_id');
     }
 
 }
