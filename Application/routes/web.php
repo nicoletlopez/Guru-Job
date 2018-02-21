@@ -54,6 +54,8 @@ Route::get('/search', 'JobsController@search')->name('search');
 //Route::get('/jobs','JobsController@index')->name('jobs');
 //Route::get('/job-details',function(){return view('jobs.job-details');})->name('job-details');
 
+//applications
+Route::resource('applications','ApplicationsController');
 
 //test
 Route::get('/test','ApplicationsController@index');

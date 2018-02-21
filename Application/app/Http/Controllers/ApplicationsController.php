@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App;
+use App\Job;
 
 class ApplicationsController extends Controller
 {
@@ -15,6 +15,8 @@ class ApplicationsController extends Controller
     public function index()
     {
         //
+        $hr = auth()->user()->hr;
+        $job = Job::find(1);
     }
 
     /**

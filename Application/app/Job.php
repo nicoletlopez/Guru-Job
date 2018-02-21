@@ -25,7 +25,7 @@ class Job extends Model
 
     public function faculties()
     {
-        return $this->belongsToMany('App\Faculty','application','job_id','user_id')
+        return $this->belongsToMany(Faculty::class,'application','job_id','user_id')
             ->withTimestamps();
     }
 
