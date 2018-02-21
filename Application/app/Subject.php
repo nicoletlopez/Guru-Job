@@ -13,21 +13,21 @@ class Subject extends Model
 
     public function hr()
     {
-        return $this->belongsTo('App\Hr','user_id','user_id');
+        return $this->belongsTo(Hr::class,'user_id','user_id');
     }
 
     public function job()
     {
-        return $this->belongsTo('App\Job','job_id','id');
+        return $this->belongsTo(Job::class,'job_id','id');
     }
 
     public function skills()
     {
-        return $this->belongsToMany('App\Skill','subject_requires_skill','subject_id','skill_id');
+        return $this->belongsToMany(Skill::class,'subject_requires_skill','subject_id','skill_id');
     }
 
     public function schedules()
     {
-        return $this->hasMany('App\Schedule','subject_id','id');
+        return $this->hasMany(Schedule::class,'subject_id','id');
     }
 }
