@@ -15,7 +15,7 @@
                 <tr>
                     <th><p>Subject Name</p></th>
                     <th><p>Schedule</p></th>
-                    <th><p>Action</p></th>
+                    <!--<th><p>Action</p></th>-->
                 </tr>
                 </thead>
                 <tbody>
