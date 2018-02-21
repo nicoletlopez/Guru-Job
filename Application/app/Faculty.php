@@ -21,10 +21,10 @@ class Faculty extends Model
         return $this->hasOne(Status::class,'user_id','user_id');
     }*/
 
-    public function certifications()
+    /*public function certifications()
     {
         return $this->hasMany('App\Certification','user_id','user_id');
-    }
+    }*/
 
     public function resume()
     {

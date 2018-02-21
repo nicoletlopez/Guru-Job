@@ -11,6 +11,6 @@ class File extends Model
 
     public function faculties()
     {
-        return $this->belongsToMany('App\Faculty','faculty_has_file','file_id','user_id');
+        return $this->belongsToMany(Faculty::class,'faculty_has_file','file_id','user_id');
     }
 }
