@@ -15,12 +15,12 @@ class Job extends Model
 
     public function subjects()
     {
-        return $this->hasMany('App\Subject','job_id','id');
+        return $this->hasMany(Subject::class,'job_id','id');
     }
 
     public function hr()
     {
-        return $this->belongsTo('App\Hr','user_id','user_id');
+        return $this->belongsTo(Hr::class,'user_id','user_id');
     }
 
     public function faculties()
