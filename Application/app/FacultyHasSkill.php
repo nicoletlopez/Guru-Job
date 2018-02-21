@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class FacultyHasSkill extends Model
+class FacultyHasSkill extends Pivot
 {
     //
     protected $table = 'faculty_has_skill';
