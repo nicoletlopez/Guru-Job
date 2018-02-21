@@ -16,7 +16,28 @@ class ApplicationsController extends Controller
     {
         //
         $hr = auth()->user()->hr;
-        $job = Job::find(1);
+        $jobs = $hr->jobs;
+        $applicants = array();
+        foreach($jobs as $job)
+        {
+            foreach($job->applicants as $applicant)
+            {
+                if($job->applicants->count() > 0)
+                {
+                    array_push($applicants,$applicant);
+                }
+                else
+                {
+                    continue;
+                }
+            }
+        }
+        /*return $applicants[0];*/
+        $context =
+            [
+                'applicants' => $applicants,
+            ];
+        return view('hr.manage-applications')->with($context);
     }
 
     /**
