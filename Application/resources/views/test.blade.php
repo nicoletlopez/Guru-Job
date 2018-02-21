@@ -1,3 +1,4 @@
+{{--
 
 Select Country (with states):
 <select id="country" name ="country"></select><br/>
@@ -6,4 +7,5 @@ Select State/City:
 <script type="text/javascript" src="{{asset('js/custom/countries.js')}}"></script>
 <script language="javascript">
     populateCountries("country", "state");
-</script>
+</script>--}}
+{{$faculty}}
