@@ -7,7 +7,7 @@
 @section('dashboard-content')
 
     <div class="job-alerts-item candidates">
-        <h3 class="alerts-title">Manage Jobs <a class="btn btn-success" href="{{route('jobs.create')}}">Post a Job</a></h3>
+        <h3 class="alerts-title">Manage Jobs <!--<a class="btn btn-success" href="{{route('jobs.create')}}">Post a Job</a>--></h3>
         <table class="table">
             @if(count($jobs)>0)
                 <thead class="">

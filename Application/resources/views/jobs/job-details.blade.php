@@ -23,7 +23,7 @@
                                 </h3>
                                 <div class="meta">
                                     <span><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}
-                                            , {{$job->hr->user->profile->city}}</span>
+                                        , {{$job->hr->user->profile->city}}</span>
                                     <!--<span><a href="#"><i class="ti-calendar"></i> Dec 30, 2017 - Feb 20, 2018</a></span>-->
 
                                 </div>
@@ -34,7 +34,8 @@
                                     <span><i class="ti-time"></i>timeFrom - timeTo</span>
                                     <span><i class="ti-world"></i>workDays</span>
                                 </div>
-                                <strong class="price"><i class="fa fa-money"></i>P{{$job->floor_salary}} - {{$job->ceiling_salary}} /
+                                <strong class="price"><i class="fa fa-money"></i>P{{$job->floor_salary}}
+                                    - {{$job->ceiling_salary}} /
                                     @if($job->type == 'FT')
                                         Month
                                     @else
@@ -49,7 +50,10 @@
                                         <a href="#" class="btn btn-common btn-sm">Apply For This Job</a>
                                     @else
                                         @if(Auth::user()->id == $job->user_id)
-                                        <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary btn-sm">Update Job</a>
+                                            <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary btn-sm">Update
+                                                Job</a>
+                                            <a href="{{route('manage-jobs')}}" class="btn btn-success btn-sm">Manage
+                                                Jobs</a>
                                         @endif
                                     @endif
                                 @endguest
@@ -110,6 +114,8 @@
                                     @else
                                         @if(Auth::user()->id == $job->user_id)
                                             <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary">Update Job</a>
+                                            <a href="{{route('manage-jobs')}}" class="btn btn-success">Manage
+                                                Jobs</a>
                                         @endif
                                     @endif
                                 @endguest
