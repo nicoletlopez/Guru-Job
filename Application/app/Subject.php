@@ -23,8 +23,7 @@ class Subject extends Model
 
     public function skills()
     {
-        return $this->belongsToMany('App\Skill','subject_requires_skill','subject_id','skill_id')
-            ->using('App\SubjectRequiresSkill');
+        return $this->belongsToMany('App\Skill','subject_requires_skill','subject_id','skill_id');
     }
 
     public function schedules()

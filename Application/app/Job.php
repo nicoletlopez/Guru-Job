@@ -26,8 +26,7 @@ class Job extends Model
     public function faculties()
     {
         return $this->belongsToMany('App\Faculty','application','job_id','user_id')
-            ->withTimestamps()
-            ->using('App\Application');
+            ->withTimestamps();
     }
 
     public function scopeSearch($query, $search_term, $free_day){
