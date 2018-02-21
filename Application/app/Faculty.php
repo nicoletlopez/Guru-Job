@@ -34,7 +34,6 @@ class Faculty extends Model
     public function files()
     {
         return $this->belongsToMany('App\File','faculty_has_file','user_id','file_id')
-            ->as('faculty_has_file')
             ->using('App\FacultyHasFile');
     }
 
