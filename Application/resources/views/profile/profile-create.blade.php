@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('description','About',['class'=>'control-label'])}}
-                    {{Form::textarea('description','',['class'=>'form-control','placeholder'=>''])}}
+                    {{Form::textarea('description','',['id'=>'editor0','class'=>'form-control','placeholder'=>''])}}
                 </div>
             </div>
             <div class="modal-footer">
