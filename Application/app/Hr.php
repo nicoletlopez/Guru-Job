@@ -13,15 +13,15 @@ class Hr extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User','user_id','id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
     public function subjects()
     {
-        return $this->hasMany('App\Subject','user_id','user_id');
+        return $this->hasMany(Subject::class,'user_id','user_id');
     }
     public function jobs()
     {
-        return $this->hasMany('App\Job','user_id','user_id');
+        return $this->hasMany(Job::class,'user_id','user_id');
     }
 }
