@@ -7,7 +7,8 @@
 @section('dashboard-content')
 
     <div class="job-alerts-item candidates">
-        <h3 class="alerts-title">Manage Subjects <a class="btn btn-success" href="{{route('subjects.create')}}">Add a Subject</a></h3>
+        <h3 class="alerts-title">Manage
+            Subjects <!--<a class="btn btn-success" href="{{route('subjects.create')}}">Add a Subject</a>--></h3>
         <table class="table">
             @if(count($subjects)>0)
                 <thead class="">
@@ -22,13 +23,19 @@
                 @foreach($subjects as $subject)
                     <tr>
                         <td><a href="/subjects/{{$subject->id}}"><h3>{{$subject->name}}</h3></a></td>
-                        <td>Day - time</td>
                         <td>
+                            @foreach($subject->schedules as $schedule)
+                                <p><b>{{$schedule->day}}</b> {{date("h:i:s A",strtotime($schedule->start))}} - {{date("h:i:s A",strtotime($schedule->end))}}</p>
+                            @endforeach
+                        </td>
+                        <td>
+                        <!--
                             <a href="/subjects/{{$subject->id}}/edit" class="btn btn-primary">Edit</a>
                             {!! Form::open(['action'=>['SubjectsController@destroy',$subject->id],'method'=>'POST']) !!}
-                            {{Form::hidden('_method','DELETE')}}
-                            {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                            {!! Form::close() !!}
+                        {{Form::hidden('_method','DELETE')}}
+                        {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                        {!! Form::close() !!}
+                                -->
                         </td>
                     </tr>
                 @endforeach
