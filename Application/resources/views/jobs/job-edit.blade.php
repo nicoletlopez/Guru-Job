@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('description','Description',['class'=>'control-label'])}}
-                    {{Form::textarea('description',$job->desc,['class'=>'form-control','placeholder'=>'Job Description'])}}
+                    {{Form::textarea('description',$job->desc,['id'=>'editor0','class'=>'form-control','placeholder'=>'Job Description'])}}
                 </div>
                 <!--
                 <div class="form-group">

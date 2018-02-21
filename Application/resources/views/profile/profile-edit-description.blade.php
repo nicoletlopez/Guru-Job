@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     {{Form::label('description','About Me',['class'=>'control-label'])}}
-                    {{Form::textarea('description',$profile->description,['class'=>'form-control'])}}
+                    {{Form::textarea('description',$profile->description,['id'=>'editor0','class'=>'form-control'])}}
                 </div>
             </div>
             <div class="modal-footer">

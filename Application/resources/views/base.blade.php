@@ -98,9 +98,9 @@
 <script type="text/javascript" src="{{asset('js/jquery.themepunch.tools.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/countries.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/custom.js')}}"></script>
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
 <script>
-    CKEDITOR.replace( 'article-ckeditor' );
+    CKEDITOR.replace( 'editor0' );
 </script>
 </body>
 </html>

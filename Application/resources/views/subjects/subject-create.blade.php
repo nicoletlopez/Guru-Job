@@ -34,7 +34,7 @@
 
     <div class="form-group">
         {{Form::label('description','Description',['class'=>'control-label'])}}
-        {{Form::textarea('description','',['class'=>'form-control','placeholder'=>'Subject Description'])}}
+        {{Form::textarea('description','',['id'=>'editor0','class'=>'form-control','placeholder'=>'Subject Description'])}}
     </div>
     <div class="form-group">
         {{Form::label('days','Class Days',['class'=>'control-label'])}}

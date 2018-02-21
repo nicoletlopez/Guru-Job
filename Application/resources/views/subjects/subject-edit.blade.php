@@ -31,7 +31,7 @@
                 -->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        {{Form::label('','Required Specializations',['class'=>'control-label'])}}
+                        {{Form::label('','Required Specializations (Hold CTRL key to select several)',['class'=>'control-label'])}}
                         <select multiple class="form-control" name="skills[]" >
                             @foreach($skills as $skill)
                                 <option value="{{$skill}}">{{$skill->name}}</option>
@@ -40,51 +40,48 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('type','Job Type',['class'=>'control-label'])}}
-                    <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','FT',$jobType == 'FT',['type'=>"radio"])}}
-                            Full-Time</label>
-                    </div>
-                    <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','PT',$jobType == 'PT',['type'=>"radio"])}}
-                            Part-Time</label>
-                    </div>
+                    {{Form::label('description','Description',['class'=>'control-label'])}}
+                    {{Form::textarea('description',$subject->desc,['id'=>'editor0','class'=>'form-control','placeholder'=>'Subject Description'])}}
                 </div>
                 <div class="form-group">
-                    {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
-                    @foreach($subjects as $subject)
-                        <div class="checkbox">
-                            <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,in_array($subject->id,$subjectData),['type'=>"checkbox"])}}{{$subject->name}}</label>
-                        </div>
-                    @endforeach
+                    {{Form::label('days','Class Days',['class'=>'control-label'])}}
+                    <div class="checkbox">
+                        <label style="color:black;">{{Form::checkbox('days[]',1,in_array('MON',$daysData),['type'=>"checkbox"])}}Monday</label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="color:black;">{{Form::checkbox('days[]',2,false,['type'=>"checkbox"])}}Tuesday</label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="color:black;">{{Form::checkbox('days[]',4,false,['type'=>"checkbox"])}}Wednesday</label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="color:black;">{{Form::checkbox('days[]',8,false,['type'=>"checkbox"])}}Thursday</label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="color:black;">{{Form::checkbox('days[]',16,false,['type'=>"checkbox"])}}Friday</label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="color:black;">{{Form::checkbox('days[]',32,false,['type'=>"checkbox"])}}Saturday</label>
+                    </div>
+                    <div class="checkbox">
+                        <label style="color:black;">{{Form::checkbox('days[]',64,false,['type'=>"checkbox"])}}Sunday</label>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        {{Form::label('min-salary','Minimum Salary (PHP)',['class'=>'control-label'])}}
-                        {{Form::number('min-salary',$job->floor_salary,['min'=>'1.00','step'=>'.01','class'=>'form-control'])}}
+                        {{Form::label('time-from','Class Time From:',['class'=>'control-label'])}}
+                        {{Form::time('time-from','',['class'=>'form-control'])}}
                     </div>
                     <div class="form-group col-md-6">
-                        {{Form::label('max-salary','Maximum Salary (PHP)',['class'=>'control-label'])}}
-                        {{Form::number('max-salary',$job->ceiling_salary,['min'=>'1.00','step'=>'.01','class'=>'form-control'])}}
+                        {{Form::label('time-to','Class Time To:',['class'=>'control-label'])}}
+                        {{Form::time('time-to','',['class'=>'form-control'])}}
                     </div>
                 </div>
-                <div class="form-group">
-                    {{Form::label('description','Description',['class'=>'control-label'])}}
-                    {{Form::textarea('description',$job->desc,['class'=>'form-control','placeholder'=>'Job Description'])}}
-                </div>
-                <!--
-                <div class="form-group">
-                    <label class="control-label">Closing Date <span>(optional)</span></label>
-                    <input type="text" class="form-control" placeholder="yyyy-mm-dd">
-                    <p class="note">Deadline for new applicants.</p>
-                </div>
-                -->
-
             </div>
             <div class="modal-footer">
                 <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
                 {{Form::hidden('_method','PUT')}}
-                {{Form::submit('Update Job',['class'=>'btn btn-common'])}}
+                {{Form::submit('Save Changes',['class'=>'btn btn-common'])}}
             </div>
             {!! Form::close() !!}
         </div>

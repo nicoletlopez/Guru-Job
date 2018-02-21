@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateSubject;
 use App\Skill;
 use App\Subject;
+use App\Schedule;
 use Illuminate\Http\Request;
 
 class SubjectsController extends Controller
@@ -52,7 +53,7 @@ class SubjectsController extends Controller
      */
     public function store(CreateSubject $request)
     {
-        //
+
         $user_id = auth()->user()->id;
         $name = $request ->input('name');
         $desc = $request->input('description');
@@ -65,11 +66,16 @@ class SubjectsController extends Controller
         $subject->user_id = auth()->user()->id;
         $subject->name = $name;
         $subject->desc = $desc;
-        $subject->start_time = $start_time;
-        $subject->end_time = $end_time;
-        $subject->days = $days;
-
         $subject->save();
+
+
+        $schedule=new Schedule();
+        $schedule->subject_id=$subject->id;
+        $schedule->start = $start_time;
+        $schedule->end = $end_time;
+        $subject->day = $days;
+
+
 
         foreach($skills as $skill)
         {
@@ -86,13 +92,13 @@ class SubjectsController extends Controller
      */
     public function show($id)
     {
-        //
-        $subjects = Auth()->user()->subjects;
-        $context =
-            [
-                'subjects'=>$subjects,
-            ];
-        return redirect('');
+        $subject=Subject::find($id);
+        $schedules=$subject->schedules;
+        $context=array(
+            'subject'=>$subject,
+            'schedules'=>$schedules,
+        );
+        return view('subjects.subject-details')->with($context);
     }
 
     /**
@@ -104,7 +110,17 @@ class SubjectsController extends Controller
     public function edit($id)
     {
         $skills = Skill::all();
-        $context = ['skills'=>$skills];
+        $subject=Subject::find($id);
+        $daysSelected=$subject->schedule()->day;
+        $daysData = array();
+        foreach ($daysSelected as $daySelected) {
+            $daysData[] = $daySelected->id;
+        }
+        $context = [
+            'skills'=>$skills,
+            'subject'=>$subject,
+            'daysData'=>$daysData,
+        ];
         return view('subjects.subject-edit')->with($context);
     }
 
