@@ -11,6 +11,6 @@ class Skill extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany('App\Subject','subject_requires_skill','skill_id','subject_id');
+        return $this->belongsToMany(Subject::class,'subject_requires_skill','skill_id','subject_id');
     }
 }
