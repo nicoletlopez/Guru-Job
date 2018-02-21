@@ -23,7 +23,7 @@ class Job extends Model
         return $this->belongsTo(Hr::class,'user_id','user_id');
     }
 
-    public function faculties()
+    public function applicants()
     {
         return $this->belongsToMany(Faculty::class,'application','job_id','user_id')
             ->withTimestamps();
