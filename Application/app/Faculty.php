@@ -31,10 +31,6 @@ class Faculty extends Model
         return $this->hasOne(Resume::class,'user_id','user_id');
     }
 
-    public function files()
-    {
-        return $this->belongsToMany(File::class,'faculty_has_file','user_id','file_id');
-    }
 
     public function jobs()
     {
