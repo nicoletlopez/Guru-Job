@@ -47,10 +47,10 @@
                                     <a href="{{route('login')}}" class="btn btn-common btn-sm">Login to Apply</a>
                                 @else
                                     @if(Auth::user()->type == 'FACULTY')
-                                        @if(Auth::user()->faculty->jobs->count() > 0)
+                                        @if(in_array($job->id,$applicationData))
                                             <p class="alert alert-success">You've already applied for this job</p>
                                         @else
-                                        {!! Form::open(['action'=>'ApplicationsController@store','method'=>'post']) !!}
+                                        {!! Form::open(['action'=>'ApplicationsController@store','id'=>'apply','method'=>'post']) !!}
                                         {{Form::hidden('job-id',$job->id)}}
                                         {{Form::submit('Apply for this Job',['class'=>'btn btn-common btn-sm'])}}
                                         <!--<a href="#" class="btn btn-common btn-sm">Apply For This Job</a>-->
@@ -118,7 +118,15 @@
                                     <a href="{{route('login')}}" class="btn btn-common">Login to Apply</a>
                                 @else
                                     @if(Auth::user()->type == 'FACULTY')
-                                        <a href="#" class="btn btn-common">Apply for this Job Now</a>
+                                        @if(in_array($job->id,$applicationData))
+
+                                        @else
+                                        <a href="{{ route('jobs.store') }}" class="btn btn-common"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('apply').submit();">
+                                            Apply for this Job Now
+                                        </a>
+                                        @endif
                                     @else
                                         @if(Auth::user()->id == $job->user_id)
                                             <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary">Update Job</a>
