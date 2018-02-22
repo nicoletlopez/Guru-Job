@@ -47,6 +47,13 @@
                                     <a href="{{route('login')}}" class="btn btn-common btn-sm">Login to Apply</a>
                                 @else
                                     @if(Auth::user()->type == 'FACULTY')
+                                        <?php
+                                        $jobsApplied=auth()->user()->faculty->jobs;
+                                        $applicationData = array();
+                                        foreach ($jobsApplied as $jobApplied) {
+                                            $applicationData[] = $jobApplied->id;
+                                        }
+                                        ?>
                                         @if(in_array($job->id,$applicationData))
                                             <p class="alert alert-success">You've already applied for this job</p>
                                         @else

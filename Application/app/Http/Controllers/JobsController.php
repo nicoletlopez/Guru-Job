@@ -110,13 +110,9 @@ class JobsController extends Controller
     public
     function show($id)
     {
-        $jobsApplied=Auth::user()->faculty->jobs;
-        $applicationData = array();
-        foreach ($jobsApplied as $jobApplied) {
-            $applicationData[] = $jobApplied->id;
-        }
+
         $context = array(
-            'applicationData'=>$applicationData,
+            //'applicationData'=>$applicationData,
             'job' => Job::find($id),
             'subjects' => Job::find($id)->subjects,
             'date' => Controller::formatDate(Job::find($id)->hr->user->profile->dob),
