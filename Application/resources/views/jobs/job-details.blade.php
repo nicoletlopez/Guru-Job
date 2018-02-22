@@ -42,12 +42,20 @@
                                         Hour
                                     @endif
                                 </strong>
-
+                        <!--TOP BUTTON-->
                                 @guest
-                                    <a href="#" class="btn btn-common btn-sm">Apply For This Job</a>
+                                    <a href="{{route('login')}}" class="btn btn-common btn-sm">Login to Apply</a>
                                 @else
                                     @if(Auth::user()->type == 'FACULTY')
-                                        <a href="#" class="btn btn-common btn-sm">Apply For This Job</a>
+                                        @if(Auth::user()->faculty->jobs->count() > 0)
+                                            <p class="alert alert-success">You've already applied for this job</p>
+                                        @else
+                                        {!! Form::open(['action'=>'ApplicationsController@store','method'=>'post']) !!}
+                                        {{Form::hidden('job-id',$job->id)}}
+                                        {{Form::submit('Apply for this Job',['class'=>'btn btn-common btn-sm'])}}
+                                        <!--<a href="#" class="btn btn-common btn-sm">Apply For This Job</a>-->
+                                        {!! Form::close() !!}
+                                        @endif
                                     @else
                                         @if(Auth::user()->id == $job->user_id)
                                             <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary btn-sm">Update
@@ -107,7 +115,7 @@
                                 </ul>
                                 -->
                                 @guest
-                                    <a href="#" class="btn btn-common">Apply for this Job Now</a>
+                                    <a href="{{route('login')}}" class="btn btn-common">Login to Apply</a>
                                 @else
                                     @if(Auth::user()->type == 'FACULTY')
                                         <a href="#" class="btn btn-common">Apply for this Job Now</a>
