@@ -38,6 +38,9 @@ Route::get('/profile','DashboardController@profile')->name('profile');
 //Route::get('/bookmarked-jobs',function(){return view('faculty.bookmarked-jobs');});
 Route::get('/notifications','DashboardController@notifications')->name('notifications');
 
+//lectures
+Route::resource('lectures','LecturesController');
+
 //hr
 Route::get('/hr-dashboard', 'HrDashboardController@index')->name('hr-dashboard');
 Route::get('/school-profile', 'HrDashboardController@profile')->name('hr-profile');
@@ -56,6 +59,8 @@ Route::get('/search', 'JobsController@search')->name('search');
 
 //applications
 Route::resource('applications','ApplicationsController');
+
+
 
 //test
 Route::get('/test','ApplicationsController@index');

@@ -58,6 +58,14 @@
                     <p><span class="badge">2</span></p>
                 </a>
             </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                <a href="{{route('lectures.index')}}">
+                    <div class="icon">
+                        <i class="ti-bookmark-alt"></i>
+                    </div>
+                    <h3>Manage Lectures</h3>
+                </a>
+            </div>
         @endif
         <div class="col-md-3 col-sm-3 col-xs-12 f-category">
             <a href="{{ route('change-pass') }}">

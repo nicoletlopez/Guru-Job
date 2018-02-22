@@ -4,6 +4,7 @@
             <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="right-sideabr">
                     <div class="inner-box">
+                        <!--HR-->
                         @if(Auth::user()->type == 'HR')
                             <h4>Account</h4>
                             <ul class="lest item">
@@ -22,15 +23,24 @@
                             </ul>
                             <h4>Subject</h4>
                             <ul class="lest item">
-                                <li><a class="@yield('manage-subjects-active')" href="{{route('subjects.index')}}">Manage Subjects</a></li>
+                                <li><a class="@yield('manage-subjects-active')" href="{{route('subjects.index')}}">Manage
+                                        Subjects</a></li>
                             </ul>
                         @else
+                        <!--FACULTY-->
                             <h4>Account</h4>
                             <ul class="lest item">
-                                <li><a class="@yield('dashboard-active')" href="{{route('dashboard')}}">Dashboard</a></li>
-                                <li><a class="@yield('profile-active')" href="{{route('profile')}}">My Profile</a></li>
-                                <li><a class="@yield('notifications-active')" href="{{route('notifications')}}">Notifications <span class="notinumber">2</span></a>
+                                <li><a class="@yield('dashboard-active')" href="{{route('dashboard')}}">Dashboard</a>
                                 </li>
+                                <li><a class="@yield('profile-active')" href="{{route('profile')}}">My Profile</a></li>
+                                <li><a class="@yield('notifications-active')" href="{{route('notifications')}}">Notifications
+                                        <span class="notinumber">2</span></a>
+                                </li>
+                            </ul>
+                            <h4>Lecture</h4>
+                            <ul class="lest item">
+                                <li><a class="@yield('manage-lectures-active')" href="{{route('lectures.index')}}">Manage
+                                        Lectures</a></li>
                             </ul>
                         @endif
                         <ul class="lest">
