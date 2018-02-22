@@ -59,6 +59,11 @@ class ApplicationsController extends Controller
     public function store(Request $request)
     {
         //
+        $faculty = auth()->user()->faculty;
+        $job =  Job::find($request->input('job-id'));
+        $job->applicants()->save($faculty);
+        $job->save();
+        return back();
     }
 
     /**

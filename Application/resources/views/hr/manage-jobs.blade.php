@@ -24,7 +24,7 @@
                 @foreach($jobs as $key=>$job)
                     <tr>
                         <td><a href="/jobs/{{$job->id}}"><h3>{{$job->title}}</h3></a></td>
-                        <td><span class="badge">1</span></td>
+                        <td><span class="badge">{{$job->applicants->count()}}</span></td>
                         <td>
                             <div class="can-img"><a href="#"><img src="{{asset('/img/jobs/candidates.png')}}"></a></div>
                         </td>
