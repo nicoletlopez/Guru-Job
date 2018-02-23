@@ -19,6 +19,7 @@
                                 <span class="part-time">Part-Time</span>
                             @endif
                         </h4>
+                        Posted by <a class="text-success" href="#">{{$job->hr->user->name}}</a>
                         <p>{!! $job->desc !!}</p>
                         <div class="job-tag">
                             <div class="pull-left">
