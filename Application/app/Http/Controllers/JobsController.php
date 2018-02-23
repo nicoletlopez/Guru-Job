@@ -110,7 +110,6 @@ class JobsController extends Controller
     public
     function show($id)
     {
-
         $context = array(
             //'applicationData'=>$applicationData,
             'job' => Job::find($id),
@@ -237,6 +236,15 @@ class JobsController extends Controller
             'jobs' => Job::search($search_term,$free_day)->paginate(),
         );
         return view('jobs.job-listings')->with($context);
+    }
+
+    public static function getFacultyJobs(){
+        $jobsApplied=auth()->user()->faculty->jobs;
+        $applicationData = array();
+        foreach ($jobsApplied as $jobApplied) {
+            $applicationData[] = $jobApplied->id;
+        }
+        return $applicationData;
     }
 
 }

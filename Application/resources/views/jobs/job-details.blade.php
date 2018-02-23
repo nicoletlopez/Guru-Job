@@ -1,3 +1,4 @@
+<?php use App\Http\Controllers\JobsController; ?>
 @extends('base')
 @section('title')- Job Details @endsection
 @section('current') Job Details @endsection
@@ -5,6 +6,7 @@
 @section('active-jobs') active @endsection
 
 @section('content')
+
     @include('inc.header')
     <section class="job-detail section">
         <div class="container">
@@ -42,26 +44,20 @@
                                         Hour
                                     @endif
                                 </strong>
-                        <!--TOP BUTTON-->
+                                <!--TOP BUTTON-->
                                 @guest
                                     <a href="{{route('login')}}" class="btn btn-common btn-sm">Login to Apply</a>
                                 @else
+
                                     @if(Auth::user()->type == 'FACULTY')
-                                        <?php
-                                        $jobsApplied=auth()->user()->faculty->jobs;
-                                        $applicationData = array();
-                                        foreach ($jobsApplied as $jobApplied) {
-                                            $applicationData[] = $jobApplied->id;
-                                        }
-                                        ?>
-                                        @if(in_array($job->id,$applicationData))
+                                        @if(in_array($job->id,JobsController::getFacultyJobs()))
                                             <p class="alert alert-success">You've already applied for this job</p>
                                         @else
-                                        {!! Form::open(['action'=>'ApplicationsController@store','id'=>'apply','method'=>'post']) !!}
-                                        {{Form::hidden('job-id',$job->id)}}
-                                        {{Form::submit('Apply for this Job',['class'=>'btn btn-common btn-sm'])}}
+                                            {!! Form::open(['action'=>'ApplicationsController@store','id'=>'apply','method'=>'post']) !!}
+                                            {{Form::hidden('job-id',$job->id)}}
+                                            {{Form::submit('Apply for this Job',['class'=>'btn btn-common btn-sm'])}}
                                         <!--<a href="#" class="btn btn-common btn-sm">Apply For This Job</a>-->
-                                        {!! Form::close() !!}
+                                            {!! Form::close() !!}
                                         @endif
                                     @else
                                         @if(Auth::user()->id == $job->user_id)
@@ -125,14 +121,14 @@
                                     <a href="{{route('login')}}" class="btn btn-common">Login to Apply</a>
                                 @else
                                     @if(Auth::user()->type == 'FACULTY')
-                                        @if(in_array($job->id,$applicationData))
+                                        @if(in_array($job->id,JobsController::getFacultyJobs()))
 
                                         @else
-                                        <a href="{{ route('jobs.store') }}" class="btn btn-common"
-                                           onclick="event.preventDefault();
+                                            <a href="{{ route('jobs.store') }}" class="btn btn-common"
+                                               onclick="event.preventDefault();
                                                      document.getElementById('apply').submit();">
-                                            Apply for this Job Now
-                                        </a>
+                                                Apply for this Job Now
+                                            </a>
                                         @endif
                                     @else
                                         @if(Auth::user()->id == $job->user_id)
