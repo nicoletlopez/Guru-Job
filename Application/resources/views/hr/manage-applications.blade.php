@@ -5,20 +5,21 @@
 @section('manage-applications-active') active @endsection
 
 @section('dashboard-content')
-    @foreach($jobs as $job)
-        @foreach($job->applicants as $applicant)
-            <div class="job-alerts-item candidates">
-                <h3 class="alerts-title">Manage applications</h3>
-                <table class="table">
-                    <thead class="">
-                    <tr>
-                        <th>Job Title</th>
-                        <th>Applicant</th>
-                        <th>Name</th>
-                        <th>Date Applied</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+
+    <div class="job-alerts-item candidates">
+        <h3 class="alerts-title">Manage applications</h3>
+        <table class="table">
+            <thead class="">
+            <tr>
+                <th>Job Title</th>
+                <th>Applicant</th>
+                <th>Name</th>
+                <th>Date Applied</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($jobs as $job)
+                @foreach($job->applicants as $applicant)
                     <tr>
                         <td><a href="#"><h3>{{$job->title}}</h3></a></td>
                         <td>
@@ -30,9 +31,10 @@
                         <td>{{$applicant->user->name}}</td>
                         <td>{{$applicant->pivot->created_at}}</td>
                     </tr>
-                    </tbody>
-                </table>
-            </div>
-        @endforeach
-    @endforeach
+                @endforeach
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+
 @endsection
