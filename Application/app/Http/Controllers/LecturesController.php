@@ -13,7 +13,12 @@ class LecturesController extends Controller
      */
     public function index()
     {
-        return view('faculty.manage-lectures');
+        $lectures = auth()->user()->faculty->lectures;
+        $context =
+            [
+                'lectures'=>$lectures,
+            ];
+        return view('faculty.manage-lectures')->with($context);
     }
 
     /**
