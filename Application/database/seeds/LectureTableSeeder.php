@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Faculty;
 
 class LectureTableSeeder extends Seeder
 {
@@ -13,6 +14,13 @@ class LectureTableSeeder extends Seeder
     {
         DB::table('lecture')->delete();
         DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "lecture";');
-        factory(App\Lecture::class,21)->create();
+
+        $owners = Faculty::all();
+
+        foreach ($owners as $owner) {
+            factory(App\Lecture::class)->create([
+                'owner_id' => $owner->user_id,
+            ]);
+        }
     }
 }
