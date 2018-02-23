@@ -15,27 +15,10 @@ class ApplicationsController extends Controller
     public function index()
     {
         //
-        $hr = auth()->user()->hr;
-        $jobs = $hr->jobs;
-        $applicants = array();
-        foreach($jobs as $job)
-        {
-            foreach($job->applicants as $applicant)
-            {
-                if($job->applicants->count() > 0)
-                {
-                    array_push($applicants,$applicant);
-                }
-                else
-                {
-                    continue;
-                }
-            }
-        }
-        /*return $applicants[0];*/
+        $jobs = auth()->user()->hr->jobs;
         $context =
             [
-                'applicants' => $applicants,
+                'jobs'=>$jobs,
             ];
         return view('hr.manage-applications')->with($context);
     }

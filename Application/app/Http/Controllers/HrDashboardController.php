@@ -29,7 +29,7 @@ class HrDashboardController extends Controller
         return view('hr.manage-jobs')->with($context);
     }
 
-    public function manageApplications(){
+    /*public function manageApplications(){
         return view('hr.manage-applications');
-    }
+    }*/
 }
