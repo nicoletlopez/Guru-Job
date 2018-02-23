@@ -47,4 +47,9 @@ class Faculty extends Model
     {
         return $this->belongsToMany(Lecture::class,'faculty_has_lecture','user_id','lecture_id');
     }
+
+    public function ownedLectures()
+    {
+        return $this->hasMany(Lecture::class,'owner_id','user_id');
+    }
 }
