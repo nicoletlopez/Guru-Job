@@ -58,16 +58,42 @@
                 {{--<form action="{{route("search")}}" method="get">--}}
                 {!! Form::open(['route'=>'search','method'=>'GET']) !!}
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-4">
                         <div class="form-group">
                             {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
                             {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'job title/keywords'])}}
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{Form::select('region',
+                            [null=>'All Regions',
+                            'NCR'=>'NCR',
+                            'I'=>'Region I',
+                            'II'=>'Region II',
+                            'III'=>'Region III',
+                            'IV'=>'Region IV',
+                            'V'=>'Region V',
+                            'VI'=>'Region VI'],
+                            null,
+                            ['class'=>'form-control'])}}
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            {{Form::select('specialization',
+                            [null=>'All Specializations',
+                            'JAVA'=>'Java',
+                            'DATA'=>'Data Networks',
+                            'EMB'=>'Embedded Networks',],
+                            null,
+                            ['class'=>'form-control'])}}
+                        </div>
+                    </div>
+                    <div class="col-md-2">
                         <div class="form-group">
                             {{Form::select('free-day',
-                            ['ALL'=>'All',
+                            [null=>'All Days',
                             'SUN'=>'Sunday',
                             'MON'=>'Monday',
                             'TUE'=>'Tuesday',

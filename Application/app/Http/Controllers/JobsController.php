@@ -52,7 +52,6 @@ class JobsController extends Controller
         );
 
 
-
         return view('jobs.job-post')->with($context);
     }
 
@@ -68,7 +67,7 @@ class JobsController extends Controller
         $user_id = auth()->user()->id;
         $title = $request->input('title');
         $type = $request->input('type');
-        $minSalary=$request->input('min-salary');
+        $minSalary = $request->input('min-salary');
         $maxSalary = $request->input('max-salary');
         $desc = $request->input('description');
 
@@ -78,7 +77,7 @@ class JobsController extends Controller
         $job->desc = $desc;
         $job->type = $type;
         $job->floor_salary = $minSalary;
-        $job->ceiling_salary=$maxSalary;
+        $job->ceiling_salary = $maxSalary;
 
         $job->save();
 
@@ -91,11 +90,11 @@ class JobsController extends Controller
             $subject->save();
         }
 
-        $users = User::where('type','=','FACULTY')->get();
+        $users = User::where('type', '=', 'FACULTY')->get();
         $school = $request->user();
 
-        foreach ($users as $user){
-            Mail::to($user->email)->queue(new NewJobNotification($job,$user,$school));
+        foreach ($users as $user) {
+            Mail::to($user->email)->queue(new NewJobNotification($job, $user, $school));
         }
 
         return redirect('/jobs/' . $job->id);
@@ -160,21 +159,21 @@ class JobsController extends Controller
         $type = $request->input('type');
         $salary = $request->input('salary');
         $desc = $request->input('description');
-        $minSalary=$request->input('min-salary');
+        $minSalary = $request->input('min-salary');
         $maxSalary = $request->input('max-salary');
 
         $job->title = $title;
         $job->desc = $desc;
         $job->type = $type;
         $job->floor_salary = $minSalary;
-        $job->ceiling_salary=$maxSalary;
+        $job->ceiling_salary = $maxSalary;
         $job->save();
 
 
         $subject_ids = $request->input('subjects');
-        $subjects=$job->subjects;
-        foreach($subjects as $subject){
-            $subject->job_id=null;
+        $subjects = $job->subjects;
+        foreach ($subjects as $subject) {
+            $subject->job_id = null;
             $subject->save();
         }
 
@@ -196,7 +195,7 @@ class JobsController extends Controller
      */
     public function destroy($id)
     {
-        $job=Job::find($id);
+        $job = Job::find($id);
         $job->delete();
         return back();
     }
@@ -211,13 +210,10 @@ class JobsController extends Controller
 
         //can either be revoke (0) or apply (1)
         //REVOKE an application
-        if($request->input('apply-option') == 0)
-        {
+        if ($request->input('apply-option') == 0) {
             $job->faculties->attach($user->id);
-        }
-        //APPLY for job
-        elseif($request->input('apply-option') == 1)
-        {
+        } //APPLY for job
+        elseif ($request->input('apply-option') == 1) {
             $job->faculties->detach($user->id);
         }
 
@@ -231,15 +227,27 @@ class JobsController extends Controller
     public function search(Request $request)
     {
         $search_term = $request->input('search-term');
+        $region = $request->input('region');
+        $specialization = $request->input('specialization');
         $free_day = $request->input('free-day');
+
+
+//        $jobs = Job::freeDay($free_day)->specialization($specialization)->searchTerm($search_term);
+//        $jobs = Job::specialization($specialization);
+        $jobs = Job::freeDay($free_day)->specialization($specialization)->searchTerm($search_term);
+        if (is_null($search_term) and is_null($specialization) and is_null($free_day)) {
+            $jobs = Job::orderBy('created_at', 'desc');
+        }
+
         $context = array(
-            'jobs' => Job::search($search_term,$free_day)->paginate(),
+            'jobs' => $jobs->paginate(),
         );
         return view('jobs.job-listings')->with($context);
     }
 
-    public static function getFacultyJobs(){
-        $jobsApplied=auth()->user()->faculty->jobs;
+    public static function getFacultyJobs()
+    {
+        $jobsApplied = auth()->user()->faculty->jobs;
         $applicationData = array();
         foreach ($jobsApplied as $jobApplied) {
             $applicationData[] = $jobApplied->id;

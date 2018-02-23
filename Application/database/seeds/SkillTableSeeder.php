@@ -11,6 +11,8 @@ class SkillTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('skill')->delete();
+        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "skill";');
         //
         DB::table('skill')->insert([
             'name' => "Java Programming",
