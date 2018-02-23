@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacultyHasFileTable extends Migration
+class CreateFacultyHasLectureTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateFacultyHasFileTable extends Migration
      */
     public function up()
     {
-        Schema::create('faculty_has_file', function (Blueprint $table) {
+        Schema::create('faculty_has_lecture', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->integer('file_id')->unsigned();
+            $table->integer('lecture_id')->unsigned();
 
             $table->foreign('user_id')->references('user_id')->on('faculty');
-            $table->foreign('file_id')->references('id')->on('file');
+            $table->foreign('lecture_id')->references('id')->on('lecture');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateFacultyHasFileTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faculty_has_file');
+        Schema::dropIfExists('faculty_has_lecture');
     }
 }
