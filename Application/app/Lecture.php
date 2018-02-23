@@ -15,4 +15,9 @@ class Lecture extends Model
     {
         return $this->belongsToMany(Faculty::class,'faculty_has_lecture','lecture_id','user_id');
     }
+
+    public function files()
+    {
+        return $this->hasMany(File::Class,'lecture_id','id');
+    }
 }
