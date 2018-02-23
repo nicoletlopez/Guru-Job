@@ -11,7 +11,6 @@ class Schedule extends Model
     public $timestamps = 'true';
 
     public function subject()
-
     {
         return $this->belongsTo(Subject::class,'subject_id','id');
     }

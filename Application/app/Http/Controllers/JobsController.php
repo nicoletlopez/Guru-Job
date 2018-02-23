@@ -32,9 +32,9 @@ class JobsController extends Controller
            'services'=>['Web Design','Programming','SEO']
        );
         */
-
+        $jobs = Job::orderBy('created_at', 'desc')->paginate(4);
         $context = array(
-            'jobs' => Job::orderBy('created_at', 'desc')->paginate(4),
+            'jobs' => $jobs,
         );
         return view('jobs.job-listings')->with($context);
     }

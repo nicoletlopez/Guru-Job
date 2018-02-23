@@ -36,6 +36,25 @@ class Job extends Model
             ->orWhere('desc', 'like', '%' .$search_term. '%');
     }
 
+    public function workDays()
+    {
+        //get all subjects that the job has
+        $subjects = $this->subjects;
+        //for all the subjects get their schedules and insert them in an array
+        $days = array();
+        foreach($subjects as $subject)
+        {
+            foreach($subject->schedules as $schedule)
+            {
+                if(!in_array($schedule->day,$days))
+                {
+                    array_push($days,$schedule->day);
+                }
+            }
+        }
+        return json_encode($days);
+    }
+
     /*public function jobAtSchedule()
     {
         //get all the jobs that a user currently has
