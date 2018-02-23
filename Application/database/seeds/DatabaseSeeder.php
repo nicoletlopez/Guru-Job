@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SubjectTableSeeder::class);
         $this->call(ScheduleTableSeeder::class);
         $this->call(SkillTableSeeder::class);
-        $this->call(FileTableSeeder::class);
         $this->call(LectureTableSeeder::class);
+        $this->call(FileTableSeeder::class);
     }
 }

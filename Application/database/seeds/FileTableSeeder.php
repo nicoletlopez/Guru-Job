@@ -15,7 +15,7 @@ class FileTableSeeder extends Seeder
         DB::table('file')->delete();
         DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "file";');
 
-        $lectures = DB::table('lectures')->get();
+        $lectures = Lecture::all();
 
         foreach ($lectures as $lecture) {
             for ($x = 0; $x < 2; $x++) {
