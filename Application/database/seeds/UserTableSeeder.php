@@ -18,7 +18,17 @@ class UserTableSeeder extends Seeder
 
 
 
-        $schools = array('Asia Pacific College', 'Philippine Normal University', 'National University');
+        $schools = array(
+            'Asia Pacific College',
+            'Philippine Normal University',
+            'National University',
+            'University of the Philippines Diliman',
+            'De La Salle University',
+            'Far Eastern University',
+            'Ateneo De Manila University',
+            'Colegio De San Juan De Letran',
+            'Holy Rosary Academy',
+            'Lyceum of the Philippines University');
         foreach ($schools as $school) {
             $words = explode(" ", $school);
             $acronym = "";
