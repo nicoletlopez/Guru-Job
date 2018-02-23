@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Lecture;
 
 class FileTableSeeder extends Seeder
 {
@@ -13,6 +14,15 @@ class FileTableSeeder extends Seeder
     {
         DB::table('file')->delete();
         DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "file";');
-        factory(App\File::class,20)->create();
+
+        $lectures = Lecture::all();
+
+        foreach ($lectures as $lecture) {
+            for ($x = 0; $x < 2; $x++) {
+                factory(App\File::class)->create([
+                    'lecture_id' => $lecture->id,
+                ]);
+            }
+        }
     }
 }
