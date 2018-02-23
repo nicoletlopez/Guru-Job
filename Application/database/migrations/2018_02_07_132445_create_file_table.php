@@ -17,7 +17,9 @@ class CreateFileTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('desc')->nullable();
+            $table->integer('lecture_id')->unsigned();
 
+            $table->foreign('lecture_id')->references('id')->on('lecture');
             $table->timestamps();
         });
     }
