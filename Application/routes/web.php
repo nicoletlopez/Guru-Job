@@ -23,6 +23,10 @@ Route::get('/password/reset','PagesController@reset_password')->name('reset-pass
 //pages
 Route::get('/home', 'PagesController@index')->name('home');
 
+//files
+Route::post('/lectures/{file}/upload','FilesController@lectureUpload');
+Route::get('/lectures/{lecture}/download/{file}','FilesController@downloadLectureFile');
+
 //users
 Route::post('/password/change','UsersController@changePassword');
 Route::get('/change-password','UsersController@showForm')->name('change-pass');
@@ -59,6 +63,7 @@ Route::get('/search', 'JobsController@search')->name('search');
 
 //applications
 Route::resource('applications','ApplicationsController');
+
 
 
 
