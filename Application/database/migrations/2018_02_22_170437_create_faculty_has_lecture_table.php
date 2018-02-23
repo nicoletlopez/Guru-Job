@@ -19,6 +19,7 @@ class CreateFacultyHasLectureTable extends Migration
 
             $table->foreign('user_id')->references('user_id')->on('faculty');
             $table->foreign('lecture_id')->references('id')->on('lecture');
+            $table->timestamps();
         });
     }
 
