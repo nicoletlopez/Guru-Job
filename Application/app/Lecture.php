@@ -13,7 +13,8 @@ class Lecture extends Model
 
     public function viewers()
     {
-        return $this->belongsToMany(Faculty::class,'faculty_has_lecture','lecture_id','user_id');
+        return $this->belongsToMany(Faculty::class,'faculty_has_lecture','lecture_id','user_id')
+            ->withTimestamps();
     }
 
     public function files()
