@@ -5,7 +5,10 @@
 @section('manage-lectures-active') active @endsection
 
 @section('dashboard-content')
-    <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+
+    <a href="{{route('lectures.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <hr/>
+    @include('inc.messages')
     <section class="section job-detail">
 
         <div class="container">
@@ -15,18 +18,28 @@
                         <h2 class="medium-title">Lecture Details</h2>
                         <div class="box">
                             <div class="text-left">
-                                <h3>lectureTitle</h3>
+                                <h3>{{$lecture->title}}</h3>
                             </div>
                             <div class="clearfix">
-                                <h4>lectureOverview</h4>
+                                <h4>Lecture Overview</h4>
+                                {!! $lecture->overview !!}
                             </div>
                             <div class="clearfix">
-                                <h4>lectureObjectives</h4>
+                                <h4>Lecture Objectives</h4>
+                                {!! $lecture->objectives !!}
                             </div>
                             <div class="clearfix">
-                                <h4>Files</h4>
-                                <p>filename.ext</p>
                             </div>
+                            {!! Form::open(['action'=>['FilesController@lectureUpload',$lecture->id],'method'=>'POST','enctype'=>'multipart/form-data']) !!}
+                            <h4>Files</h4>
+                                <ul class="list-group">
+                                    @foreach($lecture->files as $file)
+                                        <li class="list-group-item"><a href="/lectures/{{$lecture->id}}/download/{{$file->name}}">{{$file->name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            {{Form::file('file')}}
+                            {{Form::submit('Upload')}}
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>

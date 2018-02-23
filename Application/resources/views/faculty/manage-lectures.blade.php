@@ -8,34 +8,30 @@
 
     <div class="job-alerts-item candidates">
         <h3 class="alerts-title">Manage
-            Lectures <!--<a class="btn btn-success" href="">Add a Subject</a>--></h3>
+            Lectures  <a href="{{route('lectures.create')}}" class="btn btn-success">Add a Lecture</a></h3>
         @if(count($lectures)>0)
             <table class="table">
                 <thead class="">
                 <tr>
                     <th>Lecture Title</th>
                     <th># of Files</th>
-                    <th>Assigned to</th>
+                    <!--<th>Assigned to</th>-->
                     <!--<th>Action</th>-->
                 </tr>
                 </thead>
                 <tbody>
-
                 @foreach($lectures as $lecture)
                     <tr>
-                        <td><a href="#"><h3>{{$lecture->title}}</h3></a></td>
+                        <td><a href="/lectures/{{$lecture->id}}"><h3>{{$lecture->title}}</h3></a></td>
                         <td><p class="badge">{{$lecture->files->count()}}</p></td>
-                        <td><p>APC</p></td>
+                        <!--<td><p>APC</p></td>-->
                         <!--<td><p></p></td>-->
                     </tr>
                 @endforeach
-
-
                 </tbody>
-
             </table>
         @else
-            <h4>No Lectures</h4>
+            <h4>No Lectures.</h4>
         @endif
     </div>
 @endsection

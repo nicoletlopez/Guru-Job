@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateLecture;
 use Illuminate\Http\Request;
-
+use App\Lecture;
 class LecturesController extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class LecturesController extends Controller
      */
     public function index()
     {
-        $lectures = auth()->user()->faculty->lectures;
+        $lectures = auth()->user()->faculty->ownedLectures;
         $context =
             [
                 'lectures'=>$lectures,
@@ -28,7 +29,7 @@ class LecturesController extends Controller
      */
     public function create()
     {
-        //
+        return view('lectures.lecture-create');
     }
 
     /**
@@ -37,9 +38,22 @@ class LecturesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateLecture $request)
     {
-        //
+        $owner=auth()->user()->id;
+        $title=$request->input('title');
+        $overview=$request->input('overview');
+        $objectives=$request->input('objectives');
+
+        $lecture=new Lecture();
+        $lecture->owner_id=$owner;
+        $lecture->title=$title;
+        $lecture->overview=$overview;
+        $lecture->objectives=$objectives;
+        $lecture->save();
+
+        return redirect('/lectures/'.$lecture->id);
+
     }
 
     /**
@@ -50,7 +64,11 @@ class LecturesController extends Controller
      */
     public function show($id)
     {
-        return view('lectures.lecture-details');
+        $lecture=Lecture::find($id);
+        $context=array(
+            'lecture'=>$lecture
+        );
+        return view('lectures.lecture-details')->with($context);
     }
 
     /**

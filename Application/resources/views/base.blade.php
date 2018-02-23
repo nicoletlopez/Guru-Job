@@ -101,6 +101,7 @@
 <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
 <script>
     CKEDITOR.replace( 'editor0' );
+    CKEDITOR.replace( 'editor1' );
 </script>
 </body>
 </html>
