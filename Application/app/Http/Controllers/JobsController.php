@@ -232,15 +232,24 @@ class JobsController extends Controller
         $free_day = $request->input('free-day');
 
 
-//        $jobs = Job::freeDay($free_day)->specialization($specialization)->searchTerm($search_term);
-//        $jobs = Job::specialization($specialization);
-        $jobs = Job::freeDay($free_day)->specialization($specialization)->searchTerm($search_term);
-        if (is_null($search_term) and is_null($specialization) and is_null($free_day)) {
+//        $jobs = Job::region($region)->freeDay($free_day)->specialization($specialization)->searchTerm($search_term);
+
+        $jobs = Job::searchTerm($search_term);
+        if(!is_null($free_day)){
+            $jobs->freeDay($free_day);
+        }
+        if(!is_null($specialization)){
+            $jobs->specialization($specialization);
+        }
+        if(!is_null($region)){
+            $jobs->region($region);
+        }
+        if (is_null($search_term) and is_null($specialization) and is_null($free_day) and is_null($region)) {
             $jobs = Job::orderBy('created_at', 'desc');
         }
 
         $context = array(
-            'jobs' => $jobs->paginate(),
+            'jobs' => $jobs->paginate(4),
         );
         return view('jobs.job-listings')->with($context);
     }

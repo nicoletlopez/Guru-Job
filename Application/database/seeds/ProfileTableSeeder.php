@@ -25,11 +25,13 @@ class ProfileTableSeeder extends Seeder
         $pics = array('/img/schoolLogo/apc.jpg',
                             '/img/schoolLogo/pnu.jpg',
                             '/img/schoolLogo/nu.jpg');
+        $regions = array('NCR','R4A','CAR');
         $i = 1;
         foreach ($pics as $pic) {
             factory(App\Profile::class)->create([
                 'user_id' => $i,
                 'picture' => $pic,
+                'region' => $regions[$i-1],
             ]);
             $i++;
         }

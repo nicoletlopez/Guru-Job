@@ -58,9 +58,15 @@ class Job extends Model
         });
     }
 
-//    public function scopeRegion($query,$region){
-//        return $query->
-//    }
+    public function scopeRegion($query,$region){
+        return $query->whereHas('hr', function($query) use($region){
+            $query->whereHas('user', function($query) use($region){
+               $query->whereHas('profile', function($query) use($region){
+                    $query->where('region','like','%'.$region.'%');
+               });
+            });
+        });
+    }
 
     public function scopeSpecialization($query, $specialization)
     {
