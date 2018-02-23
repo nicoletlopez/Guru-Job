@@ -18,6 +18,10 @@ class CreateLectureTable extends Migration
             $table->string('title');
             $table->text('overview');
             $table->text('objectives')->nullable();
+            $table->integer('owner_id')->unsigned();
+
+            $table->foreign('owner_id')->references('id')->on('faculty');
+            $table->timestamps();
         });
     }
 
