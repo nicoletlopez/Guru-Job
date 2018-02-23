@@ -52,7 +52,7 @@ class Job extends Model
                 }
             }
         }
-        return json_encode($days);
+        return implode(" ",$days);
     }
 
     /*public function jobAtSchedule()
