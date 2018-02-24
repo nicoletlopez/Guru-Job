@@ -217,7 +217,6 @@ class JobsController extends Controller
             $job->faculties->detach($user->id);
         }
 
-        Mail::to($school->name)->queue(new AcceptJobNotification($job, $user, $school));
 
         return back();
     }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AcceptJobNotification;
 use Illuminate\Http\Request;
 use App\Job;
+use Illuminate\Support\Facades\Mail;
 
 class ApplicationsController extends Controller
 {
@@ -43,9 +45,16 @@ class ApplicationsController extends Controller
     {
         //
         $faculty = auth()->user()->faculty;
+        $user = $faculty->user;
         $job =  Job::find($request->input('job-id'));
         $job->applicants()->save($faculty);
         $job->save();
+
+
+        $school = $job->hr->user;
+
+        Mail::to($job->hr->user->email)->send(new AcceptJobNotification($job, $user, $school));
+
         return back();
     }
 
