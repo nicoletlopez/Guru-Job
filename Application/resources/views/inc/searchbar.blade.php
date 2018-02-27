@@ -58,12 +58,14 @@
                 {{--<form action="{{route("search")}}" method="get">--}}
                 {!! Form::open(['route'=>'search','method'=>'GET']) !!}
                 <div class="row">
+                    {{--Search Term--}}
                     <div class="col-md-4">
                         <div class="form-group">
                             {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
                             {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'job title/keywords'])}}
                         </div>
                     </div>
+                    {{--Region--}}
                     <div class="col-md-3">
                         <div class="form-group">
                             {{Form::select('region',
@@ -89,6 +91,7 @@
                             ['class'=>'form-control'])}}
                         </div>
                     </div>
+                    {{--Specialization--}}
                     <div class="col-md-3">
                         <div class="form-group">
                             {{Form::select('specialization',
@@ -100,12 +103,14 @@
                             ['class'=>'form-control'])}}
                         </div>
                     </div>
+                    {{--Submit Button--}}
                     <div class="col-md-2">
                         <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
                     </div>
                 </div>
                 <br/>
                 <div class="row">
+                    {{--Free Day--}}
                     <div class="col-md-4">
                         <div class="form-group">
                             {{Form::select('free-day',
@@ -121,14 +126,16 @@
                             ['class'=>'form-control'])}}
                         </div>
                     </div>
+                    {{--Start Time--}}
                     <div class="col-md-3">
                         <div class="form-group">
-                            {{Form::time('','',['class'=>'form-control','step'=>'900'])}}
+                            {{Form::time('start-time','07:30',['class'=>'form-control','step'=>'900'])}}
                         </div>
                     </div>
+                    {{--End Time--}}
                     <div class="col-md-3">
                         <div class="form-group">
-                            {{Form::time('','',['class'=>'form-control','step'=>'900'])}}
+                            {{Form::time('end-time','17:30',['class'=>'form-control','step'=>'900'])}}
                         </div>
                     </div>
                 </div>

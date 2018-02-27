@@ -49,15 +49,6 @@ class Job extends Model
             ->orWhere('desc', 'like', '%' . $search_term . '%');
     }
 
-    public function scopeFreeDay($query, $free_day)
-    {
-        return $query->whereHas('subjects', function ($query) use ($free_day) {
-            $query->whereHas('schedules', function ($query) use ($free_day) {
-                $query->where('day', 'like', '%' . $free_day . '%');
-            });
-        });
-    }
-
     public function scopeRegion($query,$region){
         return $query->whereHas('hr', function($query) use($region){
             $query->whereHas('user', function($query) use($region){
@@ -73,6 +64,24 @@ class Job extends Model
         return $query->whereHas('subjects', function ($query) use ($specialization) {
             $query->whereHas('skills', function ($query) use ($specialization) {
                 $query->where('name', 'like', '%' . $specialization . '%');
+            });
+        });
+    }
+
+    public function scopeFreeDay($query, $free_day)
+    {
+        return $query->whereHas('subjects', function ($query) use ($free_day) {
+            $query->whereHas('schedules', function ($query) use ($free_day) {
+                $query->where('day', 'like', '%' . $free_day . '%');
+            });
+        });
+    }
+
+    public function scopeTime($query, $start_time, $end_time)
+    {
+        return $query->whereHas('subjects', function ($query) use ($start_time, $end_time) {
+            $query->whereHas('schedules', function ($query) use ($start_time, $end_time) {
+                $query->where('day', 'like', '%' . $free_day . '%');
             });
         });
     }

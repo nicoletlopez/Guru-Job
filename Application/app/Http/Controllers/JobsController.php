@@ -229,6 +229,8 @@ class JobsController extends Controller
         $region = $request->input('region');
         $specialization = $request->input('specialization');
         $free_day = $request->input('free-day');
+        $start_time = $request->input('start-time');
+        $end_time = $request->input('end-time');
 
 
 //        $jobs = Job::region($region)->freeDay($free_day)->specialization($specialization)->searchTerm($search_term);
