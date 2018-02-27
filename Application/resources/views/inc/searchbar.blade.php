@@ -64,7 +64,7 @@
                             {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'job title/keywords'])}}
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             {{Form::select('region',
                             [null=>'All Regions',
@@ -89,7 +89,7 @@
                             ['class'=>'form-control'])}}
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             {{Form::select('specialization',
                             [null=>'All Specializations',
@@ -101,6 +101,12 @@
                         </div>
                     </div>
                     <div class="col-md-2">
+                        <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-4">
                         <div class="form-group">
                             {{Form::select('free-day',
                             [null=>'All Days',
@@ -115,8 +121,15 @@
                             ['class'=>'form-control'])}}
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{Form::time('','',['class'=>'form-control','step'=>'900'])}}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            {{Form::time('','',['class'=>'form-control','step'=>'900'])}}
+                        </div>
                     </div>
                 </div>
                 {!! Form::close() !!}

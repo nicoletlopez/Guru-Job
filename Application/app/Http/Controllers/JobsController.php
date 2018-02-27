@@ -248,7 +248,7 @@ class JobsController extends Controller
         }
 
         $context = array(
-            'jobs' => $jobs->paginate(4),
+            'jobs' => $jobs->paginate(),
         );
         return view('jobs.job-listings')->with($context);
     }
