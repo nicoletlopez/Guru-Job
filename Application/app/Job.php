@@ -77,14 +77,30 @@ class Job extends Model
         });
     }
 
-    public function scopeTime($query, $start_time, $end_time)
+    public function scopeStartTime($query, $start_time)
     {
-        return $query->whereHas('subjects', function ($query) use ($start_time, $end_time) {
-            $query->whereHas('schedules', function ($query) use ($start_time, $end_time) {
-                $query->where('day', 'like', '%' . $free_day . '%');
+        return $query->whereHas('subjects', function ($query) use ($start_time) {
+            $query->whereHas('schedules', function ($query) use ($start_time) {
+                $query->where('start','>=',$start_time);//->whereTime('end','<=',$end_time);
             });
         });
     }
+    public function scopeEndTime($query, $end_time)
+    {
+        return $query->whereHas('subjects', function ($query) use ($end_time) {
+            $query->whereHas('schedules', function ($query) use ($end_time) {
+                $query->where('end','<=',$end_time);
+            });
+        });
+    }
+    public function scopeTime($query, $start_time, $end_time)
+{
+    return $query->whereHas('subjects', function ($query) use ($start_time, $end_time) {
+        $query->whereHas('schedules', function ($query) use ($start_time, $end_time) {
+            $query->where('start','>=',$start_time)->where('end','<=',$end_time);
+        });
+    });
+}
 
 
     public function workDays()

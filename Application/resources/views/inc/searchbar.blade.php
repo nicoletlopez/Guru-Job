@@ -129,13 +129,13 @@
                     {{--Start Time--}}
                     <div class="col-md-3">
                         <div class="form-group">
-                            {{Form::time('start-time','07:30',['class'=>'form-control','step'=>'900'])}}
+                            {{Form::time('start-time','',['class'=>'form-control','step'=>'900'])}}
                         </div>
                     </div>
                     {{--End Time--}}
                     <div class="col-md-3">
                         <div class="form-group">
-                            {{Form::time('end-time','17:30',['class'=>'form-control','step'=>'900'])}}
+                            {{Form::time('end-time','',['class'=>'form-control','step'=>'900'])}}
                         </div>
                     </div>
                 </div>

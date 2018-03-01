@@ -235,17 +235,25 @@ class JobsController extends Controller
 
 //        $jobs = Job::region($region)->freeDay($free_day)->specialization($specialization)->searchTerm($search_term);
 
+        //Search for jobs according to search term even if $search_term is null
         $jobs = Job::searchTerm($search_term);
         if(!is_null($free_day)){
             $jobs->freeDay($free_day);
         }
+        //Add specialization criteria if $specialization is not null
         if(!is_null($specialization)){
             $jobs->specialization($specialization);
         }
+        //Add region criteria if $region is not null
         if(!is_null($region)){
             $jobs->region($region);
         }
-        if (is_null($search_term) and is_null($specialization) and is_null($free_day) and is_null($region)) {
+        //Add jobs falling between start time and end time stated
+        if(!is_null($start_time) && !is_null($end_time)){
+            $jobs->time($start_time, $end_time);
+        }
+        //If everything is null, get all jobs
+        if(is_null($search_term) and is_null($specialization) and is_null($free_day) and is_null($region) and is_null($start_time) and is_null($end_time)) {
             $jobs = Job::orderBy('created_at', 'desc');
         }
 
