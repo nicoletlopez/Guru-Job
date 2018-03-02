@@ -59,7 +59,7 @@
                 {!! Form::open(['route'=>'search','method'=>'GET']) !!}
                 <div class="row">
                     {{--Search Term--}}
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="form-group">
                             {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
                             {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'job title/keywords'])}}
@@ -104,14 +104,14 @@
                         </div>
                     </div>
                     {{--Submit Button--}}
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     {{--Free Day--}}
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <label>Work Day</label>
                         <div class="form-group">
                             {{Form::select('free-day',
