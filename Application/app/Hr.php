@@ -24,4 +24,10 @@ class Hr extends Model
     {
         return $this->hasMany(Job::class,'user_id','user_id');
     }
+
+    public function documents()
+    {
+        return $this->belongsToMany(Document::class,'hr_has_document',
+            'user_id','document_id')->withTimestamps();
+    }
 }
