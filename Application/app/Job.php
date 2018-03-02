@@ -108,6 +108,7 @@ class Job extends Model
         //get all subjects that the job has
         $subjects = $this->subjects;
         //for all the subjects get their schedules and insert them in an array
+        $day_values = ['SUN'=>'1','MON'=>'2','TUE'=>'3','WED'=>'4','THU'=>'5','FRI'=>'6','SAT'=>'7'];
         $days = array();
         foreach ($subjects as $subject) {
             foreach ($subject->schedules as $schedule) {
@@ -116,7 +117,16 @@ class Job extends Model
                 }
             }
         }
-        return implode(" ", $days);
+        $day_map = array();
+        foreach($days as $day)
+        {
+            $day_map[$day] = $day_values[$day];
+        }
+        asort($day_map);
+
+        return implode(" ",array_keys($day_map));
+
+        //return implode(" ", $days);
     }
 
     /*public function jobAtSchedule()
