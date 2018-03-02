@@ -15,8 +15,7 @@
                 <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-6 cd-user-modal">
                     <div class="my-account-form">
                         <ul class="cd-switcher">
-                            <li><a class="selected">LOGIN</a></li>
-                            <li><a href="{{route('register')}}" class="">REGISTER</a></li>
+
                         </ul>
                         <div class="page-login-form is-selected" id="cd-reset-password">
                             <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
