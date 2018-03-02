@@ -112,6 +112,7 @@
                 <div class="row">
                     {{--Free Day--}}
                     <div class="col-md-4">
+                        <label>Work Day</label>
                         <div class="form-group">
                             {{Form::select('free-day',
                             [null=>'All Days',
@@ -128,12 +129,14 @@
                     </div>
                     {{--Start Time--}}
                     <div class="col-md-3">
+                        <label>Work Time From</label>
                         <div class="form-group">
                             {{Form::time('start-time','',['class'=>'form-control','step'=>'900'])}}
                         </div>
                     </div>
                     {{--End Time--}}
                     <div class="col-md-3">
+                        <label>Work Time To</label>
                         <div class="form-group">
                             {{Form::time('end-time','',['class'=>'form-control','step'=>'900'])}}
                         </div>
