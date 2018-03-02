@@ -34,7 +34,7 @@
                             <h4>Files</h4>
                                 <ul class="list-group">
                                     @foreach($lecture->files as $file)
-                                        <li class="list-group-item"><a href="/lectures/{{$lecture->id}}/download/{{$file->name}}">{{$file->name}}</a></li>
+                                        <li class="list-group-item"><a href="/lectures/{{$lecture->id}}/download/{{$file->name}}">{{$file->name}}</a><a class="btn btn-sm btn-primary pull-right" href="/lectures/{{$lecture->id}}/download/{{$file->name}}">Download</a> </li>
                                     @endforeach
                                 </ul>
                             {{Form::file('file')}}
