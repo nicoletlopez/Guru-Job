@@ -7,6 +7,7 @@
     @include('inc.header')
 
     <div class="modal-dialog modal-lg">
+        @include('inc.messages')
         <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
         <div class="modal-content">
 
