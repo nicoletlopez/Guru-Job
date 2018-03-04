@@ -109,8 +109,10 @@ class JobsController extends Controller
     public
     function show($id)
     {
-        if(!auth()->user()->profile){
-            return redirect()->route('profile.create')->with('error','Create a Profile First');
+        if(!auth()->guest()) {
+            if (!auth()->user()->profile) {
+                return redirect()->route('profile.create')->with('error', 'Create a Profile First');
+            }
         }
         $context = array(
             //'applicationData'=>$applicationData,

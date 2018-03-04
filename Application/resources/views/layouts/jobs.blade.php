@@ -19,8 +19,8 @@
                                 <span class="part-time">Part-Time</span>
                             @endif
                         </h4>
-                        Posted by <a class="text-success" href="#">{{$job->hr->user->name}}</a>
-                        <p>{!! $job->desc !!}</p>
+                        Posted by <span style="font-weight:bold;" class="text-primary">{{$job->hr->user->name}}</span>
+                        <p>{!! str_limit($job->desc,500,'...') !!}</p>
                         <div class="job-tag">
                             <div class="pull-left">
                                 <div class="meta-tag">

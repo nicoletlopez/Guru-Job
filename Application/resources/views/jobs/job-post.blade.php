@@ -23,8 +23,8 @@
             <div class="modal-body">
 
                 <div class="form-group">
-                    {{Form::label('title','Job Title',['class'=>'control-label'])}}
-                    {{Form::text('title','',['class'=>'form-control'])}}
+                    {{Form::label('title','Job Title',['class'=>'control-label'])}}<span class="required">*</span>
+                    {{Form::text('title','',['class'=>'form-control','required'])}}
                 </div>
                 <!--
                 <div class="form-group">
@@ -33,7 +33,7 @@
                 </div>
                 -->
                 <div class="form-group">
-                    {{Form::label('type','Job Type',['class'=>'control-label'])}}
+                    {{Form::label('type','Job Type',['class'=>'control-label'])}}<span class="required">*</span>
                     <div class="radio">
                         <label style="color:black;">{{Form::radio('type','FT',['type'=>"radio"])}}Full-Time</label>
                     </div>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
+                    {{Form::label('subject','Subject/s',['class'=>'control-label'])}}<span class="required">*</span>
                     @foreach($subjects as $subject)
                         <div class="checkbox">
                             <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,false,['type'=>"checkbox"])}}{{$subject->name}}</label>
@@ -51,17 +51,17 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        {{Form::label('min-salary','Minimum Salary (PHP)',['class'=>'control-label'])}}
-                        {{Form::number('min-salary','',['min'=>'1.00','step'=>'.01','class'=>'form-control'])}}
+                        {{Form::label('min-salary','Minimum Salary (PHP)',['class'=>'control-label'])}}<span class="required">*</span>
+                        {{Form::number('min-salary','',['min'=>'1.00','step'=>'.01','class'=>'form-control','required'])}}
                     </div>
                     <div class="form-group col-md-6">
-                        {{Form::label('max-salary','Maximum Salary (PHP)',['class'=>'control-label'])}}
-                        {{Form::number('max-salary','',['min'=>'1.00','step'=>'.01','class'=>'form-control'])}}
+                        {{Form::label('max-salary','Maximum Salary (PHP)',['class'=>'control-label'])}}<span class="required">*</span>
+                        {{Form::number('max-salary','',['min'=>'1.00','step'=>'.01','class'=>'form-control','required'])}}
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('description','Description',['class'=>'control-label'])}}
-                    {{Form::textarea('description','',['id'=>'editor0','class'=>'form-control','placeholder'=>'Job Description'])}}
+                    {{Form::label('description','Description',['class'=>'control-label'])}}<span class="required">*</span>
+                    {{Form::textarea('description','',['id'=>'editor0','class'=>'form-control','placeholder'=>'Job Description','required'])}}
                 </div>
                 <!--
                 <div class="form-group">
