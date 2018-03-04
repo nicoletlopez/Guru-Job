@@ -26,7 +26,7 @@ Route::get('/home', 'PagesController@index')->name('home');
 //files
 Route::post('/lectures/{file}/upload','FilesController@lectureUpload');
 Route::get('/lectures/{lecture}/download/{file}','FilesController@downloadLectureFile');
-
+Route::delete('/lectures/{file}/delete','FilesController@deleteLectureFile');
 //users
 Route::post('/password/change','UsersController@changePassword');
 Route::get('/change-password','UsersController@showForm')->name('change-pass');

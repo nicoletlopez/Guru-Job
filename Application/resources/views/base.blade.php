@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{asset('css/main.css')}}" type="text/css">
 
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('vendor/dropzone/dist/min/dropzone.min.css')}}" type="text/css">
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/colors/red.css')}}" media="screen"/>
 </head>
@@ -96,6 +97,7 @@
 <script type="text/javascript" src="{{asset('js/contact-form-script.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.themepunch.revolution.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.themepunch.tools.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/dropzone/dist/min/dropzone.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/countries.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/custom.js')}}"></script>
 <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
