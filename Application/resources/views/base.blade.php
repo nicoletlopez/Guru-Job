@@ -92,12 +92,14 @@
 <script type="text/javascript" src="{{asset('js/jquery.counterup.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/waypoints.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jasny-bootstrap.min.js')}}"></script>
+
 <script type="text/javascript" src="{{asset('js/bootstrap-select.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/form-validator.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/contact-form-script.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.themepunch.revolution.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.themepunch.tools.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('vendor/dropzone/dist/min/dropzone.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/bootstrap/js/bootstrap-confirmation.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/countries.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/custom.js')}}"></script>
 <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>

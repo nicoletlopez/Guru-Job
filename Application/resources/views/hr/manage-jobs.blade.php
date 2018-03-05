@@ -46,12 +46,15 @@
                             @endif
                         </td>
                         <td>
-                            <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary">Update</a>
-                            <a href="#" data-target=".delete-job{{$key}}" data-toggle="modal" class="btn btn-danger">Delete</a>
+                            <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary btn-block">Update</a>
+                            <!--<a href="#" data-target=".delete-job{{$key}}" data-toggle="modal" class="btn btn-danger">Delete</a>-->
+                            {!! Form::open(['action'=>['JobsController@destroy',$job->id],'method'=>'POST']) !!}
+                            {{ Form::hidden('_method','DELETE') }}
+                            {!! Form::button('Delete',['class'=>'btn btn-danger btn-block','data-toggle'=>'confirmation']) !!}
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                     <!--MODAL-->
-                    @include('jobs.job-delete')
                 @endforeach
                 @else
                     <h4>No Jobs Posted. <a href="{{route('jobs.create')}}" class="btn btn-common">
@@ -62,5 +65,15 @@
                 </tbody>
         </table>
     </div>
-
+    <script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
+            onConfirm: function (event, element) {
+                element.closest('form').submit();
+            }
+        });
+    });
+</script>
 @endsection
