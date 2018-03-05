@@ -1921,9 +1921,8 @@ footer {
   margin: 0 0 20px 0;
 }
 .job-detail .clearfix ul li {
-  padding: 0 0 30px 20px;
-  overflow: hidden;
-  display: block;
+  padding: 0 0 0px 0px;
+  margin-left:40px;
   font-size: 14px;
   color: #666;
   position: relative;

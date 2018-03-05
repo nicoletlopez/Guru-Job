@@ -8,7 +8,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Guru App @yield('title')</title>
 
-    <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}" />
+    <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/jasny-bootstrap.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}" type="text/css">
@@ -35,12 +35,14 @@
     <link rel="stylesheet" href="{{asset('vendor/dropzone/dist/min/dropzone.min.css')}}" type="text/css">
 
     <link rel="stylesheet" type="text/css" href="{{asset('css/colors/red.css')}}" media="screen"/>
+
+    <link rel="stylesheet" href="{{asset('self/css/custom.css')}}" type="text/css">
 </head>
 <body>
 
 <div class="header">
 
-        @include('inc.navbar')
+    @include('inc.navbar')
     <section id="intro-bg">
         @yield('searchbar')
     </section>
@@ -50,11 +52,13 @@
 @yield('content')
 
 <footer>
-   <div id="copyright">
+    <div id="copyright">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>All Rights reserved &copy; 2017 - Designed & Developed by <a rel="nofollow" href="http://graygrids.com">GrayGrids</a></p>
+                    <p>All Rights reserved &copy; 2017 - Designed & Developed by <a rel="nofollow"
+                                                                                    href="http://graygrids.com">GrayGrids</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -104,8 +108,8 @@
 <script type="text/javascript" src="{{asset('self/js/custom.js')}}"></script>
 <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
 <script>
-    CKEDITOR.replace( 'editor0' );
-    CKEDITOR.replace( 'editor1' );
+    CKEDITOR.replace('editor0');
+    CKEDITOR.replace('editor1');
 </script>
 </body>
 </html>
