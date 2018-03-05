@@ -1,4 +1,5 @@
 <h4>Files</h4>
+<hr/>
 <div class="row">
     @foreach($lecture->files as $file)
         <div class="col-md-6">
@@ -16,7 +17,7 @@
         </div>
     @endforeach
 </div>
-
+<hr/>
 
 
 
