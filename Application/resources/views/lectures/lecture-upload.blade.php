@@ -27,3 +27,5 @@
     {{Form::file('file',['multiple'])}}
 </div>
 {!! Form::close() !!}
+<br/>
+<a href="" class="btn btn-success">Upload</a>
