@@ -19,6 +19,6 @@ class Document extends Model
     public function hrs()
     {
         return $this->belongsToMany(Hr::class,'hr_has_document',
-            'user_id','document_id')->withTimestamps();
+            'document_id','user_id')->withTimestamps();
     }
 }

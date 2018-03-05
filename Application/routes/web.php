@@ -64,7 +64,8 @@ Route::get('/search', 'JobsController@search')->name('search');
 //applications
 Route::resource('applications','ApplicationsController');
 
-
+//documents
+Route::resource('documents','DocumentsController');
 
 
 //test

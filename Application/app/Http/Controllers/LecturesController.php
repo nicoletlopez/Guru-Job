@@ -80,6 +80,7 @@ class LecturesController extends Controller
     public function edit($id)
     {
         //
+        $lecture = Lecture::find($id);
     }
 
     /**
@@ -103,5 +104,10 @@ class LecturesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function share()
+    {
+
     }
 }
