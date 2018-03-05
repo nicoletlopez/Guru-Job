@@ -30,4 +30,11 @@ class Hr extends Model
         return $this->belongsToMany(Document::class,'hr_has_document',
             'user_id','document_id')->withTimestamps();
     }
+
+    public function scopeSearchHr($query, $search_term)
+    {
+        return $query->whereHas('user', function ($query) use ($search_term) {
+                $query->where('name', 'like', '%' . $search_term . '%');
+                });
+    }
 }

@@ -69,5 +69,6 @@ Route::resource('documents','DocumentsController');
 
 
 //test
-Route::get('/test','ApplicationsController@index');
+Route::view('/testSearch','jasonsInvasion.search');
+Route::get('/test','TestController@index')->name('test');
 
