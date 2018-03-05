@@ -14,6 +14,7 @@
                    href="/lectures/{{$lecture->id}}/download/{{$file->name}}">Download</a>
             </div>
         </div>
+            <hr/>
         </div>
     @endforeach
 </div>
