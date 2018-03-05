@@ -1,56 +1,3 @@
-{{--
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="content">
-                <form action="{{route("search")}}" method="get">
-                    <div class="row">
-                        <div class="col-md-11 col-sm-6">
-                            <div class="form-group">
-                                <input class="form-control" type="text" name="s" placeholder="job title / keywords">
-                            </div>
-                        </div>
-                        <!--
-                        <div class="col-md-4 col-sm-6">
-                            <div class="search-category-container">
-                                <label class="styled-select">
-                                    <select class="dropdown-product selectpicker">
-                                        <option>All Locations</option>
-                                        <option>Makati</option>
-                                        <option>Manila</option>
-                                    </select>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="search-category-container">
-                                <label class="styled-select">
-                                    <select class="dropdown-product selectpicker">
-                                        <option>All Categories</option>
-                                        <option>Finance</option>
-                                        <option>IT & Engineering</option>
-                                        <option>Education/Training</option>
-                                        <option>Art/Design</option>
-                                        <option>Sale/Markting</option>
-                                        <option>Healthcare</option>
-                                        <option>Science</option>
-                                        <option>Food Services</option>
-                                    </select>
-                                </label>
-                            </div>
-                        </div>
-                        -->
-                        <div class="col-md-1 col-sm-6">
-                            <button type="submit" class="btn btn-search-icon"><i class="ti-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
---}}
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -67,7 +14,8 @@
                     </div>
                     {{--Region--}}
                     <div class="col-md-3">
-                        <div class="form-group">
+                        <div class="search-category-container">
+                            <label class="styled-select">
                             {{Form::select('region',
                             [null=>'All Regions',
                             'NCR'=>'National Capital Region',
@@ -88,19 +36,22 @@
                             'R13'=>'Caraga Region',
                             'ARMM'=>'Autonomous Region in Muslim Mindanao',],
                             null,
-                            ['class'=>'form-control'])}}
+                            ['class'=>'dropdown-product selectpicker'])}}
+                            </label>
                         </div>
                     </div>
                     {{--Specialization--}}
                     <div class="col-md-3">
-                        <div class="form-group">
+                        <div class="search-category-container">
+                            <label class="styled-select">
                             {{Form::select('specialization',
                             [null=>'All Specializations',
                             'JAVA'=>'Java',
                             'DATA'=>'Data Networks',
                             'EMB'=>'Embedded Networks',],
                             null,
-                            ['class'=>'form-control'])}}
+                            ['class'=>'dropdown-product selectpicker'])}}
+                            </label>
                         </div>
                     </div>
                     {{--Submit Button--}}
@@ -113,7 +64,8 @@
                     {{--Free Day--}}
                     <div class="col-md-5">
                         <label>Work Day</label>
-                        <div class="form-group">
+                        <div class="search-category-container">
+                            <label class="styled-select">
                             {{Form::select('free-day',
                             [null=>'All Days',
                             'SUN'=>'Sunday',
@@ -124,7 +76,8 @@
                             'FRI'=>'Friday',
                             'SAT'=>'Saturday'],
                             null,
-                            ['class'=>'form-control'])}}
+                            ['class'=>'dropdown-product selectpicker'])}}
+                            </label>
                         </div>
                     </div>
                     {{--Start Time--}}
