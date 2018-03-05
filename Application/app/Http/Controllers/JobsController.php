@@ -202,7 +202,7 @@ class JobsController extends Controller
     {
         $job = Job::find($id);
         $job->delete();
-        return back();
+        return back()->with('success','Job Deleted');
     }
 
     //user applies for a job
