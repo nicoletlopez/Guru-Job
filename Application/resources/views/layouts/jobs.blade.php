@@ -31,9 +31,6 @@
                                 </div>
                             </div>
                             <div class="pull-right">
-                                <div class="icon">
-                                    <i class="ti-heart"></i>
-                                </div>
                                 <a href="/jobs/{{$job->id}}" class="btn btn-common btn-rm">More Detail</a>
                             </div>
                         </div>
