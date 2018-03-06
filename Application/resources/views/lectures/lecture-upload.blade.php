@@ -4,4 +4,4 @@
 </div>
 {!! Form::close() !!}
 <br/>
-<a href="" class="btn btn-success">Upload</a>
+<input type="button" class="btn btn-success" value="Upload" onClick="window.location.reload()">
