@@ -13,7 +13,13 @@ class CreateLecture extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if (auth()->user())
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 
     /**
@@ -24,11 +30,12 @@ class CreateLecture extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
-            'overview'=>'required',
-            'objectives'=>'required',
+            'title' => 'required',
+            'overview' => 'required',
+            'objectives' => 'required',
         ];
     }
+
     public function messages()
     {
         $messages =

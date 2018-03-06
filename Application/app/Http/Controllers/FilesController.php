@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 
 class FilesController extends Controller
 {
+
+    //for lecture files
     public function lectureUpload(LectureUpload $request,$lectureId){
 
         //$fileNameWithExt=$request->file('file')->getClientOriginalName();
@@ -39,4 +41,5 @@ class FilesController extends Controller
         );
         return response()->download($file,$fileName,$headers);
     }
+
 }
