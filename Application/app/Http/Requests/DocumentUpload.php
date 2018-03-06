@@ -32,6 +32,18 @@ class DocumentUpload extends FormRequest
     {
         return [
             //
+            'name'=>'required',
+            'desc'=>'required',
         ];
+    }
+
+    public function messages()
+    {
+        $messages =
+            [
+                'name.required' => 'No file',
+                'desc.required' => 'File description required',
+            ];
+        return $messages;
     }
 }
