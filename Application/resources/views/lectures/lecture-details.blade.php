@@ -35,14 +35,14 @@
                             <hr/>
                             @if(count($lecture->files)>0)
                                 <div class="row">
-                                    @foreach($lecture->files as $file)
+                                    @foreach($files as $file)
                                         <div class="col-md-6">
                                             <div class="card">
                                                 <div class="card-block">
-                                                    <p class="card-text">{{$file->name}}</p>
-                                                    {!! Form::open(['action'=>['FilesController@deleteLectureFile',$file->id],'method'=>'POST']) !!}
+                                                    <p class="card-text"><a href="/lectures/{{$lecture->id}}/download/{{$file->name}}">{{preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$file->name)}}</a></p>
+                                                    {!! Form::open(['action'=>['FilesController@deleteLectureFile',$lecture->id,$file->id],'method'=>'POST']) !!}
                                                     {{Form::hidden('_method','DELETE')}}
-                                                    {{Form::submit('Delete',['class'=>'btn btn-sm btn-danger pull-right'])}}
+                                                    {{Form::submit('Delete',['class'=>'btn btn-sm btn-danger pull-right','data-toggle'=>'confirmation'])}}
                                                     {!! Form::close() !!}
                                                     <a class="btn btn-sm btn-primary pull-right"
                                                        href="/lectures/{{$lecture->id}}/download/{{$file->name}}">Download</a>
@@ -63,4 +63,5 @@
             </div>
         </div>
     </section>
+    @include('inc.prompt-delete')
 @endsection
