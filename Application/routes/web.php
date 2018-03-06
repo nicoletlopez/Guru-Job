@@ -69,6 +69,13 @@ Route::resource('documents','DocumentsController');
 
 
 //test
+<<<<<<< Updated upstream
 Route::view('/testSearch','jasonsInvasion.search');
 Route::get('/test','TestController@index')->name('test');
+=======
+Route::get('/test', function()
+{
+    return auth()->user()->hr->documents;
+});
+>>>>>>> Stashed changes
 

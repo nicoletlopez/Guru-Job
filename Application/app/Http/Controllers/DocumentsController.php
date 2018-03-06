@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
+use App\Http\Requests\DocumentUpload;
 use Illuminate\Http\Request;
 
 class DocumentsController extends Controller
@@ -27,6 +29,7 @@ class DocumentsController extends Controller
     public function create()
     {
         //
+        return view('documents.document-create');
     }
 
     /**
@@ -35,9 +38,10 @@ class DocumentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DocumentUpload $request)
     {
-        //
+        //upload a file as a document
+
     }
 
     /**
