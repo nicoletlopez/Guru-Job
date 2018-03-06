@@ -26,10 +26,11 @@ class FilesController extends Controller
         $file->save();
         return back()->with('success','File uploaded.');
     }
-    public function deleteLectureFile($id){
+    public function deleteLectureFile($lectureId,$id){
         $file=File::find($id);
+        Storage::delete('/public/lectures/'."lecture_files_".$lectureId."/".$file->name);
         $file->delete();
-        return back()->with('success',$file->name.' File Deleted.');
+        return back()->with('success','File Deleted.');
     }
     public function downloadLectureFile($lectureId,$fileName){
         $file=public_path().'/storage/lectures/'."lecture_files_".$lectureId."/".$fileName;
