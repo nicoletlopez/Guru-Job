@@ -1,0 +1,6 @@
+.clearfix ol li{
+    list-style-type:decimal;
+}
+.clearfix ul li{
+    list-style-type:disc;
+}

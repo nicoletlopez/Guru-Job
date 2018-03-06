@@ -64,6 +64,9 @@ class LecturesController extends Controller
      */
     public function show($id)
     {
+        if(!auth()->user()){
+            return redirect()->route('login');
+        }
         $lecture=Lecture::find($id);
         $context=array(
             'lecture'=>$lecture
@@ -79,8 +82,11 @@ class LecturesController extends Controller
      */
     public function edit($id)
     {
-        //
         $lecture = Lecture::find($id);
+        $context=array(
+            'lecture'=>$lecture,
+        );
+        return view('lectures.lecture-edit')->with($context);
     }
 
     /**
@@ -90,9 +96,20 @@ class LecturesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateLecture $request, $id)
     {
-        //
+        $lecture=Lecture::find($id);
+
+        $title=$request->input('title');
+        $overview=$request->input('overview');
+        $objectives=$request->input('objectives');
+
+        $lecture->title=$title;
+        $lecture->overview=$overview;
+        $lecture->objectives=$objectives;
+        $lecture->save();
+
+        return redirect('lectures/' . $lecture->id);
     }
 
     /**
@@ -103,7 +120,9 @@ class LecturesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lecture=Lecture::find($id);
+        $lecture->delete();
+        return back()->with('success','Lecture Deleted');
     }
 
     public function share()
