@@ -12,21 +12,18 @@ class FilesController extends Controller
 
     //for lecture files
     public function lectureUpload(LectureUpload $request,$lectureId){
-
-        //$fileNameWithExt=$request->file('file')->getClientOriginalName();
-        //$filename=pathinfo($fileNameWithExt,PATHINFO_FILENAME);
+        $fileNameWithExt=$request->file('file')->getClientOriginalName();
+        $filename=pathinfo($fileNameWithExt,PATHINFO_FILENAME);
         $extension=$request->file('file')->getClientOriginalExtension();
-        //$fileNameToStore=$filename.'_'.time().'.'.$extension;
+        $fileNameToStore=$filename.'_'.time().'.'.$extension;
         //$fileNameToStore=$filename.'.'.$extension;
-        $fileNameToStore=$request->file('file')->getClientOriginalName();
+        //$fileNameToStore=$request->file('file')->getClientOriginalName();
         $path=$request->file('file')->storeAs('public/lectures/lecture_files_'.$lectureId,$fileNameToStore);
-
         $file=new File;
         $file->lecture_id=$lectureId;
         $file->name=$fileNameToStore;
         $file->desc="new file";
         $file->save();
-
         return back()->with('success','File uploaded.');
     }
     public function deleteLectureFile($id){
