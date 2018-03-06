@@ -26,7 +26,7 @@ Route::get('/home', 'PagesController@index')->name('home');
 //files
 Route::post('/lectures/{file}/upload','FilesController@lectureUpload');
 Route::get('/lectures/{lecture}/download/{file}','FilesController@downloadLectureFile');
-Route::delete('/lectures/{file}/delete','FilesController@deleteLectureFile');
+Route::delete('/lectures/{lecture}/delete/{file}','FilesController@deleteLectureFile');
 //users
 Route::post('/password/change','UsersController@changePassword');
 Route::get('/change-password','UsersController@showForm')->name('change-pass');
@@ -71,5 +71,7 @@ Route::resource('documents','DocumentsController');
 //test
 Route::view('/testSearch','jasonsInvasion.search');
 Route::get('/test','TestController@index')->name('test');
+
+Route::get('/test/php',function(){return view('test');});
 
 
