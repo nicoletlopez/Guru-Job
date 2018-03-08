@@ -9,6 +9,5 @@ $factory->define(App\Profile::class, function (Faker $faker) {
         'dob' => $faker->date($format = 'Y-m-d', $max = '2000-01-01'),
         'city' => $faker->city,
         'street_address' => $faker->streetAddress,
-        'contact_number' => $faker->phoneNumber,
     ];
 });
