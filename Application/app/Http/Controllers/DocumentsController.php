@@ -41,7 +41,14 @@ class DocumentsController extends Controller
     public function store(DocumentUpload $request)
     {
         //upload a file as a document
+        $fileNameWithExt = $request->file('document')->getClientOriginalName();
+        $fileName = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
+        $extension = $request->file('document')->getClientOriginalExtension();
+        $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
+        $username = auth()->user()->name;
+
+        $path = $request->file('document')->storeAs('public/documents/'.$username)
     }
 
     /**
