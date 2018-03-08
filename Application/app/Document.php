@@ -11,14 +11,8 @@ class Document extends Model
     protected $primaryKey = 'id';
     public $timestamps = 'true';
 
-    public function faculty()
+    public function documentSpace()
     {
-        return $this->belongsTo(Faculty::class,'user_id','user_id');
-    }
-
-    public function hrs()
-    {
-        return $this->belongsToMany(Hr::class,'hr_has_document',
-            'document_id','user_id')->withTimestamps();
+        return $this->belongsTo(DocumentSpace::class,'document_space_id','id');
     }
 }

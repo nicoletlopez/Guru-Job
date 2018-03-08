@@ -54,8 +54,8 @@ class Faculty extends Model
         return $this->hasMany(Lecture::class,'owner_id','user_id');
     }
 
-    public function documents()
+    public function documentSpaces()
     {
-        return $this->hasMany(Document::class,'user_id','user_id');
+        return $this->hasMany(DocumentSpace::class,'user_id','user_id');
     }
 }
