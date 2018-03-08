@@ -24,6 +24,6 @@ class Lecture extends Model
 
     public function faculty()
     {
-        return $this->belongsTo(Faculty::class,'owner_id','id');
+        return $this->belongsTo(Faculty::class,'owner_id','user_id');
     }
 }
