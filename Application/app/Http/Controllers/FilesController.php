@@ -16,6 +16,7 @@ class FilesController extends Controller
         $lecture=Lecture::find($lectureId);
         $userName=$lecture->faculty->user->name;
         $name=str_replace(' ','_',strtolower($userName));
+        $lectureName=str_replace(' ','_',strtolower($lecture->title));
 
         $fileNameWithExt=$request->file('file')->getClientOriginalName();
         $filename=pathinfo($fileNameWithExt,PATHINFO_FILENAME);
@@ -23,7 +24,7 @@ class FilesController extends Controller
         $fileNameToStore=$filename.'_'.time().'.'.$extension;
         //$fileNameToStore=$filename.'.'.$extension;
         //$fileNameToStore=$request->file('file')->getClientOriginalName();
-        $path=$request->file('file')->storeAs('/public/'.$name.'/lectures/lecture_files/',$fileNameToStore);
+        $path=$request->file('file')->storeAs('/public/'.$name.'/lectures/'.$lectureName,$fileNameToStore);
         $file=new File;
         $file->lecture_id=$lectureId;
         $file->name=$fileNameToStore;
@@ -35,8 +36,10 @@ class FilesController extends Controller
         $lecture=Lecture::find($lectureId);
         $userName=$lecture->faculty->user->name;
         $name=str_replace(' ','_',strtolower($userName));
+        $lectureName=str_replace(' ','_',strtolower($lecture->title));
+
         $file=File::find($id);
-        Storage::delete('/public/'.$name.'/lectures/lecture_files/'.$file->name);
+        Storage::delete('/public/'.$name.'/lectures/'.$lectureName.'/'.$file->name);
         $file->delete();
         return back()->with('success','File Deleted.');
     }
@@ -45,7 +48,8 @@ class FilesController extends Controller
         $lecture=Lecture::find($lectureId);
         $userName=$lecture->faculty->user->name;
         $name=str_replace(' ','_',strtolower($userName));
-        $file=public_path().'/storage/'.$name.'/lectures/lecture_files/'.$fileName;
+        $lectureName=str_replace(' ','_',strtolower($lecture->title));
+        $file=public_path().'/storage/'.$name.'/lectures/'.$lectureName.'/'.$fileName;
         $headers = array(
             'Content-Type: application/octet-stream',
         );
