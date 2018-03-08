@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\DocumentSpace;
 
 class DocumentTableSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class DocumentTableSeeder extends Seeder
         DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "document";');
 
         $names = array('Résumé','Diploma','Transcript of Records');
-        $docspaces = DB::table('document_space')->get();
+        $docspaces = DocumentSpace::all();
         foreach($docspaces as $docspace)
         {
             for ($i = 0; $i < 3; $i++) {
