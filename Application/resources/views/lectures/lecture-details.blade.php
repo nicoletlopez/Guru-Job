@@ -11,13 +11,14 @@
     <section class="section job-detail">
 
         <div class="container">
+
             <div class="row">
                 <div class="col-md-9 col-sm-8">
                     <div class="content-area">
                         <h2 class="medium-title">Lecture Details</h2>
                         <a href="/lectures/{{$lecture->id}}/edit" class="btn btn-primary btn-sm">Edit
                             Lecture</a>
-                        <div class="box">
+                        <div class="box col-md-11">
                             <div class="text-left">
                                 <h3>{{$lecture->title}}</h3>
                             </div>
@@ -33,34 +34,44 @@
                             </div>
                             <h4>Files</h4>
                             <hr/>
-                            @if(count($lecture->files)>0)
-                                <div class="row">
-                                    @foreach($files as $file)
-                                        <div class="col-md-6">
-                                            <div class="card">
-                                                <div class="card-block">
-                                                    <p class="card-text"><a href="/lectures/{{$lecture->id}}/download/{{$file->name}}">{{preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$file->name)}}</a></p>
-                                                    {!! Form::open(['action'=>['FilesController@deleteLectureFile',$lecture->id,$file->id],'method'=>'POST']) !!}
-                                                    {{Form::hidden('_method','DELETE')}}
-                                                    {{Form::submit('Delete',['class'=>'btn btn-sm btn-danger pull-right','data-toggle'=>'confirmation'])}}
-                                                    {!! Form::close() !!}
-                                                    <a class="btn btn-sm btn-primary pull-right"
-                                                       href="/lectures/{{$lecture->id}}/download/{{$file->name}}">Download</a>
+                                @if(count($lecture->files)>0)
+                                    <div class="row">
+                                        @foreach($files as $file)
+                                            <div class="col-md-3" style="height:200px;">
+                                                <div class="thumbnail">
+                                                    <div class="pull-right">
+                                                        <a href="" onclick="event.preventDefault();
+                                                     document.getElementById('fileDelete').submit();">
+                                                            <img width="10" src="{{asset('img/delete.png')}}"
+                                                                 alt="Click me to remove the file."/>
+                                                        </a>
+                                                    </div>
+                                                    <img width="70" src="{{asset('img/icon/file/text.png')}}">
+                                                    <div class="caption">
+                                                        <p>
+                                                            <a class="btn btn-sm btn-primary btn-block"
+                                                               href="/lectures/{{$lecture->id}}/download/{{$file->name}}">Download</a>
+                                                        </p>
+                                                        <p style="word-wrap:break-word;">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$file->name),28,'...')}}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <hr/>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <h5>No Files Uploaded.</h5>
-                            @endif
+                                            {!! Form::open(['id'=>'fileDelete','class'=>'hidden','action'=>['FilesController@deleteLectureFile',$lecture->id,$file->id],'method'=>'POST']) !!}
+                                            {{Form::hidden('_method','DELETE')}}
+                                            {{Form::submit('Delete',['class'=>'btn btn-sm btn-danger pull-right','data-toggle'=>'confirmation'])}}
+                                            {!! Form::close() !!}
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <h5>No Files Uploaded.</h5>
+                                @endif
                             <hr/>
                             @include('lectures.lecture-upload')
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
     @include('inc.prompt-delete')

@@ -66,6 +66,14 @@
                     <h3>Manage Lectures</h3>
                 </a>
             </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                <a href="#">
+                    <div class="icon">
+                        <i class="ti-folder"></i>
+                    </div>
+                    <h3>My Documents</h3>
+                </a>
+            </div>
         @endif
         <div class="col-md-3 col-sm-3 col-xs-12 f-category">
             <a href="{{ route('change-pass') }}">
