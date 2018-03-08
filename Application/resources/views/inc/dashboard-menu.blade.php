@@ -42,6 +42,10 @@
                                 <li><a class="@yield('manage-lectures-active')" href="{{route('lectures.index')}}">Manage
                                         Lectures</a></li>
                             </ul>
+                            <h4>Repository</h4>
+                            <ul class="lest item">
+                                <li><a class="@yield('manage-documents-active')" href="#">My Documents</a></li>
+                            </ul>
                         @endif
                         <ul class="lest">
                             <li>
