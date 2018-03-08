@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHrHasDocumentTable extends Migration
+class CreateHrHasDocumentSpaceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateHrHasDocumentTable extends Migration
      */
     public function up()
     {
-        Schema::create('hr_has_document', function (Blueprint $table) {
-            $table->integer('document_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+        Schema::create('hr_has_document_space', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned()->primary();
+            $table->integer('document_space_id')->unsigned()->primary();
 
-            $table->foreign('document_id')->references('id')->on('document');
             $table->foreign('user_id')->references('user_id')->on('hr');
-            $table->timestamps();
+            $table->foreign('document_space_id')->references('id')->on('document_space');
         });
     }
 
@@ -30,6 +29,6 @@ class CreateHrHasDocumentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hr_has_document');
+        Schema::dropIfExists('hr_has_document_space');
     }
 }

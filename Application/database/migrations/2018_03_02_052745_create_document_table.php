@@ -17,9 +17,9 @@ class CreateDocumentTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('desc')->nullable();
-            $table->integer('user_id')->unsigned();
+            $table->integer('document_space_id')->unsigned();
 
-            $table->foreign('user_id')->references('user_id')->on('faculty');
+            $table->foreign('document_space_id')->references('id')->on('document_space');
             $table->timestamps();
         });
     }
