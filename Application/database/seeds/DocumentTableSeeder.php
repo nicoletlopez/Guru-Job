@@ -14,12 +14,17 @@ class DocumentTableSeeder extends Seeder
         DB::table('document')->delete();
         DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "document";');
 
-        $faculties = DB::table('users')->where('type','=','FACULTY')->get();
-        foreach($faculties as $faculty)
+        $names = array('Résumé','Diploma','Transcript of Records');
+        $docspaces = DB::table('document_space')->get();
+        foreach($docspaces as $docspace)
         {
-            factory(App\Document::class,rand(1,5))->create([
-                'user_id' => $faculty->id,
-            ]);
+            for ($i = 0; $i < 3; $i++) {
+                factory(App\Document::class)->create([
+                    'name' => $names[$i],
+                    'desc' => $docspace->faculty->user->name."'s ".$names[$i],
+                    'document_space_id' => $docspace->id,
+                ]);
+            }
         }
     }
 }

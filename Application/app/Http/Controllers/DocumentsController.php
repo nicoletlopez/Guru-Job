@@ -48,7 +48,7 @@ class DocumentsController extends Controller
 
         $username = auth()->user()->name;
 
-        $path = $request->file('document')->storeAs('public/documents/'.$username)
+        $path = $request->file('document')->storeAs('public/documents/'.$username);
     }
 
     /**
