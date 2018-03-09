@@ -40,11 +40,10 @@
                                             <div class="col-md-3" style="height:200px;">
                                                 <div class="thumbnail">
                                                     <div class="pull-right">
-                                                        <a href="" onclick="event.preventDefault();
-                                                     document.getElementById('fileDelete').submit();">
-                                                            <img width="10" src="{{asset('img/delete.png')}}"
-                                                                 alt="Click me to remove the file."/>
-                                                        </a>
+                                                        {!! Form::open(['action'=>['FilesController@deleteLectureFile',$lecture->id,$file->id],'method'=>'POST']) !!}
+                                                        {{Form::hidden('_method','DELETE')}}
+                                                        {{Form::submit('&times;',['style'=>'border:none;background-color:transparent','class'=>'pull-right','data-toggle'=>'confirmation'])}}
+                                                        {!! Form::close() !!}
                                                     </div>
                                                     <img width="70" src="{{asset('img/icon/file/text.png')}}">
                                                     <div class="caption">
@@ -56,10 +55,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {!! Form::open(['id'=>'fileDelete','class'=>'hidden','action'=>['FilesController@deleteLectureFile',$lecture->id,$file->id],'method'=>'POST']) !!}
-                                            {{Form::hidden('_method','DELETE')}}
-                                            {{Form::submit('Delete',['class'=>'btn btn-sm btn-danger pull-right','data-toggle'=>'confirmation'])}}
-                                            {!! Form::close() !!}
+
                                         @endforeach
                                     </div>
                                 @else

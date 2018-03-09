@@ -1131,7 +1131,7 @@ label {
   background: #ffffff;
   padding: 15px;
   text-align: center;
-  overflow: hidden;
+  /*overflow: hidden;*/
   display: block;
   margin-right: -1px;
 }
