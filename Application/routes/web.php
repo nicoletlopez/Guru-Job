@@ -68,11 +68,13 @@ Route::resource('applications','ApplicationsController');
 //documents
 Route::resource('documents','DocumentsController');
 
+//document spaces
+Route::resource('documentspaces','DocumentSpacesController');
 
 
 //test
 Route::view('/testSearch','jasonsInvasion.search');
-Route::get('/test','TestController@index')->name('test');
+//Route::get('/test','DocumentSpacesController@index')->name('test');
 
 Route::get('/test/php',function(){return view('test');});
 
