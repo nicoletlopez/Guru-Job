@@ -20,6 +20,7 @@ class FileTableSeeder extends Seeder
         foreach ($lectures as $lecture) {
             for ($x = 0; $x < 2; $x++) {
                 factory(App\File::class)->create([
+                    'name' => 'Lesson '.($x+1).' for '. substr($lecture->title,12),
                     'lecture_id' => $lecture->id,
                 ]);
             }
