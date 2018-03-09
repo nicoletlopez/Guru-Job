@@ -64,6 +64,16 @@ class DocumentSpacesController extends Controller
     public function show($id)
     {
         //
+        $documentSpace = DocumentSpace::find($id);
+        $documents = $documentSpace->documents;
+
+        $context = array
+        (
+            'documentSpace' => $documentSpace,
+            'documents' => $documents,
+        );
+
+        return view('documents.documents-index')->with($context);
     }
 
     /**
