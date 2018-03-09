@@ -18,6 +18,12 @@ class SubjectTableSeeder extends Seeder
 
         $subjects = $this->subjectArray();
         $hrs = DB::table('users')->where('type','=','HR')->get();
+        $FTMinSal = [10000];
+        $PTMinSal = [500];
+        for($i = 0; $i < 20; $i++){
+            array_push($FTMinSal, end($FTMinSal)+1000);
+            array_push($PTMinSal, end($PTMinSal)+50);
+        }
         $n = 0;
 
         foreach($hrs as $hr)
@@ -27,14 +33,20 @@ class SubjectTableSeeder extends Seeder
                 //Create a Job row
                 $a = rand(0, 1);
                 if ($a === 0) {
-                    $type = 'PT';
-                } else {
                     $type = 'FT';
+                    $floorSalary = $this->minimumSalary($FTMinSal);
+                    $ceilingSalary = $floorSalary + 5000;
+                } else {
+                    $type = 'PT';
+                    $floorSalary = $this->minimumSalary($PTMinSal);
+                    $ceilingSalary = $floorSalary + 300;
                 }
 
                 $job = factory(App\Job::class)->create([
                     'title' => $this->titleTemplate($subjects[$n]),
                     'desc' => $this->descTemplate($hr->name,$subjects[$n]),
+                    'floor_salary' => $floorSalary,
+                    'ceiling_salary' => $ceilingSalary,
                     'user_id' => $hr->id,
                     'type' => $type,
                 ]); //Created a Job row
@@ -176,5 +188,9 @@ class SubjectTableSeeder extends Seeder
                 'children and is able to establish a rapport with children and parents and  as a commitment to inclusive'.
                 ' education and a genuine desire to work co-operatively with parents, key school staff and other professionals.';
         }
+    }
+
+    public function minimumSalary($minSal){
+            return $minSal[array_rand($minSal)];
     }
 }
