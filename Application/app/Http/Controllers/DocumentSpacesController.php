@@ -101,6 +101,6 @@ class DocumentSpacesController extends Controller
         $documentSpaceName = DocumentSpace::find($id)->title;
         DocumentSpace::find($id)->delete();
 
-        return redirect()->back()->with('warning','Folder' .$documentSpaceName. 'deleted');
+        return redirect()->back()->with('warning','Folder ' .$documentSpaceName. ' deleted');
     }
 }
