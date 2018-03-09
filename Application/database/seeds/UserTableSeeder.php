@@ -17,7 +17,6 @@ class UserTableSeeder extends Seeder
         DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "users";');
 
 
-
         $schools = array(
             'Asia Pacific College',
             'Philippine Normal University',
@@ -39,7 +38,7 @@ class UserTableSeeder extends Seeder
             DB::table('users')->insert(
                 [
                     'name' => $school,
-                    'email' => $acronym.'@mail.com',
+                    'email' => $acronym . '@mail.com',
                     'password' => bcrypt('secret'),
                     'type' => 'HR',
                     'remember_token' => str_random(10),
@@ -48,13 +47,15 @@ class UserTableSeeder extends Seeder
                 ]);
         }
 
-        factory(App\User::class,20)->create();
+        factory(App\User::class, 20)->create();
 
         DB::table('users')->insert([
-                'name' => 'Pamity',
-                'email' => 'pamity@mail.com',
-                'password' => bcrypt('secret'),
-            ]);
+            'name' => 'Pamity',
+            'email' => 'pamity@mail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
 
 //        for($x =0; $x<50; $x++)
 //        {
