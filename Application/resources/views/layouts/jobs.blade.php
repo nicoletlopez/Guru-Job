@@ -27,7 +27,7 @@
                                     <!--<span><a href="#"><i class="ti-brush"></i>Art/Design</a></span>-->
                                     <span><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}, {{$job->hr->user->profile->city}}</span>
                                     {{--<span><i class="ti-time"></i>timeFrom - timeTo</span>--}}
-                                    <span><i class="ti-world"></i>{{$job->workDays()}}</span>
+                                    <span><i class="ti-world"></i>{{$job->jobSchedules()}}</span>
                                 </div>
                             </div>
                             <div class="pull-right">
