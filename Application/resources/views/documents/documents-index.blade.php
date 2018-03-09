@@ -8,12 +8,14 @@
     <a href="#" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <hr/>
     @include('inc.messages')
-    <section class="section job-detail">
+    <section class="section
+     job-detail">
         <div class="container">
             <div class="row">
                 <div class="col-md-9 col-sm-8">
                     <div class="content-area">
-                        <h2 class="medium-title">DocumentSpaceName Files</h2>
+                        <h2 class="medium-title">{{$documentSpace->title}}</h2>
+                        <p>{{$documentSpace->desc}}</p>
                         <div class="box col-md-11">
                             <div class="row">
                                 <div class="col-md-3" style="height:200px;">

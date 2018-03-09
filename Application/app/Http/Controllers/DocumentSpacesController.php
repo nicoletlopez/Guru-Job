@@ -23,7 +23,6 @@ class DocumentSpacesController extends Controller
             );
             return view('faculty.manage-documents')->with($context);
         }
-
     }
 
     /**
@@ -99,8 +98,9 @@ class DocumentSpacesController extends Controller
     public function destroy($id)
     {
         //
+        $documentSpaceName = DocumentSpace::find($id)->title;
         DocumentSpace::find($id)->delete();
 
-        return redirect()->back()->with('warning','Folder Deleted');
+        return redirect()->back()->with('warning','Folder ' .$documentSpaceName. ' deleted');
     }
 }
