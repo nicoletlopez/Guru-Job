@@ -44,10 +44,10 @@ class DocumentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DocumentUpload $request, $document_id)
+    public function store(DocumentUpload $request, $documentSpaceId)
     {
         //upload a file as a document
-        $documentSpace = DocumentSpace::find($document_id);
+        $documentSpace = DocumentSpace::find($documentSpaceId);
         $userName = $documentSpace->faculty->user->name;
         $name = str_replace(' ','_',strtolower($userName));
         $documentSpaceName = str_replace(' ','_',strtolower($documentSpace->title));
@@ -57,11 +57,11 @@ class DocumentsController extends Controller
         $extension = $request->file('document')->getClientOriginalExtension();
         $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
-        $path = $request->file('document')->storeAs('/public/'.$name.'/documents'.
+        $path = $request->file('document')->storeAs('/public/'.$name.'/documents/'.
             $documentSpaceName,$fileNameToStore);
 
         $document = new Document;
-        $document->document_space_id = $documentSpace->id;
+        $document->document_space_id = $documentSpaceId;
         $document->name = $fileNameToStore;
         $document->desc = "New Document";
         $document->save();
@@ -115,5 +115,9 @@ class DocumentsController extends Controller
     public function destroy($id)
     {
         //
+        $documentName = Document::find($id)->name;
+        Document::find($id)->delete();
+
+        return back()->with('warning',$documentName .' deleted');
     }
 }

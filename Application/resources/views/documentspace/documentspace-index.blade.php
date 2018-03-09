@@ -12,11 +12,11 @@
             @if(count($documentSpaces)>0)
             @foreach($documentSpaces as $documentSpace)
             <div style="" class="col-md-3 col-sm-3 col-xs-12 f-category">
-                {!! Form::open(['method'=>'POST']) !!}
+                {!! Form::open(['action'=>['DocumentSpacesController@destroy',$documentSpace->id],'method'=>'POST']) !!}
                 {{ Form::hidden('_method','DELETE') }}
                 {!! Form::submit('&times;',['style'=>'border:none;background-color:transparent','class'=>'pull-right','data-toggle'=>'confirmation']) !!}
                 {!! Form::close() !!}
-                <a href="#">
+                <a href="/document-spaces/{{$documentSpace->id}}">
                     <div class="icon">
                         <i class="ti-folder"></i>
                     </div>

@@ -14,7 +14,7 @@
 @endif
 
 @if(session('warning'))
-    <div class="alert alert-warning alert-dismissible fade in">
+    <div style="color:black;" class="alert alert-warning alert-dismissible fade in">
         {{session('warning')}}
         <a href="#" class="pull-right" data-dismiss="alert" aria-label="close">&times;</a>
     </div>

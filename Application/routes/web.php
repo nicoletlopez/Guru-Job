@@ -67,6 +67,8 @@ Route::resource('applications','ApplicationsController');
 
 //documents
 Route::resource('documents','DocumentsController');
+//Route::post('/document-spaces/{document}/upload','FilesController@documentUpload');
+
 
 //document spaces
 Route::resource('document-spaces','DocumentSpacesController');
