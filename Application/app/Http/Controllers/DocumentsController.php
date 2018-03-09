@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\DocumentSpace;
 use App\Http\Requests\DocumentUpload;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,14 @@ class DocumentsController extends Controller
     public function index()
     {
         //
-        $faculty = auth()->user()->faculty;
-        $documents = $faculty->documents;
-        return $documents;
+        $documents = Document::all();
+
+        $context =
+            [
+                'documents' => $documents
+            ];
+
+        return view('faculty.manage-documents')->with($context);
     }
 
     /**
@@ -38,17 +44,29 @@ class DocumentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DocumentUpload $request)
+    public function store(DocumentUpload $request, $document_id)
     {
         //upload a file as a document
+        $documentSpace = DocumentSpace::find($document_id);
+        $userName = $documentSpace->faculty->user->name;
+        $name = str_replace(' ','_',strtolower($userName));
+        $documentSpaceName = str_replace(' ','_',strtolower($documentSpace->title));
+
         $fileNameWithExt = $request->file('document')->getClientOriginalName();
         $fileName = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
         $extension = $request->file('document')->getClientOriginalExtension();
         $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
-        $username = auth()->user()->name;
+        $path = $request->file('document')->storeAs('/public/'.$name.'/documents'.
+            $documentSpaceName,$fileNameToStore);
 
-        $path = $request->file('document')->storeAs('public/documents/'.$username);
+        $document = new Document;
+        $document->document_space_id = $documentSpace->id;
+        $document->name = $fileNameToStore;
+        $document->desc = "New Document";
+        $document->save();
+
+        return back()->with('success','File Uploaded');
     }
 
     /**
@@ -59,7 +77,10 @@ class DocumentsController extends Controller
      */
     public function show($id)
     {
-        //
+        //'show' as in download a file :P
+        //$id should be the id of the
+
+
     }
 
     /**
