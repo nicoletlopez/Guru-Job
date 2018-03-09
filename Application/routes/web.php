@@ -25,7 +25,7 @@ Route::get('/home', 'PagesController@index')->name('home');
 
 //files
 Route::resource('files','FilesController');
-Route::post('/lectures/{file}/upload','FilesController@lectureUpload');
+Route::post('/lectures/{lecture}/upload','FilesController@lectureUpload');
 Route::get('/lectures/{lecture}/download/{file}','FilesController@downloadLectureFile');
 Route::delete('/lectures/{lecture}/delete/{file}','FilesController@deleteLectureFile');
 //users
@@ -66,8 +66,9 @@ Route::get('/search', 'JobsController@search')->name('search');
 Route::resource('applications','ApplicationsController');
 
 //documents
-Route::resource('documents','DocumentsController');
-//Route::post('/document-spaces/{document}/upload','FilesController@documentUpload');
+Route::post('/documents/{documentspace}/upload','DocumentsController@store')->name('documents.store');
+Route::resource('documents','DocumentsController',['except'=>['store']]); //remove store
+
 
 
 //document spaces

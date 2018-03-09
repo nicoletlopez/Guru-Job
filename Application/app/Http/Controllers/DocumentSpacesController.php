@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\DocumentSpace;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use function PHPSTORM_META\type;
 
 class DocumentSpacesController extends Controller
 {
@@ -45,6 +47,13 @@ class DocumentSpacesController extends Controller
     {
         $userId=auth()->user()->id;
         $documentSpaceName=$request->input('documentSpaceName');
+
+        //check if the chosen name has duplicates
+        if(DB::table('document_space')->where('user_id',$userId)->where('title',$documentSpaceName)->exists())
+        {
+            return back()->with('error','A document space with the same name already exists!');
+        }
+
 
         $documentSpace=new DocumentSpace();
         $documentSpace->title=$documentSpaceName;

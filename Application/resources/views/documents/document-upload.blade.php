@@ -1,6 +1,6 @@
 {!! Form::open(['action'=>['DocumentsController@store',$documentSpace->id],'class'=>'dropzone','method'=>'POST','enctype'=>'multipart/form-data']) !!}
 <div class="fallback">
-    {{Form::file('document',['multiple'])}}
+    {{Form::file('file',['multiple'])}}
 </div>
 {!! Form::close() !!}
 <br/>

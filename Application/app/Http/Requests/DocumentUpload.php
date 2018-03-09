@@ -13,14 +13,7 @@ class DocumentUpload extends FormRequest
      */
     public function authorize()
     {
-        if(strcmp(auth()->user()->type,"FACULTY"))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return true;
     }
 
     /**
@@ -31,18 +24,14 @@ class DocumentUpload extends FormRequest
     public function rules()
     {
         return [
-            //
-            'name'=>'required',
-            'desc'=>'required',
+            'file'=>'required'
         ];
     }
-
     public function messages()
     {
         $messages =
             [
-                'name.required' => 'No file',
-                'desc.required' => 'File description required',
+                'file.required' => 'File is required',
             ];
         return $messages;
     }

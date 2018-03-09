@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Faculty;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -66,10 +67,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         Mail::to($data['email'])->queue(new NewUserWelcome());
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        Faculty::insert([
+            'user_id' => $user->id
+        ]);
+        return $user;
     }
 }
