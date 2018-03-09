@@ -52,12 +52,12 @@ class DocumentsController extends Controller
         $name = str_replace(' ','_',strtolower($userName));
         $documentSpaceName = str_replace(' ','_',strtolower($documentSpace->title));
 
-        $fileNameWithExt = $request->file('document')->getClientOriginalName();
+        $fileNameWithExt = $request->file('file')->getClientOriginalName();
         $fileName = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
-        $extension = $request->file('document')->getClientOriginalExtension();
+        $extension = $request->file('file')->getClientOriginalExtension();
         $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
-        $path = $request->file('document')->storeAs('/public/'.$name.'/documents/'.
+        $path = $request->file('file')->storeAs('/public/'.$name.'/documents/'.
             $documentSpaceName,$fileNameToStore);
 
         $document = new Document;
