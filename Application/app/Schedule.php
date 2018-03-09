@@ -14,4 +14,13 @@ class Schedule extends Model
     {
         return $this->belongsTo(Subject::class,'subject_id','id');
     }
+
+    public function scopeJobSchedule($query, $id)
+    {
+        return $query->whereHas('subject', function ($query) use ($id) {
+            $query->whereHas('job', function ($query) use ($id) {
+                $query->where('id', '=', $id);
+            });
+        });
+    }
 }
