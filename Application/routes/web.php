@@ -24,6 +24,7 @@ Route::get('/password/reset','PagesController@reset_password')->name('reset-pass
 Route::get('/home', 'PagesController@index')->name('home');
 
 //files
+Route::resource('files','FilesController');
 Route::post('/lectures/{file}/upload','FilesController@lectureUpload');
 Route::get('/lectures/{lecture}/download/{file}','FilesController@downloadLectureFile');
 Route::delete('/lectures/{lecture}/delete/{file}','FilesController@deleteLectureFile');
@@ -66,6 +67,7 @@ Route::resource('applications','ApplicationsController');
 
 //documents
 Route::resource('documents','DocumentsController');
+
 
 
 //test
