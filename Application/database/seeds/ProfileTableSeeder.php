@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use App\User;
 
 class ProfileTableSeeder extends Seeder
 {
@@ -23,14 +23,19 @@ class ProfileTableSeeder extends Seeder
             ]);
         }
 
-        $fprofiles = DB::table('users')->where('type', '=', 'FACULTY')->get();
+        $fprofiles = User::where('type', '=', 'FACULTY')->where('name','<>','Pamity')->get();
         foreach($fprofiles as $fprofile) {
             factory(App\Profile::class)->create([
                 'user_id' => $fprofile->id,
-
                 'contact_number' => '09'.rand(10,99).' '.rand(100,999).' '.rand(1000,9999)
             ]);
         }
+        $pam = User::where('name','=','Pamity')->first();
+        factory(App\Profile::class)->create([
+            'user_id' => $pam->id,
+            'picture' => '/img/schoolLogo/pamity.png',
+            'contact_number' => '09'.rand(10,99).' '.rand(100,999).' '.rand(1000,9999),
+        ]);
     }
 
     private function picArray(){
