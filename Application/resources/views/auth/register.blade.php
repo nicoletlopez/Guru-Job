@@ -11,10 +11,10 @@
                 <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-6 cd-user-modal">
                     <div class="my-account-form">
                         <ul class="cd-switcher">
-                            <li><a href="{{route('login')}}" class="">LOGIN</a></li>
-                            <li><a class="selected">REGISTER</a></li>
+                            <li><a class="selected" href="{{route('login')}}">LOGIN</a></li>
+                            <li><a>REGISTER</a></li>
                         </ul>
-                        <div id="cd-signup" class="is-selected">
+                        <div id="cd-signup" style="border:3px solid #FF4F57;" class="is-selected">
                             <div class="page-login-form register">
                                 <form class="login-form" method="POST" action="{{ route('register') }}">
                                     {{ csrf_field() }}
