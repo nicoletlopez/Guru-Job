@@ -69,7 +69,7 @@ Route::resource('applications','ApplicationsController');
 Route::resource('documents','DocumentsController');
 
 //document spaces
-Route::resource('documentspaces','DocumentSpacesController');
+Route::resource('document-spaces','DocumentSpacesController');
 
 
 //test

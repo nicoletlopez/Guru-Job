@@ -67,7 +67,7 @@
                 </a>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="#">
+                <a href="{{route('document-spaces.index')}}">
                     <div class="icon">
                         <i class="ti-folder"></i>
                     </div>
