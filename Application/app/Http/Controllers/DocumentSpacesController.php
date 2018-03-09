@@ -99,5 +99,8 @@ class DocumentSpacesController extends Controller
     public function destroy($id)
     {
         //
+        DocumentSpace::find($id)->delete();
+
+        return redirect()->back()->with('warning','Folder Deleted');
     }
 }
