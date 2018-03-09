@@ -2,6 +2,7 @@
 
 namespace App;
 
+use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
@@ -43,6 +44,11 @@ class Job extends Model
                     $query->where('name', 'like', '%' . $search_term . '%')
                         ->orWhere('email', 'like', '%' . $search_term . '%');
                 });
+            })
+            //search for name or description in subject table
+            ->orWhereHas('subjects', function ($query) use ($search_term){
+                $query->where('name','like','%' . $search_term . '%')
+                    ->orWhere('desc','like','%' . $search_term . '%');
             })
             //search for title or description in job table
             ->orWhere('title', 'like', '%' . $search_term . '%')

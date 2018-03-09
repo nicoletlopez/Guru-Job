@@ -63,6 +63,10 @@ class SubjectTableSeeder extends Seeder
         }
     }
 
+    private function minimumSalary($minSal){
+        return $minSal[array_rand($minSal)];
+    }
+
     private function subjectArray(){
         $subjects = ['2D Animation',
             '3D Animation',
@@ -188,9 +192,5 @@ class SubjectTableSeeder extends Seeder
                 'children and is able to establish a rapport with children and parents and  as a commitment to inclusive'.
                 ' education and a genuine desire to work co-operatively with parents, key school staff and other professionals.';
         }
-    }
-
-    public function minimumSalary($minSal){
-            return $minSal[array_rand($minSal)];
     }
 }
