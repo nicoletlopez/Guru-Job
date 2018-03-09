@@ -46,21 +46,22 @@ class Job extends Model
                 });
             })
             //search for name or description in subject table
-            ->orWhereHas('subjects', function ($query) use ($search_term){
-                $query->where('name','like','%' . $search_term . '%')
-                    ->orWhere('desc','like','%' . $search_term . '%');
+            ->orWhereHas('subjects', function ($query) use ($search_term) {
+                $query->where('name', 'like', '%' . $search_term . '%')
+                    ->orWhere('desc', 'like', '%' . $search_term . '%');
             })
             //search for title or description in job table
             ->orWhere('title', 'like', '%' . $search_term . '%')
             ->orWhere('desc', 'like', '%' . $search_term . '%');
     }
 
-    public function scopeRegion($query,$region){
-        return $query->whereHas('hr', function($query) use($region){
-            $query->whereHas('user', function($query) use($region){
-               $query->whereHas('profile', function($query) use($region){
-                    $query->where('region','like','%'.$region.'%');
-               });
+    public function scopeRegion($query, $region)
+    {
+        return $query->whereHas('hr', function ($query) use ($region) {
+            $query->whereHas('user', function ($query) use ($region) {
+                $query->whereHas('profile', function ($query) use ($region) {
+                    $query->where('region', 'like', '%' . $region . '%');
+                });
             });
         });
     }
@@ -87,26 +88,28 @@ class Job extends Model
     {
         return $query->whereHas('subjects', function ($query) use ($start_time) {
             $query->whereHas('schedules', function ($query) use ($start_time) {
-                $query->where('start','>=',$start_time);//->whereTime('end','<=',$end_time);
+                $query->where('start', '>=', $start_time);//->whereTime('end','<=',$end_time);
             });
         });
     }
+
     public function scopeEndTime($query, $end_time)
     {
         return $query->whereHas('subjects', function ($query) use ($end_time) {
             $query->whereHas('schedules', function ($query) use ($end_time) {
-                $query->where('end','<=',$end_time);
+                $query->where('end', '<=', $end_time);
             });
         });
     }
+
     public function scopeTime($query, $start_time, $end_time)
-{
-    return $query->whereHas('subjects', function ($query) use ($start_time, $end_time) {
-        $query->whereHas('schedules', function ($query) use ($start_time, $end_time) {
-            $query->where('start','>=',$start_time)->where('end','<=',$end_time);
+    {
+        return $query->whereHas('subjects', function ($query) use ($start_time, $end_time) {
+            $query->whereHas('schedules', function ($query) use ($start_time, $end_time) {
+                $query->where('start', '>=', $start_time)->where('end', '<=', $end_time);
+            });
         });
-    });
-}
+    }
 
 
     public function workDays()
@@ -114,7 +117,7 @@ class Job extends Model
         //get all subjects that the job has
         $subjects = $this->subjects;
         //for all the subjects get their schedules and insert them in an array
-        $day_values = ['SUN'=>'1','MON'=>'2','TUE'=>'3','WED'=>'4','THU'=>'5','FRI'=>'6','SAT'=>'7'];
+        $day_values = ['SUN' => '1', 'MON' => '2', 'TUE' => '3', 'WED' => '4', 'THU' => '5', 'FRI' => '6', 'SAT' => '7'];
         $days = array();
         foreach ($subjects as $subject) {
             foreach ($subject->schedules as $schedule) {
@@ -124,15 +127,28 @@ class Job extends Model
             }
         }
         $day_map = array();
-        foreach($days as $day)
-        {
+        foreach ($days as $day) {
             $day_map[$day] = $day_values[$day];
         }
         asort($day_map);
 
-        return implode(" ",array_keys($day_map));
+        return implode(" ", array_keys($day_map));
 
         //return implode(" ", $days);
+    }
+
+    public function jobSchedules()
+    {
+        $id = $this->id;
+        //get all subjects that the job has
+        $schedules = Schedule::jobSchedule($this->id)->get();
+
+        $jobSchedules = array();
+        foreach ($schedules as $schedule) {
+            $s = $schedule->day . ' ' . $schedule->start . ' - ' . $schedule->end;
+            array_push($jobSchedules, $s);
+        }
+        return implode(' | ', $jobSchedules);
     }
 
     /*public function jobAtSchedule()
