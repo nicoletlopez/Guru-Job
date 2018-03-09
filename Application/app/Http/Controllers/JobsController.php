@@ -4,17 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateJob;
 use App\Http\Requests\EditJob;
-use App\Mail\AcceptJobNotification;
 use App\Mail\NewJobNotification;
 use App\Subject;
 use App\User;
-use App\Faculty;
 use Illuminate\Http\Request;
 use App\Job;
-use App\Hr;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class JobsController extends Controller
