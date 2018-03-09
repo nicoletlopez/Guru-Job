@@ -27,6 +27,7 @@ class ProfileTableSeeder extends Seeder
         foreach($fprofiles as $fprofile) {
             factory(App\Profile::class)->create([
                 'user_id' => $fprofile->id,
+
                 'contact_number' => '09'.rand(10,99).' '.rand(100,999).' '.rand(1000,9999)
             ]);
         }
