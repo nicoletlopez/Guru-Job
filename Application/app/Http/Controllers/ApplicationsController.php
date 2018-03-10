@@ -53,7 +53,7 @@ class ApplicationsController extends Controller
 
         $school = $job->hr->user;
 
-        Mail::to($job->hr->user->email)->send(new AcceptJobNotification($job, $user, $school));
+        Mail::to($job->hr->user->email)->queue(new AcceptJobNotification($job, $user, $school));
 
         return back();
     }
