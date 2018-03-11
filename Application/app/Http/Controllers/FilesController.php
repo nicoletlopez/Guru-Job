@@ -53,7 +53,7 @@ class FilesController extends Controller
         $headers = array(
             'Content-Type: application/octet-stream',
         );
-        return response()->download($file,$fileName,$headers);
+        return response()->download($file,preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$fileName),$headers);
     }
 
 }
