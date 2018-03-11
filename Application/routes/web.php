@@ -23,11 +23,7 @@ Route::get('/password/reset','PagesController@reset_password')->name('reset-pass
 //pages
 Route::get('/home', 'PagesController@index')->name('home');
 
-//files
-Route::resource('files','FilesController');
-Route::post('/lectures/{lecture}/upload','FilesController@lectureUpload');
-Route::get('/lectures/{lecture}/download/{file}','FilesController@downloadLectureFile');
-Route::delete('/lectures/{lecture}/delete/{file}','FilesController@deleteLectureFile');
+
 //users
 Route::post('/password/change','UsersController@changePassword');
 Route::get('/change-password','UsersController@showForm')->name('change-pass');
@@ -45,6 +41,12 @@ Route::get('/notifications','DashboardController@notifications')->name('notifica
 
 //lectures
 Route::resource('lectures','LecturesController');
+
+//files
+Route::resource('files','FilesController');
+Route::post('/lectures/{lecture}/upload','FilesController@lectureUpload');
+Route::get('/lectures/{lecture}/download/{file}','FilesController@downloadLectureFile');
+Route::delete('/lectures/{lecture}/delete/{file}','FilesController@deleteLectureFile');
 
 //hr
 Route::get('/hr-dashboard', 'HrDashboardController@index')->name('hr-dashboard');
@@ -67,7 +69,9 @@ Route::resource('applications','ApplicationsController');
 
 //documents
 Route::post('/documents/{documentspace}/upload','DocumentsController@store')->name('documents.store');
-Route::resource('documents','DocumentsController',['except'=>['store']]); //remove store
+Route::get('/documents/{documentspace}/download/{document}','DocumentsController@show')->name('documents.show');
+Route::delete('/documents/{documentspace}/delete/{document}','DocumentsController@destroy')->name('documents.destroy');
+Route::resource('documents','DocumentsController',['except'=>['store','destroy','show']]); //remove store,destroy
 
 
 

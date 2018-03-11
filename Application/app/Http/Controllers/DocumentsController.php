@@ -6,6 +6,7 @@ use App\Document;
 use App\DocumentSpace;
 use App\Http\Requests\DocumentUpload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentsController extends Controller
 {
@@ -75,12 +76,19 @@ class DocumentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$fileName)
     {
         //'show' as in download a file :P
-        //$id should be the id of the
-
-
+        //$id should be the id of the document space
+        $documentSpace=DocumentSpace::find($id);
+        $userName=$documentSpace->faculty->user->name;
+        $name=str_replace(' ','_',strtolower($userName));
+        $documentSpaceName=str_replace(' ','_',strtolower($documentSpace->title));
+        $file=public_path().'/storage/'.$name.'/documents/'.$documentSpaceName.'/'.$fileName;
+        $headers = array(
+            'Content-Type: application/octet-stream',
+        );
+        return response()->download($file,$fileName,$headers);
     }
 
     /**
@@ -112,12 +120,16 @@ class DocumentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($documentSpaceId,$id)
     {
-        //
-        $documentName = Document::find($id)->name;
-        Document::find($id)->delete();
+        $documentSpace=DocumentSpace::find($documentSpaceId);
+        $userName = $documentSpace->faculty->user->name;
+        $name = str_replace(' ','_',strtolower($userName));
+        $documentSpaceName = str_replace(' ','_',strtolower($documentSpace->title));
 
-        return back()->with('warning',$documentName .' deleted');
+        $document=Document::find($id);
+        Storage::delete('/public/'.$name.'/documents/'.$documentSpaceName.'/'.$document->name);
+        $document->delete();
+        return back()->with('warning',preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$document->name).' deleted');
     }
 }
