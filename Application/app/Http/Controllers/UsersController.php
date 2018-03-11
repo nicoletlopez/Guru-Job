@@ -24,7 +24,8 @@ class UsersController extends Controller
     public function changePassword(ChangePassword $request)
     {
         //check if current password input is correct
-        if (!(Hash::check($request->post('current-password'), Auth()->user()->password))) {
+        if (!(Hash::check($request->post('current-password'), Auth()->user()->password)))
+        {
             return redirect()->back();
         }
 
@@ -33,7 +34,7 @@ class UsersController extends Controller
         $user->password = bcrypt($request->post('new-password'));
         $user->save();
 
-        return redirect()->back()->with("success","Password changed successfully!");
+        return redirect()->back()->with("success", "Password changed successfully!");
     }
 
     public function apply(Request $job)

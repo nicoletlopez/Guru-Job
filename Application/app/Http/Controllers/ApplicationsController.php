@@ -6,6 +6,7 @@ use App\Mail\AcceptJobNotification;
 use Illuminate\Http\Request;
 use App\Job;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
 
 class ApplicationsController extends Controller
 {
@@ -17,7 +18,13 @@ class ApplicationsController extends Controller
     public function index()
     {
         //
-        $jobs = auth()->user()->hr->jobs;
+        //$jobs = auth()->user()->hr->jobs;
+
+        $jobs = Cache::remember('jobs',30,function()
+        {
+           return auth()->user()->hr->jobs;
+        });
+
         $context =
             [
                 'jobs'=>$jobs,
