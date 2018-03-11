@@ -34,32 +34,67 @@
                             </div>
                             <h4>Files</h4>
                             <hr/>
-                                @if(count($lecture->files)>0)
-                                    <div class="row">
-                                        @foreach($files as $file)
-                                            <div class="col-md-3" style="height:200px;">
-                                                <div class="thumbnail">
-                                                    <div class="pull-right">
-                                                        {!! Form::open(['action'=>['FilesController@deleteLectureFile',$lecture->id,$file->id],'method'=>'POST']) !!}
-                                                        @include('inc.button-delete')
-                                                        {!! Form::close() !!}
+                            @if(count($lecture->files)>0)
+                                <div class="row">
+                                    @foreach($files as $key=>$file)
+                                        <div class="col-md-3" style="height:200px;">
+                                            <div class="thumbnail">
+                                                <div class="pull-right">
+                                                    {!! Form::open(['action'=>['FilesController@deleteLectureFile',$lecture->id,$file->id],'method'=>'POST']) !!}
+                                                    @include('inc.button-delete')
+                                                    {!! Form::close() !!}
+                                                </div>
+                                                @if(in_array($fileExts[$key][1],$image))
+                                                    <div style="height:90px;"><span
+                                                                style="display:inline-block;height:26%;vertical-align:middle;"></span><img
+                                                                width="70" style="margin:auto;display:block;"
+                                                                src="{{asset('img/icon/file/image.png')}}"></div>
+                                                @elseif(in_array($fileExts[$key][1],$video))
+                                                    <div style="height:90px;"><span
+                                                                style="display:inline-block;height:26%;vertical-align:middle;"></span><img
+                                                                width="70" style="margin:auto;display:block;"
+                                                                src="{{asset('img/icon/file/video.png')}}">
                                                     </div>
-                                                    <img width="70" src="{{asset('img/icon/file/text.png')}}">
-                                                    <div class="caption">
-                                                        <p>
-                                                            <a class="btn btn-sm btn-primary btn-block"
-                                                               href="/lectures/{{$lecture->id}}/download/{{$file->name}}">Download</a>
-                                                        </p>
-                                                        <p style="word-wrap:break-word;">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$file->name),28,'...')}}</p>
+                                                @elseif(in_array($fileExts[$key][1],$audio))
+                                                    <div style="height:90px;"><span
+                                                                style="display:inline-block;height:26%;vertical-align:middle;"></span><img
+                                                                width="70" style="margin:auto;display:block;"
+                                                                src="{{asset('img/icon/file/audio.png')}}">
                                                     </div>
+                                                @elseif(in_array($fileExts[$key][1],$word))
+                                                    <div style="height:90px;"><span
+                                                                style="display:inline-block;height:26%;vertical-align:middle;"></span><img
+                                                                width="85" style="margin:auto;display:block;"
+                                                                src="{{asset('img/icon/file/word.png')}}">
+                                                    </div>
+                                                @elseif(in_array($fileExts[$key][1],$pdf))
+                                                    <div style="height:90px;"><span
+                                                                style="display:inline-block;height:26%;vertical-align:middle;"></span><img
+                                                                width="70" style="margin:auto;display:block;"
+                                                                src="{{asset('img/icon/file/pdf.png')}}">
+                                                    </div>
+                                                @else
+                                                    <div style="height:90px;"><span
+                                                                style="display:inline-block;height:26%;vertical-align:middle;"></span><img
+                                                                width="70" style="margin:auto;display:block;"
+                                                                src="{{asset('img/icon/file/text.png')}}">
+                                                    </div>
+                                                @endif
+                                                <div class="caption">
+                                                    <p>
+                                                        <a class="btn btn-sm btn-primary btn-block"
+                                                           href="/lectures/{{$lecture->id}}/download/{{$file->name}}">Download</a>
+                                                    </p>
+                                                    <p style="word-wrap:break-word;">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$file->name),28,'....'.$fileExts[$key][1])}}</p>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                        @endforeach
-                                    </div>
-                                @else
-                                    <h5>No Files Uploaded.</h5>
-                                @endif
+                                    @endforeach
+                                </div>
+                            @else
+                                <h5>No Files Uploaded.</h5>
+                            @endif
                             <hr/>
                             @include('lectures.lecture-upload')
                         </div>
