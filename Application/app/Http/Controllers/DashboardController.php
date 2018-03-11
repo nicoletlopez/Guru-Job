@@ -38,7 +38,7 @@ class DashboardController extends Controller
 
         //randomly retrieved pictures don't seem to get along well with caching so
         //until we have an actual picture i'll just comment out the caching portion
-        /*
+
         $user = Cache::remember('user',20,function()
         {
             return auth()->user();
@@ -47,12 +47,16 @@ class DashboardController extends Controller
         {
             return auth()->user()->profile;
         });
-        */
+        $date = Cache::remember('user',20,function()
+        {
+            return Controller::formatDate(auth()->user()->profile->dob);
+        });
+
 
         $context=array(
             'user'=>$user,
-            'profile'=>auth()->user()->profile,
-            'date'=>Controller::formatDate($user->profile->dob),
+            'profile'=>$profile,
+            'date'=>$date,
         );
         return view('faculty.profile')->with($context);
     }
