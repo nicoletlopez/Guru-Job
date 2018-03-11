@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DocumentSpace;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use function PHPSTORM_META\type;
 
 class DocumentSpacesController extends Controller
@@ -19,7 +21,13 @@ class DocumentSpacesController extends Controller
         if(!auth()->user()){
             return redirect()->route('login');
         }elseif(auth()->user()->faculty){
-            $documentSpaces=auth()->user()->faculty->documentSpaces;
+            //$documentSpaces=auth()->user()->faculty->documentSpaces;
+
+            $documentSpaces = Cache::remember('documentSpaces',20,function()
+            {
+                return auth()->user()->faculty->documentSpaces;
+            });
+
             $context=array(
                 'documentSpaces'=>$documentSpaces,
             );
@@ -73,8 +81,25 @@ class DocumentSpacesController extends Controller
     public function show($id)
     {
         //
-        $documentSpace = DocumentSpace::find($id);
-        $documents = $documentSpace->documents;
+        /*$documentSpace = DocumentSpace::find($id);
+        $documents = $documentSpace->documents;*/
+
+        $start = microtime(true);
+
+        $documentSpace = Cache::remember('documentSpace',20,function() use (&$id)
+        {
+            return DocumentSpace::find($id);
+        });
+
+        $documents = Cache::remember('documents',20,function() use (&$documentSpace)
+        {
+           return $documentSpace->documents;
+        });
+
+        $end = (microtime(true) - $start) * 1000;
+
+        Log::info('With cache: ' . $end . ' ms.');
+
 
         $context = array
         (
