@@ -20,10 +20,7 @@ class DocumentsController extends Controller
         //
         //$documents = Document::all();
 
-        $documents = Cache::remember('documents',20,function()
-        {
-            return Document::all();
-        });
+        $documents = Document::all();
 
         $context =
             [

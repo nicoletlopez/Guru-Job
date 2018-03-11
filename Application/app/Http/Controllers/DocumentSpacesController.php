@@ -23,10 +23,12 @@ class DocumentSpacesController extends Controller
         }elseif(auth()->user()->faculty){
             //$documentSpaces=auth()->user()->faculty->documentSpaces;
 
-            $documentSpaces = Cache::remember('documentSpaces',20,function()
+            /*$documentSpaces = Cache::remember('documentSpaces',20,function()
             {
                 return auth()->user()->faculty->documentSpaces;
-            });
+            });*/
+
+            $documentSpaces = auth()->user()->faculty->documentSpaces;
 
             $context=array(
                 'documentSpaces'=>$documentSpaces,
@@ -84,21 +86,21 @@ class DocumentSpacesController extends Controller
         /*$documentSpace = DocumentSpace::find($id);
         $documents = $documentSpace->documents;*/
 
-        $start = microtime(true);
 
-        $documentSpace = Cache::remember('documentSpace',20,function() use (&$id)
+        /*$documentSpace = Cache::remember('documentSpace',20,function() use (&$id)
         {
             return DocumentSpace::find($id);
-        });
+        });*/
 
-        $documents = Cache::remember('documents',20,function() use (&$documentSpace)
+        /*$documents = Cache::remember('documents',20,function() use (&$documentSpace)
         {
            return $documentSpace->documents;
-        });
+        });*/
 
-        $end = (microtime(true) - $start) * 1000;
+        $documentSpace = DocumentSpace::find($id);
+        $documents = $documentSpace->documents;
 
-        Log::info('With cache: ' . $end . ' ms.');
+
 
 
         $context = array

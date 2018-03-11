@@ -49,7 +49,7 @@ class DashboardController extends Controller
         {
             return Controller::formatDate(auth()->user()->profile->dob);
         });*/
-        
+
         $user = auth()->user();
         $profile = $user->profile;
         $date = $profile->dob;
