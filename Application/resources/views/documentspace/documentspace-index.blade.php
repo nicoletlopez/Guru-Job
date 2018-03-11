@@ -13,8 +13,7 @@
             @foreach($documentSpaces as $documentSpace)
             <div style="" class="col-md-3 col-sm-3 col-xs-12 f-category">
                 {!! Form::open(['action'=>['DocumentSpacesController@destroy',$documentSpace->id],'method'=>'POST']) !!}
-                {{ Form::hidden('_method','DELETE') }}
-                {!! Form::submit('&times;',['style'=>'border:none;background-color:transparent','class'=>'pull-right','data-toggle'=>'confirmation']) !!}
+                @include('inc.button-delete')
                 {!! Form::close() !!}
                 <a href="/document-spaces/{{$documentSpace->id}}">
                     <div class="icon">

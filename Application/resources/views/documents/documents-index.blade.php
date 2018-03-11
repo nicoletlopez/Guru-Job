@@ -25,16 +25,15 @@
                                         <div class="col-md-3" style="height:200px;">
                                             <div class="thumbnail">
                                                 <div class="pull-right">
-                                                    {!! Form::open(['action'=>['DocumentsController@destroy',$document->id],'method'=>'POST']) !!}
-                                                    {{Form::hidden('_method','DELETE')}}
-                                                    {{Form::submit('&times;',['style'=>'border:none;background-color:transparent','class'=>'pull-right','data-toggle'=>'confirmation'])}}
+                                                    {!! Form::open(['action'=>['DocumentsController@destroy',$documentSpace->id,$document->id],'method'=>'POST']) !!}
+                                                    @include('inc.button-delete')
                                                     {!! Form::close() !!}
                                                 </div>
                                                 <img width="70" src="{{asset('img/icon/file/text.png')}}">
                                                 <div class="caption">
                                                     <p>
                                                         <a class="btn btn-sm btn-primary btn-block"
-                                                           href="#">Download</a>
+                                                           href="/documents/{{$documentSpace->id}}/download/{{$document->name}}">Download</a>
                                                     </p>
                                                     <p style="word-wrap:break-word;">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$document->name),28,'...')}}</p>
                                                 </div>
