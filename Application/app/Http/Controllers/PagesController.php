@@ -13,19 +13,22 @@ class PagesController extends Controller
     {
 
 
+        $start = microtime(true);
+
         $jobs = Cache::remember('jobs', 10, function ()
         {
             return Job::orderBy('created_at','desc')->paginate(4);
         });
 
-        Log::info('');
+        //$jobs = Job::orderBy('created_at','desc')->paginate(4);
 
+        //$end = (microtime(true) - $start) * 1000;
 
+        //Log::info('With cache: ' . $end . ' ms.');
         $context = array(
             'jobs' => $jobs,
             //'jobs' => Job::orderBy('created_at','desc')->paginate(4),
         );
-
         return view('pages.home')->with($context);
     }
 }

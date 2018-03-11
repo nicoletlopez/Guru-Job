@@ -18,7 +18,12 @@ class DocumentsController extends Controller
     public function index()
     {
         //
-        $documents = Document::all();
+        //$documents = Document::all();
+
+        $documents = Cache::remember('documents',20,function()
+        {
+            return Document::all();
+        });
 
         $context =
             [
