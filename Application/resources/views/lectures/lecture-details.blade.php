@@ -41,8 +41,7 @@
                                                 <div class="thumbnail">
                                                     <div class="pull-right">
                                                         {!! Form::open(['action'=>['FilesController@deleteLectureFile',$lecture->id,$file->id],'method'=>'POST']) !!}
-                                                        {{Form::hidden('_method','DELETE')}}
-                                                        {{Form::submit('&times;',['style'=>'border:none;background-color:transparent','class'=>'pull-right','data-toggle'=>'confirmation'])}}
+                                                        @include('inc.button-delete')
                                                         {!! Form::close() !!}
                                                     </div>
                                                     <img width="70" src="{{asset('img/icon/file/text.png')}}">
