@@ -76,9 +76,14 @@ Route::resource('document-spaces','DocumentSpacesController');
 
 
 //test
-Route::view('/testSearch','jasonsInvasion.search');
+
+//NOTICE
+# I have commented out these test routes in order to try caching and optimization.
+# Hope I didn't break anything. Cheers. - Pam
+
+//Route::view('/testSearch','jasonsInvasion.search');
 //Route::get('/test','DocumentSpacesController@index')->name('test');
 
-Route::get('/test/php',function(){return view('test');});
+/*Route::get('/test/php',function(){return view('test');});*/
 
 
