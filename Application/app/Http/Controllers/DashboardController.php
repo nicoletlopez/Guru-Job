@@ -34,12 +34,10 @@ class DashboardController extends Controller
         if(!auth()->user()->profile){
             return redirect()->route('profile.create');
         }
-        $user=auth()->user();
-
         //randomly retrieved pictures don't seem to get along well with caching so
         //until we have an actual picture i'll just comment out the caching portion
 
-        $user = Cache::remember('user',20,function()
+        /*$user = Cache::remember('user',20,function()
         {
             return auth()->user();
         });
@@ -47,10 +45,16 @@ class DashboardController extends Controller
         {
             return auth()->user()->profile;
         });
-        $date = Cache::remember('user',20,function()
+        $date = Cache::remember('date',20,function()
         {
             return Controller::formatDate(auth()->user()->profile->dob);
-        });
+        });*/
+        
+        $user = auth()->user();
+        $profile = $user->profile;
+        $date = $profile->dob;
+
+
 
 
         $context=array(

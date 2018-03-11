@@ -20,14 +20,11 @@ class ApplicationsController extends Controller
         //
         //$jobs = auth()->user()->hr->jobs;
 
-        $jobs = Cache::remember('jobs',30,function()
-        {
-           return auth()->user()->hr->jobs;
-        });
+        $applications = auth()->user()->hr->jobs;
 
         $context =
             [
-                'jobs'=>$jobs,
+                'jobs'=>$applications,
             ];
         return view('hr.manage-applications')->with($context);
     }
@@ -56,6 +53,8 @@ class ApplicationsController extends Controller
         $job =  Job::find($request->input('job-id'));
         $job->applicants()->save($faculty);
         $job->save();
+
+        //refresh the cached applications as a new one has been made
 
 
         $school = $job->hr->user;
