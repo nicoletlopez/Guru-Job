@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
 {
@@ -34,8 +35,22 @@ class DashboardController extends Controller
             return redirect()->route('profile.create');
         }
         $user=auth()->user();
+
+        //randomly retrieved pictures don't seem to get along well with caching so
+        //until we have an actual picture i'll just comment out the caching portion
+        /*
+        $user = Cache::remember('user',20,function()
+        {
+            return auth()->user();
+        });
+        $profile = Cache::remember('profile',20,function()
+        {
+            return auth()->user()->profile;
+        });
+        */
+
         $context=array(
-            'user'=>auth()->user(),
+            'user'=>$user,
             'profile'=>auth()->user()->profile,
             'date'=>Controller::formatDate($user->profile->dob),
         );
