@@ -70,7 +70,7 @@
                                                 @elseif(in_array($fileExts[$key][1],$pdf))
                                                     <div style="height:90px;"><span
                                                                 style="display:inline-block;height:26%;vertical-align:middle;"></span><img
-                                                                width="70" style="margin:auto;display:block;"
+                                                                width="58" style="margin:auto;display:block;"
                                                                 src="{{asset('img/icon/file/pdf.png')}}">
                                                     </div>
                                                 @else
