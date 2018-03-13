@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Document;
 use App\DocumentSpace;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use function PHPSTORM_META\type;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentSpacesController extends Controller
 {
@@ -162,8 +162,19 @@ class DocumentSpacesController extends Controller
     {
         //
         $documentSpaceName = DocumentSpace::find($id)->title;
-        DocumentSpace::find($id)->delete();
+        $documentSpace = DocumentSpace::find($id);
+        //delete all the documents within the the directory
+        $documents = $documentSpace->documents;
 
+        $userName = $documentSpace->faculty->user->name;
+        $name = str_replace(' ','_',strtolower($userName));
+
+        foreach($documents as $document)
+        {
+            Storage::delete('/public/'.$name.'/documents/'.$documentSpaceName.'/'.$document->name);
+            $document->delete();
+        }
+        $documentSpace->delete();
         return redirect()->back()->with('warning','Folder ' .$documentSpaceName. ' deleted');
     }
 }
