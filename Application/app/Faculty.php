@@ -58,4 +58,34 @@ class Faculty extends Model
     {
         return $this->hasMany(DocumentSpace::class,'user_id','user_id');
     }
+
+    public function scopeName($query, $search_term)
+    {
+        return $query->whereHas('user', function($query) use($search_term){
+           $query->where('name','like','%'.$search_term.'%');
+        });
+    }
+
+    public function scopeSkill($query, $search_term){
+        return $query->whereHas('skill', function($query) use($search_term){
+            $query->where('name','like','%'.$search_term.'%')
+            ->orWhere('desc','like','%'.$search_term.'%');
+        });
+    }
+
+    public function scopeCity($query, $search_term){
+        return $query->whereHas('user', function ($query) use($search_term){
+            $query->whereHas('profile', function ($query) use($search_term){
+                $query->where('city', 'like', '%'.$search_term.'%');
+            });
+        });
+    }
+
+    public function scopeAddress($query, $search_term){
+        return $query->whereHas('user', function ($query) use($search_term){
+            $query->whereHas('profile', function ($query) use($search_term){
+                $query->where('street_address', 'like', '%'.$search_term.'%');
+            });
+        });
+    }
 }
