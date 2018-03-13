@@ -67,7 +67,7 @@ class Faculty extends Model
     }
 
     public function scopeSkill($query, $search_term){
-        return $query->whereHas('skill', function($query) use($search_term){
+        return $query->whereHas('skills', function ($query) use($search_term){
             $query->where('name','like','%'.$search_term.'%')
             ->orWhere('desc','like','%'.$search_term.'%');
         });
