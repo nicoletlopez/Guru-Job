@@ -58,6 +58,7 @@ class DocumentSpacesController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
+        $user_name = str_replace(' ', '_', $user->name);
         $userId = $user->id;
         $documentSpaceName = $request->input('documentSpaceName');
 
@@ -75,7 +76,7 @@ class DocumentSpacesController extends Controller
         $documentSpace->save();
 
         //create the directory in the storage
-        Storage::makeDirectory('/public/' . $user->name . '/documents/' . $documentSpaceName);
+        Storage::makeDirectory('/public/' . $user_name . '/documents/' . $documentSpaceName);
 
 
         return back()->with('success', 'Folder Created');
