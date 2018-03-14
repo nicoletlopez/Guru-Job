@@ -52,6 +52,18 @@
                                                                 width="85" style="margin:auto;display:block;"
                                                                 src="{{asset('img/icon/file/word.png')}}">
                                                     </div>
+                                                @elseif(in_array($fileExts[$key][1],$excel))
+                                                    <div style="height:90px;"><span
+                                                                style="display:inline-block;height:26%;vertical-align:middle;"></span><img
+                                                                width="70" style="margin:auto;display:block;"
+                                                                src="{{asset('img/icon/file/excel.png')}}">
+                                                    </div>
+                                                @elseif(in_array($fileExts[$key][1],$ppt))
+                                                    <div style="height:90px;"><span
+                                                                style="display:inline-block;height:26%;vertical-align:middle;"></span><img
+                                                                width="70" style="margin:auto;display:block;"
+                                                                src="{{asset('img/icon/file/ppt.png')}}">
+                                                    </div>
                                                 @elseif(in_array($fileExts[$key][1],$pdf))
                                                     <div style="height:90px;"><span
                                                                 style="display:inline-block;height:26%;vertical-align:middle;"></span><img
