@@ -18,9 +18,11 @@ class DocumentSpacesController extends Controller
      */
     public function index()
     {
-        if(!auth()->user()){
+        if (!auth()->user())
+        {
             return redirect()->route('login');
-        }elseif(auth()->user()->faculty){
+        } elseif (auth()->user()->faculty)
+        {
             //$documentSpaces=auth()->user()->faculty->documentSpaces;
 
             /*$documentSpaces = Cache::remember('documentSpaces',20,function()
@@ -30,8 +32,8 @@ class DocumentSpacesController extends Controller
 
             $documentSpaces = auth()->user()->faculty->documentSpaces;
 
-            $context=array(
-                'documentSpaces'=>$documentSpaces,
+            $context = array(
+                'documentSpaces' => $documentSpaces,
             );
             return view('faculty.manage-documents')->with($context);
         }
@@ -50,34 +52,39 @@ class DocumentSpacesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $userId=auth()->user()->id;
-        $documentSpaceName=$request->input('documentSpaceName');
+        $user = auth()->user();
+        $userId = $user->id;
+        $documentSpaceName = $request->input('documentSpaceName');
 
         //check if the chosen name has duplicates
-        if(DB::table('document_space')->where('user_id',$userId)->where('title',$documentSpaceName)->exists())
+        if (DB::table('document_space')->where('user_id', $userId)->where('title', $documentSpaceName)->exists())
         {
-            return back()->with('error','A document space with the same name already exists!');
+            return back()->with('error', 'A document space with the same name already exists!');
         }
 
-
-        $documentSpace=new DocumentSpace();
-        $documentSpace->title=$documentSpaceName;
-        $documentSpace->desc='New Folder';
-        $documentSpace->user_id=$userId;
+        //create the directory entry in the database
+        $documentSpace = new DocumentSpace();
+        $documentSpace->title = $documentSpaceName;
+        $documentSpace->desc = 'New Folder';
+        $documentSpace->user_id = $userId;
         $documentSpace->save();
 
-        return back()->with('success','Folder Created');
+        //create the directory in the storage
+        Storage::makeDirectory('/public/' . $user->name . '/documents/' . $documentSpaceName);
+
+
+        return back()->with('success', 'Folder Created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -100,30 +107,31 @@ class DocumentSpacesController extends Controller
         $documentSpace = DocumentSpace::find($id);
         $documents = $documentSpace->documents;
 
-        $fileExts=[];
-        foreach($documentSpace->documents as $file){
-            preg_match("/\.(\w+)(?!.*\.(\w+))/",$file->name,$ext);
-            preg_match("/([^\/]+)(?=\.\w+$)/",$file->name,$name);
-            $fileExts[]=array($name[0],strtolower($ext[1]));
+        $fileExts = [];
+        foreach ($documentSpace->documents as $file)
+        {
+            preg_match("/\.(\w+)(?!.*\.(\w+))/", $file->name, $ext);
+            preg_match("/([^\/]+)(?=\.\w+$)/", $file->name, $name);
+            $fileExts[] = array($name[0], strtolower($ext[1]));
         }
 
-        $image=['jpg','jpeg','png','bmp','gif'];
-        $video=['mp4','flv','wmv','3gp'];
-        $audio=['mp3','m4a','m4p','ogg','wav'];
-        $word=['doc','docx'];
-        $pdf=['pdf'];
+        $image = ['jpg', 'jpeg', 'png', 'bmp', 'gif'];
+        $video = ['mp4', 'flv', 'wmv', '3gp'];
+        $audio = ['mp3', 'm4a', 'm4p', 'ogg', 'wav'];
+        $word = ['doc', 'docx'];
+        $pdf = ['pdf'];
 
 
         $context = array
         (
             'documentSpace' => $documentSpace,
             'documents' => $documents,
-            'fileExts'=>$fileExts,
-            'image'=>$image,
-            'video'=>$video,
-            'audio'=>$audio,
-            'word'=>$word,
-            'pdf'=>$pdf,
+            'fileExts' => $fileExts,
+            'image' => $image,
+            'video' => $video,
+            'audio' => $audio,
+            'word' => $word,
+            'pdf' => $pdf,
         );
 
         return view('documents.documents-index')->with($context);
@@ -132,7 +140,7 @@ class DocumentSpacesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -143,8 +151,8 @@ class DocumentSpacesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -155,7 +163,7 @@ class DocumentSpacesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -167,14 +175,16 @@ class DocumentSpacesController extends Controller
         $documents = $documentSpace->documents;
 
         $userName = $documentSpace->faculty->user->name;
-        $name = str_replace(' ','_',strtolower($userName));
+        $name = str_replace(' ', '_', strtolower($userName));
 
-        foreach($documents as $document)
+
+        foreach ($documents as $document)
         {
-            Storage::delete('/public/'.$name.'/documents/'.$documentSpaceName.'/'.$document->name);
+            Storage::delete('/public/' . $name . '/documents/' . $documentSpaceName . '/' . $document->name);
             $document->delete();
         }
+        Storage::deleteDirectory('/public/' . $name . '/documents/' . $documentSpaceName);
         $documentSpace->delete();
-        return redirect()->back()->with('warning','Folder ' .$documentSpaceName. ' deleted');
+        return redirect()->back()->with('warning', 'Folder ' . $documentSpaceName . ' deleted');
     }
 }
