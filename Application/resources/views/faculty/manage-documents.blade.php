@@ -1,7 +1,7 @@
 @extends('faculty.dashboard-menu')
-@section('title')- My Documents @endsection
-@section('current') My Documents @endsection
-@section('current-header') My Documents @endsection
+@section('title')- My Guru Drive @endsection
+@section('current') My Guru Drive @endsection
+@section('current-header') My Guru Drive @endsection
 @section('manage-documents-active') active @endsection
 
 @section('dashboard-content')

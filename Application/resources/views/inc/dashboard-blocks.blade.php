@@ -71,7 +71,7 @@
                     <div class="icon">
                         <i class="ti-folder"></i>
                     </div>
-                    <h3>My Documents</h3>
+                    <h3>My Guru Drive</h3>
                 </a>
             </div>
         @endif

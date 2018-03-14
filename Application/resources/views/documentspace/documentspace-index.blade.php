@@ -1,5 +1,5 @@
 <div class="job-alerts-item candidates">
-    <h3 class="alerts-title">My Documents</h3>
+    <h3 class="alerts-title">My Guru Drive</h3>
     <hr/>
     {!! Form::open(['method'=>'post']) !!}
     {{Form::text('documentSpaceName','',['class'=>'','required','placeholder'=>'Folder Name'])}}
