@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateLecture;
 use Illuminate\Http\Request;
 use App\Lecture;
+use Illuminate\Support\Facades\DB;
 
 class LecturesController extends Controller
 {
@@ -44,13 +45,19 @@ class LecturesController extends Controller
      */
     public function store(CreateLecture $request)
     {
-        $owner = auth()->user()->id;
+        $user = auth()->user();
+        $owner_id = $user->id;
         $title = $request->input('title');
         $overview = $request->input('overview');
         $objectives = $request->input('objectives');
 
+        if(DB::table('lecture')->where('title',$title)->where('owner_id',$owner_id)->exists())
+        {
+            return back()->with('error','A lecture of the same name already exists!');
+        }
+
         $lecture = new Lecture();
-        $lecture->owner_id = $owner;
+        $lecture->owner_id = $owner_id;
         $lecture->title = $title;
         $lecture->overview = $overview;
         $lecture->objectives = $objectives;
@@ -148,6 +155,8 @@ class LecturesController extends Controller
     {
         $lecture = Lecture::find($id);
         $lecture->delete();
+
+
         return back()->with('success', 'Lecture Deleted');
     }
 

@@ -64,7 +64,7 @@ class DocumentSpacesController extends Controller
         //check if the chosen name has duplicates
         if (DB::table('document_space')->where('user_id', $userId)->where('title', $documentSpaceName)->exists())
         {
-            return back()->with('error', 'A document space with the same name already exists!');
+            return back()->with('error', 'A document space of the same name already exists!');
         }
 
         //create the directory entry in the database
