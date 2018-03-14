@@ -56,4 +56,89 @@ class FilesController extends Controller
         return response()->download($file,preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$fileName),$headers);
     }
 
+    public function index()
+    {
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(LectureUpload $request, $lectureId)
+    {
+        $lecture=Lecture::find($lectureId);
+        $name=str_replace(' ','_',strtolower($lecture->faculty->user->name));
+        $lectureName=str_replace(' ','_',strtolower($lecture->title));
+
+        $fileNameWithExt=$request->file('file')->getClientOriginalName();
+        $filename=pathinfo($fileNameWithExt,PATHINFO_FILENAME);
+        $extension=$request->file('file')->getClientOriginalExtension();
+        $fileNameToStore=$filename.'_'.time().'.'.$extension;
+        //$fileNameToStore=$filename.'.'.$extension;
+        //$fileNameToStore=$request->file('file')->getClientOriginalName();
+        $path=$request->file('file')->storeAs('/public/'.$name.'/lectures/'.$lectureName,$fileNameToStore);
+        $file=new File;
+        $file->lecture_id=$lectureId;
+        $file->name=$fileNameToStore;
+        $file->desc="new file";
+        $file->save();
+        return back()->with('success','File uploaded.');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id,$fileName)
+    {
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($documentSpaceId,$id)
+    {
+    }
+
 }
