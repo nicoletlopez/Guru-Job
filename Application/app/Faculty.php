@@ -51,12 +51,12 @@ class Faculty extends Model
 
     public function ownedLectures()
     {
-        return $this->hasMany(Lecture::class,'owner_id','user_id');
+        return $this->hasMany(Lecture::class,'owner_id','user_id')->orderBy('created_at','desc');
     }
 
     public function documentSpaces()
     {
-        return $this->hasMany(DocumentSpace::class,'user_id','user_id');
+        return $this->hasMany(DocumentSpace::class,'user_id','user_id')->orderBy('created_at','desc');
     }
 
     public function scopeName($query, $search_term)
