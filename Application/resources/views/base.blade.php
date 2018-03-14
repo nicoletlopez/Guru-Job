@@ -102,7 +102,7 @@
 <script type="text/javascript" src="{{asset('js/contact-form-script.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.themepunch.revolution.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.themepunch.tools.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('vendor/dropzone/dist/min/dropzone.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/dropzone/dist/dropzone.js')}}"></script>
 <script type="text/javascript" src="{{asset('vendor/bootstrap/js/bootstrap-confirmation.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/countries.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/custom.js')}}"></script>
