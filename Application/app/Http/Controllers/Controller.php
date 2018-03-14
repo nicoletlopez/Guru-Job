@@ -22,6 +22,11 @@ class Controller extends BaseController
         $date=DateTime::createFromFormat($format,$theDate);
         return $date->format('Y-m-d');
     }
+    static function formatDateTime($theDate){
+        $format = 'Y-m-d H:i:s';
+        $date = DateTime::createFromFormat($format, $theDate);
+        return $date->format('F j, Y \a\t H:i a');
+    }
     function numberToDays($num)
     {
 
