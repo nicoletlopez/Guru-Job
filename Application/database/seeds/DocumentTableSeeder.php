@@ -21,7 +21,7 @@ class DocumentTableSeeder extends Seeder
         {
             for ($i = 0; $i < 3; $i++) {
                 factory(App\Document::class)->create([
-                    'name' => $names[$i],
+                    'name' => $names[$i].'.docx',
                     'desc' => $docspace->faculty->user->name."'s ".$names[$i],
                     'document_space_id' => $docspace->id,
                 ]);
