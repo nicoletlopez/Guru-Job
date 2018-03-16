@@ -24,6 +24,11 @@ class Lecture extends Model
 
     public function faculty()
     {
-        return $this->belongsTo(Faculty::class,'owner_id','user_id');
+        return $this->belongsTo(Faculty::class,'faculty_id','faculty_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'user_has_lecture','lecture_id','user_id')->withTimestamps();
     }
 }
