@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('type')->default('FACULTY')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            //misc
+            $table->index(['id','name','email']);
         });
 
         /*//create triggers to sort between HR and FACULTY
