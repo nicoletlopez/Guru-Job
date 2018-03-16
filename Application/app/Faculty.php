@@ -27,9 +27,9 @@ class Faculty extends Model
         return $this->hasMany('App\Certification','user_id','user_id');
     }*/
 
-    public function resume()
+    public function resumes()
     {
-        return $this->hasOne(Resume::class, 'user_id', 'user_id');
+        return $this->hasMany(Resume::class, 'faculty_id', 'user_id');
     }
 
 
@@ -44,6 +44,7 @@ class Faculty extends Model
         return $this->belongsToMany(Skill::class, 'faculty_has_skill', 'user_id', 'skill_id');
     }
 
+    //only the lectures that this certain faculty owns
     public function lectures()
     {
         return $this->hasMany(Lecture::class, 'faculty_id', 'user_id')->orderBy('created_at', 'desc');
