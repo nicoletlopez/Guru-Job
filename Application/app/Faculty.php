@@ -46,13 +46,7 @@ class Faculty extends Model
 
     public function lectures()
     {
-        return $this->belongsToMany(Lecture::class, 'faculty_has_lecture', 'user_id', 'lecture_id')
-            ->withTimestamps();
-    }
-
-    public function ownedLectures()
-    {
-        return $this->hasMany(Lecture::class, 'owner_id', 'user_id')->orderBy('created_at', 'desc');
+        return $this->hasMany(Lecture::class, 'faculty_id', 'user_id')->orderBy('created_at', 'desc');
     }
 
     public function documentSpaces()
