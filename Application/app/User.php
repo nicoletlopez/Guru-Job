@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function lectures()
     {
-        return $this->belongsToMany(Lecture::class,'user_has_lecture','user_id','lecture_id');
+        return $this->belongsToMany(Lecture::class,'user_has_lecture','user_id','lecture_id')->withTimestamps();
     }
 }
