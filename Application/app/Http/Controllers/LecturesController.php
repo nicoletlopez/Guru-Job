@@ -21,7 +21,7 @@ class LecturesController extends Controller
         {
             return redirect()->route('login');
         }
-        $lectures = auth()->user()->faculty->ownedLectures;
+        $lectures = auth()->user()->faculty->lectures;
         $context =
             [
                 'lectures' => $lectures,
