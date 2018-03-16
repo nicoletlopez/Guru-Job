@@ -25,7 +25,9 @@ class CreateJobTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('subject');
 
+            //misc
             $table->softDeletes();
+            $table->index(['id','user_id','title','desc']);
         });
     }
 
