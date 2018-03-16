@@ -34,8 +34,8 @@ class CreateJob extends FormRequest
             'title'=>'required',
             'type'=>'required',
             'subjects'=>'required',
-            'min-salary'=>'required',
-            'max-salary'=>'required',
+            'min-salary'=>'required|numeric',
+            'max-salary'=>'required|numeric|min:'.floatval($this->input('min-salary')),
             'description'=>'required',
         ];
     }
@@ -48,6 +48,7 @@ class CreateJob extends FormRequest
                 'subjects.required'=>'Subject/s is required',
                 'min-salary.required' => 'Minimum Salary is required',
                 'max-salary.required' => 'Maximum Salary is required',
+                'max-salary.min' => 'Maximum salary cannot be less than the minimum',
                 'description.required' => 'Description is required',
             ];
         return $messages;
