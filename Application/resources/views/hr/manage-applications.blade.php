@@ -7,7 +7,16 @@
 @section('dashboard-content')
 
     <div class="job-alerts-item candidates">
-        <h3 class="alerts-title">Manage applications</h3>
+        <div class="row">
+            <div class="col-md-5">
+                <h3 class="alerts-title">Manage applications</h3>
+            </div>
+            <div class="form-group col-md-offset-1 col-md-6">
+                {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
+                {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'Search Applicants',
+                                                'style' => 'height:20px'])}}
+            </div>
+        </div>
         <table class="table">
             <thead class="">
             <tr>

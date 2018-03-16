@@ -16,7 +16,7 @@ class HrDashboardController extends Controller
     }
     public function profile(){
 
-        $user = Cache::remember('user',20,function()
+        /*$user = Cache::remember('user',20,function()
         {
             return auth()->user();
         });
@@ -29,7 +29,11 @@ class HrDashboardController extends Controller
         $date = Cache::remember('date',20,function() use (&$profile)
         {
            return Controller::formatDate($profile->dob);
-        });
+        });*/
+
+        $user = auth()->user();
+        $profile = $user->profile;
+        $date = Controller::formatDate($profile->dob);
 
 
         $context=array(
@@ -43,10 +47,12 @@ class HrDashboardController extends Controller
     public function manageJobs(){
         //$hr=auth()->user()->hr;
 
-        $jobs = Cache::remember('jobs',20,function()
+        /*$jobs = Cache::remember('jobs',20,function()
         {
             return auth()->user()->hr->jobs;
-        });
+        });*/
+
+        $jobs = auth()->user()->hr->jobs;
 
         $context=array(
             'jobs'=>$jobs,

@@ -18,6 +18,7 @@ class SubjectTableSeeder extends Seeder
 
         $subjects = $this->subjectArray();
         $hrs = DB::table('users')->where('type','=','HR')->get();
+        $faculty_ids = range(11,30);
         $FTMinSal = [10000];
         $PTMinSal = [500];
         for($i = 0; $i < 20; $i++){
@@ -59,6 +60,9 @@ class SubjectTableSeeder extends Seeder
                     'job_id' => $job->id,
                 ]);//Created subject row
                 $n++;
+                shuffle($faculty_ids);
+                $pivot_entries = array_slice($faculty_ids,0,5);
+                $job->applicants()->sync($pivot_entries);
             }
         }
     }

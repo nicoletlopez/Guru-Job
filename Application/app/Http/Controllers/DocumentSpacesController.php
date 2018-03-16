@@ -120,6 +120,8 @@ class DocumentSpacesController extends Controller
         $video = ['mp4', 'flv', 'wmv', '3gp'];
         $audio = ['mp3', 'm4a', 'm4p', 'ogg', 'wav'];
         $word = ['doc', 'docx'];
+        $excel = ['xls', 'xlsx'];
+        $ppt = ['ppt', 'pptx'];
         $pdf = ['pdf'];
 
 
@@ -132,6 +134,8 @@ class DocumentSpacesController extends Controller
             'video' => $video,
             'audio' => $audio,
             'word' => $word,
+            'excel' => $excel,
+            'ppt' => $ppt,
             'pdf' => $pdf,
         );
 

@@ -17,10 +17,13 @@ class FileTableSeeder extends Seeder
 
         $lectures = Lecture::all();
 
+        $ext = ['jpg', 'jpeg', 'png', 'bmp', 'gif', 'mp4', 'flv', 'wmv', '3gp', 'mp3',
+            'm4a', 'm4p', 'ogg', 'wav', 'doc', 'docx', 'pdf'];
+
         foreach ($lectures as $lecture) {
             for ($x = 0; $x < 2; $x++) {
                 factory(App\File::class)->create([
-                    'name' => 'Lesson '.($x+1).' for '. substr($lecture->title,12),
+                    'name' => 'Lesson ' . ($x + 1) . ' for ' . substr($lecture->title, 12).'.'.$ext[array_rand($ext)],
                     'lecture_id' => $lecture->id,
                 ]);
             }
