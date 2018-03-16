@@ -14,7 +14,7 @@ class CreateResumeTable extends Migration
     public function up()
     {
         Schema::create('resume', function (Blueprint $table) {
-            $table->integer('resume_id')->unsigned();
+            $table->integer('id')->unsigned();
             $table->integer('section_id')->unsigned();
             $table->text('section_title');
             $table->text('section_content');
@@ -24,8 +24,8 @@ class CreateResumeTable extends Migration
             $table->foreign('user_id')->references('user_id')->on('faculty');
 
             //composite primary key = resume_id + section_id
-            $table->primary(['resume_id','section_id']);
-            $table->index(['user_id','resume_id','section_id']);
+            $table->primary(['id','section_id']);
+            $table->index(['id','section_id','user_id']);
         });
     }
 
