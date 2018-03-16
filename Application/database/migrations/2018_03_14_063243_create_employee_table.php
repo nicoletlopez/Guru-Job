@@ -19,6 +19,8 @@ class CreateEmployeeTable extends Migration
 
             $table->foreign('hr_id')->references('user_id')->on('hr');
             $table->foreign('faculty_id')->references('user_id')->on('faculty');
+
+            $table->timestamps();
         });
     }
 
