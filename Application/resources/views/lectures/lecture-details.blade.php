@@ -5,7 +5,7 @@
 @section('tab-detail-active') active @endsection
 
 @section('active-tab-content')
-    <div class="text-left">
+    <div class="text-left medium-title">
         <h3>{{$lecture->title}}</h3>
     </div>
     <div class="clearfix">
