@@ -74,7 +74,7 @@
                                 {{Form::time('start-time','',['class'=>'form-control','step'=>'900'])}}
                             </div>
                             <div class="col-md-6">
-                                {{Form::label('work-time-to-label', 'Work Time Too')}}
+                                {{Form::label('work-time-to-label', 'Work Time To')}}
                                 {{Form::time('end-time','',['class'=>'form-control','step'=>'900'])}}
                             </div>
                         </div>
