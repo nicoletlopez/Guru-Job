@@ -18,14 +18,14 @@ class CreateResumeTable extends Migration
             $table->integer('section_id')->unsigned();
             $table->text('section_title');
             $table->text('section_content');
-            $table->integer('user_id')->unsigned();
+            $table->integer('faculty_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('faculty');
+            $table->foreign('faculty_id')->references('user_id')->on('faculty');
 
             //composite primary key = resume_id + section_id
             $table->primary(['id','section_id']);
-            $table->index(['id','section_id','user_id']);
+            $table->index(['id','section_id','faculty_id']);
         });
     }
 
