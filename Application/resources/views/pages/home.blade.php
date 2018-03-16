@@ -2,7 +2,7 @@
 @section('active-home') active @endsection
 @section('searchbar')
     <div class="search-container">
-        @include('inc.searchbar')
+        @include('inc.tagline')
     </div>
 @endsection
 @section('content')
