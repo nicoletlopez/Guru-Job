@@ -21,6 +21,9 @@ class CreateFileTable extends Migration
 
             $table->foreign('lecture_id')->references('id')->on('lecture');
             $table->timestamps();
+
+            //misc
+            $table->index(['lecture_id','name']);
         });
     }
 
