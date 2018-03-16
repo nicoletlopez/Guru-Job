@@ -13,28 +13,37 @@ class Hr extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function subjects()
     {
-        return $this->hasMany(Subject::class,'user_id','user_id');
+        return $this->hasMany(Subject::class, 'user_id', 'user_id');
     }
+
     public function jobs()
     {
-        return $this->hasMany(Job::class,'user_id','user_id');
+        return $this->hasMany(Job::class, 'user_id', 'user_id');
     }
 
     public function documentSpaces()
     {
-        return $this->belongsToMany(DocumentSpace::class,'hr_has_document_space','user_id',
+        return $this->belongsToMany(DocumentSpace::class, 'hr_has_document_space', 'user_id',
             'document_id')->withTimestamps();
     }
 
+    public function employees()
+    {
+        return $this->belongsToMany(Faculty::class, 'employee', 'hr_id', 'faculty_id')->withTimestamps();
+    }
+
+    /*Search methods*/
     public function scopeSearchHr($query, $search_term)
     {
-        return $query->whereHas('user', function ($query) use ($search_term) {
-                $query->where('name', 'like', '%' . $search_term . '%');
-                });
+        return $query->whereHas('user', function ($query) use ($search_term)
+        {
+            $query->where('name', 'like', '%' . $search_term . '%');
+        });
     }
+    /*End search methods*/
 }

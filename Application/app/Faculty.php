@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App;
+
 class Faculty extends Model
 {
     //
@@ -13,7 +14,7 @@ class Faculty extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     /*public function status()
@@ -28,64 +29,80 @@ class Faculty extends Model
 
     public function resume()
     {
-        return $this->hasOne(Resume::class,'user_id','user_id');
+        return $this->hasOne(Resume::class, 'user_id', 'user_id');
     }
 
 
     public function jobs()
     {
-        return $this->belongsToMany(Job::class,'application','user_id','job_id')
+        return $this->belongsToMany(Job::class, 'application', 'user_id', 'job_id')
             ->withTimestamps();
     }
 
     public function skills()
     {
-        return $this->belongsToMany(Skill::class,'faculty_has_skill','user_id','skill_id');
+        return $this->belongsToMany(Skill::class, 'faculty_has_skill', 'user_id', 'skill_id');
     }
 
     public function lectures()
     {
-        return $this->belongsToMany(Lecture::class,'faculty_has_lecture','user_id','lecture_id')
+        return $this->belongsToMany(Lecture::class, 'faculty_has_lecture', 'user_id', 'lecture_id')
             ->withTimestamps();
     }
 
     public function ownedLectures()
     {
-        return $this->hasMany(Lecture::class,'owner_id','user_id')->orderBy('created_at','desc');
+        return $this->hasMany(Lecture::class, 'owner_id', 'user_id')->orderBy('created_at', 'desc');
     }
 
     public function documentSpaces()
     {
-        return $this->hasMany(DocumentSpace::class,'user_id','user_id')->orderBy('created_at','desc');
+        return $this->hasMany(DocumentSpace::class, 'user_id', 'user_id')->orderBy('created_at', 'desc');
     }
 
+    public function employers()
+    {
+        return $this->belongsToMany(Hr::class, 'employee', 'faculty_id', 'hr_id')->withTimestamps();
+    }
+
+    /*search methods*/
     public function scopeName($query, $search_term)
     {
-        return $query->whereHas('user', function($query) use($search_term){
-           $query->where('name','like','%'.$search_term.'%');
+        return $query->whereHas('user', function ($query) use ($search_term)
+        {
+            $query->where('name', 'like', '%' . $search_term . '%');
         });
     }
 
-    public function scopeSkill($query, $search_term){
-        return $query->whereHas('skills', function ($query) use($search_term){
-            $query->where('name','like','%'.$search_term.'%')
-            ->orWhere('desc','like','%'.$search_term.'%');
+    public function scopeSkill($query, $search_term)
+    {
+        return $query->whereHas('skills', function ($query) use ($search_term)
+        {
+            $query->where('name', 'like', '%' . $search_term . '%')
+                ->orWhere('desc', 'like', '%' . $search_term . '%');
         });
     }
 
-    public function scopeCity($query, $search_term){
-        return $query->whereHas('user', function ($query) use($search_term){
-            $query->whereHas('profile', function ($query) use($search_term){
-                $query->where('city', 'like', '%'.$search_term.'%');
+    public function scopeCity($query, $search_term)
+    {
+        return $query->whereHas('user', function ($query) use ($search_term)
+        {
+            $query->whereHas('profile', function ($query) use ($search_term)
+            {
+                $query->where('city', 'like', '%' . $search_term . '%');
             });
         });
     }
 
-    public function scopeAddress($query, $search_term){
-        return $query->whereHas('user', function ($query) use($search_term){
-            $query->whereHas('profile', function ($query) use($search_term){
-                $query->where('street_address', 'like', '%'.$search_term.'%');
+    public function scopeAddress($query, $search_term)
+    {
+        return $query->whereHas('user', function ($query) use ($search_term)
+        {
+            $query->whereHas('profile', function ($query) use ($search_term)
+            {
+                $query->where('street_address', 'like', '%' . $search_term . '%');
             });
         });
     }
+    /*end search methods*/
 }
