@@ -25,6 +25,10 @@ class CreateProfileTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+
+            //misc
+            $table->primary('user_id');
+            $table->index(['user_id','region','picture']);
         });
     }
 
