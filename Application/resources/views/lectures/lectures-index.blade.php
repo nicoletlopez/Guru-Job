@@ -18,7 +18,7 @@
                     <td><p class="badge">{{$lecture->files->count()}}</p></td>
                     <!--<td><p>APC</p></td>-->
                     <td style="width:90px;">
-                        <a href="/lectures/{{$lecture->id}}/edit" class="btn btn-primary btn-block">Update</a>
+                        <a href="/lectures/{{$lecture->id}}/edit" class="btn btn-primary btn-block" style="margin-bottom: 2px;">Update</a>
                         {!! Form::open(['action'=>['LecturesController@destroy',$lecture->id],'method'=>'POST']) !!}
                         {{ Form::hidden('_method','DELETE') }}
                         {!! Form::button('Delete',['class'=>'btn btn-danger btn-block','data-toggle'=>'confirmation']) !!}
