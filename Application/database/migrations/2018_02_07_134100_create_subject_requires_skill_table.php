@@ -19,6 +19,10 @@ class CreateSubjectRequiresSkillTable extends Migration
 
             $table->foreign('subject_id')->references('id')->on('subject');
             $table->foreign('skill_id')->references('id')->on('skill');
+
+            //misc
+            $table->primary(['subject_id','skill_id']);
+            $table->index(['subject_id','skill_id']);
         });
     }
 
