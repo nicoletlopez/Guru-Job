@@ -203,6 +203,13 @@ $('#clients-scroller').owlCarousel({
     itemsMobile : [479,1],
 });
 
+/* Tooltip
+========================================================*/
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
  // Back Top Link
   var offset = 200;
   var duration = 500;
