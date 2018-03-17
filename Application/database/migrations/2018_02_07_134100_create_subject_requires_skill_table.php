@@ -22,7 +22,8 @@ class CreateSubjectRequiresSkillTable extends Migration
 
             //misc
             $table->primary(['subject_id','skill_id']);
-            $table->index(['subject_id','skill_id']);
+            $table->index('subject_id');
+            $table->index('skill_id');
         });
     }
 

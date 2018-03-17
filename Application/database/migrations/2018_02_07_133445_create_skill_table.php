@@ -20,7 +20,7 @@ class CreateSkillTable extends Migration
 
             //misc
             $table->index('id');
-            $table->index('name');
+            $table->index(['name','desc']);
         });
     }
 
