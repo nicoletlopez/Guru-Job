@@ -24,7 +24,10 @@ class CreateSubjectTable extends Migration
             $table->foreign('job_id')->references('id')->on('job');
 
             //misc
-            $table->index(['id','user_id','name','desc']);
+            $table->index('id');
+            $table->index('user_id');
+            $table->index('job_id');
+            $table->index('name');
         });
     }
 
