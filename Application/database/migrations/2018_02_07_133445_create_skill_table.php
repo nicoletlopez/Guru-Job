@@ -19,7 +19,8 @@ class CreateSkillTable extends Migration
             $table->text('desc')->nullable();
 
             //misc
-            $table->index(['id','name']);
+            $table->index('id');
+            $table->index('name');
         });
     }
 
