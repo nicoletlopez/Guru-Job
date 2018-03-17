@@ -2085,30 +2085,30 @@ footer {
 /* ==========================================================================
    Job Alerts Pages Style
    ========================================================================== */
-.right-sideabr h4 {
+.right-sidebar h4 {
   font-size: 13px;
   color: #999;
 }
-.right-sideabr .item {
+.right-sidebar .item {
   padding: 15px 0px;
   border-bottom: 1px solid #f1f1f1;
   margin-bottom: 15px;
 }
-.right-sideabr .lest li {
+.right-sidebar .lest li {
   padding: 5px 0;
 }
-.right-sideabr .lest li a {
+.right-sidebar .lest li a {
   font-size: 14px;
   font-weight: 700;
   color: #888;
 }
-.right-sideabr .lest li a:hover {
+.right-sidebar .lest li a:hover {
   color: #ff4f57;
 }
-.right-sideabr .lest li a.active {
+.right-sidebar .lest li a.active {
   color: #ff4f57;
 }
-.right-sideabr .lest .notinumber {
+.right-sidebar .lest .notinumber {
   float: right;
   width: 24px;
   height: 24px;

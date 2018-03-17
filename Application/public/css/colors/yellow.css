@@ -183,13 +183,13 @@ footer .menu li a:hover{
 .job-detail .sidebar .sidebar-jobs ul li span i{
   color: #FF9D02;
 }
-.right-sideabr .lest li a.active{
+.right-sidebar .lest li a.active{
   color: #FF9D02;
 }
-.right-sideabr .lest li a:hover{
+.right-sidebar .lest li a:hover{
   color: #FF9D02; 
 }
-.right-sideabr .lest .notinumber{
+.right-sidebar .lest .notinumber{
   background: #FF9D02;
 }
 .panel-default .panel-heading{

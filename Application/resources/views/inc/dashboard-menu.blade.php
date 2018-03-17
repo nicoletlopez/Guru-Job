@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-3 col-xs-12">
-                <div class="right-sideabr">
+                <div class="right-sidebar">
                     <div class="inner-box">
                         <!--HR-->
                         @if(Auth::user()->type == 'HR')
