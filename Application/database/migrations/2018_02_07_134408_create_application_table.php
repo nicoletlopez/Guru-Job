@@ -23,7 +23,8 @@ class CreateApplicationTable extends Migration
 
             //misc
             $table->primary(['user_id','job_id']);
-            $table->index(['user_id','job_id']);
+            $table->index('user_id');
+            $table->index('job_id');
         });
     }
 
