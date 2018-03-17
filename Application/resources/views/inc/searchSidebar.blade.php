@@ -47,6 +47,17 @@
     </div>
     <div class="form-group">
         <div class="search-category-container">
+            {{Form::label('type-label', 'Select Job Type')}}
+            {{Form::select('type',
+            [null=>'All Types',
+            'FT'=>'Full-Time',
+            'PT'=>'Part-Time',],
+            null,
+            ['class'=>'dropdown-product selectpicker'])}}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="search-category-container">
             {{Form::label('work-day-label', 'Select Work Day')}}
             {{Form::select('free-day',
             [null=>'All Days',

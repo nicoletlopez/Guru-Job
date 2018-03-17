@@ -75,6 +75,11 @@ class Job extends Model
         });
     }
 
+    public function scopeType($query, $type)
+    {
+        return $query->where('type','=',$type);
+    }
+
     public function scopeFreeDay($query, $free_day)
     {
         return $query->whereHas('subjects', function ($query) use ($free_day) {
