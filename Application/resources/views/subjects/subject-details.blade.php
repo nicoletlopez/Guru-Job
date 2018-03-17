@@ -13,7 +13,7 @@
                 <div class="col-md-9 col-sm-8">
                     <div class="content-area">
                         <h2 class="medium-title">Subject Details</h2>
-                        <div class="box">
+                        <div class="box col-md-11">
                             <div class="text-left">
                                 <h3>{{$subject->name}}</h3>
                             </div>
