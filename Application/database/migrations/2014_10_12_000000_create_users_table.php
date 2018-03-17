@@ -24,7 +24,9 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             //misc
-            $table->index(['id','name','type']);
+            $table->index('id','id_index');
+            $table->index('type','type_index');
+
         });
 
         /*//create triggers to sort between HR and FACULTY
