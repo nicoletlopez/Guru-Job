@@ -21,7 +21,9 @@ class CreateHrTable extends Migration
 
             //misc
             $table->primary('user_id');
-            $table->index(['user_id']);
+            $table->index('user_id');
+            //may be useful when searching for those reaching a low level of credit
+            $table->index('balance');
         });
     }
 
