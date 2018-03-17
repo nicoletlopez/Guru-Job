@@ -1,26 +1,32 @@
 <div class="job-alerts-item candidates">
     <h3 class="alerts-title">Manage
         Jobs <!--<a class="btn btn-success" href="{{route('jobs.create')}}">Post a Job</a>--></h3>
-    <table class="table">
+    <table class="table" style="width: 100%">
+        <colgroup>
+            <col span="1" style="width: 65%;">
+            <col span="1" style="width: 10%;">
+            <col span="1" style="width: 10%;">
+            <col span="1" style="width: 15%;">
+        </colgroup>
         @if(count($jobs)>0)
             <thead class="">
             <tr>
                 <th>Job Title</th>
-                <th># of Applicants</th>
+                <th>Number of Applicants</th>
                 <th>Applicants</th>
-                <th>Action</th>
+                <th style="text-align: center">Action</th>
             </tr>
             </thead>
             <tbody>
 
             @foreach($jobs as $key=>$job)
                 <tr>
-                    <td><a href="/jobs/{{$job->id}}"><h3>{{$job->title}}</h3></a></td>
-                    <td><span class="badge">{{$job->applicants->count()}}</span></td>
-                    <td>
+                    <td style="vertical-align: middle"><a href="/jobs/{{$job->id}}"><h3>{{$job->title}}</h3></a></td>
+                    <td style="text-align: center; vertical-align: middle"><span class="badge">{{$job->applicants->count()}}</span></td>
+                    <td style="text-align: center; vertical-align: middle">
                         @if(count($job->applicants) > 0)
-                            <a href="#" class="btn btn-success">
-                                View
+                            <a href="#" data-toggle="tooltip" title="View Applicants">
+                                <img src="{{asset('img/view.png')}}" width="40" height="40"/>
                             </a>
                         <!--
                                 <div class="can-img">
@@ -37,12 +43,22 @@
                             <p class="text-center">None</p>
                         @endif
                     </td>
-                    <td style="width:90px;">
-                        <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary btn-block">Update</a>
-                        {!! Form::open(['action'=>['JobsController@destroy',$job->id],'method'=>'POST']) !!}
-                        {{ Form::hidden('_method','DELETE') }}
-                        {!! Form::button('Delete',['class'=>'btn btn-danger btn-block','data-toggle'=>'confirmation']) !!}
-                        {!! Form::close() !!}
+                    <td style="vertical-align: middle">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-5">
+                                <a href="/jobs/{{$job->id}}/edit" data-toggle="tooltip" title="Update Job">
+                                    <img src="{{asset('img/edit.png')}}" width="30" height="30"/>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                {!! Form::open(['action'=>['JobsController@destroy',$job->id],'method'=>'POST']) !!}
+                                {{ Form::hidden('_method','DELETE') }}
+                                <input type="image" src="{{asset('img/delete-icon.png')}}" height="30" width="30"
+                                       data-toggle="confirmation" alt="Submit Form" />
+                                {{--{!! Form::button('Delete',['class'=>'btn btn-danger btn-block','data-toggle'=>'confirmation']) !!}--}}
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 <!--MODAL-->
