@@ -23,7 +23,9 @@ class CreateFileTable extends Migration
             $table->timestamps();
 
             //misc
-            $table->index(['lecture_id','name']);
+            $table->index('id');
+            $table->index('lecture_id');
+            $table->index('name');
         });
     }
 
