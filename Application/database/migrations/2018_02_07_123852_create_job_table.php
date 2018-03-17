@@ -28,6 +28,7 @@ class CreateJobTable extends Migration
             //misc
             $table->softDeletes();
             $table->index('id');
+            $table->index('user_id');
             $table->index('title');
             $table->index('user_id');
         });
