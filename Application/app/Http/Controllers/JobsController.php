@@ -247,6 +247,14 @@ class JobsController extends Controller
         if(!is_null($region)){
             $jobs->region($region);
         }
+        //add jobs falling after start time
+        if(!is_null($start_time) && is_null($end_time)){
+            $jobs->startTime($start_time);
+        }
+        //add jobs falling before end time
+        if(is_null($start_time) && !is_null($end_time)){
+            $jobs->endTime($end_time);
+        }
         //Add jobs falling between start time and end time stated
         if(!is_null($start_time) && !is_null($end_time)){
             $jobs->time($start_time, $end_time);
