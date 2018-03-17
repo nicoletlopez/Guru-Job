@@ -16,14 +16,14 @@ class LectureTableSeeder extends Seeder
         DB::table('lecture')->delete();
         DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "lecture";');
 
-        $owners = Faculty::all();
-        foreach ($owners as $owner) {
+        $faculties = Faculty::all();
+        foreach ($faculties as $faculty) {
             $subject = Subject::inRandomOrder()->first()->name;
             factory(App\Lecture::class)->create([
                 'title' => 'Lecture for '.$subject,
                 'overview' => 'This lecture aims to teach '.$subject.' in a comprehensive manner.',
                 'objectives' => '(1) Learn about '.$subject.' (2) Learn more about '.$subject,
-                'owner_id' => $owner->user_id,
+                'faculty_id' => $faculty->user_id,
             ]);
         }
     }

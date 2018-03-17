@@ -14,7 +14,7 @@ class CreateLectureTable extends Migration
     public function up()
     {
         Schema::create('lecture', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('title');
             $table->text('overview');
             $table->text('objectives')->nullable();
@@ -22,9 +22,6 @@ class CreateLectureTable extends Migration
 
             $table->foreign('faculty_id')->references('id')->on('faculty');
             $table->timestamps();
-
-            //misc
-            $table->primary('id');
         });
     }
 

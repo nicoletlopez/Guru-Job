@@ -21,7 +21,7 @@ class LecturesController extends Controller
         {
             return redirect()->route('login');
         }
-        $lectures = auth()->user()->faculty->ownedLectures;
+        $lectures = auth()->user()->faculty->lectures;
         $context =
             [
                 'lectures' => $lectures,
@@ -91,28 +91,8 @@ class LecturesController extends Controller
             return redirect()->route('lectures.index');
         }
 
-        $fileExts = [];
-        foreach ($lecture->files as $file)
-        {
-            preg_match("/\.(\w+)(?!.*\.(\w+))/", $file->name, $ext);
-            preg_match("/([^\/]+)(?=\.\w+$)/", $file->name, $name);
-            $fileExts[] = array($name[0], strtolower($ext[1]));
-        }
-
-        $image = ['jpg', 'jpeg', 'png', 'bmp', 'gif'];
-        $video = ['mp4', 'flv', 'wmv', '3gp'];
-        $audio = ['mp3', 'm4a', 'm4p', 'ogg', 'wav'];
-        $word = ['doc', 'docx'];
-        $pdf = ['pdf'];
         $context = array(
             'lecture' => $lecture,
-            'files' => $lecture->files,
-            'fileExts' => $fileExts,
-            'image' => $image,
-            'video' => $video,
-            'audio' => $audio,
-            'word' => $word,
-            'pdf' => $pdf,
         );
         return view('lectures.lecture-details')->with($context);
     }
@@ -184,8 +164,78 @@ class LecturesController extends Controller
         return back()->with('success', 'Lecture Deleted');
     }
 
-    public function share()
-    {
+    public function files($id){
+        $lecture = Lecture::find($id);
+        if (!auth()->user())
+        {
+            return redirect()->route('login');
+        } elseif (!$lecture)
+        {
+            return redirect()->route('lectures.index');
+        }
 
+        $fileExts = [];
+        foreach ($lecture->files as $file)
+        {
+            preg_match("/\.(\w+)(?!.*\.(\w+))/", $file->name, $ext);
+            preg_match("/([^\/]+)(?=\.\w+$)/", $file->name, $name);
+            $fileExts[] = array($name[0], strtolower($ext[1]));
+        }
+
+        $image = ['jpg', 'jpeg', 'png', 'bmp', 'gif'];
+        $video = ['mp4', 'flv', 'wmv', '3gp'];
+        $audio = ['mp3', 'm4a', 'm4p', 'ogg', 'wav'];
+        $word = ['doc', 'docx'];
+        $excel = ['xls', 'xlsx'];
+        $ppt = ['ppt', 'pptx'];
+        $pdf = ['pdf'];
+
+        $context = array(
+            'lecture' => $lecture,
+            'files' => $lecture->files,
+            'fileExts' => $fileExts,
+            'image' => $image,
+            'video' => $video,
+            'audio' => $audio,
+            'word' => $word,
+            'excel' => $excel,
+            'ppt' => $ppt,
+            'pdf' => $pdf,
+        );
+        return view('lectures.lecture-files')->with($context);
+    }
+
+    public function assign($id)
+    {
+        $lecture = Lecture::find($id);
+        if (!auth()->user())
+        {
+            return redirect()->route('login');
+        } elseif (!$lecture)
+        {
+            return redirect()->route('lectures.index');
+        }
+
+        $context = array(
+            'lecture' => $lecture,
+        );
+        return view('lectures.lecture-assign')->with($context);
+    }
+
+    public function share($id)
+    {
+        $lecture = Lecture::find($id);
+        if (!auth()->user())
+        {
+            return redirect()->route('login');
+        } elseif (!$lecture)
+        {
+            return redirect()->route('lectures.index');
+        }
+
+        $context = array(
+            'lecture' => $lecture,
+        );
+        return view('lectures.lecture-share')->with($context);
     }
 }

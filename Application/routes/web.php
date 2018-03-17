@@ -41,12 +41,15 @@ Route::get('/notifications','DashboardController@notifications')->name('notifica
 
 //lectures
 Route::resource('lectures','LecturesController');
+Route::get('/lectures/{lecture}/files', 'LecturesController@files');
+Route::get('/lectures/{lecture}/assign', 'LecturesController@assign');
+Route::get('/lectures/{lecture}/share', 'LecturesController@share');
 
 //files
 Route::resource('files','FilesController');
-Route::post('/lectures/{lecture}/upload','FilesController@lectureUpload');
-Route::get('/lectures/{lecture}/download/{file}','FilesController@downloadLectureFile');
-Route::delete('/lectures/{lecture}/delete/{file}','FilesController@deleteLectureFile');
+Route::post('/lectures/{lecture}/files/upload','FilesController@lectureUpload');
+Route::get('/lectures/{lecture}/files/download/{file}','FilesController@downloadLectureFile');
+Route::delete('/lectures/{lecture}/files/delete/{file}','FilesController@deleteLectureFile');
 
 //hr
 Route::get('/hr-dashboard', 'HrDashboardController@index')->name('hr-dashboard');
