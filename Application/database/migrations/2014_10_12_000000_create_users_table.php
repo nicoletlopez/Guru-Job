@@ -24,8 +24,9 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             //misc
-            $table->index('id','id_index');
-            $table->index('type','type_index');
+            $table->index('id');
+            $table->index('type');
+            $table->index('name');
 
         });
 

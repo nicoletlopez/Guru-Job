@@ -28,7 +28,7 @@ class CreateProfileTable extends Migration
 
             //misc
             $table->primary('user_id');
-            $table->index(['user_id','region']);
+            $table->index('user_id','');
         });
     }
 
