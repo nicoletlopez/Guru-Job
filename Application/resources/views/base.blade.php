@@ -6,6 +6,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="author" content="The Guru Team"/>
+    <meta name="description" content="The Guru App website aims to revolutionize the way that teachers,
+        especially those that work part time, are employed. Register profiles as a school or as a teacher and
+        apply or create jobs, create an online repository of your credentials, form and share online courses.
+        "/>
+
     <title>Guru App @yield('title')</title>
 
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
