@@ -19,6 +19,11 @@ class CreateFacultyHasSkillTable extends Migration
 
             $table->foreign('user_id')->references('user_id')->on('faculty');
             $table->foreign('skill_id')->references('id')->on('skill');
+
+            //misc
+            $table->primary(['user_id','skill_id']);
+            $table->index('user_id');
+            $table->index('skill_id');
         });
     }
 
