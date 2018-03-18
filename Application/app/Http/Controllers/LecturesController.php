@@ -49,12 +49,12 @@ class LecturesController extends Controller
     {
         $user = auth()->user();
         $user_name = str_replace('', '_', $user->name);
-        $owner_id = $user->id;
+        $faculty_id = $user->id;
         $title = $request->input('title');
         $overview = $request->input('overview');
         $objectives = $request->input('objectives');
 
-        if (DB::table('lecture')->where('title', $title)->where('owner_id', $owner_id)->exists())
+        if (DB::table('lecture')->where('title', $title)->where('owner_id', $faculty_id)->exists())
         {
             return back()->with('error', 'A lecture of the same name already exists!');
         }
@@ -64,7 +64,7 @@ class LecturesController extends Controller
 
         //store the directory as a record
         $lecture = new Lecture();
-        $lecture->owner_id = $owner_id;
+        $lecture->faculty_id = $faculty_id;
         $lecture->title = $title;
         $lecture->overview = $overview;
         $lecture->objectives = $objectives;

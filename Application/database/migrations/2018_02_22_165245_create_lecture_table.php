@@ -20,7 +20,7 @@ class CreateLectureTable extends Migration
             $table->text('objectives')->nullable();
             $table->integer('faculty_id')->unsigned();
 
-            $table->foreign('faculty_id')->references('id')->on('faculty');
+            $table->foreign('faculty_id')->references('user_id')->on('faculty');
             $table->timestamps();
         });
     }
