@@ -24,6 +24,7 @@ class CreateEmployeeTable extends Migration
 
             //misc
             $table->primary(['hr_id','faculty_id']);
+            $table->index(['hr_id','faculty_id']);
         });
     }
 
