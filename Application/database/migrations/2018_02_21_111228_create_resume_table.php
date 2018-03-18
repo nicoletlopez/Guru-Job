@@ -23,9 +23,11 @@ class CreateResumeTable extends Migration
 
             $table->foreign('faculty_id')->references('user_id')->on('faculty');
 
+            //misc
             //composite primary key = resume_id + section_id
             $table->primary(['id','section_id']);
-            $table->index(['id','section_id','faculty_id']);
+            $table->index('faculty_id');
+            $table->index(['section-_content','section_title']);
         });
     }
 
