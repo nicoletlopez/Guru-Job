@@ -1870,6 +1870,7 @@ footer {
 .job-detail .box {
   background: #fff;
   margin-bottom: 30px;
+  border-top-color: transparent;
 }
 .job-detail .thumb {
   float: left;
