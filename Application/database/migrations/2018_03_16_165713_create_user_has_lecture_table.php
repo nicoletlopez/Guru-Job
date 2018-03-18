@@ -25,7 +25,7 @@ class CreateUserHasLectureTable extends Migration
 
             //misc
             $table->primary(['user_id','lecture_id']);
-            $table->index(['user_id','lecture_id'])
+            $table->index(['user_id','lecture_id']);
         });
     }
 
