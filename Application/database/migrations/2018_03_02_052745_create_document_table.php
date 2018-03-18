@@ -22,6 +22,10 @@ class CreateDocumentTable extends Migration
             $table->foreign('document_space_id')->references('id')->on('document_space')
             ->onDelete('cascade');
             $table->timestamps();
+
+            //misc
+            $table->index('id');
+            $table->index('document_space_id');
         });
     }
 
