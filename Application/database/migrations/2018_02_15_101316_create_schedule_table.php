@@ -22,6 +22,11 @@ class CreateScheduleTable extends Migration
             $table->timestamps();
 
             $table->foreign('subject_id')->references('id')->on('subject');
+
+            //misc
+            $table->index('id');
+            $table->index('subject_id');
+            $table->index('day');
         });
     }
 
