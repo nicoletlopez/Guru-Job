@@ -19,10 +19,13 @@ class CreateUserHasLectureTable extends Migration
 
             $table->timestamps();
 
-            //misc
+
             $table->foreign('user_id')->references('id')->on('user');
             $table->foreign('lecture_id')->references('id')->on('lecture');
+
+            //misc
             $table->primary(['user_id','lecture_id']);
+            $table->index(['user_id','lecture_id'])
         });
     }
 
