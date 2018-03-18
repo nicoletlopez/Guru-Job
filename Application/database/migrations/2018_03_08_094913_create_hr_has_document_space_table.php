@@ -19,6 +19,9 @@ class CreateHrHasDocumentSpaceTable extends Migration
 
             $table->foreign('user_id')->references('user_id')->on('hr');
             $table->foreign('document_space_id')->references('id')->on('document_space');
+
+            $table->primary(['user_id','document_space_id']);
+            $table->index(['user_id'.'document_space_id']);
         });
     }
 

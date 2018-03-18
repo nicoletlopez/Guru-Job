@@ -22,8 +22,7 @@ class CreateFacultyHasSkillTable extends Migration
 
             //misc
             $table->primary(['user_id','skill_id']);
-            $table->index('user_id');
-            $table->index('skill_id');
+            $table->index(['user_id','skill_id']);
         });
     }
 
