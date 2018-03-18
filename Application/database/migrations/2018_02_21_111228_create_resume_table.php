@@ -16,7 +16,7 @@ class CreateResumeTable extends Migration
         Schema::create('resume', function (Blueprint $table) {
             $table->integer('id')->unsigned();
             $table->integer('section_id')->unsigned();
-            $table->text('section_title');
+            $table->string('section_title');
             $table->text('section_content');
             $table->integer('faculty_id')->unsigned();
             $table->timestamps();
