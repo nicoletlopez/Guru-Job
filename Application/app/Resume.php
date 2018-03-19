@@ -14,4 +14,8 @@ class Resume extends Model
     {
         return $this->belongsTo(Faculty::class,'user_id','user_id');
     }
+
+    public function sections(){
+        return $this->hasMany(Section::class, 'resume_id','id');
+    }
 }
