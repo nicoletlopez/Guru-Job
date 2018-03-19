@@ -82,6 +82,8 @@ Route::resource('documents','DocumentsController',['except'=>['store','destroy',
 //document spaces
 Route::resource('document-spaces','DocumentSpacesController');
 
+//resumes
+Route::resource('resumes','ResumesController');
 
 //test
 
