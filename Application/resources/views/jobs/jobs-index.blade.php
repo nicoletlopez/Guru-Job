@@ -25,7 +25,7 @@
                     <td style="text-align: center; vertical-align: middle"><span class="badge">{{$job->applicants->count()}}</span></td>
                     <td style="text-align: center; vertical-align: middle">
                         @if(count($job->applicants) > 0)
-                            <a href="#" data-toggle="tooltip" title="View Applicants">
+                            <a href="/jobs/{{$job->id}}/applicants" data-toggle="tooltip" title="View Applicants">
                                 <img src="{{asset('img/view.png')}}" width="40" height="40"/>
                             </a>
                         <!--
