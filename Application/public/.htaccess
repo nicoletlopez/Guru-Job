@@ -20,11 +20,27 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
+#<IfModule mod_expires.c>
+#    ExpiresActive On
+#    ExpiresDefault "access plus 10 days"
+#    ExpiresByType image/x-icon "access plus 1 year"
+#    ExpiresByType image/gif "access plus 1 year"
+#    ExpiresByType image/jpeg "access plus 1 year"
+#    ExpiresByType image/png "access plus 1 year"
+#</IfModule>
+
 <IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresDefault "access plus 10 days"
-    ExpiresByType image/x-icon "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
+  ExpiresActive on
+  ExpiresByType image/jpg "access 2 month"
+  ExpiresByType image/gif "access 2 month"
+  ExpiresByType image/jpeg "access 2 month"
+  ExpiresByType image/png "access 2 month"
+  ExpiresByType text/css "access 2 month"
+  ExpiresByType application/x-javascript "access plus 2 month"
+  ExpiresByType text/javascript "access plus 2 month"
+  ExpiresByType application/javascript "access plus 2 month"
+  ExpiresByType image/x-icon "access plus 12 month"
+  ExpiresByType image/icon "access plus 12 month"
+  ExpiresByType application/x-ico "access plus 12 month"
+  ExpiresByType application/ico "access plus 12 month"
 </IfModule>
