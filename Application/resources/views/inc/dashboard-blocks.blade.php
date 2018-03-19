@@ -74,6 +74,22 @@
                     <h3>My Guru Drive</h3>
                 </a>
             </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                <a href="{{route('document-spaces.index')}}">
+                    <div class="icon">
+                        <i class="ti-folder"></i>
+                    </div>
+                    <h3>My Guru Drive</h3>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                <a href="{{route('resumes.index')}}">
+                    <div class="icon">
+                        <i class="ti-receipt"></i>
+                    </div>
+                    <h3>My Resumes</h3>
+                </a>
+            </div>
         @endif
         <div class="col-md-3 col-sm-3 col-xs-12 f-category">
             <a href="{{ route('change-pass') }}">

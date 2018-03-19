@@ -46,6 +46,11 @@
                             <ul class="lest item">
                                 <li><a class="@yield('manage-documents-active')" href="{{route('document-spaces.index')}}">My Guru Drive</a></li>
                             </ul>
+
+                            <h4>Resume</h4>
+                            <ul class="lest item">
+                                <li><a class="@yield('manage-resumes-active')" href="{{route('resumes.index')}}">My Resumes</a></li>
+                            </ul>
                         @endif
                         <ul class="lest">
                             <li>
