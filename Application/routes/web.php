@@ -69,6 +69,7 @@ Route::get('/search', 'JobsController@search')->name('search');
 
 //applications
 Route::resource('applications','ApplicationsController');
+Route::get('jobs/{job}/applicants','ApplicationsController@applicants');
 
 //documents
 Route::post('/documents/{documentspace}/upload','DocumentsController@store')->name('documents.store');
