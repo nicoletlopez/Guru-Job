@@ -20,13 +20,13 @@ class ApplicationsController extends Controller
         //
         //$jobs = auth()->user()->hr->jobs;
 
-        $applications = auth()->user()->hr->jobs;
-
-        $context =
-            [
-                'jobs'=>$applications,
-            ];
-        return view('hr.manage-applications')->with($context);
+//        $applications = auth()->user()->hr->jobs;
+//
+//        $context =
+//            [
+//                'jobs'=>$applications,
+//            ];
+//        return view('hr.manage-applications')->with($context);
     }
 
     /**
@@ -107,5 +107,17 @@ class ApplicationsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function applicants($id){
+        $job = Job::find($id);
+        $applicants = $job->applicants;
+
+        $context =
+            [
+                'job'=>$job->title,
+                'applicants'=>$applicants,
+            ];
+        return view('jobs.applications.applicants')->with($context);
     }
 }
