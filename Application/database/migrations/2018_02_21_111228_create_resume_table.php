@@ -16,12 +16,14 @@ class CreateResumeTable extends Migration
         Schema::create('resume', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('faculty_id')->unsigned();
+            $table->integer('template');
             $table->timestamps();
 
             $table->foreign('faculty_id')->references('user_id')->on('faculty');
 
             //misc
             $table->index('faculty_id');
+            $table->index('id');
         });
     }
 
