@@ -8,11 +8,11 @@ class Resume extends Model
 {
     //
     protected $table = 'resume';
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'id';
 
     public function faculty()
     {
-        return $this->belongsTo(Faculty::class,'user_id','user_id');
+        return $this->belongsTo(Faculty::class,'faculty_id','user_id');
     }
 
     public function sections(){
