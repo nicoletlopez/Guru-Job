@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Resume;
+use App\Section;
 use Illuminate\Http\Request;
 
 class ResumesController extends Controller
@@ -13,7 +15,12 @@ class ResumesController extends Controller
      */
     public function index()
     {
-        return view('faculty.manage-resumes');
+        $resumes=auth()->user()->faculty->resumes;
+
+        $context=[
+            'resumes'=>$resumes,
+        ];
+        return view('faculty.manage-resumes')->with($context);
     }
 
     /**
@@ -34,7 +41,35 @@ class ResumesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $faculty=auth()->user()->id;
+        $template=$request->input('templates');
+        $education=$request->input('education');
+        $experience=$request->input('experience');
+        $skill=$request->input('skill');
+
+        $resume=new Resume();
+        $resume->faculty_id=$faculty;
+        $resume->template=(int)$template[0];
+        $resume->save();
+        $resume_id=$resume->id;
+
+
+
+        $contents=[
+            'Education'=>$education,
+            'Work Experience'=>$experience,
+            'Skills'=>$skill
+        ];
+
+        foreach($contents as $title=>$content){
+            $section=new Section();
+            $section->title=$title;
+            $section->content=$content;
+            $section->resume_id=$resume_id;
+            $section->save();
+        }
+
+        return redirect()->route('resumes.index');
     }
 
     /**
@@ -43,9 +78,18 @@ class ResumesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$template)
     {
-        //
+        $resume=Resume::find($id);
+        $sections=$resume->sections;
+        $context=[
+            'resume'=>$resume,
+            'education'=>$sections[0]->content,
+            'experience'=>$sections[1]->content,
+            'skill'=>$sections[2]->content,
+        ];
+
+        return view('resumes.templates.resume'.$template)->with($context);
     }
 
     /**
