@@ -116,8 +116,38 @@ class ApplicationsController extends Controller
         $context =
             [
                 'job'=>$job->title,
+                'id'=>$job->id,
                 'applicants'=>$applicants,
             ];
+        return view('jobs.applications.applicants')->with($context);
+    }
+
+    public function search(Request $request, $id){
+        $job = Job::find($id);
+        $search_term = $request->input('search-term');
+
+        $faculties = $job->applicants;
+        $applicants = array();
+
+        foreach($faculties as $faculty){
+            $haystack = $faculty->user->name;
+            if(stripos(strtolower($haystack),strtolower($search_term))  !== false){
+                array_push($applicants,$faculty);
+            }
+        }
+
+        if(is_null($search_term)){
+            $applicants = $faculties;
+        }else{
+            $applicants = collect($applicants);
+        }
+
+        $context = [
+            'job'=>$job->title,
+            'id'=>$job->id,
+            'applicants'=>$applicants,
+        ];
+
         return view('jobs.applications.applicants')->with($context);
     }
 }
