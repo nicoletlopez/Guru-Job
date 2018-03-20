@@ -124,19 +124,19 @@ class ApplicationsController extends Controller
 
     public function search(Request $request, $id){
         $job = Job::find($id);
-        $search_term = $request->input('search-term');
+        $needle = $request->input('search-term');
 
         $faculties = $job->applicants;
         $applicants = array();
 
         foreach($faculties as $faculty){
             $haystack = $faculty->user->name;
-            if(stripos(strtolower($haystack),strtolower($search_term))  !== false){
+            if(stripos(strtolower($haystack),strtolower($needle))  !== false){
                 array_push($applicants,$faculty);
             }
         }
 
-        if(is_null($search_term)){
+        if(is_null($needle)){
             $applicants = $faculties;
         }else{
             $applicants = collect($applicants);
