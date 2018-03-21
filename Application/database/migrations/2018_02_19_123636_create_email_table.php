@@ -15,7 +15,7 @@ class CreateEmailTable extends Migration
     {
         Schema::create('email', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('queue')->index();
+            $table->string('queue');
             $table->longText('payload');
             $table->unsignedTinyInteger('attempts');
             $table->unsignedInteger('reserved_at')->nullable();
@@ -24,6 +24,7 @@ class CreateEmailTable extends Migration
 
             //misc
             $table->index('id');
+            $table->index('queue');
         });
     }
 
