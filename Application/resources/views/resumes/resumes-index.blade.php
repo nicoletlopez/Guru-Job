@@ -28,16 +28,11 @@
                                 <i style="font-size:30px;" class="ti-pencil"></i>
                             </a>
                         </div>
-                        <!--
                         <div class="col-md-3 col-xs-3">
-
-                            <a class="" href="#" title="Download PDF">
+                            <a href="/resumes/{{$resume->id}}/{{$resume->template}}/download" title="Download PDF">
                                 <i style="font-size:30px;" class="ti-download"></i>
                             </a>
-
                         </div>
-
-                        -->
                         <div class="col-md-3 col-xs-3">
                             {!! Form::open(['action'=>['ResumesController@destroy',$resume->id],'method'=>'POST']) !!}
                             {{Form::hidden('_method','DELETE')}}
