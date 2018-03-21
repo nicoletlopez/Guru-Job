@@ -20,7 +20,7 @@ class CreateSkillTable extends Migration
             $table->timestamps();
             //misc
             $table->index('id');
-            $table->index(['name','desc']);
+            $table->index('name');
         });
     }
 

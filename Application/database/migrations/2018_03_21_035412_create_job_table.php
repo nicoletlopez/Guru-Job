@@ -17,7 +17,7 @@ class CreateJobTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('title');
-            $table->text('desc')->nullable();
+            $table->string('desc')->nullable();
             $table->string('type')->nullable();
             $table->double('ceiling_salary');
             $table->double('floor_salary');

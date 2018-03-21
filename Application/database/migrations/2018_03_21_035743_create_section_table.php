@@ -24,7 +24,7 @@ class CreateSectionTable extends Migration
 
             //misc
             $table->index('resume_id');
-            $table->index(['content','title']);
+            $table->index('title');
         });
     }
 
