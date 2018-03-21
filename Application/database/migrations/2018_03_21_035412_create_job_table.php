@@ -23,7 +23,7 @@ class CreateJobTable extends Migration
             $table->double('floor_salary');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('hr');
+            $table->foreign('user_id')->references('user_id')->on('hr');
 
             //misc
             $table->softDeletes();
