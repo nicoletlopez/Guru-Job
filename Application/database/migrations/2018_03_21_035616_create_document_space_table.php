@@ -16,11 +16,17 @@ class CreateDocumentSpaceTable extends Migration
         Schema::create('document_space', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            //enable for mysql
+            //$table->string('desc');
             $table->text('desc');
             $table->integer('user_id')->unsigned();
 
             $table->foreign('user_id')->references('user_id')->on('faculty');
             $table->timestamps();
+
+            //misc
+            $table->index('id');
+            $table->index(['title','desc']);
         });
     }
 
