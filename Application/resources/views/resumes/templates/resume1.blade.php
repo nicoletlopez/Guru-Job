@@ -1,16 +1,16 @@
 <link rel="stylesheet" href="{{asset('self/css/resume/resume1.css')}}" type="text/css"/>
-<div id="cv" class="instaFade">
+<div id="cv" class="">
     <div class="mainDetails">
-        <div id="headshot" class="quickFade">
+        <div id="headshot" class="">
             <img src="{{auth()->user()->profile->picture}}" alt="" />
         </div>
 
         <div id="name">
-            <h1 class="quickFade">{{auth()->user()->name}}</h1>
-            <!--<h2 class="quickFade">Job Title</h2>-->
+            <h1 class="">{{auth()->user()->name}}</h1>
+            <!--<h2 class="">Job Title</h2>-->
         </div>
 
-        <div id="contactDetails" class="quickFade">
+        <div id="contactDetails" class="">
             <ul>
                 <li>e: <a href="mailto:{{auth()->user()->email}}" target="_blank">{{auth()->user()->email}}</a></li>
                 <!--<li>w: <a href="http://www.bloggs.com">www.bloggs.com</a></li>-->
@@ -20,7 +20,7 @@
         <div class="clear"></div>
     </div>
 
-    <div id="mainArea" class="quickFade">
+    <div id="mainArea" class="">
         <section>
             <article>
                 <div class="sectionTitle">
