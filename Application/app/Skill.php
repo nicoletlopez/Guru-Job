@@ -8,6 +8,8 @@ class Skill extends Model
 {
     //
     protected $table = 'skill';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
 
     public function subjects()
     {
