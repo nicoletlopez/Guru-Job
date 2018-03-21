@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateResume;
 use App\Resume;
 use App\Section;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
 
 class ResumesController extends Controller
@@ -160,5 +161,19 @@ class ResumesController extends Controller
         $resume->sections()->delete();
         $resume->delete();
         return back()->with('warning','Resume deleted');
+    }
+
+    //Additions
+    public function download($id,$template){
+        $resume=Resume::find($id);
+        $sections=$resume->sections;
+        $context=[
+            'resume'=>$resume,
+            'education'=>$sections[0]->content,
+            'experience'=>$sections[1]->content,
+            'skill'=>$sections[2]->content,
+        ];
+        $pdf = SnappyPdf::loadView('resumes.templates.resume'.$template,$context)->setOption('margin-bottom',0);
+        return $pdf->download('resume_'. $id . '-' . time() . '.pdf');
     }
 }
