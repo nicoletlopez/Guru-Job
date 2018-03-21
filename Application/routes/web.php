@@ -86,6 +86,7 @@ Route::resource('document-spaces','DocumentSpacesController');
 //resumes
 
 Route::resource('resumes','ResumesController',['except'=>['show']]);
+Route::get('/resumes/{resume}/{template}/download','ResumesController@download')->name('resumes.download');
 Route::get('/resumes/{resume}/{template}','ResumesController@show')->name('resumes.show');
 //test
 
