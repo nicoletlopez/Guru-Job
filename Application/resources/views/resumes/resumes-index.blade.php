@@ -2,16 +2,13 @@
     <h3 class="alerts-title">My Resumes <a class="btn btn-success" href="{{route('resumes.create')}}">Create a Resume</a></h3>
     <hr/>
     <div class="row">
+        @foreach($resumes as $resume)
         <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img src="{{asset('img/resume/resume0.png')}}">
+            <a href="/resumes/{{$resume->id}}/{{$resume->template}}">
+                This is resume #{{$resume->id}}, meow meow meow
             </a>
         </div>
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img src="{{asset('img/resume/resume1.png')}}">
-            </a>
-        </div>
+        @endforeach
     </div>
 </div>
 @include('inc.prompt-delete')
