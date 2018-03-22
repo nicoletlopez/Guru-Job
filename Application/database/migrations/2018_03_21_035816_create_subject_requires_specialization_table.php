@@ -15,14 +15,14 @@ class CreateSubjectRequiresSpecializationTable extends Migration
     {
         Schema::create('subject_requires_specialization', function (Blueprint $table) {
             $table->integer('subject_id')->unsigned();
-            $table->integer('skill_id')->unsigned();
+            $table->integer('specialization_id')->unsigned();
 
             $table->foreign('subject_id')->references('id')->on('subject');
-            $table->foreign('skill_id')->references('id')->on('skill');
+            $table->foreign('specialization_id')->references('id')->on('specialization');
 
             //misc
-            $table->primary(['subject_id','skill_id']);
-            $table->index(['subject_id','skill_id']);
+            $table->primary(['subject_id','specialization_id']);
+            $table->index(['subject_id','specialization_id']);
         });
     }
 
