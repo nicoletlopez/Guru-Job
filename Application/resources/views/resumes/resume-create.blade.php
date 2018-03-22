@@ -2,7 +2,7 @@
 @section('title')- Create Resume @endsection
 @section('current') Create Resume @endsection
 @section('current-header') Create Resume @endsection
-@section('manage-subjects-active') active @endsection
+@section('manage-resumes-active') active @endsection
 
 @section('dashboard-content')
     <link rel="stylesheet" href="{{asset('self/css/create-resume.css')}}" type="text/css">

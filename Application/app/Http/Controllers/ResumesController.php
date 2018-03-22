@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateResume;
 use App\Resume;
 use App\Section;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class ResumesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateResume $request)
     {
         $faculty=auth()->user()->id;
         $template=$request->input('templates');
@@ -100,7 +101,18 @@ class ResumesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $resume=Resume::find($id);
+        $template=$resume->template;
+        $sections=$resume->sections;
+
+        $context=[
+            'resume'=>$resume,
+            'template'=>$template,
+            'education'=>$sections[0]->content,
+            'experience'=>$sections[1]->content,
+            'skill'=>$sections[2]->content,
+        ];
+        return view('resumes.resume-edit')->with($context);
     }
 
     /**
@@ -110,9 +122,30 @@ class ResumesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateResume $request, $id)
     {
-        //
+        $template=$request->input('templates');
+        $education=$request->input('education');
+        $experience=$request->input('experience');
+        $skill=$request->input('skill');
+
+        $resume=Resume::find($id);
+        $resume->template=(int)$template[0];
+        $resume->save();
+        $resume_id=$resume->id;
+
+        $contents=[
+            'Education'=>$education,
+            'Work Experience'=>$experience,
+            'Skills'=>$skill,
+        ];
+
+        foreach($contents as $title=>$content){
+            $section=Section::where('resume_id',$resume_id);
+            $section->where('title',$title)->update(['content'=>$content]);
+        }
+
+        return redirect()->route('resumes.index')->with('success','Resume Updated');
     }
 
     /**
@@ -123,6 +156,9 @@ class ResumesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $resume=Resume::find($id);
+        $resume->sections()->delete();
+        $resume->delete();
+        return back()->with('warning','Resume deleted');
     }
 }

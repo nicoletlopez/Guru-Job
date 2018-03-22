@@ -29,7 +29,7 @@ class Faculty extends Model
 
     public function resumes()
     {
-        return $this->hasMany(Resume::class, 'faculty_id', 'user_id');
+        return $this->hasMany(Resume::class, 'faculty_id', 'user_id')->orderBy('updated_at','desc');
     }
 
 
