@@ -41,6 +41,7 @@ class SubjectTableSeeder extends Seeder
                     $ceilingSalary = $floorSalary + 300;
                 }
 
+                //Created a Job row
                 $job = factory(App\Job::class)->create([
                     'title' => $this->titleTemplate($subjects[$n]),
                     'desc' => $this->descTemplate($hr->name,$subjects[$n]),
@@ -51,13 +52,17 @@ class SubjectTableSeeder extends Seeder
                 ]); //Created a Job row
 
                 //Create Subject row
-                factory(App\Subject::class)->create([
+                $subject = factory(App\Subject::class)->create([
                     'name' => $subjects[$n],
                     'desc' => 'The title of this subject is '.$subjects[$n],
                     'user_id' => $hr->id,
                     'job_id' => $job->id,
                 ]);//Created subject row
+
                 $n++;
+                //Insert to specialization_subject pivot table
+                $subject->specializations()->sync(rand(0,16));
+                //Get 5 random faculty ids and create pivot table entries
                 shuffle($faculty_ids);
                 $pivot_entries = array_slice($faculty_ids,0,5);
                 $job->applicants()->sync($pivot_entries);
