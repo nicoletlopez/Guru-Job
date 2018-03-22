@@ -13,7 +13,6 @@ class FileTableSeeder extends Seeder
     public function run()
     {
         DB::table('file')->delete();
-        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "file";');
 
         $lectures = Lecture::all();
 

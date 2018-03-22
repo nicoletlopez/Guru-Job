@@ -12,7 +12,6 @@ class DocumentSpaceTableSeeder extends Seeder
     public function run()
     {
         DB::table('document_space')->delete();
-        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "document_space";');
 
         $faculties = DB::table('users')->where('type','=','FACULTY')->get();
         foreach($faculties as $faculty)

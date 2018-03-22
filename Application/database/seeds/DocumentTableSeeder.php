@@ -13,7 +13,6 @@ class DocumentTableSeeder extends Seeder
     public function run()
     {
         DB::table('document')->delete();
-        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "document";');
 
         $names = array('Résumé','Diploma','Transcript of Records');
         $docspaces = DocumentSpace::all();
