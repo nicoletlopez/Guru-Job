@@ -14,7 +14,6 @@ class LectureTableSeeder extends Seeder
     public function run()
     {
         DB::table('lecture')->delete();
-        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "lecture";');
 
         $faculties = Faculty::all();
         foreach ($faculties as $faculty) {

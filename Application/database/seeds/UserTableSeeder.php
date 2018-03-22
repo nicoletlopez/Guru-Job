@@ -14,7 +14,6 @@ class UserTableSeeder extends Seeder
         DB::table('users')->delete();
         //Delete the following code when migrating to another database engine
         //This is specific to SQLITE
-        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "users";');
 
 
         $schools = array(

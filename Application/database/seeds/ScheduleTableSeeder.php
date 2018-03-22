@@ -13,7 +13,6 @@ class ScheduleTableSeeder extends Seeder
     public function run()
     {
         DB::table('schedule')->delete();
-        DB::update('UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = "subject";');
 
 
         $subjects = DB::table('subject')->get();
