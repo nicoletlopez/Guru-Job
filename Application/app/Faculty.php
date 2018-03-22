@@ -39,9 +39,9 @@ class Faculty extends Model
             ->withTimestamps();
     }
 
-    public function skills()
+    public function specializations()
     {
-        return $this->belongsToMany(Skill::class, 'faculty_has_skill', 'user_id', 'skill_id');
+        return $this->belongsToMany(Specialization::class, 'faculty_has_specialization', 'user_id', 'specialization_id');
     }
 
     //only the lectures that this certain faculty owns
