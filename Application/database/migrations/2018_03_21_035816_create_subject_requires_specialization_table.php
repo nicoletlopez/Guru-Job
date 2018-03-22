@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubjectRequiresSkillTable extends Migration
+class CreateSubjectRequiresSpecializationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSubjectRequiresSkillTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_requires_skill', function (Blueprint $table) {
+        Schema::create('subject_requires_specialization', function (Blueprint $table) {
             $table->integer('subject_id')->unsigned();
             $table->integer('skill_id')->unsigned();
 
@@ -33,6 +33,6 @@ class CreateSubjectRequiresSkillTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_requires_skill');
+        Schema::dropIfExists('subject_requires_specialization');
     }
 }

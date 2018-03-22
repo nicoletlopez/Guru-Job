@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFacultyHasSkillTable extends Migration
+class CreateFacultyHasSpecializationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFacultyHasSkillTable extends Migration
      */
     public function up()
     {
-        Schema::create('faculty_has_skill', function (Blueprint $table) {
+        Schema::create('faculty_has_specialization', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->integer('skill_id')->unsigned();
 
@@ -33,6 +33,6 @@ class CreateFacultyHasSkillTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faculty_has_skill');
+        Schema::dropIfExists('faculty_has_specialization');
     }
 }
