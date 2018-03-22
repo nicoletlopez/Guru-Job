@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Subject;
 
 class Specialization extends Model
 {
@@ -13,7 +14,12 @@ class Specialization extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class,'subject_requires_skill','skill_id','subject_id');
+        return $this->belongsToMany(Subject::class,'subject_has_specialization','specialization_id','subject_id');
+    }
+
+    public function faculty()
+    {
+        return $this->belongsToMany(Faculty::class,'faculty_has_specialization','specialization_id','user_id');
     }
 }
 ?>

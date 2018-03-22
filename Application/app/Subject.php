@@ -21,9 +21,9 @@ class Subject extends Model
         return $this->belongsTo(Job::class,'job_id','id');
     }
 
-    public function skills()
+    public function specializations()
     {
-        return $this->belongsToMany(Skill::class,'subject_requires_skill','subject_id','skill_id');
+        return $this->belongsToMany(Specialization::class,'subject_requires_specialization','subject_id','specialization_id');
     }
 
     public function schedules()
