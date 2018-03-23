@@ -14,7 +14,7 @@
                             <li><a class="selected" href="{{route('login')}}">LOGIN</a></li>
                             <li><a>REGISTER</a></li>
                         </ul>
-                        <div id="cd-signup" style="border:3px solid #FF4F57;" class="is-selected">
+                        <div id="cd-signup" style="border:3px solid #6DBAAF;" class="is-selected">
                             <div class="page-login-form register">
                                 <form class="login-form" method="POST" action="{{ route('register') }}">
                                     {{ csrf_field() }}
