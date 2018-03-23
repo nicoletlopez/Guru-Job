@@ -17,8 +17,8 @@
                             <ul class="lest item">
                                 <li><a class="@yield('manage-jobs-active')" href="{{route('manage-jobs')}}">Manage
                                         Jobs</a></li>
-                                <li><a class="@yield('manage-applications-active')"
-                                       href="{{route('applications.index')}}">Manage Applications</a></li>
+                                <!--<li><a class="@yield('manage-applications-active')"
+                                       href="{{route('applications.index')}}">Manage Applications</a></li>-->
 
                             </ul>
                             <h4>Subject</h4>
