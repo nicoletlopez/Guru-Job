@@ -26,7 +26,7 @@ class PagesController extends Controller
 
         //Log::info('With cache: ' . $end . ' ms.');
         $context = array(
-            'jobs' => $jobs,
+            'jobs' => Job::orderBy('created_at', 'desc')->paginate(4),
             //'jobs' => Job::orderBy('created_at','desc')->paginate(4),
         );
         return view('pages.home')->with($context);
