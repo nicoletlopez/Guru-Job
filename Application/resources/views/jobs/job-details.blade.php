@@ -16,13 +16,14 @@
                         <h2 class="medium-title">Job Information</h2>
                         <div class="box">
                             <div class="text-left">
-                                <h3>{{$job->title}}
+                                <h3>{{$job->title}}</h3>
+                                <p>
                                     @if($job->type == 'FT')
                                         <span class="full-time">Full-Time</span>
                                     @else
                                         <span class="part-time">Part-Time</span>
                                     @endif
-                                </h3>
+                                </p>
                                 <div class="meta">
                                     <span><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}
                                         , {{$job->hr->user->profile->city}}</span>

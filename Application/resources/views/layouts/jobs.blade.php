@@ -16,14 +16,15 @@
                                                                   src="{{$job->hr->user->profile->picture}}" alt=""></a>
                             </div>
                             <div class="job-list-content">
-                                <h4><a href="/jobs/{{$job->id}}">{{$job->title}}</a>
-                                    @if($job->type == 'FT')
-                                        <span class="full-time">Full-Time</span>
-                                    @else
-                                        <span class="part-time">Part-Time</span>
-                                    @endif
-                                </h4>
-                                Posted by <span style="font-weight:bold;"
+                                <h4><a href="/jobs/{{$job->id}}">{{$job->title}}</a></h4>
+                                <p>
+                                @if($job->type == 'FT')
+                                    <span class="full-time">Full-Time</span>
+                                @else
+                                    <span class="part-time">Part-Time</span>
+                                @endif
+                                </p>
+                                Posted by <span style="font-weight:bold;color:#FC4A1A"
                                                 class="text-primary">{{$job->hr->user->name}}</span>
                                 <p>{!! str_limit($job->desc,500,'...') !!}</p>
                                 <div class="job-tag">
@@ -36,9 +37,9 @@
                                             <span><i class="ti-world"></i>{{$job->jobSchedules()}}</span>
                                         </div>
                                     </div>
-                                    <div class="pull-right">
+
                                         <a href="/jobs/{{$job->id}}" class="btn btn-common btn-rm">More Detail</a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
