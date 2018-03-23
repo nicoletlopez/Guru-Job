@@ -23,7 +23,7 @@ class Hr extends Model
 
     public function jobs()
     {
-        return $this->hasMany(Job::class, 'user_id', 'user_id');
+        return $this->hasMany(Job::class, 'user_id', 'user_id')->orderBy('created_at','desc');
     }
 
     public function documentSpaces()
