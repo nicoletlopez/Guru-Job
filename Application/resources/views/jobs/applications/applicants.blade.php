@@ -2,7 +2,7 @@
 @section('title')- Manage Applications @endsection
 @section('current') Manage Applications @endsection
 @section('current-header') Manage Applications @endsection
-@section('manage-applications-active') active @endsection
+@section('manage-jobs-active') active @endsection
 
 @section('dashboard-content')
 
