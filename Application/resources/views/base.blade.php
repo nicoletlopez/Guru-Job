@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('vendor/dropzone/dist/min/dropzone.min.css')}}" type="text/css">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('css/colors/red.css')}}" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/colors/funpro.css')}}" media="screen"/>
 
     <link rel="stylesheet" href="{{asset('self/css/custom.css')}}" type="text/css">
 </head>
