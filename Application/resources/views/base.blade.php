@@ -63,7 +63,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>All Rights reserved &copy; 2017 - Designed & Developed by <a rel="nofollow"
+                    <p>All Rights reserved &copy; 2017 - Template Designed & Developed by <a rel="nofollow"
                                                                                     href="http://graygrids.com">GrayGrids</a>
                     </p>
                 </div>
