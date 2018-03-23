@@ -182,13 +182,15 @@ class DocumentSpacesController extends Controller
         $userName = $documentSpace->faculty->user->name;
         $name = str_replace(' ', '_', strtolower($userName));
 
-
+        /*
         foreach ($documents as $document)
         {
             Storage::delete('/public/' . $name . '/documents/' . $documentSpaceName . '/' . $document->name);
             $document->delete();
         }
+        */
         Storage::deleteDirectory('/public/' . $name . '/documents/' . $documentSpaceName);
+        $documentSpace->documents()->delete();
         $documentSpace->delete();
         return redirect()->back()->with('warning', 'Folder ' . $documentSpaceName . ' deleted');
     }
