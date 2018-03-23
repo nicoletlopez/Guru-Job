@@ -17,9 +17,7 @@
     </div>
 
     <div id="objective">
-        <p>
-            {{auth()->user()->profile->description}}
-        </p>
+            {!! auth()->user()->profile->description !!}
     </div>
 
     <div class="clear"></div>

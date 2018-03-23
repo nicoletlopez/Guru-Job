@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="sectionContent">
-                    <p>{{auth()->user()->profile->description}}</p>
+                    {!! auth()->user()->profile->description !!}
                 </div>
             </article>
             <div class="clear"></div>
