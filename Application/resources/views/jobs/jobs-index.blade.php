@@ -1,7 +1,7 @@
 <div class="job-alerts-item candidates">
     <h3 class="alerts-title">
         Manage Jobs &nbsp<!--<a class="btn btn-success" href="{{route('jobs.create')}}">Post a Job</a>-->
-        <a href="{{route('jobs.create')}}" data-toggle="tooltip" title="Create Resume"
+        <a href="{{route('jobs.create')}}" data-toggle="tooltip" title="Post New Job"
            style="vertical-align: center">
             <i style="font-size:30px; margin: 0;" class="fa fa-plus-square-o"></i>
         </a>
