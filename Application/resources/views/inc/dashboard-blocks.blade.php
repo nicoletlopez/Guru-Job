@@ -24,7 +24,6 @@
                     <h3>Manage Jobs</h3>
                 </a>
             </div>
-        <!--
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <a href="{{route('applications.index')}}">
                     <div class="icon">
@@ -33,7 +32,6 @@
                     <h3>Manage Applications</h3>
                 </a>
             </div>
-            -->
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <a href="{{route('subjects.index')}}">
                     <div class="icon">
