@@ -7,8 +7,13 @@
 @section('dashboard-content')
 
     <div class="job-alerts-item candidates">
-        <h3 class="alerts-title">Manage
-            Subjects <!--<a class="btn btn-success" href="{{route('subjects.create')}}">Add a Subject</a>--></h3>
+        <h3 class="alerts-title">
+            Manage Subjects &nbsp <!--<a class="btn btn-success" href="{{route('subjects.create')}}">Add a Subject</a>-->
+            <a href="#" data-toggle="tooltip" title="Create Subject"
+               style="vertical-align: center">
+                <i style="font-size:30px;" class="fa fa-plus-square-o"></i>
+            </a>
+        </h3>
         <table class="table">
             @if(count($subjects)>0)
                 <thead class="">
