@@ -29,13 +29,13 @@
                     @guest
                         <li class="right"><a href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
                     @else
-                        @if (Auth::user()->type == 'HR')
-                        <li>
-                            <a href="{{route('jobs.create')}}" class="btn btn-common">
-                                <i class="ti-pencil-alt"></i> Post A Job
-                            </a>
-                        </li>
-                        @endif
+                        {{--@if (Auth::user()->type == 'HR')--}}
+                        {{--<li>--}}
+                            {{--<a href="{{route('jobs.create')}}" class="btn btn-common">--}}
+                                {{--<i class="ti-pencil-alt"></i> Post A Job--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                        {{--@endif--}}
                         <li class="">
                             <a href="{{route('dashboard')}}" class="">
                                 {{ Auth::user()->name }} <span class="caret"></span>
