@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Mail\AcceptJobNotification;
 use Illuminate\Http\Request;
 use App\Job;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 
@@ -17,16 +20,27 @@ class ApplicationsController extends Controller
      */
     public function index()
     {
-        //
-        //$jobs = auth()->user()->hr->jobs;
+        $id = auth()->user()->id;
+        $jobs = Job::where('user_id',$id)->get();
+        $applicants = new Collection();
 
-//        $applications = auth()->user()->hr->jobs;
-//
-//        $context =
-//            [
-//                'jobs'=>$applications,
-//            ];
-//        return view('hr.manage-applications')->with($context);
+        foreach ($jobs as $job){
+            $concat = $job->applicants->map(function ($applicant) use ($job){
+                $applicant['job_title'] = $job->title;
+                return $applicant;
+            });
+
+            $applicants = $applicants->concat($concat);
+        }
+
+        $applicants = $applicants->sortByDesc('pivot.created_at');
+
+        $context =
+            [
+                'applicants'=>$this->paginate($applicants)->withPath('applications')
+            ];
+
+        return view('hr.manage-applications')->with($context);
     }
 
     /**
@@ -111,6 +125,12 @@ class ApplicationsController extends Controller
 
     public function applicants($id){
         $job = Job::find($id);
+        $hr = auth()->user()->id;
+
+        if($job->user_id != $hr){
+            return redirect()->intended(route('manage-jobs'));
+        }
+
         $applicants = $job->applicants;
 
         $context =
@@ -149,5 +169,13 @@ class ApplicationsController extends Controller
         ];
 
         return view('jobs.applications.applicants')->with($context);
+    }
+
+    //function for paginating Collections that didn't use Laravel ORM
+    private function paginate($items, $perPage = 5, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 }
