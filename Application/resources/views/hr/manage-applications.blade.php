@@ -11,39 +11,52 @@
             <div class="col-md-5">
                 <h3 class="alerts-title">Manage applications</h3>
             </div>
-            <div class="form-group col-md-offset-1 col-md-6">
-                {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
-                {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'Search Applicants',
-                                                'style' => 'height:20px'])}}
-            </div>
         </div>
-        <table class="table">
-            <thead class="">
-            <tr>
-                <th>Job Title</th>
-                <th>Applicant</th>
-                <th>Name</th>
-                <th>Date Applied</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($jobs as $job)
-                @foreach($job->applicants as $applicant)
-                    <tr>
-                        <td><a href="#"><h3>{{$job->title}}</h3></a></td>
-                        <td>
-                            <div class="can-img"><a href="#"><img class="img-rounded"
-                                                                  src="{{$applicant->user->profile->picture}}"
-                                                                  alt=""></a>
-                            </div>
-                        </td>
-                        <td>{{$applicant->user->name}}</td>
-                        <td>{{$applicant->pivot->created_at}}</td>
-                    </tr>
-                @endforeach
-            @endforeach
-            </tbody>
-        </table>
+        <br/>
+        @foreach($applicants as $key=>$applicant)
+            <div class="box col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <b style="font-size: 20px">#{{++$key}}</b>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="{{$applicant->user->profile->picture}}" height="80" style="border-radius: 8px;"/>
+                    </div>
+                    <div class="col-md-5">
+                        <b style="font-size: 20px">{{$applicant->user->name}}</b><br/>
+                        Born on <b style="font-size: 15px">{{date('F j, Y', strtotime($applicant->user->profile->dob))}}</b><br/>
+                        Lives in <b style="font-size:14px">{{$applicant->user->profile->street_address}},</b><br/>
+                        <b style="font-size: 14px">{{$applicant->user->profile->city}} City</b><br/>
+                        Contact No. <b style="font-size: 14px">{{$applicant->user->profile->contact_number}}</b>
+                    </div>
+                    <div class="col-md-4">
+                        <b style="font-size: 14px">Date Applied:</b><br/>
+                        <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($applicant->pivot->created_at))}}</b><br/>
+                        {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
+                        <br/>
+                        <a href="#" class="btn btn-common btn-block">Accept Application</a>
+                    </div>
+                </div>
+                <hr/>
+                <p style="font-size:16px;">
+                    Applied for Job:
+                    <a href="/jobs/{{$applicant->pivot->job_id}}/applicants">
+                        <b>{{$applicant->job_title}}</b>
+                    </a>
+                </p>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        @endforeach
+        {{ $applicants->links() }}
     </div>
 
 @endsection
