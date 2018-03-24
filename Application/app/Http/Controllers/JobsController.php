@@ -40,9 +40,10 @@ class JobsController extends Controller
      */
     public function create()
     {
-        $hr = auth()->user()->hr;
+        $id = auth()->user()->id;
+        $subjects = Subject::where('user_id',$id)->whereNull('job_id')->get();
         $context = array(
-            'subjects' => $hr->subjects,
+            'subjects' => $subjects,
         );
 
 
