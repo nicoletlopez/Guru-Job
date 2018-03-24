@@ -9,9 +9,9 @@
     <div class="job-alerts-item candidates">
         <div class="row">
             <div class="col-md-5">
-                <h3 class="alerts-title">Manage applications</h3>
+                <h3 class="alerts-title">Applications for Job</h3>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-offset-1 col-md-6">
                 {!! Form::open(['action'=>["ApplicationsController@search",$id],'method'=>'GET']) !!}
                 {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
                 {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'Search Applicants',
@@ -19,14 +19,14 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        <h3 class="medium-title col-md-11">{{$job}}</h3>
+        <h3 class="medium-title col-md-12">{{$job}}</h3>
         <br/>
         <br/>
         <br/>
         <br/>
         <br/>
         @foreach($applicants as $key=>$applicant)
-            <div class="box col-md-11">
+            <div class="box col-md-12">
                 <div class="col-md-1">
                     <b style="font-size: 20px">#{{++$key}}</b>
                 </div>
