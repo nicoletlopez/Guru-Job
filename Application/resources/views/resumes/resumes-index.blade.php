@@ -1,7 +1,12 @@
 <link rel="stylesheet" href="{{asset('self/css/iframe-thumb.css')}}" type="text/css"/>
 <div class="job-alerts-item candidates">
-    <h3 class="alerts-title">My Resumes <a class="btn btn-success" href="{{route('resumes.create')}}">Create a
-            Resume</a></h3>
+    <h3 class="alerts-title">
+        My Resumes&nbsp
+        <a href="{{route('resumes.create')}}" data-toggle="tooltip" title="Create Resume"
+           style="vertical-align: center">
+            <i style="font-size:30px; margin: 0;" class="fa fa-plus-square-o"></i>
+        </a>
+    </h3>
     <hr/>
     @if(count($resumes)>0)
         <div class="row">

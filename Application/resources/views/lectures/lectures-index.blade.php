@@ -1,6 +1,11 @@
 <div class="job-alerts-item candidates">
-    <h3 class="alerts-title">Manage
-        Lectures <a href="{{route('lectures.create')}}" class="btn btn-success">Add a Lecture</a></h3>
+    <h3 class="alerts-title">
+        Manage Lectures&nbsp
+        <a href="{{route('lectures.create')}}" data-toggle="tooltip" title="Add Lecture"
+        style="vertical-align: center">
+            <i style="font-size:30px; margin: 0;" class="fa fa-plus-square-o"></i>
+        </a>
+    </h3>
     @if(count($lectures)>0)
         <table class="table" style="width: 100%">
             <colgroup>
