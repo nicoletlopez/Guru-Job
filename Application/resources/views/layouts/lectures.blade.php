@@ -6,14 +6,12 @@
     <hr/>
     @include('inc.messages')
     <section class="section job-detail well">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-9 col-sm-8">
-                    <div class="content-area">
-                        @include('inc.lecture-tabs')
-                        <div class="box col-md-11">
-                            @yield('active-tab-content')
-                        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-area">
+                    @include('inc.lecture-tabs')
+                    <div class="box col-md-12">
+                        @yield('active-tab-content')
                     </div>
                 </div>
             </div>
