@@ -9,6 +9,8 @@
     <div class="modal-dialog modal-lg">
         @include('inc.messages')
         <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+        <br/>
+        <br/>
         <div class="modal-content">
 
             <div class="modal-header">
@@ -23,7 +25,8 @@
             <div class="modal-body">
 
                 <div class="form-group">
-                    {{Form::label('title','Job Title',['class'=>'control-label'])}}<span class="required">*</span>
+                    {{Form::label('title','Job Title',['class'=>'control-label'])}}
+                    <span class="required" style="color: red">*</span>
                     {{Form::text('title','',['class'=>'form-control','required'])}}
                 </div>
                 <!--
@@ -33,7 +36,8 @@
                 </div>
                 -->
                 <div class="form-group">
-                    {{Form::label('type','Job Type',['class'=>'control-label'])}}<span class="required">*</span>
+                    {{Form::label('type','Job Type',['class'=>'control-label'])}}
+                    <span class="required" style="color: red">*</span>
                     <div class="radio">
                         <label style="color:black;">{{Form::radio('type','FT',['type'=>"radio"])}}Full-Time</label>
                     </div>
@@ -42,7 +46,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('subject','Subject/s',['class'=>'control-label'])}}<span class="required">*</span>
+                    {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
+                    <span class="required" style="color: red">*</span>
                     @if(count($subjects)>0)
                         @foreach($subjects as $subject)
                             <div class="checkbox">
@@ -50,29 +55,32 @@
                             </div>
                         @endforeach
                     @else
-                        <br/>
-                        <br/>
-                        <h6>There are no Free Subjects</h6>
-                        <br/>
-                        <a href="#" class="btn btn-success">Create Subject</a>
-                        <br/>
+                        <p>
+                            <b style="font-size: 16px">
+                                Please Create a Subject First
+                                <a href="#" data-toggle="tooltip" title="Create Subject"
+                                   style="vertical-align: center">
+                                    <i style="font-size:30px; margin: 0;" class="fa fa-plus-square-o"></i>
+                                </a>
+                            </b>
+                        </p>
                     @endif
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        {{Form::label('min-salary','Minimum Salary (PHP)',['class'=>'control-label'])}}<span
-                                class="required">*</span>
+                        {{Form::label('min-salary','Minimum Salary (PHP)',['class'=>'control-label'])}}
+                        <span class="required" style="color: red">*</span>
                         {{Form::number('min-salary','',['min'=>'1.00','step'=>'.01','class'=>'form-control','required'])}}
                     </div>
                     <div class="form-group col-md-6">
-                        {{Form::label('max-salary','Maximum Salary (PHP)',['class'=>'control-label'])}}<span
-                                class="required">*</span>
+                        {{Form::label('max-salary','Maximum Salary (PHP)',['class'=>'control-label'])}}
+                        <span class="required" style="color: red">*</span>
                         {{Form::number('max-salary','',['min'=>'1.00','step'=>'.01','class'=>'form-control','required'])}}
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('description','Description',['class'=>'control-label'])}}<span
-                            class="required">*</span>
+                    {{Form::label('description','Description',['class'=>'control-label'])}}
+                    <span class="required" style="color: red">*</span>
                     {{Form::textarea('description','',['id'=>'editor0','class'=>'form-control','placeholder'=>'Job Description','required'])}}
                 </div>
                 <!--
