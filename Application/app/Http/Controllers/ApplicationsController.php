@@ -20,27 +20,33 @@ class ApplicationsController extends Controller
      */
     public function index()
     {
-        $id = auth()->user()->id;
-        $jobs = Job::where('user_id',$id)->get();
-        $applicants = new Collection();
+        if (!auth()->user())
+        {
+            return redirect()->route('login');
+        } elseif (auth()->user()->hr)
+        {
+            $id = auth()->user()->id;
+            $jobs = Job::where('user_id',$id)->get();
+            $applicants = new Collection();
 
-        foreach ($jobs as $job){
-            $concat = $job->applicants->map(function ($applicant) use ($job){
-                $applicant['job_title'] = $job->title;
-                return $applicant;
-            });
+            foreach ($jobs as $job){
+                $concat = $job->applicants->map(function ($applicant) use ($job){
+                    $applicant['job_title'] = $job->title;
+                    return $applicant;
+                });
 
-            $applicants = $applicants->concat($concat);
+                $applicants = $applicants->concat($concat);
+            }
+
+            $applicants = $applicants->sortByDesc('pivot.created_at');
+
+            $context =
+                [
+                    'applicants'=>$this->paginate($applicants)->withPath('applications')
+                ];
+
+            return view('applications.application-pending')->with($context);
         }
-
-        $applicants = $applicants->sortByDesc('pivot.created_at');
-
-        $context =
-            [
-                'applicants'=>$this->paginate($applicants)->withPath('applications')
-            ];
-
-        return view('hr.manage-applications')->with($context);
     }
 
     /**
