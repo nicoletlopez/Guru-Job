@@ -35,6 +35,11 @@ class Job extends Model
             ->wherePivot('accepted',false)->withTimestamps();
     }
 
+    public function acceptedApplicants(){
+        return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'user_id')
+            ->wherePivot('accepted',true)->withTimestamps();
+    }
+
     public function schedules()
     {
         return $this->hasManyThrough('App\Schedule', 'App\Subject');
