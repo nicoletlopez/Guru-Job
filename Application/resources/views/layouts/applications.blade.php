@@ -2,8 +2,6 @@
 @section('manage-applications-active') active @endsection
 
 @section('dashboard-content')
-    <a href="{{route('applications.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
-    <hr/>
     @include('inc.messages')
     <section class="section job-detail well">
         <div class="row">
