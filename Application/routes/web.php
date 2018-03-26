@@ -69,7 +69,8 @@ Route::get('/search', 'JobsController@search')->name('search');
 
 //applications
 Route::resource('applications','ApplicationsController');
-Route::get('applications/{job}/{user}/edit','ApplicationsController@updateApplication');
+Route::get('/applications/{id}/accepted','ApplicationsController@acceptedApplications');
+Route::get('/applications/{job}/{user}/edit','ApplicationsController@updateApplication');
 Route::get('/jobs/{job}/applicants','ApplicationsController@applicants')->name('applicants.job');
 Route::get('/jobs/{job}/applicants/search', 'ApplicationsController@search')->name('applicants.search');
 
