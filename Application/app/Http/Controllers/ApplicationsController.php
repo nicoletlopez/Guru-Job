@@ -177,6 +177,21 @@ class ApplicationsController extends Controller
         return view('jobs.applications.applicants')->with($context);
     }
 
+    public function updateApplication($jobId,$userId){
+        if (!auth()->user())
+        {
+            return redirect()->route('login');
+        } elseif (auth()->user()->hr)
+        {
+            $job = Job::find($jobId);
+            $application = $job->applicants->where('user_id',$userId)->first();
+            $application->pivot->accepted = true;
+            $application->pivot->save();
+
+            return back();
+        }
+    }
+
     //function for paginating Collections that didn't use Laravel ORM
     private function paginate($items, $perPage = 5, $page = null, $options = [])
     {
