@@ -5,8 +5,8 @@
         </a>
     </li>
     <li class="@yield('tab-accepted-active') applicationTabs">
-        <a href="#" style="text-align: center">
-            Accepted Applicants
+        <a href="/applications/{{$hr_id}}/accepted" style="text-align: center">
+            Accepted Applications
         </a>
     </li>
 </ul>
