@@ -45,7 +45,11 @@
                     <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($applicant->pivot->created_at))}}</b><br/>
 {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
                     <br/>
-                    <a href="#" class="btn btn-common btn-block">Accept Application</a>
+
+                    <a href="applications/{{$applicant->pivot->job_id}}/{{$applicant->pivot->user_id}}/edit"
+                       class="btn btn-common btn-block">
+                        Accept Application
+                    </a>
                 </div>
             </div>
             <br/>
