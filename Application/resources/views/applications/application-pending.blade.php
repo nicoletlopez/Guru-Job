@@ -1,17 +1,10 @@
-@extends('hr.dashboard-menu')
-@section('title')- Manage Applications @endsection
-@section('current') Manage Applications @endsection
+@extends('layouts.applications')
+@section('title')- Pending Applications @endsection
+@section('current') Pending Applications @endsection
 @section('current-header') Manage Applications @endsection
-@section('manage-applications-active') active @endsection
+@section('tab-pending-active') active @endsection
 
-@section('dashboard-content')
-
-    <div class="job-alerts-item candidates">
-        <div class="row">
-            <div class="col-md-5">
-                <h3 class="alerts-title">Manage applications</h3>
-            </div>
-        </div>
+@section('active-tab-content')
         <br/>
         @foreach($applicants as $key=>$applicant)
             <div class="box col-md-12">
@@ -57,6 +50,4 @@
             <br/>
         @endforeach
         {{ $applicants->links() }}
-    </div>
-
 @endsection
