@@ -17,18 +17,14 @@
     <div class="form-group">
         {{Form::label('template','Pick a Resume Template',['class'=>'control-label'])}}<span class="required">*</span>
         <div class="row">
-        <div class="option col-md-3">
-            {{Form::radio('templates[]','1',false,['class'=>"input-hidden",'id'=>'first'])}}
-            <label for="first">
-                <img width="190" height="250" src="{{asset('img/resume/resume1.png')}}" />
-            </label>
-        </div>
-        <div class="option col-md-3">
-            {{Form::radio('templates[]','2',false,['class'=>"input-hidden",'id'=>'second'])}}
-            <label for="second">
-                <img width="190" height="250" src="{{asset('img/resume/resume2.png')}}"/>
-            </label>
-        </div>
+            @for($i=1;$i<2+1;$i++)
+                <div class="option col-md-3">
+                    {{Form::radio('templates[]',$i,false,['class'=>"input-hidden",'id'=>"temp".$i])}}
+                    <label for="temp{{$i}}">
+                        <img width="190" height="250" src="{{asset('img/resume/resume'.$i.'.png')}}"/>
+                    </label>
+                </div>
+            @endfor
         </div>
     </div>
 
