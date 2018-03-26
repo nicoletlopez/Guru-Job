@@ -30,7 +30,7 @@ class ApplicationsController extends Controller
             $applicants = new Collection();
 
             foreach ($jobs as $job){
-                $concat = $job->applicants->map(function ($applicant) use ($job){
+                $concat = $job->pendingApplicants->map(function ($applicant) use ($job){
                     $applicant['job_title'] = $job->title;
                     return $applicant;
                 });
