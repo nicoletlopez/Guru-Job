@@ -3455,12 +3455,23 @@ ul.nav-tabs li a{
 }
 
 .lectureTabs {
-    width: 25%;
-    padding: 0 !important;
-    margin: 0 !important;
-    border-bottom-color: transparent;
+  width: 25%;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-bottom-color: transparent;
 }
 .lectureTabs > a{
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.applicationTabs {
+  width: 50%;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-bottom-color: transparent;
+}
+.applicationTabs > a{
+  font-size: 20px;
+  font-weight: bold;
 }
