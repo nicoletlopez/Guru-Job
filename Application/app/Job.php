@@ -27,7 +27,7 @@ class Job extends Model
     public function applicants()
     {
         return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'user_id')
-            ->withTimestamps();
+            ->withPivot('accepted')->withTimestamps();
     }
 
     public function schedules()
