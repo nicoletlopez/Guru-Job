@@ -13,10 +13,8 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        //
+        //list all of an HR's employees
         $employees = auth()->user()->hr->employees;
-
-
         return $employees;
     }
 
@@ -27,7 +25,7 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        //
+        //ideally the screen where you can confirm an applicant as the official employee
     }
 
     /**
@@ -39,6 +37,7 @@ class EmployeesController extends Controller
     public function store(Request $request)
     {
         //
+        $faculty = $request->input('faculty_id');
     }
 
     /**
