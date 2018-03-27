@@ -46,7 +46,7 @@
 {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
                     <br/>
 
-                    <a href="applications/{{$applicant->pivot->job_id}}/{{$applicant->pivot->user_id}}/edit"
+                    <a href="/applications/{{$applicant->pivot->job_id}}/{{$applicant->pivot->user_id}}/edit"
                        class="btn btn-common btn-block">
                         Accept Application
                     </a>
