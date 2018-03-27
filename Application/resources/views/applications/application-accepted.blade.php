@@ -7,7 +7,7 @@
 @section('active-tab-content')
     <br/>
     @if(count($applicants) > 0)
-        @foreach($applicants as $key=>$applicant)
+        @foreach($applicants as $applicant)
             <div class="box col-md-12">
                 <div class="row">
                     <div class="col-md-1">

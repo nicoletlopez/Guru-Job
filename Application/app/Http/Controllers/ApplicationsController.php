@@ -22,8 +22,8 @@ class ApplicationsController extends Controller
      */
     public function index()
     {
-        $id = auth()->user()->id;
-        $jobs = Job::where('user_id', $id)->get();
+        $hr = auth()->user()->id;
+        $jobs = Job::where('user_id', $hr)->get();
         $applicants = new Collection();
 
         foreach ($jobs as $job) {
@@ -39,17 +39,18 @@ class ApplicationsController extends Controller
 
         $context =
             [
-                'hr_id' => $id,
+                'key' => 0,
+                'hr_id' => $hr,
                 'applicants' => $this->paginate($applicants)->withPath('applications')
             ];
-
+//        return var_dump($applicants);
         return view('applications.application-pending')->with($context);
     }
 
     public function acceptedApplications()
     {
-        $id = auth()->user()->id;
-        $jobs = Job::where('user_id', $id)->get();
+        $hr = auth()->user()->id;
+        $jobs = Job::where('user_id', $hr)->get();
         $applicants = new Collection();
 
         foreach ($jobs as $job) {
@@ -61,11 +62,12 @@ class ApplicationsController extends Controller
             $applicants = $applicants->concat($concat);
         }
 
-        $applicants = $applicants->sortByDesc('pivot.created_at');
+        $applicants = $applicants->sortByDesc('pivot.updated_at');
 
         $context =
             [
-                'hr_id' => $id,
+                'key' => 0,
+                'hr_id' => $hr,
                 'applicants' => $this->paginate($applicants)->withPath('applications')
             ];
 
@@ -213,7 +215,7 @@ class ApplicationsController extends Controller
         Mail::to($job->applicants->where('user_id',$userId)->first()->user->email)
             ->queue(new AcceptApplicationNotification($job, $user, $school));
 
-        return back();
+        return $this->index();
     }
 
     //function for paginating Collections that didn't use Laravel ORM
