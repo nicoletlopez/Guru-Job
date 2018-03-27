@@ -25,8 +25,8 @@
                                 <h4>Schedule</h4>
 
                                 @foreach($schedules as $schedule)
-                                    <p><b>{{$schedule->day}}</b> {{date("h:i:s A",strtotime($schedule->start))}}
-                                        - {{date("h:i:s A",strtotime($schedule->end))}}</p>
+                                    <p><b>{{$schedule->day}}</b> {{date("h:i A",strtotime($schedule->start))}}
+                                        - {{date("h:i A",strtotime($schedule->end))}}</p>
                                 @endforeach
 
                             </div>

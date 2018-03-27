@@ -9,7 +9,7 @@
     <div class="job-alerts-item candidates">
         <h3 class="alerts-title">
             Manage Subjects &nbsp <!--<a class="btn btn-success" href="{{route('subjects.create')}}">Add a Subject</a>-->
-            <a href="#" data-toggle="tooltip" title="Create Subject"
+            <a href="{{route('subjects.create')}}" data-toggle="tooltip" title="Create Subject"
                style="vertical-align: center">
                 <i style="font-size:30px;" class="fa fa-plus-square-o"></i>
             </a>

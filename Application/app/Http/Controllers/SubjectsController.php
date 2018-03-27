@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSubject;
-use App\Skill;
+use App\Specialization;
 use App\Subject;
 use App\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class SubjectsController extends Controller
 {
@@ -40,8 +41,8 @@ class SubjectsController extends Controller
     public function create()
     {
         //
-        $skills = Skill::all();
-        $context = ['skills'=>$skills];
+        $specializations = Specialization::all();
+        $context = ['specializations'=>$specializations];
         return view('subjects.subject-create')->with($context);
     }
 
@@ -57,31 +58,50 @@ class SubjectsController extends Controller
         $user_id = auth()->user()->id;
         $name = $request ->input('name');
         $desc = $request->input('description');
+
+        $specializations = $request->input('specializations');
+
+        $days = $request->input('days');
         $start_time = $request->input('time-from');
         $end_time = $request->input('time-to');
-        $skills = $request->input('skills');
-        $days = $request->input('days');
 
+//        $sched = [];
+//        foreach($days as $key=>$day)
+//        {
+//            array_push($sched,['day'=>$day,'start'=>$start_time[$key],'end'=>$end_time[$key]]);
+//        }
+//        return var_dump($sched);
+
+        //Insert subject row
         $subject = new Subject();
-        $subject->user_id = auth()->user()->id;
+        $subject->user_id = $user_id;
         $subject->name = $name;
         $subject->desc = $desc;
         $subject->save();
 
-
-        $schedule=new Schedule();
-        $schedule->subject_id=$subject->id;
-        $schedule->start = $start_time;
-        $schedule->end = $end_time;
-        $subject->day = $days;
-
-
-
-        foreach($skills as $skill)
+        foreach($days as $key=>$day)
         {
-            $subject->attach($skill->id);
+            $schedule = new Schedule();
+            $schedule->subject_id = $subject->id;
+            $schedule->day = $day;
+            $schedule->start = $start_time[$key];
+            $schedule->end = $end_time[$key];
+            $schedule->save();
         }
 
+//        foreach($specializations as $specialization)
+//        {
+//            $specialization = Specialization::where('name',$specialization)->first();
+//            $subject->attach($specialization->id);
+//        }
+        $subject = Subject::find($subject->id);
+        $schedules=$subject->schedules;
+        $context=array(
+            'subject'=>$subject,
+            'schedules'=>$schedules,
+        );
+
+        return view('subjects.subject-details')->with($context);
     }
 
     /**
@@ -109,7 +129,7 @@ class SubjectsController extends Controller
      */
     public function edit($id)
     {
-        $skills = Skill::all();
+        $specializations = Specialization::all();
         $subject=Subject::find($id);
         $daysSelected=$subject->schedule()->day;
         $daysData = array();
@@ -117,7 +137,7 @@ class SubjectsController extends Controller
             $daysData[] = $daySelected->id;
         }
         $context = [
-            'skills'=>$skills,
+            'specializations'=>$specializations,
             'subject'=>$subject,
             'daysData'=>$daysData,
         ];
@@ -144,7 +164,7 @@ class SubjectsController extends Controller
      */
     public function destroy($id)
     {
-        $subject=Subject::find($id);
+        $subject = Subject::find($id);
         $subject->delete();
         return back();
     }
