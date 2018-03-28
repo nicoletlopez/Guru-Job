@@ -24,9 +24,11 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             //needed for subscriptions
-            $table->string('stripe_id')->nullabe();
+            $table->string('braintree_id')->nullable();
+            $table->string('paypal_email')->nullable();
             $table->string('card_brand')->nullable();
-            $table->string('card_lat_four')->nullable();
+            $table->string('card_last_four')->nullable();
+            $table->timestamp('trial_ends_at')->nullable();
 
             //misc
             $table->index('id');
