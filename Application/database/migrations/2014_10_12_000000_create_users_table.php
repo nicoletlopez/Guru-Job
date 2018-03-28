@@ -23,6 +23,11 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
+            //needed for subscriptions
+            $table->string('stripe_id')->nullabe();
+            $table->string('card_brand')->nullable();
+            $table->string('card_lat_four')->nullable();
+
             //misc
             $table->index('id');
             $table->index('type');
