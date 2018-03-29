@@ -70,6 +70,7 @@ Route::get('/search', 'JobsController@search')->name('search');
 //applications
 Route::resource('applications','ApplicationsController');
 Route::get('/applications/{id}/accepted','ApplicationsController@acceptedApplications');
+Route::get('/applications/hire/{job}/{faculty}','ApplicationsController@hire');
 Route::get('/applications/{job}/{user}/edit','ApplicationsController@updateApplication');
 Route::get('/jobs/{job}/applicants','ApplicationsController@applicants')->name('applicants.job');
 Route::get('/jobs/{job}/applicants/search', 'ApplicationsController@search')->name('applicants.search');
@@ -86,9 +87,12 @@ Route::resource('documents','DocumentsController',['except'=>['store','destroy',
 Route::resource('document-spaces','DocumentSpacesController');
 
 //resumes
-
 Route::resource('resumes','ResumesController',['except'=>['show']]);
 Route::get('/resumes/{resume}/{template}','ResumesController@show')->name('resumes.show');
+
+//employees
+Route::resource('employees','EmployeesController');
+
 //test
 
 //NOTICE

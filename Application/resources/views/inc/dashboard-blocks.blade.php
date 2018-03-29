@@ -40,6 +40,14 @@
                     <h3>Manage Subjects</h3>
                 </a>
             </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                <a href="{{route('employees.index')}}">
+                    <div class="icon">
+                        <i class="ti-id-badge"></i>
+                    </div>
+                    <h3>Manage Employees</h3>
+                </a>
+            </div>
         @else
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <a href="{{route('profile')}}">

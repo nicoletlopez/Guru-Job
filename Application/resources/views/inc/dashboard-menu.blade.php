@@ -40,6 +40,14 @@
                                     </a>
                                 </li>
                             </ul>
+                            <h4>Employee</h4>
+                            <ul class="lest item">
+                                <li>
+                                    <a class="@yield('manage-employees-active')" href="{{route('employees.index')}}">
+                                        Manage Employees
+                                    </a>
+                                </li>
+                            </ul>
                         @else
                         <!--FACULTY-->
                             <h4>Account</h4>

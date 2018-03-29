@@ -28,7 +28,7 @@
                             <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($applicant->pivot->created_at))}}</b><br/>
                             {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
                             <br/>
-                            <a href="applications/{{$applicant->pivot->job_id}}/{{$applicant->pivot->user_id}}/edit"
+                            <a href="/applications/{{$applicant->pivot->job_id}}/{{$applicant->pivot->user_id}}/edit"
                                class="btn btn-common btn-block">
                                 Accept Application
                             </a>
@@ -55,6 +55,9 @@
             @endforeach
             {{ $applicants->links() }}
         @else
-            <h2>No Applications Yet</h2>
+            <br/>
+            <h2 style="text-align: center">No Applications Yet</h2>
+            <br/>
+            <br/>
         @endif
 @endsection

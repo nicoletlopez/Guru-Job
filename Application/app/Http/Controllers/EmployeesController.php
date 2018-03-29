@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hr;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
@@ -14,8 +15,14 @@ class EmployeesController extends Controller
     public function index()
     {
         //list all of an HR's employees
-        $employees = auth()->user()->hr->employees;
-        return $employees;
+        $employees = Hr::find(auth()->user()->id)->employees()->paginate(5);
+
+        $context = [
+            'key' => 0,
+            'employees' => $employees,
+        ];
+
+        return view('employee.employee-index')->with($context);
     }
 
     /**
