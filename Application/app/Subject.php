@@ -9,7 +9,7 @@ class Subject extends Model
     //
     protected $table = 'subject';
     protected $primaryKey = 'id';
-    protected $timestamps = true;
+    public $timestamps = true;
 
     public function hr()
     {
