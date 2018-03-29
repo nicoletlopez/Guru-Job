@@ -5,7 +5,7 @@
 @section('manage-subjects-active') active @endsection
 
 @section('dashboard-content')
-    <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <a href="{{route('subjects.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <section class="section job-detail">
 
         <div class="container">
@@ -16,6 +16,16 @@
                         <div class="box col-md-11">
                             <div class="text-left">
                                 <h3>{{$subject->name}}</h3>
+                            </div>
+                            <div class="clearfix">
+                                <h4>Specializations</h4>
+
+                                <ol>
+                                    @foreach($specializations as $specialization)
+                                        <li>{{$specialization->name}}</li>
+                                    @endforeach
+                                </ol>
+
                             </div>
                             <div class="clearfix">
                                 <h4>Description</h4>
