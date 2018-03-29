@@ -9,15 +9,37 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand logo" href="{{route('index')}}"><h3 style="">Guru App</h3></a>
+                <a class="navbar-brand logo" href="
+                @guest
+                {{route('index')}}
+                @else
+                @if(auth()->user()->type == 'FACULTY')
+                {{route('dashboard')}}
+                @elseif(auth()->user()->type =='HR')
+                {{route('hr-dashboard')}}
+                @endif
+                @endguest
+                        "><h3 style="">Guru App</h3></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
 
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="@yield('active-home')" href="{{route('index')}}">
-                            Home
-                        </a>
+                        @guest
+                            <a class="@yield('active-home')" href="{{route('index')}}">
+                                Home
+                            </a>
+                        @else
+                            @if(auth()->user()->type == 'FACULTY')
+                                <a class="@yield('active-home')" href="{{route('dashboard')}}">
+                                    Home
+                                </a>
+                            @elseif(auth()->user()->type =='HR')
+                                <a class="@yield('active-home')" href="{{route('hr-dashboard')}}">
+                                    Home
+                                </a>
+                            @endif
+                        @endguest
                     </li>
                     <li>
                         <a class="@yield('active-jobs')" href="{{route('jobs.index')}}">
@@ -30,11 +52,11 @@
                         <li class="right"><a href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
                     @else
                         @if (Auth::user()->type == 'HR')
-                        <li>
-                            <a href="{{route('jobs.create')}}" class="btn btn-common">
-                                <i class="ti-pencil-alt"></i> Post A Job
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{{route('jobs.create')}}" class="btn btn-common">
+                                    <i class="ti-pencil-alt"></i> Post A Job
+                                </a>
+                            </li>
                         @endif
                         <li class="">
                             <a href="{{route('dashboard')}}" class="">
