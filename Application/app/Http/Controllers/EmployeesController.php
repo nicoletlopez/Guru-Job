@@ -15,7 +15,11 @@ class EmployeesController extends Controller
     {
         //list all of an HR's employees
         $employees = auth()->user()->hr->employees;
-        return $employees;
+        $context = [
+            'employees' => $employees,
+        ];
+
+        return view('employee.employee-index')->with($context);
     }
 
     /**
