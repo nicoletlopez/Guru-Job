@@ -11,13 +11,17 @@ class PagesController extends Controller
 {
     public function index()
     {
-
-
+        if (!auth()->guest()) {
+            if (auth()->user()->type == 'FACULTY') {
+                return redirect(route('dashboard'));
+            } elseif (auth()->user()->type == 'HR') {
+                return redirect(route('hr-dashboard'));
+            }
+        }
         $start = microtime(true);
 
-        $jobs = Cache::remember('jobs', 10, function ()
-        {
-            return Job::orderBy('created_at','desc')->paginate(4);
+        $jobs = Cache::remember('jobs', 10, function () {
+            return Job::orderBy('created_at', 'desc')->paginate(4);
         });
 
         //$jobs = Job::orderBy('created_at','desc')->paginate(4);
