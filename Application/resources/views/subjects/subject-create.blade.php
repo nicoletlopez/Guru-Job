@@ -18,17 +18,15 @@
         {{Form::text('name','',['class'=>'form-control'])}}
     </div>
     <div class="row">
-        <div class="form-group col-md-6">
-            {{Form::label('','Required Specializations (Hold CTRL key to select several)',['class'=>'control-label'])}}
-            <select multiple class="form-control" name="specializations[]">
-                <!--<option value="volvo">DEM SPECIALIZATIOONS</option>
-                <option value="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>-->
+        <div class="form-group col-md-12">
+            <div class="search-category-container">
+            {{Form::label('','Required Specializations',['class'=>'control-label'])}}
+            <select multiple style="" class="selectpicker dropdown-product" data-live-search="true" name="specializations[]">
                 @foreach($specializations as $specialization)
                     <option value="{{$specializations}}">{{$specialization->name}}</option>
                 @endforeach
             </select>
+            </div>
         </div>
     </div>
 
@@ -36,101 +34,57 @@
         {{Form::label('description','Description',['class'=>'control-label'])}}
         {{Form::textarea('description','',['id'=>'editor0','class'=>'form-control','placeholder'=>'Subject Description'])}}
     </div>
-    <div class="form-group">
+
         {{Form::label('days','Class Days',['class'=>'control-label'])}}
-        <div class="checkbox">
-            <label style="color:black;">{{Form::checkbox('days[]','MON',false,['id'=>'Mon','type'=>"checkbox",'onchange'=>"showForm()"])}}Monday</label>
-        </div>
-        <div id="MonTime" style="display:none;" class="row">
-            <div class="form-group col-md-6">
-                {{Form::label('time-from','Class Time From:',['class'=>'control-label'])}}
-                {{Form::time('time-from[]','',['class'=>'form-control'])}}
+        <div class="add-fields" data-af_base="#base-package-fields" data-af_target=".packages">
+            <div class="packages">
+
             </div>
-            <div class="form-group col-md-6">
-                {{Form::label('time-to','Class Time To:',['class'=>'control-label'])}}
-                {{Form::time('time-to[]','',['class'=>'form-control'])}}
-            </div>
+            <button type="button" class="btn add-form-field">add new row</button>
         </div>
-        <div class="checkbox">
-            <label style="color:black;">{{Form::checkbox('days[]','TUE',false,['id'=>'Tue','type'=>"checkbox",'onchange'=>"showForm()"])}}Tuesday</label>
-        </div>
-        <div id="TueTime" style="display:none;" class="row">
-            <div class="form-group col-md-6">
-                {{Form::label('time-from','Class Time From:',['class'=>'control-label'])}}
-                {{Form::time('time-from[]','',['class'=>'form-control'])}}
-            </div>
-            <div class="form-group col-md-6">
-                {{Form::label('time-to','Class Time To:',['class'=>'control-label'])}}
-                {{Form::time('time-to[]','',['class'=>'form-control'])}}
-            </div>
-        </div>
-        <div class="checkbox">
-            <label style="color:black;">{{Form::checkbox('days[]','WED',false,['id'=>'Wed','type'=>"checkbox",'onchange'=>"showForm()"])}}Wednesday</label>
-        </div>
-        <div id="WedTime" style="display:none;" class="row">
-            <div class="form-group col-md-6">
-                {{Form::label('time-from','Class Time From:',['class'=>'control-label'])}}
-                {{Form::time('time-from[]','',['class'=>'form-control'])}}
-            </div>
-            <div class="form-group col-md-6">
-                {{Form::label('time-to','Class Time To:',['class'=>'control-label'])}}
-                {{Form::time('time-to[]','',['class'=>'form-control'])}}
-            </div>
-        </div>
-        <div class="checkbox">
-            <label style="color:black;">{{Form::checkbox('days[]','THU',false,['id'=>'Thu','type'=>"checkbox",'onchange'=>"showForm()"])}}Thursday</label>
-        </div>
-        <div id="ThuTime" style="display:none;" class="row">
-            <div class="form-group col-md-6">
-                {{Form::label('time-from','Class Time From:',['class'=>'control-label'])}}
-                {{Form::time('time-from[]','',['class'=>'form-control'])}}
-            </div>
-            <div class="form-group col-md-6">
-                {{Form::label('time-to','Class Time To:',['class'=>'control-label'])}}
-                {{Form::time('time-to[]','',['class'=>'form-control'])}}
-            </div>
-        </div>
-        <div class="checkbox">
-            <label style="color:black;">{{Form::checkbox('days[]','FRI',false,['id'=>'Fri','type'=>"checkbox",'onchange'=>"showForm()"])}}Friday</label>
-        </div>
-        <div id="FriTime" style="display:none;" class="row">
-            <div class="form-group col-md-6">
-                {{Form::label('time-from','Class Time From:',['class'=>'control-label'])}}
-                {{Form::time('time-from[]','',['class'=>'form-control'])}}
-            </div>
-            <div class="form-group col-md-6">
-                {{Form::label('time-to','Class Time To:',['class'=>'control-label'])}}
-                {{Form::time('time-to[]','',['class'=>'form-control'])}}
-            </div>
-        </div>
-        <div class="checkbox">
-            <label style="color:black;">{{Form::checkbox('days[]','SAT',false,['id'=>'Sat','type'=>"checkbox",'onchange'=>"showForm()"])}}Saturday</label>
-        </div>
-        <div id="SatTime" style="display:none;" class="row">
-            <div class="form-group col-md-6">
-                {{Form::label('time-from','Class Time From:',['class'=>'control-label'])}}
-                {{Form::time('time-from[]','',['class'=>'form-control'])}}
-            </div>
-            <div class="form-group col-md-6">
-                {{Form::label('time-to','Class Time To:',['class'=>'control-label'])}}
-                {{Form::time('time-to[]','',['class'=>'form-control'])}}
-            </div>
-        </div>
-        <div class="checkbox">
-            <label style="color:black;">{{Form::checkbox('days[]','SUN',false,['id'=>'Sun','type'=>"checkbox",'onchange'=>"showForm()"])}}Sunday</label>
-        </div>
-        <div id="SunTime" style="display:none;" class="row">
-            <div class="form-group col-md-6">
-                {{Form::label('time-from','Class Time From:',['class'=>'control-label'])}}
-                {{Form::time('time-from[]','',['class'=>'form-control'])}}
-            </div>
-            <div class="form-group col-md-6">
-                {{Form::label('time-to','Class Time To:',['class'=>'control-label'])}}
-                {{Form::time('time-to[]','',['class'=>'form-control'])}}
-            </div>
-        </div>
-    </div>
+
 
     {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}
+    <div id="base-package-fields" hidden>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                        {{Form::select('region',[0 => 'Sunday'],null,['class'=>''])}}
+                </div>
+                <div class="col-md-2">
+                    <input type="time" class="form-control" name="packages[%index%][height]" placeholder="height" required>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" style="border:none;background-color:transparent;" class="remove-form-field"><i class="ti-trash"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
+    <script>
+        $('.add-fields').each(function(index, el) {
+            var warp = $(this);
+            var target = $(this).data('af_target') || '.content';
+            var index = $(target).children('div, tr').length;
+            var baseEl =$($(this).data('af_base')) || $(target).find('.form-field-base');
+            var base = baseEl.html();
+            baseEl.remove();
+            //alert(base);
+
+            warp.find(target).append(base.replace(/%index%/g, index));
+            index ++;
+
+            warp.on('click', '.add-form-field', function(e) {
+                e.preventDefault();
+                warp.find(target).append(base.replace(/%index%/g, index));
+                index++;
+            });
+
+            warp.on('click', '.remove-form-field', function(e) {
+                e.preventDefault();
+                $(this).parents($(this).data('target') || '.form-group').remove();
+            });
+        });
+    </script>
 @endsection
