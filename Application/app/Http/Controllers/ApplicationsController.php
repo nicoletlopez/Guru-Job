@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Faculty;
+use App\Hr;
 use App\Mail\AcceptApplicationNotification;
 use App\Mail\AcceptJobNotification;
 use App\User;
@@ -72,6 +74,18 @@ class ApplicationsController extends Controller
             ];
 
         return view('applications.application-accepted')->with($context);
+    }
+
+    public function hire($job_id,$faculty_id)
+    {
+        $job = Job::find($job_id);
+        $job->applicants()->detach($faculty_id);
+
+        $hr_id = auth()->user()->id;
+        $hr = Hr::find($hr_id);
+        $hr->employees()->attach($faculty_id);
+
+        return $this->acceptedApplications();
     }
 
     /**
