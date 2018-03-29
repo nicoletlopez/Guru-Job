@@ -23,7 +23,7 @@ class Subject extends Model
 
     public function specializations()
     {
-        return $this->belongsToMany(Specialization::class,'subject_requires_specialization','subject_id','specialization_id');
+        return $this->belongsToMany(Specialization::class,'subject_requires_specialization','subject_id','specialization_id')->withTimestamps();
     }
 
     public function schedules()
