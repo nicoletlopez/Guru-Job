@@ -6,6 +6,7 @@ use App\Faculty;
 use App\Hr;
 use App\Mail\AcceptApplicationNotification;
 use App\Mail\AcceptJobNotification;
+use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
 use App\Job;
@@ -25,7 +26,7 @@ class ApplicationsController extends Controller
     public function index()
     {
         $hr = auth()->user()->id;
-        $jobs = Job::where('user_id', $hr)->get();
+        $jobs = Job::where('hr_id', $hr)->get();
         $applicants = new Collection();
 
         foreach ($jobs as $job) {
@@ -52,7 +53,7 @@ class ApplicationsController extends Controller
     public function acceptedApplications()
     {
         $hr = auth()->user()->id;
-        $jobs = Job::where('user_id', $hr)->get();
+        $jobs = Job::where('hr_id', $hr)->get();
         $applicants = new Collection();
 
         foreach ($jobs as $job) {
@@ -78,14 +79,17 @@ class ApplicationsController extends Controller
 
     public function hire($job_id,$faculty_id)
     {
+        //deletes application row
         $job = Job::find($job_id);
         $job->applicants()->detach($faculty_id);
 
+        //updates subject faculty_id field
         $hr_id = auth()->user()->id;
-        $hr = Hr::find($hr_id);
-        $hr->employees()->attach($faculty_id);
+        $subject = Subject::whereJob($job_id)->first();
+        $subject->faculty_id = $faculty_id;
+        $subject->save();
 
-        return $this->acceptedApplications();
+        return redirect('/applications/'.$hr_id.'/accepted');
     }
 
     /**
@@ -172,7 +176,7 @@ class ApplicationsController extends Controller
         $job = Job::find($id);
         $hr = auth()->user()->id;
 
-        if ($job->user_id != $hr) {
+        if ($job->hr_id != $hr) {
             return redirect()->intended(route('manage-jobs'));
         }
 
@@ -217,16 +221,16 @@ class ApplicationsController extends Controller
         return view('jobs.applications.applicants')->with($context);
     }
 
-    public function updateApplication($jobId, $userId)
+    public function updateApplication($job_id, $faculty_id)
     {
-        $job = Job::find($jobId);
-        $user = User::find($userId);
+        $job = Job::find($job_id);
+        $user = User::find($faculty_id);
         $school = User::find($hr = auth()->user()->id);
-        $application = $job->applicants->where('user_id', $userId)->first();
+        $application = $job->applicants->where('user_id', $faculty_id)->first();
         $application->pivot->accepted = true;
         $application->pivot->save();
 
-        Mail::to($job->applicants->where('user_id',$userId)->first()->user->email)
+        Mail::to($job->applicants->where('user_id',$faculty_id)->first()->user->email)
             ->queue(new AcceptApplicationNotification($job, $user, $school));
 
         return $this->index();
