@@ -15,22 +15,20 @@ class CreateSubjectTable extends Migration
     {
         Schema::create('subject', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('job_id')->unsigned()->nullable();
             $table->string('name');
-            $table->integer('faculty_id')->unsigned()->nullable();
-            $table->text('desc');
+            $table->string('desc');
+            $table->integer('hr_id')->unsigned();
+            $table->integer('faculty_id')->unsigned();
 
 
-            $table->foreign('user_id')->references('user_id')->on('hr');
-            $table->foreign('job_id')->references('id')->on('job');
+            $table->foreign('hr_id')->references('user_id')->on('hr');
             $table->foreign('faculty_id')->references('user_id')->on('faculty');
 
             $table->timestamps();
             //misc
             $table->index('id');
-            $table->index('user_id');
-            $table->index('job_id');
+            $table->index('hr_id');
+            $table->index('faculty_id');
             $table->index('name');
         });
     }
