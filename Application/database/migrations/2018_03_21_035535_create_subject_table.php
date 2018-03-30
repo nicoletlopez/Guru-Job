@@ -18,7 +18,7 @@ class CreateSubjectTable extends Migration
             $table->string('name');
             $table->string('desc');
             $table->integer('hr_id')->unsigned();
-            $table->integer('faculty_id')->unsigned();
+            $table->integer('faculty_id')->unsigned()->nullable();
 
 
             $table->foreign('hr_id')->references('user_id')->on('hr');
