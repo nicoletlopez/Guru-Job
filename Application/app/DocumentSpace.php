@@ -18,7 +18,7 @@ class DocumentSpace extends Model
 
     public function hrs()
     {
-        return $this->belongsToMany(Hr::class,'hr_has_document_space','document_space_id','user_id')
+        return $this->belongsToMany(Hr::class,'hr_has_document_space','document_space_id','hr_id')
             ->withTimestamps();
     }
 
