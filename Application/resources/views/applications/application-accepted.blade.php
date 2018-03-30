@@ -28,7 +28,7 @@
                         <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($applicant->pivot->created_at))}}</b><br/>
                         {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
                         <br/>
-                        <a href="/applications/hire/{{$applicant->pivot->job_id}}/{{$applicant->pivot->user_id}}"
+                        <a href="/applications/{{$applicant->pivot->job_id}}/{{$applicant->pivot->faculty_id}}/hire"
                            class="btn btn-common btn-block">
                             Hire Applicant
                         </a>
