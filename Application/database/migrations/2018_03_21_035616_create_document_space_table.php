@@ -26,6 +26,7 @@ class CreateDocumentSpaceTable extends Migration
 
             //misc
             $table->index('id');
+            $table->index('faculty_id');
             $table->index(['title','desc']);
         });
     }
