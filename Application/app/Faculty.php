@@ -54,7 +54,12 @@ class Faculty extends Model
     {
         return $this->hasMany(DocumentSpace::class, 'user_id', 'user_id')->orderBy('created_at', 'desc');
     }
-    
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class,'faculty_id','user_id');
+    }
+
     /*search methods*/
     public function scopeName($query, $search_term)
     {
