@@ -59,7 +59,7 @@
                             </li>
                         @endif
                         <li class="">
-                            <a href="{{route('dashboard')}}" class="">
+                            <a class="">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
