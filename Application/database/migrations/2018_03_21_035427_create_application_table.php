@@ -23,8 +23,8 @@ class CreateApplicationTable extends Migration
             $table->foreign('job_id')->references('id')->on('job');
 
             //misc
-            $table->primary(['user_id','job_id']);
-            $table->index('user_id');
+            $table->primary(['faculty_id','job_id']);
+            $table->index('faculty_id');
             $table->index('job_id');
         });
     }
