@@ -30,4 +30,9 @@ class Subject extends Model
     {
         return $this->hasMany(Schedule::class,'subject_id','id');
     }
+
+    public function faculties()
+    {
+        return $this->belongsTo(Faculty::class,'faculty_id','user_id');
+    }
 }

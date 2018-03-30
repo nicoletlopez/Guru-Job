@@ -54,12 +54,7 @@ class Faculty extends Model
     {
         return $this->hasMany(DocumentSpace::class, 'user_id', 'user_id')->orderBy('created_at', 'desc');
     }
-
-    public function employers()
-    {
-        return $this->belongsToMany(Hr::class, 'employee', 'faculty_id', 'hr_id')->withTimestamps();
-    }
-
+    
     /*search methods*/
     public function scopeName($query, $search_term)
     {

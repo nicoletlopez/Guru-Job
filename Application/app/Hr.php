@@ -18,23 +18,18 @@ class Hr extends Model
 
     public function subjects()
     {
-        return $this->hasMany(Subject::class, 'user_id', 'user_id')->orderBy('created_at','desc');
+        return $this->hasMany(Subject::class, 'user_id', 'user_id')->orderBy('created_at', 'desc');
     }
 
     public function jobs()
     {
-        return $this->hasMany(Job::class, 'user_id', 'user_id')->orderBy('created_at','desc');
+        return $this->hasMany(Job::class, 'user_id', 'user_id')->orderBy('created_at', 'desc');
     }
 
     public function documentSpaces()
     {
         return $this->belongsToMany(DocumentSpace::class, 'hr_has_document_space', 'user_id',
             'document_id')->withTimestamps();
-    }
-
-    public function employees()
-    {
-        return $this->belongsToMany(Faculty::class, 'employee', 'hr_id', 'faculty_id')->withTimestamps();
     }
 
     /*Search methods*/
