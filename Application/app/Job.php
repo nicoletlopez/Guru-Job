@@ -31,12 +31,12 @@ class Job extends Model
     }
 
     public function pendingApplicants(){
-        return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'user_id')
+        return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'faculty_id')
             ->wherePivot('accepted',false)->withTimestamps();
     }
 
     public function acceptedApplicants(){
-        return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'user_id')
+        return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'faculty_id')
             ->wherePivot('accepted',true)->withTimestamps();
     }
 
