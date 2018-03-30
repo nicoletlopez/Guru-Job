@@ -19,7 +19,7 @@ class CreateApplicationTable extends Migration
             $table->integer('job_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('faculty');
+            $table->foreign('faculty_id')->references('user_id')->on('faculty');
             $table->foreign('job_id')->references('id')->on('job');
 
             //misc
