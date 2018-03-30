@@ -31,16 +31,21 @@
                                             Contact No. <b style="font-size: 14px">{{$employee->user->profile->contact_number}}</b>
                                         </div>
                                         <div class="col-md-4">
-                                            <b style="font-size: 14px">Date Hired:</b><br/>
-                                            <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($employee->pivot->created_at))}}</b><br/>
+                                            {{--<b style="font-size: 14px">Date Hired:</b><br/>--}}
+{{--                                            <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($employee->pivot->created_at))}}</b><br/>--}}
                                             {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
                                             <br/>
                                             <a href="#"
                                                class="btn btn-common btn-block">
-                                                View Profile
+                                                Assigned Lectures
                                             </a>
                                         </div>
                                     </div>
+                                    <hr/>
+                                    <p style="font-size:16px;">Subject/s:</p>
+                                    @foreach($employee->subjects as $subject)
+                                        <p style="font-size:16px;">&nbsp&nbsp&nbsp&nbsp&nbsp{{$subject->name}}</p>
+                                    @endforeach
                                 </div>
                                 <br/>
                                 <br/>

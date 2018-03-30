@@ -99,5 +99,11 @@ class Faculty extends Model
             });
         });
     }
+
+    public function scopeWhereEmployerIs($query,$hr_id){
+        return $query->whereHas('subjects', function ($query) use ($hr_id){
+            $query->where('hr_id',$hr_id);
+        });
+    }
     /*end search methods*/
 }

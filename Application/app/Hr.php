@@ -18,7 +18,7 @@ class Hr extends Model
 
     public function subjects()
     {
-        return $this->hasMany(Subject::class, 'user_id', 'user_id')->orderBy('created_at', 'desc');
+        return $this->hasMany(Subject::class, 'hr_id', 'user_id')->orderBy('created_at', 'desc');
     }
 
     public function jobs()
