@@ -35,4 +35,10 @@ class Subject extends Model
     {
         return $this->belongsTo(Faculty::class,'faculty_id','user_id');
     }
+
+    public function scopeWhereJob($query, $job_id){
+        return $query->whereHas('job',function ($query) use ($job_id){
+            $query->where('id',$job_id);
+        });
+    }
 }
