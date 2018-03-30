@@ -17,6 +17,14 @@
                 </a>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                <a href="{{route('subjects.index')}}">
+                    <div class="icon">
+                        <i class="ti-book"></i>
+                    </div>
+                    <h3>Manage Subjects</h3>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <a href="{{route('manage-jobs')}}">
                     <div class="icon">
                         <i class="ti-email"></i>
@@ -30,14 +38,6 @@
                         <i class="ti-bookmark"></i>
                     </div>
                     <h3>Manage Applications</h3>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('subjects.index')}}">
-                    <div class="icon">
-                        <i class="ti-book"></i>
-                    </div>
-                    <h3>Manage Subjects</h3>
                 </a>
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">

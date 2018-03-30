@@ -19,6 +19,14 @@
                                     </a>
                                 </li>
                             </ul>
+                            <h4>Subject</h4>
+                            <ul class="lest item">
+                                <li>
+                                    <a class="@yield('manage-subjects-active')" href="{{route('subjects.index')}}">
+                                        Manage Subjects
+                                    </a>
+                                </li>
+                            </ul>
                             <h4>Job</h4>
                             <ul class="lest item">
                                 <li>
@@ -31,14 +39,6 @@
                                 </a>
                             </li>
 
-                            </ul>
-                            <h4>Subject</h4>
-                            <ul class="lest item">
-                                <li>
-                                    <a class="@yield('manage-subjects-active')" href="{{route('subjects.index')}}">
-                                        Manage Subjects
-                                    </a>
-                                </li>
                             </ul>
                             <h4>Employee</h4>
                             <ul class="lest item">
