@@ -19,7 +19,7 @@ class Specialization extends Model
 
     public function faculty()
     {
-        return $this->belongsToMany(Faculty::class,'faculty_has_specialization','specialization_id','user_id');
+        return $this->belongsToMany(Faculty::class,'faculty_has_specialization','specialization_id','faculty_id');
     }
 }
 ?>

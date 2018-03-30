@@ -14,15 +14,15 @@ class CreateFacultyHasSpecializationTable extends Migration
     public function up()
     {
         Schema::create('faculty_has_specialization', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->integer('skill_id')->unsigned();
+            $table->integer('faculty_id')->unsigned();
+            $table->integer('specialization_id')->unsigned();
 
-            $table->foreign('user_id')->references('user_id')->on('faculty');
-            $table->foreign('skill_id')->references('id')->on('skill');
+            $table->foreign('faculty')->references('user_id')->on('faculty');
+            $table->foreign('specialization_id')->references('id')->on('specialization');
 
             //misc
-            $table->primary(['user_id','skill_id']);
-            $table->index(['user_id','skill_id']);
+            $table->primary(['faculty_id','specialization_id']);
+            $table->index(['faculty_id','specialization_id']);
         });
     }
 

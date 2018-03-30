@@ -41,7 +41,7 @@ class Faculty extends Model
 
     public function specializations()
     {
-        return $this->belongsToMany(Specialization::class, 'faculty_has_specialization', 'user_id', 'specialization_id');
+        return $this->belongsToMany(Specialization::class, 'faculty_has_specialization', 'faculty_id', 'specialization_id');
     }
 
     //only the lectures that this certain faculty owns
