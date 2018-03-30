@@ -18,7 +18,7 @@ class Subject extends Model
 
     public function job()
     {
-        return $this->belongsTo(Job::class,'job_id','id');
+        return $this->hasOne(Job::class,'subject_id','id');
     }
 
     public function specializations()

@@ -14,7 +14,7 @@ class CreateApplicationTable extends Migration
     public function up()
     {
         Schema::create('application', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('faculty_id')->unsigned();
             $table->boolean('accepted')->unsigned()->default(false);
             $table->integer('job_id')->unsigned();
             $table->timestamps();

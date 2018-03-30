@@ -35,7 +35,7 @@ class Faculty extends Model
 
     public function jobs()
     {
-        return $this->belongsToMany(Job::class, 'application', 'user_id', 'job_id')
+        return $this->belongsToMany(Job::class, 'application', 'faculty_id', 'job_id')
             ->withPivot('accepted')->withTimestamps();
     }
 

@@ -14,19 +14,19 @@ class Job extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function subjects()
+    public function subject()
     {
-        return $this->hasMany(Subject::class, 'job_id', 'id');
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
     }
 
     public function hr()
     {
-        return $this->belongsTo(Hr::class, 'user_id', 'user_id');
+        return $this->belongsTo(Hr::class, 'hr_id', 'user_id');
     }
 
     public function applicants()
     {
-        return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'user_id')
+        return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'faculty_id')
             ->withPivot('accepted')->withTimestamps();
     }
 
