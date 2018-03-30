@@ -17,7 +17,7 @@ class CreateFacultyHasSpecializationTable extends Migration
             $table->integer('faculty_id')->unsigned();
             $table->integer('specialization_id')->unsigned();
 
-            $table->foreign('faculty')->references('user_id')->on('faculty');
+            $table->foreign('faculty_id')->references('user_id')->on('faculty');
             $table->foreign('specialization_id')->references('id')->on('specialization');
 
             //misc

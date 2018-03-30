@@ -17,7 +17,7 @@ class CreateHrHasDocumentSpaceTable extends Migration
             $table->integer('hr_id')->unsigned();
             $table->integer('document_space_id')->unsigned();
 
-            $table->foreign('user_id')->references('user_id')->on('hr');
+            $table->foreign('hr_id')->references('user_id')->on('hr');
             $table->foreign('document_space_id')->references('id')->on('document_space');
 
             $table->primary(['hr_id','document_space_id']);
