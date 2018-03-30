@@ -41,23 +41,23 @@ class SubjectTableSeeder extends Seeder
                     $ceilingSalary = $floorSalary + 300;
                 }
 
+                //Create Subject row
+                $subject = factory(App\Subject::class)->create([
+                    'name' => $subjects[$n],
+                    'desc' => 'The title of this subject is '.$subjects[$n],
+                    'hr_id' => $hr->id,
+                ]);//Created subject row
+
                 //Created a Job row
                 $job = factory(App\Job::class)->create([
                     'title' => $this->titleTemplate($subjects[$n]),
                     'desc' => $this->descTemplate($hr->name,$subjects[$n]),
                     'floor_salary' => $floorSalary,
                     'ceiling_salary' => $ceilingSalary,
-                    'user_id' => $hr->id,
+                    'hr_id' => $hr->id,
+                    'subject_id' => $subject->id,
                     'type' => $type,
                 ]); //Created a Job row
-
-                //Create Subject row
-                $subject = factory(App\Subject::class)->create([
-                    'name' => $subjects[$n],
-                    'desc' => 'The title of this subject is '.$subjects[$n],
-                    'user_id' => $hr->id,
-                    'job_id' => $job->id,
-                ]);//Created subject row
 
                 $n++;
                 //Insert to specialization_subject pivot table
