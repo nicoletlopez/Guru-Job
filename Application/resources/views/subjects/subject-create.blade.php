@@ -66,8 +66,7 @@
                     <input type="time" class="form-control" name="times-to[]" required>
                 </div>
                 <div class="col-md-2">
-                    <button type="button" style="border:none;background-color:transparent;" class="remove-form-field"><i
-                                class="ti-trash"></i></button>
+                    <a href="#" style="border:none;background-color:transparent;" class="remove-form-field"><i class="ti-trash"></i></a>
                 </div>
             </div>
         </div>
