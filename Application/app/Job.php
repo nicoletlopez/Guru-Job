@@ -60,7 +60,7 @@ class Job extends Model
                 });
             })
             //search for name or description in subject table
-            ->orWhereHas('subjects', function ($query) use ($search_term)
+            ->orWhereHas('subject', function ($query) use ($search_term)
             {
                 $query->where('name', 'like', '%' . $search_term . '%')
                     ->orWhere('desc', 'like', '%' . $search_term . '%');
@@ -86,9 +86,9 @@ class Job extends Model
 
     public function scopeSpecialization($query, $specialization)
     {
-        return $query->whereHas('subjects', function ($query) use ($specialization)
+        return $query->whereHas('subject', function ($query) use ($specialization)
         {
-            $query->whereHas('skills', function ($query) use ($specialization)
+            $query->whereHas('specializations', function ($query) use ($specialization)
             {
                 $query->where('name', 'like', '%' . $specialization . '%');
             });
@@ -102,7 +102,7 @@ class Job extends Model
 
     public function scopeFreeDay($query, $free_day)
     {
-        return $query->whereHas('subjects', function ($query) use ($free_day)
+        return $query->whereHas('subject', function ($query) use ($free_day)
         {
             $query->whereHas('schedules', function ($query) use ($free_day)
             {
@@ -113,7 +113,7 @@ class Job extends Model
 
     public function scopeStartTime($query, $start_time)
     {
-        return $query->whereHas('subjects', function ($query) use ($start_time)
+        return $query->whereHas('subject', function ($query) use ($start_time)
         {
             $query->whereHas('schedules', function ($query) use ($start_time)
             {
@@ -124,7 +124,7 @@ class Job extends Model
 
     public function scopeEndTime($query, $end_time)
     {
-        return $query->whereHas('subjects', function ($query) use ($end_time)
+        return $query->whereHas('subject', function ($query) use ($end_time)
         {
             $query->whereHas('schedules', function ($query) use ($end_time)
             {
@@ -135,7 +135,7 @@ class Job extends Model
 
     public function scopeTime($query, $start_time, $end_time)
     {
-        return $query->whereHas('subjects', function ($query) use ($start_time, $end_time)
+        return $query->whereHas('subject', function ($query) use ($start_time, $end_time)
         {
             $query->whereHas('schedules', function ($query) use ($start_time, $end_time)
             {
