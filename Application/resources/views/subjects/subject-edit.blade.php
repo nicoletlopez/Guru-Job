@@ -37,6 +37,18 @@
 
     {{Form::label('days','Class Schedule',['class'=>'control-label'])}} <span class="required" style="color: red">*</span>
     <div class="add-fields" data-af_base="#base-package-fields" data-af_target=".packages">
+        <div class="row">
+            <div class="col-md-3">
+                <p>Day</p>
+            </div>
+            <div class="col-md-3">
+                <p>Class Start</p>
+            </div>
+            <div class="col-md-3">
+                <p>Class End</p>
+            </div>
+        </div>
+        <hr/>
         <div class="packages">
             @foreach($schedules as $schedule)
                 <div class="form-group">
@@ -52,10 +64,10 @@
                              'SAT' => 'Saturday'],$schedule->day,['class'=>'form-control','required'])}}
                         </div>
                         <div class="col-md-3">
-                            {{Form::time('times-from[]',$schedule->start,['class'=>'form-control','required'])}}
+                            {{Form::time('times-from[]',$schedule->start,['class'=>'form-control','step'=>'900','required'])}}
                         </div>
                         <div class="col-md-3">
-                            {{Form::time('times-to[]',$schedule->end,['class'=>'form-control','required'])}}
+                            {{Form::time('times-to[]',$schedule->end,['class'=>'form-control','step'=>'900','required'])}}
                         </div>
                         <div class="col-md-2">
                             <a href="#" style="border:none;background-color:transparent;" class="remove-form-field"><i class="ti-trash"></i></a>
@@ -86,10 +98,10 @@
                      'SAT' => 'Saturday'],'',['class'=>'form-control','required'])}}
                 </div>
                 <div class="col-md-3">
-                    {{Form::time('times-from[]','',['class'=>'form-control','required'])}}
+                    {{Form::time('times-from[]','00:00',['class'=>'form-control','step'=>'900','required'])}}
                 </div>
                 <div class="col-md-3">
-                    {{Form::time('times-to[]','',['class'=>'form-control','required'])}}
+                    {{Form::time('times-to[]','23:00',['class'=>'form-control','step'=>'900','required'])}}
                 </div>
                 <div class="col-md-2">
                     <a href="#" style="border:none;background-color:transparent;" class="remove-form-field"><i class="ti-trash"></i></a>
@@ -98,5 +110,6 @@
         </div>
     </div>
     <script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('self/js/custom.js')}}"></script>
+    <script type="text/javascript" src="{{asset('self/js/subjects/edit.js')}}"></script>
+
 @endsection
