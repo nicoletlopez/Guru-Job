@@ -30,14 +30,16 @@ class Job extends Model
             ->withPivot('accepted')->withTimestamps();
     }
 
-    public function pendingApplicants(){
+    public function pendingApplicants()
+    {
         return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'faculty_id')
-            ->wherePivot('accepted',false)->withTimestamps();
+            ->wherePivot('accepted', false)->withTimestamps();
     }
 
-    public function acceptedApplicants(){
+    public function acceptedApplicants()
+    {
         return $this->belongsToMany(Faculty::class, 'application', 'job_id', 'faculty_id')
-            ->wherePivot('accepted',true)->withTimestamps();
+            ->wherePivot('accepted', true)->withTimestamps();
     }
 
     public function schedules()
@@ -49,14 +51,17 @@ class Job extends Model
     {
         return $query
             //search for name or email in user table
-            ->whereHas('hr', function ($query) use ($search_term) {
-                $query->whereHas('user', function ($query) use ($search_term) {
+            ->whereHas('hr', function ($query) use ($search_term)
+            {
+                $query->whereHas('user', function ($query) use ($search_term)
+                {
                     $query->where('name', 'like', '%' . $search_term . '%')
                         ->orWhere('email', 'like', '%' . $search_term . '%');
                 });
             })
             //search for name or description in subject table
-            ->orWhereHas('subjects', function ($query) use ($search_term) {
+            ->orWhereHas('subjects', function ($query) use ($search_term)
+            {
                 $query->where('name', 'like', '%' . $search_term . '%')
                     ->orWhere('desc', 'like', '%' . $search_term . '%');
             })
@@ -67,9 +72,12 @@ class Job extends Model
 
     public function scopeRegion($query, $region)
     {
-        return $query->whereHas('hr', function ($query) use ($region) {
-            $query->whereHas('user', function ($query) use ($region) {
-                $query->whereHas('profile', function ($query) use ($region) {
+        return $query->whereHas('hr', function ($query) use ($region)
+        {
+            $query->whereHas('user', function ($query) use ($region)
+            {
+                $query->whereHas('profile', function ($query) use ($region)
+                {
                     $query->where('region', 'like', '%' . $region . '%');
                 });
             });
@@ -78,8 +86,10 @@ class Job extends Model
 
     public function scopeSpecialization($query, $specialization)
     {
-        return $query->whereHas('subjects', function ($query) use ($specialization) {
-            $query->whereHas('skills', function ($query) use ($specialization) {
+        return $query->whereHas('subjects', function ($query) use ($specialization)
+        {
+            $query->whereHas('skills', function ($query) use ($specialization)
+            {
                 $query->where('name', 'like', '%' . $specialization . '%');
             });
         });
@@ -87,13 +97,15 @@ class Job extends Model
 
     public function scopeType($query, $type)
     {
-        return $query->where('type','=',$type);
+        return $query->where('type', '=', $type);
     }
 
     public function scopeFreeDay($query, $free_day)
     {
-        return $query->whereHas('subjects', function ($query) use ($free_day) {
-            $query->whereHas('schedules', function ($query) use ($free_day) {
+        return $query->whereHas('subjects', function ($query) use ($free_day)
+        {
+            $query->whereHas('schedules', function ($query) use ($free_day)
+            {
                 $query->where('day', 'like', '%' . $free_day . '%');
             });
         });
@@ -101,8 +113,10 @@ class Job extends Model
 
     public function scopeStartTime($query, $start_time)
     {
-        return $query->whereHas('subjects', function ($query) use ($start_time) {
-            $query->whereHas('schedules', function ($query) use ($start_time) {
+        return $query->whereHas('subjects', function ($query) use ($start_time)
+        {
+            $query->whereHas('schedules', function ($query) use ($start_time)
+            {
                 $query->where('start', '>=', $start_time);//->whereTime('end','<=',$end_time);
             });
         });
@@ -110,8 +124,10 @@ class Job extends Model
 
     public function scopeEndTime($query, $end_time)
     {
-        return $query->whereHas('subjects', function ($query) use ($end_time) {
-            $query->whereHas('schedules', function ($query) use ($end_time) {
+        return $query->whereHas('subjects', function ($query) use ($end_time)
+        {
+            $query->whereHas('schedules', function ($query) use ($end_time)
+            {
                 $query->where('end', '<=', $end_time);
             });
         });
@@ -119,8 +135,10 @@ class Job extends Model
 
     public function scopeTime($query, $start_time, $end_time)
     {
-        return $query->whereHas('subjects', function ($query) use ($start_time, $end_time) {
-            $query->whereHas('schedules', function ($query) use ($start_time, $end_time) {
+        return $query->whereHas('subjects', function ($query) use ($start_time, $end_time)
+        {
+            $query->whereHas('schedules', function ($query) use ($start_time, $end_time)
+            {
                 $query->where('start', '>=', $start_time)->where('end', '<=', $end_time);
             });
         });
@@ -130,19 +148,21 @@ class Job extends Model
     public function workDays()
     {
         //get all subjects that the job has
-        $subjects = $this->subjects;
+        $subject = $this->subject;
         //for all the subjects get their schedules and insert them in an array
         $day_values = ['SUN' => '1', 'MON' => '2', 'TUE' => '3', 'WED' => '4', 'THU' => '5', 'FRI' => '6', 'SAT' => '7'];
         $days = array();
-        foreach ($subjects as $subject) {
-            foreach ($subject->schedules as $schedule) {
-                if (!in_array($schedule->day, $days)) {
-                    array_push($days, $schedule->day);
-                }
+        foreach ($subject->schedules as $schedule)
+        {
+            if (!in_array($schedule->day, $days))
+            {
+                array_push($days, $schedule->day);
             }
         }
+
         $day_map = array();
-        foreach ($days as $day) {
+        foreach ($days as $day)
+        {
             $day_map[$day] = $day_values[$day];
         }
         asort($day_map);
@@ -159,7 +179,8 @@ class Job extends Model
         $schedules = Schedule::jobSchedule($this->id)->get();
 
         $jobSchedules = array();
-        foreach ($schedules as $schedule) {
+        foreach ($schedules as $schedule)
+        {
             $s = $schedule->day . ' ' . $schedule->start . ' - ' . $schedule->end;
             array_push($jobSchedules, $s);
         }

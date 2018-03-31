@@ -74,13 +74,10 @@
                                 <p>
                                     {!! $job->desc !!}
                                 </p>
-                                <h4>Subjects</h4>
-                                @if(count($subjects)>0)
+                                <h4>Subject</h4>
+                                @if($subject)
                                     <div class="list-group">
-                                        @foreach($subjects as $subject)
-                                            <div class="list-group-item"><i class="ti-agenda"></i> {{$subject->name}}
-                                            </div>
-                                        @endforeach
+                                        <div class="list-group-item"><i class="ti-agenda"></i> {{$subject->name}}</div>
                                     </div>
                                 @else
                                     <p>No Subjects Listed.</p>

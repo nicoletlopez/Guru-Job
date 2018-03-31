@@ -101,10 +101,14 @@ class JobsController extends Controller
                 return redirect()->route('profile.create')->with('error', 'Create a Profile First');
             }
         }
+
+        $job = Job::find($id);
+        $subject = $job->subject;
+
         $context = array(
             //'applicationData'=>$applicationData,
-            'job' => Job::find($id),
-            'subjects' => Job::find($id)->subjects,
+            'job' => $job,
+            'subject' => $subject,
             'date' => Controller::formatDate(Job::find($id)->hr->user->profile->dob),
         );
         return view('jobs.job-details')->with($context);
