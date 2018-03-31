@@ -36,6 +36,7 @@ class PagesController extends Controller
         $context = array(
             'jobs' => Job::orderBy('created_at', 'desc')->paginate(4),
             'specializations' => $specializations,
+            'allSpecs'=>Specialization::all(),
             //'jobs' => Job::orderBy('created_at','desc')->paginate(4),
         );
         return view('pages.home')->with($context);
