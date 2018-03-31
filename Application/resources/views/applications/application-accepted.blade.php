@@ -42,16 +42,6 @@
                     </a>
                 </p>
             </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
         @endforeach
         {{ $applicants->links() }}
     @else

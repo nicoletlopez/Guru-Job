@@ -47,13 +47,6 @@
                                         <p style="font-size:16px;">&nbsp&nbsp&nbsp&nbsp&nbsp{{$subject->name}}</p>
                                     @endforeach
                                 </div>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
                             @endforeach
                             {{ $employees->links() }}
                         @else
