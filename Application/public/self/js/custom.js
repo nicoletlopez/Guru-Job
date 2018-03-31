@@ -1,39 +1,26 @@
-function showForm()
-{
-    //Mon
-    if($('#Mon').is(":checked"))
-        $("#MonTime").show(300);
-    else
-        $("#MonTime").hide(200);
-    //Tue
-    if($('#Tue').is(":checked"))
-        $("#TueTime").show(300);
-    else
-        $("#TueTime").hide(200);
-    //Wed
-    if($('#Wed').is(":checked"))
-        $("#WedTime").show(300);
-    else
-        $("#WedTime").hide(200);
-    //Thu
-    if($('#Thu').is(":checked"))
-        $("#ThuTime").show(300);
-    else
-        $("#ThuTime").hide(200);
-    //Fri
-    if($('#Fri').is(":checked"))
-        $("#FriTime").show(300);
-    else
-        $("#FriTime").hide(200);
-    //Sat
-    if($('#Sat').is(":checked"))
-        $("#SatTime").show(300);
-    else
-        $("#SatTime").hide(200);
-    //Sun
-    if($('#Sun').is(":checked"))
-        $("#SunTime").show(300);
-    else
-        $("#SunTime").hide(200);
+$('.add-fields').each(function (index, el) {
+    var warp = $(this);
+    var target = $(this).data('af_target') || '.content';
+    var index = $(target).children('div, tr').length;
+    var baseEl = $($(this).data('af_base')) || $(target).find('.form-field-base');
+    var base = baseEl.html();
+    baseEl.remove();
+    //alert(base);
+    warp.find(target).append(base.replace(/%index%/g, index));
+    //index++;
 
-}
+    warp.on('click', '.add-form-field', function (e) {
+        e.preventDefault();
+        warp.find(target).append(base.replace(/%index%/g, index));
+        index++;
+    });
+
+    warp.on('click', '.remove-form-field', function (e) {
+        e.preventDefault();
+        if (index > 0) {
+            $(this).parents($(this).data('target') || '.form-group').remove();
+            index--;
+        }
+    });
+
+});
