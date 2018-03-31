@@ -63,7 +63,7 @@ Route::resource('subjects','SubjectsController');
 
 //jobs
 Route::resource('jobs','JobsController');
-Route::get('/search', 'JobsController@search')->name('search');
+Route::get('/search/jobs', 'JobsController@search')->name('search');
 //Route::get('/jobs','JobsController@index')->name('jobs');
 //Route::get('/job-details',function(){return view('jobs.job-details');})->name('job-details');
 
