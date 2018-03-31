@@ -22,17 +22,25 @@
                     <td><a href="/subjects/{{$subject->id}}"><h3>{{$subject->name}}</h3></a></td>
                     <td>
                         @foreach($subject->schedules as $schedule)
-                            <p><b>{{$schedule->day}}</b> {{date("h:i A",strtotime($schedule->start))}} - {{date("h:i A",strtotime($schedule->end))}}</p>
+                            <p><b>{{$schedule->day}}</b> {{date("h:i A",strtotime($schedule->start))}}
+                                - {{date("h:i A",strtotime($schedule->end))}}</p>
                         @endforeach
                     </td>
                     <td>
-                    <!--
-                            <a href="/subjects/{{$subject->id}}/edit" class="btn btn-primary">Edit</a>
-                            {!! Form::open(['action'=>['SubjectsController@destroy',$subject->id],'method'=>'POST']) !!}
-                    {{Form::hidden('_method','DELETE')}}
-                    {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                    {!! Form::close() !!}
-                            -->
+
+                        <a href="/subjects/{{$subject->id}}/edit" class=""><i style="font-size:30px;"
+                                                                              class="ti-pencil"></i></a>
+
+
+                        {!! Form::open(['action'=>['SubjectsController@destroy',$subject->id],'method'=>'POST','class'=>'pull-right']) !!}
+                        {{Form::hidden('_method','DELETE')}}
+                        <button style="border:none;background-color:transparent;" data-toggle="confirmation"
+                                type="submit">
+                            <i style="font-size:30px;" class="ti-trash"></i>
+                        </button>
+                        {!! Form::close() !!}
+
+
                     </td>
                 </tr>
             @endforeach
@@ -45,3 +53,4 @@
             </tbody>
     </table>
 </div>
+@include('inc.prompt-delete')
