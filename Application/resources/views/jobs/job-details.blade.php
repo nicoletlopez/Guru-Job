@@ -79,16 +79,26 @@
                                     <table class="table" style="width:100%;">
                                         <thead>
                                         <tr>
-                                        <th>Subject</th>
-                                        <th>Schedule</th>
+                                            <th>Subject</th>
+                                            <th>Specialization/s</th>
+                                            <th>Schedule</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
                                             <td>{{$subject->name}}</td>
                                             <td>
+                                                <ol>
+                                                    @foreach($subject->specializations as $specialization)
+                                                        <li>{{$specialization->name}}</li>
+                                                    @endforeach
+                                                </ol>
+                                            </td>
+                                            <td>
                                                 @foreach($subject->schedules as $schedule)
-                                                    <p><b>{{$schedule->day}}</b> {{date("h:i A",strtotime($schedule->start))}} - {{date("h:i A",strtotime($schedule->end))}}</p>
+                                                    <p>
+                                                        <b>{{$schedule->day}}</b> {{date("h:i A",strtotime($schedule->start))}}
+                                                        - {{date("h:i A",strtotime($schedule->end))}}</p>
                                                 @endforeach
                                             </td>
                                         </tr>
@@ -97,6 +107,11 @@
                                 @else
                                     <p>No Subjects Listed.</p>
                                 @endif
+
+                                <h4>Subject Description</h4>
+                                <p>
+                                    {{$subject->desc}}
+                                </p>
                             <!--
                                 <h4>Overview</h4>
                                 <p>LemonKids LLC. In marketing communications, we dream it and create it. All of the company’s promotional and communication needs are completed in-house by these “creatives” in an advertising agency-based set-up. This includes everything from advertising, promotions and print production to media relations, exhibition coordination and website maintenance. Everyone from artists, writers, designers, media buyers, event coordinators, video producers/editors and public relations specialists work together to bring campaigns and product-centric promotions to life.</p>
