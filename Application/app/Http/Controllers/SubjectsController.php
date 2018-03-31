@@ -74,9 +74,9 @@ class SubjectsController extends Controller
 
         //insert specializations
 
-        foreach($specializations as $specialization) {
-            $subject->specializations()->attach($specialization);
-        }
+
+        $subject->specializations()->attach($specializations);
+
 
         foreach ($days as $key => $day) {
             $schedule = new Schedule();
@@ -117,17 +117,21 @@ class SubjectsController extends Controller
      */
     public function edit($id)
     {
-        $specializations = Specialization::all();
         $subject = Subject::find($id);
-        $daysSelected = $subject->schedule()->day;
-        $daysData = array();
-        foreach ($daysSelected as $daySelected) {
-            $daysData[] = $daySelected->id;
+        $specializationsSelected = $subject->specializations;
+        $specializations=Specialization::all();
+        $schedules = $subject->schedules;
+
+        $specializationData=[];
+        foreach($specializationsSelected as $specializationSelected){
+            $specializationData[]=$specializationSelected->id;
         }
+
         $context = [
             'specializations' => $specializations,
             'subject' => $subject,
-            'daysData' => $daysData,
+            'specializationData'=>$specializationData,
+            'schedules'=>$schedules,
         ];
         return view('subjects.subject-edit')->with($context);
     }
@@ -139,9 +143,38 @@ class SubjectsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateSubject $request, $id)
     {
-        //
+        $name = $request->input('name');
+        $desc = $request->input('description');
+
+        $specializations = $request->input('specializations');
+
+        $days = $request->input('days');
+        $start_time = $request->input('times-from');
+        $end_time = $request->input('times-to');
+
+        //Update subject row
+        $subject=Subject::find($id);
+        $subject->name = $name;
+        $subject->desc = $desc;
+        $subject->save();
+
+        //update specializations
+
+        $subject->specializations()->sync($specializations);
+
+        $subject->schedules()->delete();
+
+        foreach ($days as $key => $day) {
+            $schedule = new Schedule();
+            $schedule->subject_id = $subject->id;
+            $schedule->day = $day;
+            $schedule->start = $start_time[$key];
+            $schedule->end = $end_time[$key];
+            $schedule->save();
+        }
+        return redirect('/subjects/'.$subject->id);
     }
 
     /**
@@ -154,6 +187,6 @@ class SubjectsController extends Controller
     {
         $subject = Subject::find($id);
         $subject->delete();
-        return back();
+        return back()->with('warning','Subject deleted');
     }
 }
