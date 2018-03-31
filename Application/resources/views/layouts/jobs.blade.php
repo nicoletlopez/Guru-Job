@@ -1,5 +1,4 @@
 <section class="find-job section">
-
     <div class="container">
         <br/>
         <div class="row">
@@ -26,7 +25,7 @@
                                 </p>
                                 Posted by <span style="font-weight:bold;color:#FC4A1A"
                                                 class="text-primary">{{$job->hr->user->name}}</span>
-                                <p>{!! str_limit($job->desc,500,'...') !!}</p>
+                                <p>{!! str_limit($job->desc,400,'...') !!}</p>
                                 <div class="job-tag">
                                     <div class="pull-left col-md-9">
                                         <div class="meta-tag" style="word-wrap:break-word;">
@@ -45,11 +44,16 @@
                             </div>
                         </div>
                     @endforeach
-                    {!! $jobs->render() !!}
+                    @if(Request::is('jobs'))
+                        {!! $jobs->render() !!}
+                    @elseif(Request::is('/'))
+                        <a href="{{route('jobs.index')}}" class="btn btn-common">Show more jobs</a>
+                    @endif
                 @else
                     <h3>No Jobs Found.</h3>
                 @endif
             </div>
         </div>
     </div>
+    <br/>
 </section>
