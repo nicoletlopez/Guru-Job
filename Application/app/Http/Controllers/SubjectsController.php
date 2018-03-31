@@ -24,8 +24,8 @@ class SubjectsController extends Controller
 
     public function index()
     {
-        $user = auth()->user()->id;
-        $subjects = Subject::where('user_id', $user)->orderBy('created_at', 'desc')->paginate(10);
+        $user_id = auth()->user()->id;
+        $subjects = Subject::where('hr_id', $user_id)->orderBy('created_at', 'desc')->paginate(10);
         $context =
             [
                 'subjects' => $subjects,
@@ -55,7 +55,7 @@ class SubjectsController extends Controller
     public function store(CreateSubject $request)
     {
 
-        $user_id = auth()->user()->id;
+        $hr_id = auth()->user()->id;
         $name = $request->input('name');
         $desc = $request->input('description');
 
@@ -67,7 +67,7 @@ class SubjectsController extends Controller
 
         //Insert subject row
         $subject = new Subject();
-        $subject->user_id = $user_id;
+        $subject->hr_id = $hr_id;
         $subject->name = $name;
         $subject->desc = $desc;
         $subject->save();
