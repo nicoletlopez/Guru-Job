@@ -74,11 +74,26 @@
                                 <p>
                                     {!! $job->desc !!}
                                 </p>
-                                <h4>Subject</h4>
+                                <h4>Subject and Schedule</h4>
                                 @if($subject)
-                                    <div class="list-group">
-                                        <div class="list-group-item"><i class="ti-agenda"></i> {{$subject->name}}</div>
-                                    </div>
+                                    <table class="table" style="width:100%;">
+                                        <thead>
+                                        <tr>
+                                        <th>Subject</th>
+                                        <th>Schedule</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{$subject->name}}</td>
+                                            <td>
+                                                @foreach($subject->schedules as $schedule)
+                                                    <p><b>{{$schedule->day}}</b> {{date("h:i A",strtotime($schedule->start))}} - {{date("h:i A",strtotime($schedule->end))}}</p>
+                                                @endforeach
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 @else
                                     <p>No Subjects Listed.</p>
                                 @endif
