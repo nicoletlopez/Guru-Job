@@ -1,5 +1,5 @@
 <div class="well">
-    {!! Form::open(['route'=>'search','method'=>'GET']) !!}
+    {!! Form::open(['action'=>'JobsController@search','method'=>'GET']) !!}
     <h3>Search Criteria</h3>
     <br/>
     {{--Search Term--}}
@@ -71,11 +71,11 @@
         <div class="row">
             <div class="col-md-6">
                 {{Form::label('work-time-from-label', 'Work Time From')}}
-                {{Form::time('start-time','',['class'=>'form-control','step'=>'900'])}}
+                {{Form::time('start-time','00:00',['class'=>'form-control','step'=>'900'])}}
             </div>
             <div class="col-md-6">
                 {{Form::label('work-time-to-label', 'Work Time To')}}
-                {{Form::time('end-time','',['class'=>'form-control','step'=>'900'])}}
+                {{Form::time('end-time','23:00',['class'=>'form-control','step'=>'900'])}}
             </div>
         </div>
     </div>
