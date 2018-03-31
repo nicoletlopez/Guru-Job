@@ -40,10 +40,25 @@ class JobsController extends Controller
      */
     public function create()
     {
-        $user_id = auth()->user()->id;
-        $subjects = Subject::where('hr_id',$user_id)->get();
+
+        $user = auth()->user();
+        //$subjects = Subject::where('hr_id',$user_id)->get();
+        $subjects=$user->hr->subjects;
+        $jobs=$user->hr->jobs;
+
+
+
+        $subjectsUsed=[];
+        foreach($jobs as $job){
+            $subjectsUsed[]=$job->subject->id;
+        }
+        if(!(count($subjects)>count($subjectsUsed))){
+            return redirect(route('subjects.create'))->with('warning','A Subject is needed before posting a job');
+        }
         $context = array(
-            'subjects' => $subjects,
+            'subjectsUsed' => $subjectsUsed,
+            'subjects'=>$subjects,
+            'jobs'=>$jobs,
         );
 
 
@@ -281,6 +296,16 @@ class JobsController extends Controller
             $applicationData[] = $jobApplied->id;
         }
         return $applicationData;
+    }
+
+    public static function getUsedSubjects(){
+        $jobs = auth()->user()->hr->jobs;
+        $subjectData=array();
+        foreach($jobs as $job){
+            $subject=$job->subject->id;
+            $subjectData[]=$subject;
+        }
+        return $subjectData;
     }
 
 }
