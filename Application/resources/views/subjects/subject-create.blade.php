@@ -19,7 +19,8 @@
     <div class="row">
         <div class="form-group col-md-12">
             <div class="search-category-container">
-                {{Form::label('','Required Specializations',['class'=>'control-label'])}} <span class="required" style="color: red">*</span>
+                {{Form::label('','Required Specializations',['class'=>'control-label'])}} <span class="required"
+                                                                                                style="color: red">*</span>
                 <select multiple style="" class="selectpicker dropdown-product" data-live-search="true"
                         name="specializations[]" required>
                     @foreach($specializations as $specialization)
@@ -31,15 +32,30 @@
     </div>
 
     <div class="form-group">
-        {{Form::label('description','Description',['class'=>'control-label'])}} <span class="required" style="color: red">*</span>
+        {{Form::label('description','Description',['class'=>'control-label'])}} <span class="required"
+                                                                                      style="color: red">*</span>
         {{Form::textarea('description','',['id'=>'editor0','class'=>'form-control','placeholder'=>'Subject Description','required'])}}
     </div>
 
-    {{Form::label('days','Class Schedule',['class'=>'control-label'])}} <span class="required" style="color: red">*</span>
+    {{Form::label('days','Class Schedule',['class'=>'control-label'])}} <span class="required"
+                                                                              style="color: red">*</span>
     <div class="add-fields" data-af_base="#base-package-fields" data-af_target=".packages">
+        <div class="row">
+            <div class="col-md-3">
+                <p>Day</p>
+            </div>
+            <div class="col-md-3">
+                <p>Class Start</p>
+            </div>
+            <div class="col-md-3">
+                <p>Class End</p>
+            </div>
+        </div>
+        <hr/>
         <div class="packages">
         </div>
-        <button type="button" class="btn btn-success add-form-field"><i class="fa fa-plus"></i>&nbsp;Add New Schedule</button>
+        <button type="button" class="btn btn-success add-form-field"><i class="fa fa-plus"></i>&nbsp;Add New Schedule
+        </button>
 
     </div>
 
@@ -60,17 +76,18 @@
                      'SAT' => 'Saturday'],null,['class'=>'form-control','required'])}}
                 </div>
                 <div class="col-md-3">
-                    <input type="time" class="form-control" name="times-from[]" required>
+                    {{Form::time('times-from[]','00:00',['class'=>'form-control','step'=>'900','required'])}}
                 </div>
                 <div class="col-md-3">
-                    <input type="time" class="form-control" name="times-to[]" required>
+                    {{Form::time('times-to[]','23:00',['class'=>'form-control','step'=>'900','required'])}}
                 </div>
                 <div class="col-md-2">
-                    <a href="#" style="border:none;background-color:transparent;" class="remove-form-field"><i class="ti-trash"></i></a>
+                    <a href="#" style="border:none;background-color:transparent;" class="remove-form-field"><i
+                                class="ti-trash"></i></a>
                 </div>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('self/js/custom.js')}}"></script>
+    <script type="text/javascript" src="{{asset('self/js/subjects/create.js')}}"></script>
 @endsection
