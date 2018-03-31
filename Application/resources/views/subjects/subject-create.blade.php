@@ -5,10 +5,10 @@
 @section('manage-subjects-active') active @endsection
 
 @section('dashboard-content')
-
-    <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     @include('inc.messages')
+    <a href="{{route('subjects.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <div class="clearfix"><br/></div>
+
     <h3>Add Subject</h3>
     <br/>
     {!! Form::open(['action'=>'SubjectsController@store','method'=>'post']) !!}
