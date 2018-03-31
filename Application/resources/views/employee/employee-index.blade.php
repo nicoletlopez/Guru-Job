@@ -44,7 +44,7 @@
                                     <hr/>
                                     <p style="font-size:16px;">Subject/s:</p>
                                     @foreach($employee->subjects as $subject)
-                                        <p style="font-size:16px;">&nbsp&nbsp&nbsp&nbsp&nbsp{{$subject->name}}</p>
+                                        <p style="font-size:16px;text-indent:20px;">{{$subject->name}}</p>
                                     @endforeach
                                 </div>
                             @endforeach
