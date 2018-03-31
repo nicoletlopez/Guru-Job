@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Specialization;
 use Illuminate\Http\Request;
 use App\Job;
 use Illuminate\Support\Facades\Cache;
@@ -29,8 +30,12 @@ class PagesController extends Controller
         //$end = (microtime(true) - $start) * 1000;
 
         //Log::info('With cache: ' . $end . ' ms.');
+
+        $specializations = Specialization::pluck('name','name');
+        $specializations->prepend('All Specializations','')->all();
         $context = array(
             'jobs' => Job::orderBy('created_at', 'desc')->paginate(4),
+            'specializations' => $specializations,
             //'jobs' => Job::orderBy('created_at','desc')->paginate(4),
         );
         return view('pages.home')->with($context);

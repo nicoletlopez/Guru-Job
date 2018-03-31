@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateJob;
 use App\Http\Requests\EditJob;
 use App\Mail\NewJobNotification;
+use App\Specialization;
 use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
@@ -27,8 +28,11 @@ class JobsController extends Controller
        );
         */
         $jobs = Job::orderBy('created_at', 'desc')->paginate(4);
+        $specializations = Specialization::pluck('name','name');
+        $specializations->prepend('All Specializations','')->all();
         $context = array(
             'jobs' => $jobs,
+            'specializations' => $specializations,
         );
         return view('jobs.job-listings')->with($context);
     }
@@ -282,8 +286,12 @@ class JobsController extends Controller
             $jobs = Job::orderBy('created_at', 'desc');
         }
 
+        $specializations = Specialization::pluck('name','name');
+        $specializations->prepend('All Specializations','')->all();
+
         $context = array(
             'jobs' => $jobs->paginate(),
+            'specializations' => $specializations,
         );
         return view('jobs.job-listings')->with($context);
     }

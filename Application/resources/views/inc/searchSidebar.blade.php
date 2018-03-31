@@ -36,12 +36,7 @@
     <div class="form-group">
         <div class="search-category-container">
             {{Form::label('specialization-label', 'Select Specialization')}}
-            {{Form::select('specialization',
-            [null=>'All Specializations',
-            'JAVA'=>'Java',
-            'DATA'=>'Data Networks',
-            'EMB'=>'Embedded Networks',],
-            null,
+            {{Form::select('specialization' , $specializations, null,
             ['class'=>'dropdown-product selectpicker'])}}
         </div>
     </div>
