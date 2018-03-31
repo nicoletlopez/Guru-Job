@@ -5,6 +5,6 @@
 @section('manage-subjects-active') active @endsection
 
 @section('dashboard-content')
-
+    @include('inc.messages')
     @include('subjects.subjects-index')
 @endsection
