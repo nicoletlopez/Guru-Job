@@ -59,7 +59,13 @@
                             </li>
                         @endif
                         <li class="">
-                            <a class="">
+                            <a href="
+                            @if(auth()->user()->type == 'HR')
+                            {{route('hr-dashboard')}}
+                            @elseif(auth()->user()->type == 'FACULTY')
+                            {{route('dashboard')}}
+                            @endif
+                                    " class="">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
