@@ -110,7 +110,7 @@
 
                                 <h4>Subject Description</h4>
                                 <p>
-                                    {{$subject->desc}}
+                                    {!! $subject->desc !!}
                                 </p>
                             <!--
                                 <h4>Overview</h4>
