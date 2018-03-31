@@ -65,25 +65,18 @@ class JobsController extends Controller
         $minSalary = $request->input('min-salary');
         $maxSalary = $request->input('max-salary');
         $desc = $request->input('description');
+        $subject_id = $request->input('subject');
 
         $job = new Job;
-        $job->user_id = $user_id;
+        $job->hr_id = $user_id;
         $job->title = $title;
         $job->desc = $desc;
         $job->type = $type;
         $job->floor_salary = $minSalary;
         $job->ceiling_salary = $maxSalary;
+        $job->subject_id = $subject_id;
 
         $job->save();
-
-        //Edit the foreign keys of the chosen subjects as children of the new job
-        $subject_ids = $request->input('subjects');
-
-        foreach ($subject_ids as $subject_id) {
-            $subject = Subject::find($subject_id);
-            $subject->job_id = $job->id;
-            $subject->save();
-        }
 
         $users = User::where('type', '=', 'FACULTY')->get();
         $school = $request->user();

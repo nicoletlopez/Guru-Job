@@ -51,7 +51,7 @@
                     @if(count($subjects)>0)
                         @foreach($subjects as $subject)
                             <div class="checkbox">
-                                <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,false,['type'=>"checkbox"])}}{{$subject->name}}</label>
+                                <label style="color:black;">{{Form::checkbox('subject',$subject->id,false,['type'=>"checkbox"])}}{{$subject->name}}</label>
                             </div>
                         @endforeach
                     @else
