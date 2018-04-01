@@ -1,3 +1,4 @@
+$(document).ready(function(){
 $('.add-fields').each(function (index, el) {
     var warp = $(this);
     var target = $(this).data('af_target') || '.content';
@@ -23,4 +24,5 @@ $('.add-fields').each(function (index, el) {
         }
     });
 
+});
 });
