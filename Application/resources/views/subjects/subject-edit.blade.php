@@ -101,7 +101,7 @@
                     {{Form::time('times-from[]','00:00',['class'=>'form-control','step'=>'900','required'])}}
                 </div>
                 <div class="col-md-3">
-                    {{Form::time('times-to[]','23:00',['class'=>'form-control','step'=>'900','required'])}}
+                    {{Form::time('times-to[]','23:45',['class'=>'form-control','step'=>'900','required'])}}
                 </div>
                 <div class="col-md-2">
                     <a href="#" style="border:none;background-color:transparent;" class="remove-form-field"><i class="ti-trash"></i></a>
@@ -111,5 +111,4 @@
     </div>
     <script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('self/js/subjects/edit.js')}}"></script>
-
 @endsection
