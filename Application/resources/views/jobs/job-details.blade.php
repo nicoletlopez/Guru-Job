@@ -8,11 +8,15 @@
 @section('content')
 
     @include('inc.header')
+
     <section class="job-detail section">
+        <br/>
         <div class="container">
             <div class="row">
                 <div class="col-md-9 col-sm-8">
                     <div class="content-area">
+                        <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go
+                            Back</a>
                         <h2 class="medium-title">Job Information</h2>
                         <div class="box">
                             <div class="text-left">
@@ -33,7 +37,7 @@
                                 <div class="meta">
                                     <span><i class="ti-mobile"></i>{{$job->hr->user->profile->contact_number}}</span>
                                 </div>
-                                <!--
+                            <!--
                                 <div class="meta">
                                     <span><i class="ti-world"></i>{{$job->workDays()}}</span>
                                 </div>
@@ -120,38 +124,38 @@
                                 <p>
                                     {!! $subject->desc !!}
                                 </p>
-                            <!--
-                                <h4>Overview</h4>
-                                <p>LemonKids LLC. In marketing communications, we dream it and create it. All of the company’s promotional and communication needs are completed in-house by these “creatives” in an advertising agency-based set-up. This includes everything from advertising, promotions and print production to media relations, exhibition coordination and website maintenance. Everyone from artists, writers, designers, media buyers, event coordinators, video producers/editors and public relations specialists work together to bring campaigns and product-centric promotions to life.</p>
-                                <p>If you’re a dreamer, gather up your portfolio and show us your vision. Garmin is adding one more enthusiastic individual to our in-house Communications expert team.</p>
-                                <h4>Qualification</h4>
-                                <p>Minimum of 5 years creative experience in a graphic design studio or advertising ad agency environment is required. Qualified candidates for this role will possess the following education, experience and skills:</p>
-                                <ul>
-                                    <li><i class="ti-check-box"></i>Demonstrated strong and effective verbal, written, and interpersonal communication skills</li>
-                                    <li><i class="ti-check-box"></i>Must be team-oriented, possess a positive attitude and work well with others</li>
-                                    <li><i class="ti-check-box"></i>Ability to prioritize and multi-task in a flexible, fast paced and challenging environment</li>
-                                </ul>
-                                <h4>Key responsibilities also include</h4>
-                                <ul>
-                                    <li><i class="ti-check-box"></i>Provide technical health advice to Head of Country Programmes and field advisors at all key stages of the project management cycle including needs assessment.</li>
-                                    <li><i class="ti-check-box"></i>Technical strategy and design, implementation as well as sector specific monitoring and evaluation.</li>
-                                    <li><i class="ti-check-box"></i>This includes travel to field programmes as well as review of proposals, key reports and surveys prior to external submission.</li>
-                                    <li><i class="ti-check-box"></i>Stay abreast of current best practice. Research and stay informed on academic and technical health and nutrition issues, techniques, and guidelines to inform and improve programming.</li>
-                                </ul>
-                                <h4>Requirements</h4>
-                                <ul>
-                                    <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.</li>
-                                    <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.
-                                        Strongly prefer candidates with High School Diploma</li>
-                                    <li><i class="ti-check-box"></i>Must be able to perform physical activities that require considerable use of your arms and legs and moving your whole body, such as climbing, lifting, balancing, walking, stooping, and handling of materials.</li>
-                                </ul>
-                                <h4>Benefits</h4>
-                                <ul>
-                                    <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.</li>
-                                    <li><i class="ti-check-box"></i>Strongly prefer candidates with High School Diploma</li>
-                                    <li><i class="ti-check-box"></i>Must be able to perform physical activities that require considerable use of your arms and legs and moving your whole body, such as climbing, lifting, balancing, walking, stooping, and handling of materials.</li>
-                                </ul>
-                                -->
+                                <!--
+                                    <h4>Overview</h4>
+                                    <p>LemonKids LLC. In marketing communications, we dream it and create it. All of the company’s promotional and communication needs are completed in-house by these “creatives” in an advertising agency-based set-up. This includes everything from advertising, promotions and print production to media relations, exhibition coordination and website maintenance. Everyone from artists, writers, designers, media buyers, event coordinators, video producers/editors and public relations specialists work together to bring campaigns and product-centric promotions to life.</p>
+                                    <p>If you’re a dreamer, gather up your portfolio and show us your vision. Garmin is adding one more enthusiastic individual to our in-house Communications expert team.</p>
+                                    <h4>Qualification</h4>
+                                    <p>Minimum of 5 years creative experience in a graphic design studio or advertising ad agency environment is required. Qualified candidates for this role will possess the following education, experience and skills:</p>
+                                    <ul>
+                                        <li><i class="ti-check-box"></i>Demonstrated strong and effective verbal, written, and interpersonal communication skills</li>
+                                        <li><i class="ti-check-box"></i>Must be team-oriented, possess a positive attitude and work well with others</li>
+                                        <li><i class="ti-check-box"></i>Ability to prioritize and multi-task in a flexible, fast paced and challenging environment</li>
+                                    </ul>
+                                    <h4>Key responsibilities also include</h4>
+                                    <ul>
+                                        <li><i class="ti-check-box"></i>Provide technical health advice to Head of Country Programmes and field advisors at all key stages of the project management cycle including needs assessment.</li>
+                                        <li><i class="ti-check-box"></i>Technical strategy and design, implementation as well as sector specific monitoring and evaluation.</li>
+                                        <li><i class="ti-check-box"></i>This includes travel to field programmes as well as review of proposals, key reports and surveys prior to external submission.</li>
+                                        <li><i class="ti-check-box"></i>Stay abreast of current best practice. Research and stay informed on academic and technical health and nutrition issues, techniques, and guidelines to inform and improve programming.</li>
+                                    </ul>
+                                    <h4>Requirements</h4>
+                                    <ul>
+                                        <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.</li>
+                                        <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.
+                                            Strongly prefer candidates with High School Diploma</li>
+                                        <li><i class="ti-check-box"></i>Must be able to perform physical activities that require considerable use of your arms and legs and moving your whole body, such as climbing, lifting, balancing, walking, stooping, and handling of materials.</li>
+                                    </ul>
+                                    <h4>Benefits</h4>
+                                    <ul>
+                                        <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.</li>
+                                        <li><i class="ti-check-box"></i>Strongly prefer candidates with High School Diploma</li>
+                                        <li><i class="ti-check-box"></i>Must be able to perform physical activities that require considerable use of your arms and legs and moving your whole body, such as climbing, lifting, balancing, walking, stooping, and handling of materials.</li>
+                                    </ul>
+                                    -->
                                 @guest
                                     <a href="{{route('login')}}" class="btn btn-common">Login to Apply</a>
                                 @else
