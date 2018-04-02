@@ -15,7 +15,7 @@
                                                                   src="{{$job->hr->user->profile->picture}}" alt=""></a>
                             </div>
                             <div class="job-list-content">
-                                <h4><a href="/jobs/{{$job->id}}">{{$job->title}}</a></h4>
+                                <h4><a style="font-size:20px;" href="/jobs/{{$job->id}}">{{$job->title}}</a></h4>
                                 <p>
                                     @if($job->type == 'FT')
                                         <span class="full-time">Full-Time</span>
@@ -25,7 +25,7 @@
                                 </p>
                                 Posted by <span style="font-weight:bold;color:#FC4A1A"
                                                 class="text-primary">{{$job->hr->user->name}}</span>
-                                <p>{!! str_limit($job->desc,400,'...') !!}</p>
+                                <p>{!! str_limit($job->desc,300,'...') !!}</p>
                                 <div class="job-tag">
                                     <div class="pull-left col-md-9">
                                         <div class="meta-tag" style="word-wrap:break-word;">
@@ -44,8 +44,8 @@
                             </div>
                         </div>
                     @endforeach
-                    @if(Request::is('jobs'))
-                        {!! $jobs->render() !!}
+                    @if(Request::is('jobs','jobs/*'))
+                        {{ $jobs->appends(request()->query())->links() }}
                     @elseif(Request::is('/'))
                         <a href="{{route('jobs.index')}}" class="btn btn-common">Show more jobs</a>
                     @endif
