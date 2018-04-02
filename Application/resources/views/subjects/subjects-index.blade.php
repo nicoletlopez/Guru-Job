@@ -18,29 +18,32 @@
             </tr>
             </thead>
             <tbody>
-
             @foreach($subjects as $subject)
                 <tr>
-                    <td><a href="/subjects/{{$subject->id}}"><h3>{{$subject->name}}</h3></a></td>
+                    <td><a href="/subjects/{{$subject->id}}"><h3>{{$subject->name}}</h3></a>
+                        @if(in_array($subject->id,JobsController::getUsedSubjects()))
+                            <p><b>Job:</b> <a href="/jobs/{{$subject->job->id}}">{{$subject->job->title}}</a></p>
+                        @endif
+                    </td>
                     <td>
                         <table>
-                        @foreach($subject->schedules as $schedule)
-                            <tr>
-                                <td><b>{{$schedule->day}}</b></td>
-                                <td>&nbsp;</td>
-                                <td>{{date("h:i A",strtotime($schedule->start))}}</td>
-                                <td>-</td>
-                                <td>{{date("h:i A",strtotime($schedule->end))}}</td>
-                            </tr>
-                        @endforeach
+                            @foreach($subject->schedules as $schedule)
+                                <tr>
+                                    <td><b>{{$schedule->day}}</b></td>
+                                    <td>&nbsp;</td>
+                                    <td>{{date("h:i A",strtotime($schedule->start))}}</td>
+                                    <td>-</td>
+                                    <td>{{date("h:i A",strtotime($schedule->end))}}</td>
+                                </tr>
+                            @endforeach
                         </table>
                     </td>
                     <td>
                         @if(in_array($subject->id,JobsController::getUsedSubjects()))
-                        <a href="/jobs/{{$subject->job->id}}"><i style="font-size:30px;" class="ti-eye"></i></a>
-                            @else
+                            <a href="/jobs/{{$subject->job->id}}"><i style="font-size:30px;" class="ti-eye"></i></a>
+                        @else
                             <p>None</p>
-                            @endif
+                        @endif
                     </td>
                     <td>
                         <a href="/subjects/{{$subject->id}}/edit" class=""><i style="font-size:30px;"
@@ -52,7 +55,6 @@
                             <i style="font-size:30px;" class="ti-trash"></i>
                         </button>
                         {!! Form::close() !!}
-
 
                     </td>
                 </tr>
