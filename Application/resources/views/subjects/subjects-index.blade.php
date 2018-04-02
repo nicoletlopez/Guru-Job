@@ -40,14 +40,17 @@
                     </td>
                     <td>
                         @if(in_array($subject->id,JobsController::getUsedSubjects()))
-                            <a href="/jobs/{{$subject->job->id}}"><i style="font-size:30px;" class="ti-eye"></i></a>
+                            <a href="/jobs/{{$subject->job->id}}" class="subjectTooltip" title="View Subject">
+                                <i style="font-size:30px;" class="ti-eye"></i>
+                            </a>
                         @else
                             <p>None</p>
                         @endif
                     </td>
                     <td>
-                        <a href="/subjects/{{$subject->id}}/edit" class=""><i style="font-size:30px;"
-                                                                              class="ti-pencil"></i></a>
+                        <a href="/subjects/{{$subject->id}}/edit" class="subjectTooltip" title="Edit Subject">
+                            <i style="font-size:30px;" class="ti-pencil"></i>
+                        </a>
                         {!! Form::open(['action'=>['SubjectsController@destroy',$subject->id],'method'=>'POST','class'=>'pull-right']) !!}
                         {{Form::hidden('_method','DELETE')}}
                         <button style="border:none;background-color:transparent;" data-toggle="confirmation"
@@ -68,4 +71,6 @@
             </tbody>
     </table>
 </div>
+<script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('self/js/tooltips.js')}}"></script>
 @include('inc.prompt-delete')
