@@ -3475,3 +3475,9 @@ ul.nav-tabs li a{
   font-size: 20px;
   font-weight: bold;
 }
+.employeeTooltip{
+    font-size: 40px;
+}
+.jobTooltip{
+    font-size: 25px;
+}
