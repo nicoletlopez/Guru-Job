@@ -13,8 +13,7 @@
             <tr>
                 <th>Subject Name</th>
                 <th style="width:190px;">Schedule</th>
-                <th>Job</th>
-                <th style="width:100px;">Action</th>
+                <th style="width:130px;">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -39,21 +38,15 @@
                         </table>
                     </td>
                     <td>
-                        @if(in_array($subject->id,JobsController::getUsedSubjects()))
-                            <a href="/jobs/{{$subject->job->id}}" class="subjectTooltip" title="View Subject">
-                                <i style="font-size:30px;" class="ti-eye"></i>
-                            </a>
-                        @else
-                            <p>None</p>
-                        @endif
-                    </td>
-                    <td>
+                        <a href="/subjects/{{$subject->id}}" class="subjectTooltip" title="View Subject">
+                            <i style="font-size:30px;" class="ti-eye"></i>
+                        </a>
                         <a href="/subjects/{{$subject->id}}/edit" class="subjectTooltip" title="Edit Subject">
                             <i style="font-size:30px;" class="ti-pencil"></i>
                         </a>
                         {!! Form::open(['action'=>['SubjectsController@destroy',$subject->id],'method'=>'POST','class'=>'pull-right']) !!}
                         {{Form::hidden('_method','DELETE')}}
-                        <button style="border:none;background-color:transparent;" data-toggle="confirmation"
+                        <button style="border:none;background-color:transparent;" data-toggle="confirmation" data-placement="left" data-title="{{in_array($subject->id,JobsController::getUsedSubjects()) ? 'Warning! the Job will be deleted':'Are you sure?'}}"
                                 type="submit">
                             <i style="font-size:30px;" class="ti-trash"></i>
                         </button>
