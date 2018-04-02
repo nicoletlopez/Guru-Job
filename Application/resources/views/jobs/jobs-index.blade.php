@@ -14,7 +14,7 @@
             <col span="1" style="width: 15%;">
         </colgroup>
         @if(count($jobs)>0)
-            <thead class="">
+            <thead>
             <tr>
                 <th>Job Title</th>
                 <th>Number of Applicants</th>
@@ -27,41 +27,27 @@
             @foreach($jobs as $key=>$job)
                 <tr>
                     <td style="vertical-align: middle"><a href="/jobs/{{$job->id}}"><h3>{{$job->title}}</h3></a></td>
-                    <td style="text-align: center; vertical-align: middle"><span class="badge">{{$job->applicants->count()}}</span></td>
+                    <td style="text-align: center; vertical-align: middle"><span
+                                class="badge">{{$job->applicants->count()}}</span></td>
                     <td style="text-align: center; vertical-align: middle">
-                        @if(count($job->applicants) > 0)
-                            <a href="/jobs/{{$job->id}}/applicants" data-toggle="tooltip" title="View Applicants">
-                                <img src="{{asset('img/view.png')}}" width="40" height="40"/>
-                            </a>
-                        <!--
-                                <div class="can-img">
-
-
-                                    @foreach($job->applicants as $applicant)
-                            <a href="#"><img class="img-circle"
-                                             src="{{$applicant->user->profile->picture}}"/></a>
-                                    @endforeach
-
-                                </div>
--->
-                        @else
-                            <p class="text-center">None</p>
-                        @endif
+                        <a href="/jobs/{{$job->id}}/applicants" class="jobTooltip" title="View Applicants">
+                            <span class="ti-eye" style="font-size: 35px"></span>
+                        </a>
                     </td>
                     <td style="vertical-align: middle">
                         <div class="row">
                             <div class="col-md-offset-1 col-md-5">
-                                <a href="/jobs/{{$job->id}}/edit" data-toggle="tooltip" title="Update Job">
-                                    <img src="{{asset('img/edit.png')}}" width="30" height="30"/>
+                                <a href="/jobs/{{$job->id}}/edit" class="jobTooltip" title="Update Job">
+                                    <span class="ti-pencil" style="font-size: 35px"></span>
                                 </a>
                             </div>
                             <div class="col-md-6">
                                 {!! Form::open(['action'=>['JobsController@destroy',$job->id],'method'=>'POST']) !!}
                                 {{ Form::hidden('_method','DELETE') }}
-                                <input type="image" src="{{asset('img/delete-icon.png')}}" height="30" width="30"
-                                       data-toggle="confirmation" alt="Submit Form" />
-                                {{--{!! Form::button('Delete',['class'=>'btn btn-danger btn-block','data-toggle'=>'confirmation']) !!}--}}
-                                {!! Form::close() !!}
+                                <button style="border:none;background-color:transparent;" data-toggle="confirmation"
+                                        type="submit">
+                                    <i style="font-size:30px;" class="ti-trash"></i>
+                                </button>{!! Form::close() !!}
                             </div>
                         </div>
                     </td>
@@ -77,4 +63,6 @@
             </tbody>
     </table>
 </div>
+<script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('self/js/tooltips.js')}}"></script>
 @include('inc.prompt-delete')
