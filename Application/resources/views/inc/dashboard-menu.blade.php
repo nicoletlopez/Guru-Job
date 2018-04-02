@@ -10,11 +10,13 @@
                             <ul class="lest item">
                                 <li>
                                     <a class="@yield('dashboard-active')" href="{{route('hr-dashboard')}}">
+                                        <span class="ti-layout-grid2"></span>
                                         Dashboard
                                     </a>
                                 </li>
                                 <li>
                                     <a class="@yield('hr-profile-active')" href="{{route('hr-profile')}}">
+                                        <span class="ti-layout-sidebar-2"></span>
                                         School Profile
                                     </a>
                                 </li>
@@ -23,6 +25,7 @@
                             <ul class="lest item">
                                 <li>
                                     <a class="@yield('manage-subjects-active')" href="{{route('subjects.index')}}">
+                                        <span class="ti-book"></span>
                                         Manage Subjects
                                     </a>
                                 </li>
@@ -30,11 +33,13 @@
                             <h4>Job</h4>
                             <ul class="lest item">
                                 <li>
-                                    <a class="@yield('manage-jobs-active')" href="{{route('manage-jobs')}}">Manage
-                                        Jobs
+                                    <a class="@yield('manage-jobs-active')" href="{{route('manage-jobs')}}">
+                                        <span class="ti-email"></span>
+                                        Manage Jobs
                                     </a>
                                 </li>
                             <li><a class="@yield('manage-applications-active')" href="{{route('applications.index')}}">
+                                    <span class="ti-bookmark"></span>
                                     Manage Applications
                                 </a>
                             </li>
@@ -44,6 +49,7 @@
                             <ul class="lest item">
                                 <li>
                                     <a class="@yield('manage-employees-active')" href="{{route('employees.index')}}">
+                                        <span class="ti-id-badge"></span>
                                         Manage Employees
                                     </a>
                                 </li>
@@ -54,16 +60,19 @@
                             <ul class="lest item">
                                 <li>
                                     <a class="@yield('dashboard-active')" href="{{route('dashboard')}}">
+                                        <span class="ti-layout-grid2"></span>
                                         Dashboard
                                     </a>
                                 </li>
                                 <li>
                                     <a class="@yield('profile-active')" href="{{route('profile')}}">
+                                        <span class="ti-user"></span>
                                         My Profile
                                     </a>
                                 </li>
                                 <li>
                                     <a class="@yield('notifications-active')" href="{{route('notifications')}}">
+                                        <span class="ti-bolt"></span>
                                         Notifications
                                         <span class="notinumber">2</span>
                                     </a>
@@ -73,6 +82,7 @@
                             <ul class="lest item">
                                 <li>
                                     <a class="@yield('manage-lectures-active')" href="{{route('lectures.index')}}">
+                                        <span class="ti-blackboard"></span>
                                         Manage Lectures
                                     </a>
                                 </li>
@@ -81,6 +91,7 @@
                             <ul class="lest item">
                                 <li>
                                     <a class="@yield('manage-documents-active')" href="{{route('document-spaces.index')}}">
+                                        <span class="ti-folder"></span>
                                         My Guru Drive
                                     </a>
                                 </li>
@@ -90,6 +101,7 @@
                             <ul class="lest item">
                                 <li>
                                     <a class="@yield('manage-resumes-active')" href="{{route('resumes.index')}}">
+                                        <span class="ti-envelope"></span>
                                         My Résumés
                                     </a>
                                 </li>
@@ -98,6 +110,7 @@
                         <ul class="lest">
                             <li>
                                 <a class="@yield('change-pass-active')" href="{{route('change-pass')}}">
+                                    <span class="ti-key"></span>
                                     Change Password
                                 </a>
                             </li>
@@ -105,6 +118,7 @@
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                    <span class="ti-filter"></span>
                                     Log Out
                                 </a>
                             </li>
