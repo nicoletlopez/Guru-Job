@@ -8,105 +8,105 @@
         </div>
         <!--HR-->
         @if(Auth::user()->type == 'HR')
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('hr-profile')}}">
+            <a href="{{route('hr-profile')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
                         <i class="ti-layout-sidebar-2"></i>
                     </div>
                     <h3>School Profile</h3>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('subjects.index')}}">
+                </div>
+            </a>
+            <a href="{{route('subjects.index')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
                         <i class="ti-book"></i>
                     </div>
                     <h3>Manage Subjects</h3>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('manage-jobs')}}">
+                </div>
+            </a>
+            <a href="{{route('manage-jobs')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
                         <i class="ti-email"></i>
                     </div>
                     <h3>Manage Jobs</h3>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('applications.index')}}">
+                </div>
+            </a>
+            <a href="{{route('applications.index')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
                         <i class="ti-bookmark"></i>
                     </div>
                     <h3>Manage Applications</h3>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('employees.index')}}">
+                </div>
+            </a>
+            <a href="{{route('employees.index')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
                         <i class="ti-id-badge"></i>
                     </div>
                     <h3>Manage Employees</h3>
-                </a>
-            </div>
+                </div>
+            </a>
         @else
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('profile')}}">
+            <a href="{{route('profile')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
-                        <i class="ti-book"></i>
+                        <i class="ti-user"></i>
                     </div>
                     <h3>Profile</h3>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('notifications')}}">
+                </div>
+            </a>
+            <a href="{{route('notifications')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
                         <i class="ti-email"></i>
                     </div>
                     <h3>Notifications</h3>
                     <p><span class="badge">2</span></p>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('lectures.index')}}">
+                </div>
+            </a>
+            <a href="{{route('lectures.index')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
                         <i class="ti-blackboard"></i>
                     </div>
                     <h3>Manage Lectures</h3>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('document-spaces.index')}}">
+                </div>
+            </a>
+            <a href="{{route('document-spaces.index')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
                         <i class="ti-folder"></i>
                     </div>
                     <h3>My Guru Drive</h3>
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-                <a href="{{route('resumes.index')}}">
+                </div>
+            </a>
+            <a href="{{route('resumes.index')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
                         <i class="ti-envelope"></i>
                     </div>
                     <h3>My Résumés</h3>
-                </a>
-            </div>
+                </div>
+            </a>
         @endif
-        <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-            <a href="{{ route('change-pass') }}">
+        <a href="{{ route('change-pass') }}">
+            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <div class="icon">
                     <i class="ti-key"></i>
                 </div>
                 <h3>Change Password</h3>
-            </a>
-        </div>
-        <div class="col-md-3 col-sm-3 col-xs-12 f-category">
-            <a href="{{ route('logout') }}"
-               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            </div>
+        </a>
+        <a href="{{ route('logout') }}"
+           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <div class="icon">
                     <i class="ti-filter"></i>
                 </div>
                 <h3>Log Out</h3>
-            </a>
-        </div>
+            </div>
+        </a>
     </div>
 </div>

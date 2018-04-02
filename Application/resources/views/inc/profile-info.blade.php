@@ -64,8 +64,8 @@
                 </h3>
                 {!! $profile->description !!}
             </div>
+        @endif
     @endif
-@endif
 
 <!--
     <div class="work-experence item">
