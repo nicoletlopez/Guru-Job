@@ -57,7 +57,7 @@ class JobsController extends Controller
             $subjectsUsed[]=$job->subject->id;
         }
         if(!(count($subjects)>count($subjectsUsed))){
-            return redirect(route('subjects.create'))->with('warning','A Subject is needed before posting a job');
+            return redirect(route('subjects.create'))->with('warning','An unused Subject is needed before posting a job');
         }
         $context = array(
             'subjectsUsed' => $subjectsUsed,
@@ -282,7 +282,7 @@ class JobsController extends Controller
         $specializations->prepend('All Specializations','')->all();
 
         $context = array(
-            'jobs' => $jobs->paginate(),
+            'jobs' => $jobs->paginate(8),
             'specializations' => $specializations,
         );
         return view('jobs.job-listings')->with($context);
