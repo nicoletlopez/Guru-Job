@@ -99,12 +99,15 @@ class SubjectsController extends Controller
     public function show($id)
     {
         $subject = Subject::find($id);
+        if(!$subject){
+            return redirect(route('subjects.index'));
+        }
         $schedules = $subject->schedules;
-        $specializations=$subject->specializations;
+        $specializations = $subject->specializations;
         $context = array(
             'subject' => $subject,
             'schedules' => $schedules,
-            'specializations'=>$specializations,
+            'specializations' => $specializations,
         );
         return view('subjects.subject-details')->with($context);
     }
@@ -119,19 +122,19 @@ class SubjectsController extends Controller
     {
         $subject = Subject::find($id);
         $specializationsSelected = $subject->specializations;
-        $specializations=Specialization::all();
+        $specializations = Specialization::all();
         $schedules = $subject->schedules;
 
-        $specializationData=[];
-        foreach($specializationsSelected as $specializationSelected){
-            $specializationData[]=$specializationSelected->id;
+        $specializationData = [];
+        foreach ($specializationsSelected as $specializationSelected) {
+            $specializationData[] = $specializationSelected->id;
         }
 
         $context = [
             'specializations' => $specializations,
             'subject' => $subject,
-            'specializationData'=>$specializationData,
-            'schedules'=>$schedules,
+            'specializationData' => $specializationData,
+            'schedules' => $schedules,
         ];
         return view('subjects.subject-edit')->with($context);
     }
@@ -155,7 +158,7 @@ class SubjectsController extends Controller
         $end_time = $request->input('times-to');
 
         //Update subject row
-        $subject=Subject::find($id);
+        $subject = Subject::find($id);
         $subject->name = $name;
         $subject->desc = $desc;
         $subject->save();
@@ -174,7 +177,7 @@ class SubjectsController extends Controller
             $schedule->end = $end_time[$key];
             $schedule->save();
         }
-        return redirect('/subjects/'.$subject->id);
+        return redirect('/subjects/' . $subject->id);
     }
 
     /**
@@ -186,7 +189,12 @@ class SubjectsController extends Controller
     public function destroy($id)
     {
         $subject = Subject::find($id);
+        if (isset($subject->job)) {
+            $subject->job->delete();
+            $subject->delete();
+            return redirect(route('subjects.index'))->with('warning', 'Subject and Job deleted');
+        }
         $subject->delete();
-        return back()->with('warning','Subject deleted');
+        return redirect(route('subjects.index'))->with('warning', 'Subject deleted');
     }
 }
