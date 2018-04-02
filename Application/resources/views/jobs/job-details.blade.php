@@ -33,9 +33,11 @@
                                 <div class="meta">
                                     <span><i class="ti-mobile"></i>{{$job->hr->user->profile->contact_number}}</span>
                                 </div>
+                                <!--
                                 <div class="meta">
                                     <span><i class="ti-world"></i>{{$job->workDays()}}</span>
                                 </div>
+                                -->
                                 <strong class="price"><i class="fa fa-money"></i>P{{$job->floor_salary}}
                                     - {{$job->ceiling_salary}} /
                                     @if($job->type == 'FT')
