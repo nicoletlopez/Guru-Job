@@ -93,6 +93,7 @@ Route::get('/resumes/{resume}/{template}','ResumesController@show')->name('resum
 
 //employees
 Route::resource('employees','EmployeesController');
+Route::get('/employees/{faculty}/profile','EmployeesController@profile');
 
 //test
 
