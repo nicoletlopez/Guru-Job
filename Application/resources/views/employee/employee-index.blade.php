@@ -35,13 +35,16 @@
 {{--                                            <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($employee->pivot->created_at))}}</b><br/>--}}
                                             {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
                                             <br/>
-                                            <a href="{{route('manage-jobs')}}" class="employeeTooltip" title="View Profile">
+                                            <a href="#" class="employeeTooltip" title="View Profile">
                                                 <span class="ti-user" style="font-size: 40px"></span>
                                             </a>
-                                            <a href="{{route('manage-jobs')}}" class="employeeTooltip" title="View Documents">
+                                            <a href="#" class="employeeTooltip" title="View Résumé">
+                                                <span class="ti-envelope" style="font-size: 40px"></span>
+                                            </a>
+                                            <a href="#" class="employeeTooltip" title="View Documents">
                                                 <span class="ti-briefcase" style="font-size: 40px"></span>
                                             </a>
-                                            <a href="{{route('manage-jobs')}}" class="employeeTooltip" title="View Lectures">
+                                            <a href="#" class="employeeTooltip" title="View Lectures">
                                                     <span class="ti-blackboard" style="font-size: 40px"></span>
                                             </a>
                                         </div>
