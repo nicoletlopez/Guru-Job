@@ -87,7 +87,7 @@
                     <div class="icon">
                         <i class="ti-receipt"></i>
                     </div>
-                    <h3>My Resumes</h3>
+                    <h3>My Résumés</h3>
                 </a>
             </div>
         @endif

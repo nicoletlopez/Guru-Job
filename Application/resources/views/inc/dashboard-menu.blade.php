@@ -90,7 +90,7 @@
                             <ul class="lest item">
                                 <li>
                                     <a class="@yield('manage-resumes-active')" href="{{route('resumes.index')}}">
-                                        My Resumes
+                                        My Résumés
                                     </a>
                                 </li>
                             </ul>
