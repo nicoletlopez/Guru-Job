@@ -69,7 +69,7 @@
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <a href="{{route('lectures.index')}}">
                     <div class="icon">
-                        <i class="ti-bookmark-alt"></i>
+                        <i class="ti-blackboard"></i>
                     </div>
                     <h3>Manage Lectures</h3>
                 </a>
@@ -85,7 +85,7 @@
             <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                 <a href="{{route('resumes.index')}}">
                     <div class="icon">
-                        <i class="ti-receipt"></i>
+                        <i class="ti-envelope"></i>
                     </div>
                     <h3>My Résumés</h3>
                 </a>
