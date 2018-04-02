@@ -1,3 +1,4 @@
+<?php use App\Http\Controllers\JobsController; ?>
 <div class="job-alerts-item candidates">
     <h3 class="alerts-title">
         Manage Subjects &nbsp <!--<a class="btn btn-success" href="{{route('subjects.create')}}">Add a Subject</a>-->
@@ -11,8 +12,9 @@
             <thead class="">
             <tr>
                 <th>Subject Name</th>
-                <th>Schedule</th>
-                <th>Action</th>
+                <th style="width:190px;">Schedule</th>
+                <th>Job</th>
+                <th style="width:90px;">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -21,17 +23,28 @@
                 <tr>
                     <td><a href="/subjects/{{$subject->id}}"><h3>{{$subject->name}}</h3></a></td>
                     <td>
+                        <table>
                         @foreach($subject->schedules as $schedule)
-                            <p><b>{{$schedule->day}}</b> {{date("h:i A",strtotime($schedule->start))}}
-                                - {{date("h:i A",strtotime($schedule->end))}}</p>
+                            <tr>
+                                <td><b>{{$schedule->day}}</b></td>
+                                <td>&nbsp;</td>
+                                <td>{{date("h:i A",strtotime($schedule->start))}}</td>
+                                <td>-</td>
+                                <td>{{date("h:i A",strtotime($schedule->end))}}</td>
+                            </tr>
                         @endforeach
+                        </table>
                     </td>
                     <td>
-
+                        @if(in_array($subject->id,JobsController::getUsedSubjects()))
+                        <a href="/jobs/{{$subject->job->id}}"><i style="font-size:30px;" class="ti-eye"></i></a>
+                            @else
+                            <p>None</p>
+                            @endif
+                    </td>
+                    <td>
                         <a href="/subjects/{{$subject->id}}/edit" class=""><i style="font-size:30px;"
                                                                               class="ti-pencil"></i></a>
-
-
                         {!! Form::open(['action'=>['SubjectsController@destroy',$subject->id],'method'=>'POST','class'=>'pull-right']) !!}
                         {{Form::hidden('_method','DELETE')}}
                         <button style="border:none;background-color:transparent;" data-toggle="confirmation"
