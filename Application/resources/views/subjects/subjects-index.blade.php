@@ -14,7 +14,7 @@
                 <th>Subject Name</th>
                 <th style="width:190px;">Schedule</th>
                 <th>Job</th>
-                <th style="width:90px;">Action</th>
+                <th style="width:100px;">Action</th>
             </tr>
             </thead>
             <tbody>
