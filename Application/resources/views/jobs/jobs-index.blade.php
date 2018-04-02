@@ -30,9 +30,13 @@
                     <td style="text-align: center; vertical-align: middle"><span
                                 class="badge">{{$job->applicants->count()}}</span></td>
                     <td style="text-align: center; vertical-align: middle">
-                        <a href="/jobs/{{$job->id}}/applicants" class="jobTooltip" title="View Applicants">
-                            <span class="ti-eye" style="font-size: 35px"></span>
-                        </a>
+                        @if(count($job->applicants)>0)
+                            <a href="/jobs/{{$job->id}}/applicants" class="jobTooltip" title="View Applicants">
+                                <span class="ti-eye" style="font-size: 35px"></span>
+                            </a>
+                        @else
+                            <p>None</p>
+                        @endif
                     </td>
                     <td style="vertical-align: middle">
                         <div class="row">
