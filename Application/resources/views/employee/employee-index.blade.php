@@ -35,7 +35,7 @@
 {{--                                            <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($employee->pivot->created_at))}}</b><br/>--}}
                                             {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
                                             <br/>
-                                            <a href="#" class="employeeTooltip" title="View Profile">
+                                            <a href="/employees/{{$employee->user_id}}/profile" class="employeeTooltip" title="View Profile">
                                                 <span class="ti-user" style="font-size: 40px"></span>
                                             </a>
                                             <a href="#" class="employeeTooltip" title="View Résumé">
