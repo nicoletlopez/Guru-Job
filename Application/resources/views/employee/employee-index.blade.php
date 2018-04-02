@@ -31,21 +31,60 @@
                                             Contact No. <b style="font-size: 14px">{{$employee->user->profile->contact_number}}</b>
                                         </div>
                                         <div class="col-md-4">
-                                            {{--<b style="font-size: 14px">Date Hired:</b><br/>--}}
+                                            <b style="font-size: 14px">Actions:</b><br/>
 {{--                                            <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($employee->pivot->created_at))}}</b><br/>--}}
                                             {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
                                             <br/>
-                                            <a href="#"
-                                               class="btn btn-common btn-block">
-                                                Assigned Lectures
+                                            <a href="{{route('manage-jobs')}}" class="employeeTooltip" title="View Profile">
+                                                <span class="ti-user" style="font-size: 40px"></span>
+                                            </a>
+                                            <a href="{{route('manage-jobs')}}" class="employeeTooltip" title="View Documents">
+                                                <span class="ti-briefcase" style="font-size: 40px"></span>
+                                            </a>
+                                            <a href="{{route('manage-jobs')}}" class="employeeTooltip" title="View Lectures">
+                                                    <span class="ti-blackboard" style="font-size: 40px"></span>
                                             </a>
                                         </div>
                                     </div>
-                                    <hr/>
-                                    <p style="font-size:16px;">Subject/s:</p>
-                                    @foreach($employee->subjects as $subject)
-                                        <p style="font-size:16px;text-indent:20px;">{{$subject->name}}</p>
-                                    @endforeach
+                                    <div class="col-md-offset-1 col-md-11">
+                                        <hr/>
+                                        <table class="table" style="margin-top: 0; width: 100%">
+                                            <colgroup>
+                                                <col span="1" style="width: 65%;">
+                                                <col span="1" style="width: 35%;">
+                                            </colgroup>
+                                            <thead>
+                                            <tr>
+                                                <th>Subject Name</th>
+                                                <th style="width:190px;">Schedule</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($employee->subjects as $subject)
+                                                <tr>
+                                                    <td>
+                                                        <a href="/subjects/{{$subject->id}}">
+                                                            <strong style="font-size: 16px">{{$subject->name}}</strong>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <table>
+                                                            @foreach($subject->schedules as $schedule)
+                                                                <tr>
+                                                                    <td><b>{{$schedule->day}}</b></td>
+                                                                    <td>&nbsp;</td>
+                                                                    <td>{{date("h:i A",strtotime($schedule->start))}}</td>
+                                                                    <td>-</td>
+                                                                    <td>{{date("h:i A",strtotime($schedule->end))}}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             @endforeach
                             {{ $employees->links() }}
@@ -60,4 +99,7 @@
             </div>
         </div>
     </section>
+
+    <script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('self/js/tooltips.js')}}"></script>
 @endsection
