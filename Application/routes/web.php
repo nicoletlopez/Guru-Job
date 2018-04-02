@@ -94,6 +94,9 @@ Route::get('/resumes/{resume}/{template}','ResumesController@show')->name('resum
 //employees
 Route::resource('employees','EmployeesController');
 
+//paypa;
+Route::get('create_paypal_plan', 'PaypalController@create_plan');
+
 //test
 
 //NOTICE
