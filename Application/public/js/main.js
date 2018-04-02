@@ -206,9 +206,9 @@ $('#clients-scroller').owlCarousel({
 /* Tooltip
 ========================================================*/
 
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-});
+// $(document).ready(function(){
+//     $('[data-toggle="tooltip"]').tooltip({animation:true});
+// });
 
  // Back Top Link
   var offset = 200;
