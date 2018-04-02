@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Faculty;
+use App\Subject;
+use App\User;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
@@ -14,15 +16,18 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        //list all of an HR's employees
-        $employees = Faculty::whereEmployerIs(auth()->user()->id)->paginate(5);
+        if(auth()->user()->type === 'HR'){
+            //list all of an HR's employees
+            $employees = Faculty::whereEmployerIs(auth()->user()->id)->paginate(5);
 
-        $context = [
-            'key' => 0,
-            'employees' => $employees,
-        ];
+            $context = [
+                'key' => 0,
+                'employees' => $employees,
+            ];
 
-        return view('employee.employee-index')->with($context);
+            return view('employee.employee-index')->with($context);
+        }
+        return redirect('/');
     }
 
     /**
@@ -90,5 +95,24 @@ class EmployeesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function profile($faculty_id)
+    {
+        $hr_id = auth()->user()->id;
+        $is_employee = Subject::where(['hr_id'=>$hr_id,'faculty_id'=>$faculty_id])->get()->isNotEmpty();
+        if($is_employee){
+            $faculty = User::find($faculty_id);
+            $profile = $faculty->profile;
+
+            $context = [
+                'user' => $faculty,
+                'profile' => $profile,
+            ];
+
+            return view('employee.employee-profile')->with($context);
+        }else{
+            return redirect('/employees');
+        }
     }
 }
