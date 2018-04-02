@@ -60,7 +60,7 @@
                                             {!! Form::close() !!}
                                         @endif
                                     @else
-                                        @if(Auth::user()->id == $job->user_id)
+                                        @if(Auth::user()->id == $job->hr_id)
                                             <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary btn-sm">Update
                                                 Job</a>
                                             <a href="{{route('manage-jobs')}}" class="btn btn-success btn-sm">Manage
@@ -95,11 +95,17 @@
                                                 </ol>
                                             </td>
                                             <td>
-                                                @foreach($subject->schedules as $schedule)
-                                                    <p>
-                                                        <b>{{$schedule->day}}</b> {{date("h:i A",strtotime($schedule->start))}}
-                                                        - {{date("h:i A",strtotime($schedule->end))}}</p>
-                                                @endforeach
+                                                <table>
+                                                    @foreach($subject->schedules as $schedule)
+                                                        <tr>
+                                                            <td><b>{{$schedule->day}}</b></td>
+                                                            <td>&nbsp;</td>
+                                                            <td>{{date("h:i A",strtotime($schedule->start))}}</td>
+                                                            <td>-</td>
+                                                            <td>{{date("h:i A",strtotime($schedule->end))}}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -158,7 +164,7 @@
                                             </a>
                                         @endif
                                     @else
-                                        @if(Auth::user()->id == $job->user_id)
+                                        @if(Auth::user()->id == $job->hr_id)
                                             <a href="/jobs/{{$job->id}}/edit" class="btn btn-primary">Update Job</a>
                                             <a href="{{route('manage-jobs')}}" class="btn btn-success">Manage
                                                 Jobs</a>
