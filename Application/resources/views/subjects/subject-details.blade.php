@@ -34,10 +34,17 @@
                             <div class="clearfix">
                                 <h4>Schedule</h4>
 
-                                @foreach($schedules as $schedule)
-                                    <p><b>{{$schedule->day}}</b> {{date("h:i A",strtotime($schedule->start))}}
-                                        - {{date("h:i A",strtotime($schedule->end))}}</p>
-                                @endforeach
+                                <table>
+                                    @foreach($subject->schedules as $schedule)
+                                        <tr>
+                                            <td><b>{{$schedule->day}}</b></td>
+                                            <td>&nbsp;</td>
+                                            <td>{{date("h:i A",strtotime($schedule->start))}}</td>
+                                            <td>-</td>
+                                            <td>{{date("h:i A",strtotime($schedule->end))}}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
 
                             </div>
                         </div>
