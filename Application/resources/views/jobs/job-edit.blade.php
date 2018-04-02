@@ -44,8 +44,8 @@
                 <div class="form-group">
                     {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
                     @foreach($subjects as $subject)
-                        <div class="checkbox">
-                            <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,in_array($subject->id,$subjectData),['type'=>"checkbox"])}}{{$subject->name}}</label>
+                        <div class="radio">
+                            <label style="color:black;">{{Form::radio('subject',$subject->id,$jobSubject->id == $subject->id,['type'=>"radio"])}}{{$subject->name}}</label>
                         </div>
                     @endforeach
                 </div>
