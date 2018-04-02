@@ -144,16 +144,20 @@ class JobsController extends Controller
         $hr = auth()->user()->hr;
         $job = Job::find($id);
         $subjects = $hr->subjects;
-        $subjectsSelected = $job->subjects;
+        $jobSubject=$job->subject;
+        //$subjectsSelected = $job->subject;
         $subjectData = array();
+        /*
         foreach ($subjectsSelected as $subjectSelected) {
             $subjectData[] = $subjectSelected->id;
         }
+        */
         $jobType = $job->type;
         $context = array(
             'job' => Job::find($id),
             'subjects' => $subjects,
-            'subjectData' => $subjectData,
+            //'subjectData' => $subjectData,
+            'jobSubject'=>$jobSubject,
             'jobType' => $jobType,
         );
         return view('jobs.job-edit')->with($context);
@@ -172,31 +176,19 @@ class JobsController extends Controller
         $job = Job::find($id);
         $title = $request->input('title');
         $type = $request->input('type');
-        $salary = $request->input('salary');
+        //$salary = $request->input('salary');
         $desc = $request->input('description');
         $minSalary = $request->input('min-salary');
         $maxSalary = $request->input('max-salary');
+        $subject=$request->input('subject');
 
+        $job->subject_id=$subject;
         $job->title = $title;
         $job->desc = $desc;
         $job->type = $type;
         $job->floor_salary = $minSalary;
         $job->ceiling_salary = $maxSalary;
         $job->save();
-
-
-        $subject_ids = $request->input('subjects');
-        $subjects = $job->subjects;
-        foreach ($subjects as $subject) {
-            $subject->job_id = null;
-            $subject->save();
-        }
-
-        foreach ($subject_ids as $subject_id) {
-            $subject = Subject::find($subject_id);
-            $subject->job_id = $job->id;
-            $subject->save();
-        }
 
         return redirect('/jobs/' . $job->id);
 
