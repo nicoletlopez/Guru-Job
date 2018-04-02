@@ -26,7 +26,9 @@
 
             @foreach($jobs as $key=>$job)
                 <tr>
-                    <td style="vertical-align: middle"><a href="/jobs/{{$job->id}}"><h3>{{$job->title}}</h3></a></td>
+                    <td style="vertical-align: middle"><a href="/jobs/{{$job->id}}"><h3>{{$job->title}}</h3></a>
+                        <p><b>Subject:</b> <a href="/subjects/{{$job->subject->id}}">{{$job->subject->name}}</a></p>
+                    </td>
                     <td style="text-align: center; vertical-align: middle"><span
                                 class="badge">{{$job->applicants->count()}}</span></td>
                     <td style="text-align: center; vertical-align: middle">
