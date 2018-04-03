@@ -30,16 +30,17 @@
                     <td style="vertical-align: middle;">
                         <div class="row">
                             <div class="col-md-offset-1 col-md-5">
-                                <a href="/lectures/{{$lecture->id}}/edit" data-toggle="tooltip" title="Edit Lecture">
-                                    <img src="{{asset('img/edit.png')}}" width="30" height="30"/>
+                                <a href="/lectures/{{$lecture->id}}/edit" class="jobTooltip" title="Update Lecture">
+                                    <span class="ti-pencil" style="font-size: 35px"></span>
                                 </a>
                             </div>
                             <div class="col-md-6">
                                 {!! Form::open(['action'=>['LecturesController@destroy',$lecture->id],'method'=>'POST']) !!}
                                 {{ Form::hidden('_method','DELETE') }}
-                                <input type="image" src="{{asset('img/delete-icon.png')}}" height="30" width="30"
-                                       data-toggle="confirmation" alt="Submit Form" />
-                                {{--{!! Form::button('Delete',['class'=>'btn btn-danger btn-block','data-toggle'=>'confirmation']) !!}--}}
+                                <button style="border:none;background-color:transparent;" data-toggle="confirmation"
+                                        type="submit">
+                                    <i style="font-size:30px;" class="ti-trash"></i>
+                                </button>
                                 {!! Form::close() !!}
                             </div>
                         </div>
@@ -52,4 +53,6 @@
         <h4>No Lectures.</h4>
     @endif
 </div>
+<script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('self/js/tooltips.js')}}"></script>
 @include('inc.prompt-delete')

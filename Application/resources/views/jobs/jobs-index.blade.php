@@ -53,7 +53,8 @@
                                 <button style="border:none;background-color:transparent;" data-toggle="confirmation"
                                         type="submit">
                                     <i style="font-size:30px;" class="ti-trash"></i>
-                                </button>{!! Form::close() !!}
+                                </button>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </td>
