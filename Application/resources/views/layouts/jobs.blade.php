@@ -34,7 +34,7 @@
                                                 , {{$job->hr->user->profile->city}}</span>
                                             <br/>
                                             {{--<span><i class="ti-time"></i>timeFrom - timeTo</span>--}}
-                                            <span><i class="ti-world"></i>{{$job->jobSchedules()}}</span>
+                                            <span><i class="ti-time"></i>{{$job->jobSchedules()}}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
