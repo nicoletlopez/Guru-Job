@@ -8,15 +8,20 @@
 
     <div class="job-alerts-item candidates">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <h3 class="alerts-title">Applications for Job</h3>
             </div>
-            <div class="col-md-offset-1 col-md-6">
+            <div class="col-md-5">
                 {!! Form::open(['action'=>["ApplicationsController@search",$id],'method'=>'GET']) !!}
                 {{--<input class="form-control" type="text" name="s" placeholder="job title / keywords">--}}
                 {{Form::text('search-term','',['class'=>'form-control','placeholder'=>'Search Applicants',
-                                                'style' => 'height:20px'])}}
+                                                'style' => 'height:30px'])}}
                 {!! Form::close() !!}
+            </div>
+            <div class="col-md-3">
+                <a href="{{route('applications.index')}}" class="btn btn-success block">
+                    Manage Applications
+                </a>
             </div>
         </div>
         <h3 class="medium-title col-md-12">{{$job}}</h3>

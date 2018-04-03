@@ -48,24 +48,25 @@ class LecturesController extends Controller
     public function store(CreateLecture $request)
     {
         $user = auth()->user();
-        $user_name = str_replace('', '_', $user->name);
+        $user_name = str_replace('', '_', strtolower($user->name));
         $faculty_id = $user->id;
-        $title = $request->input('title');
+        $title = str_replace(' ','_',strtolower($request->input('title')));
+        $lectureTitle=$request->input('title');
         $overview = $request->input('overview');
         $objectives = $request->input('objectives');
 
-        if (DB::table('lecture')->where('title', $title)->where('owner_id', $faculty_id)->exists())
+        if (DB::table('lecture')->where('title', $lectureTitle)->where('owner_id', $faculty_id)->exists())
         {
             return back()->with('error', 'A lecture of the same name already exists!');
         }
 
         //create a directory in storage
-        Storage::makeDirectory('public/' . $user->name . '/lectures/' . $title);
+        Storage::makeDirectory('public/' . $user_name . '/lectures/' . $title);
 
         //store the directory as a record
         $lecture = new Lecture();
         $lecture->faculty_id = $faculty_id;
-        $lecture->title = $title;
+        $lecture->title = $lectureTitle;
         $lecture->overview = $overview;
         $lecture->objectives = $objectives;
         $lecture->save();

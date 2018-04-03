@@ -58,19 +58,19 @@ class DocumentSpacesController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $user_name = str_replace(' ', '_', $user->name);
+        $user_name = str_replace(' ', '_', strtolower($user->name));
         $faculty_id = $user->id;
-        $documentSpaceName = strtoupper($request->input('documentSpaceName'));
-
+        $name=strtoupper($request->input('documentSpaceName'));
+        $documentSpaceName = str_replace(' ','_',strtoupper($request->input('documentSpaceName')));
         //check if the chosen name has duplicates
-        if (DB::table('document_space')->where('faculty_id', $faculty_id)->where('title', $documentSpaceName)->exists())
+        if (DB::table('document_space')->where('faculty_id', $faculty_id)->where('title', $name)->exists())
         {
             return back()->with('error', 'A document space of the same name already exists!');
         }
 
         //create the directory entry in the database
         $documentSpace = new DocumentSpace();
-        $documentSpace->title = $documentSpaceName;
+        $documentSpace->title = $name;
         $documentSpace->desc = 'New Folder';
         $documentSpace->faculty_id = $faculty_id;
         $documentSpace->save();

@@ -53,7 +53,7 @@ class DocumentsController extends Controller
         $documentSpace = DocumentSpace::find($documentSpaceId);
         $userName = $documentSpace->faculty->user->name;
         $name = str_replace(' ','_',strtolower($userName));
-        $documentSpaceName = str_replace(' ','_',strtolower($documentSpace->title));
+        $documentSpaceName = str_replace(' ','_',strtoupper($documentSpace->title));
 
         $fileNameWithExt = $request->file('file')->getClientOriginalName();
         $fileName = pathinfo($fileNameWithExt,PATHINFO_FILENAME);
