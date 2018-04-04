@@ -5,7 +5,7 @@
 @section('manage-subjects-active') active @endsection
 
 @section('dashboard-content')
-    <a href="{{route('lectures.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <a onclick="goBack()" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     @include('inc.messages')
     <hr/>
     <div class="">

@@ -9,7 +9,7 @@
 
     <div class="modal-dialog modal-lg">
         @include('inc.messages')
-        <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+        <a onclick="goBack()" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
         <br/>
         <br/>
         <div class="modal-content">
