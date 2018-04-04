@@ -60,7 +60,7 @@ class ProfileController extends Controller
 
         $profile->save();
 
-        return redirect()->route('profile');
+        return redirect()->route('resumes.create');
     }
 
     /**
