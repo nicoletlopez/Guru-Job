@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-9 col-sm-8">
                     <div class="content-area">
-                        <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go
+                        <a onclick="goBack()" href="#" class="btn btn-primary"><i class="ti-arrow-left"></i> Go
                             Back</a>
                         <h2 class="medium-title">Job Information</h2>
                         <div class="box">

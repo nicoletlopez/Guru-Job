@@ -6,7 +6,7 @@
 @section('manage-subjects-active') active @endsection
 
 @section('dashboard-content')
-    <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <a onclick="goBack()" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <section class="section job-detail">
         <div class="container">
             <div class="row">

@@ -5,7 +5,7 @@
 @section('manage-documents-active') active @endsection
 
 @section('dashboard-content')
-    <a href="{{route('document-spaces.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <a onclick="goBack()" href="#" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <hr/>
     @include('inc.messages')
     <section class="section

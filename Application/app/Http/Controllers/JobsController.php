@@ -115,11 +115,13 @@ class JobsController extends Controller
      */
     public function show($id)
     {
+        /*
         if(!auth()->guest()) {
             if (!auth()->user()->profile) {
                 return redirect()->route('profile.create')->with('error', 'Create a Profile First');
             }
         }
+        */
 
         $job = Job::find($id);
         $subject = $job->subject;
@@ -211,6 +213,7 @@ class JobsController extends Controller
 
     public function apply(Request $request, $id)
     {
+
         $user = $request->user();
         $job = Job::find($id);
         $school = User::find($job->user_id);

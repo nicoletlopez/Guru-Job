@@ -110,20 +110,28 @@ class ApplicationsController extends Controller
      */
     public function store(Request $request)
     {
-        $faculty = auth()->user()->faculty;
-        $user = $faculty->user;
-        $job = Job::find($request->input('job-id'));
-        $job->applicants()->save($faculty);
-        $job->save();
+        if(!auth()->guest()) {
+            if (!(auth()->user()->profile)) {
+                return redirect()->route('profile.create')->with('error', 'Create a Profile First');
+            } elseif (count(auth()->user()->faculty->resumes) == 0) {
+                return redirect()->route('resumes.create')->with('error', 'Create a Resume First');
+            }
 
-        //refresh the cached applications as a new one has been made
+            $faculty = auth()->user()->faculty;
+            $user = $faculty->user;
+            $job = Job::find($request->input('job-id'));
+            $job->applicants()->save($faculty);
+            $job->save();
+
+            //refresh the cached applications as a new one has been made
 
 
-        $school = $job->hr->user;
+            $school = $job->hr->user;
 
-        Mail::to($job->hr->user->email)->queue(new AcceptJobNotification($job, $user, $school));
+            Mail::to($job->hr->user->email)->queue(new AcceptJobNotification($job, $user, $school));
 
-        return back();
+            return back();
+        }
     }
 
     /**

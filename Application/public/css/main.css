@@ -183,7 +183,7 @@ a:focus {
 .medium-title {
   font-size: 24px;
   padding: 10px 0;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   position: relative;
 }
 .medium-title:before {
@@ -1168,7 +1168,7 @@ label {
 }
 .f-category h3 {
   font-size: 16px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   line-height: 32px;
   -webkit-transition: all .3s linear;
   -moz-transition: all .3s linear;

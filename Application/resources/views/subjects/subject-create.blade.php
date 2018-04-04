@@ -6,7 +6,7 @@
 
 @section('dashboard-content')
     @include('inc.messages')
-    <a href="{{route('subjects.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <a onclick="goBack()" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <div class="clearfix"><br/></div>
 
     <h3>Add Subject</h3>

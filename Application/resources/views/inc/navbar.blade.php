@@ -66,7 +66,13 @@
                             {{route('dashboard')}}
                             @endif
                                     " class="">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                <img width="18" class="img-circle" src="
+                                @if(isset(Auth::user()->profile))
+                                        {{Auth::user()->profile->picture}}
+                                @else
+                                        {{asset('img/default-user.png')}}
+                                @endif
+                                        "/>&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown">
