@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Hr;
 use App\Http\Requests\CreateLecture;
 use Illuminate\Http\Request;
 use App\Lecture;
@@ -211,6 +212,7 @@ class LecturesController extends Controller
     public function assign($id)
     {
         $lecture = Lecture::find($id);
+        $faculty_id = auth()->user()->id;
         if (!auth()->user())
         {
             return redirect()->route('login');
@@ -219,10 +221,28 @@ class LecturesController extends Controller
             return redirect()->route('lectures.index');
         }
 
+        $employers = Hr::employersOf($faculty_id)->paginate(5);
+
         $context = array(
+            'key' => 0,
+            'employers' => $employers,
             'lecture' => $lecture,
         );
         return view('lectures.lecture-assign')->with($context);
+    }
+
+    public function assignLecture($lecture_id, $hr_id)
+    {
+        $lecture = Lecture::find($lecture_id);
+        $lecture->users()->attach($hr_id);
+        return redirect('/lectures/'.$lecture_id.'/assign');
+    }
+
+    public function unassignLecture($lecture_id, $hr_id)
+    {
+        $lecture = Lecture::find($lecture_id);
+        $lecture->users()->detach($hr_id);
+        return redirect('/lectures/'.$lecture_id.'/assign');
     }
 
     public function share($id)
