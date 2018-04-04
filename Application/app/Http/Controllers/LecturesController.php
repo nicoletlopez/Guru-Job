@@ -55,7 +55,9 @@ class LecturesController extends Controller
         $overview = $request->input('overview');
         $objectives = $request->input('objectives');
 
-        if (DB::table('lecture')->where('title', $lectureTitle)->where('owner_id', $faculty_id)->exists())
+
+
+        if (DB::table('lecture')->where('faculty_id', $faculty_id)->where(strtolower('title'), strtolower($lectureTitle))->exists())
         {
             return back()->with('error', 'A lecture of the same name already exists!');
         }

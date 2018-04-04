@@ -60,10 +60,10 @@ class DocumentSpacesController extends Controller
         $user = auth()->user();
         $user_name = str_replace(' ', '_', strtolower($user->name));
         $faculty_id = $user->id;
-        $name=strtoupper($request->input('documentSpaceName'));
-        $documentSpaceName = str_replace(' ','_',strtoupper($request->input('documentSpaceName')));
+        $name=$request->input('documentSpaceName');
+        $documentSpaceName = str_replace(' ','_',strtolower($request->input('documentSpaceName')));
         //check if the chosen name has duplicates
-        if (DB::table('document_space')->where('faculty_id', $faculty_id)->where('title', $name)->exists())
+        if (DB::table('document_space')->where('faculty_id', $faculty_id)->where(strtolower('title'), strtolower($name))->exists())
         {
             return back()->with('error', 'A document space of the same name already exists!');
         }
