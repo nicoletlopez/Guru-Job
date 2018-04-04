@@ -17,6 +17,7 @@ class CreateResumeTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('faculty_id')->unsigned();
             $table->integer('template');
+            $table->boolean('is_main');
             $table->timestamps();
 
             $table->foreign('faculty_id')->references('user_id')->on('faculty');
