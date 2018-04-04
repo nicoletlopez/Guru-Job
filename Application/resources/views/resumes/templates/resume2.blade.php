@@ -2,7 +2,7 @@
 
 <div id="page-wrap">
 
-    <img src="{{auth()->user()->profile->picture}}" id="pic"/>
+    <img width="200" src="{{auth()->user()->profile->picture}}" id="pic"/>
 
     <div id="contact-info" class="vcard">
 
