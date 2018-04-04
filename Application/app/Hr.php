@@ -40,5 +40,26 @@ class Hr extends Model
             $query->where('name', 'like', '%' . $search_term . '%');
         });
     }
+
+    public function scopeEmployersOf($query, $faculty_id){
+        return $query->whereHas('subjects', function ($query) use ($faculty_id){
+            $query->where('faculty_id', $faculty_id);
+        });
+    }
     /*End search methods*/
+    public function isAssigned($lecture_id, $hr_id){
+
+        //Checks if a row exists in user_has_lecture table, where hr_id and  lecture_id are the parameters
+        $hr = Hr::whereHas('user',function ($hr) use ($hr_id, $lecture_id){
+            $hr->whereHas('lectures', function ($hr) use ($hr_id, $lecture_id){
+                $hr->where(['user_id'=>$hr_id, 'lecture_id'=>$lecture_id]);
+            });
+        })->get();
+
+        if(count($hr)>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
