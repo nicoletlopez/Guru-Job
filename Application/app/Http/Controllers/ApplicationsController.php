@@ -110,6 +110,11 @@ class ApplicationsController extends Controller
      */
     public function store(Request $request)
     {
+        if(!auth()->guest()) {
+            if (!(auth()->user()->profile)) {
+                return redirect()->route('profile.create')->with('error', 'Create a Profile First');
+            }
+        }
         $faculty = auth()->user()->faculty;
         $user = $faculty->user;
         $job = Job::find($request->input('job-id'));
