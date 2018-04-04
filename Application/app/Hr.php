@@ -32,6 +32,11 @@ class Hr extends Model
             'document_id')->withTimestamps();
     }
 
+    public function employees()
+    {
+        return $this->belongsToMany(Faculty::class, 'employee','hr_id','faculty_id');
+    }
+
     /*Search methods*/
     public function scopeSearchHr($query, $search_term)
     {

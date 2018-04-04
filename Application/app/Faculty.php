@@ -44,6 +44,11 @@ class Faculty extends Model
         return $this->belongsToMany(Specialization::class, 'faculty_has_specialization', 'faculty_id', 'specialization_id');
     }
 
+    public function employers()
+    {
+        return $this->belongsToMany(Hr::class,'employee','faculty_id','hr_id');
+    }
+
     //only the lectures that this certain faculty owns
     public function lectures()
     {

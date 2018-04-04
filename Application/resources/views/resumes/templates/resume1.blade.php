@@ -2,7 +2,7 @@
 <div id="cv" class="">
     <div class="mainDetails">
         <div id="headshot" class="">
-            <img src="{{auth()->user()->profile->picture}}" alt="" />
+            <img src="{{auth()->user()->profile->picture}}" alt=""/>
         </div>
 
         <div id="name">
@@ -66,8 +66,6 @@
             </div>
             <div class="clear"></div>
         </section>
-
-
         <section>
             <div class="sectionTitle">
                 <h1>Skills</h1>
