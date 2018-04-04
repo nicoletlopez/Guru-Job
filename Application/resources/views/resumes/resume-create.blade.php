@@ -6,8 +6,8 @@
 
 @section('dashboard-content')
     <link rel="stylesheet" href="{{asset('self/css/create-resume.css')}}" type="text/css">
-    <a href="{{route('resumes.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     @include('inc.messages')
+    <a href="{{route('resumes.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <hr/>
     <div class="">
         <h3>Create Resume</h3>
