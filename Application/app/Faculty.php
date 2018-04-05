@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App;
+use Illuminate\Notifications\Notifiable;
 
 class Faculty extends Model
 {
+    use Notifiable;
     //
     protected $table = 'faculty';
     protected $primaryKey = 'user_id';

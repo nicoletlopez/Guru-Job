@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Hr extends Model
 {
+    use Notifiable;
     //
     protected $table = 'hr';
     protected $primaryKey = 'user_id';
