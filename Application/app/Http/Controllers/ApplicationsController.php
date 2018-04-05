@@ -83,6 +83,11 @@ class ApplicationsController extends Controller
         $job = Job::find($job_id);
         $job->applicants()->detach($faculty_id);
 
+        //register person as employee
+        $hr = auth()->user()->hr;
+        $faculty = Faculty::find($faculty_id);
+        $hr->employees->save($faculty);
+
         //updates subject faculty_id field
         $hr_id = auth()->user()->id;
         $subject = Subject::whereJob($job_id)->first();
