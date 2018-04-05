@@ -16,6 +16,16 @@
                     <h3>School Profile</h3>
                 </div>
             </a>
+        @if(count(auth()->user()->hr->employees)>0)
+            <a href="{{route('notifications.create')}}">
+                <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+                    <div class="icon">
+                        <i class="ti-bolt"></i>
+                    </div>
+                    <h3>Send a Notification</h3>
+                </div>
+            </a>
+            @endif
             <a href="{{route('subjects.index')}}">
                 <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
@@ -57,10 +67,10 @@
                     <h3>Profile</h3>
                 </div>
             </a>
-            <a href="{{route('notifications')}}">
+            <a href="{{route('notifications.index')}}">
                 <div class="col-md-3 col-sm-3 col-xs-12 f-category">
                     <div class="icon">
-                        <i class="ti-email"></i>
+                        <i class="ti-bolt"></i>
                     </div>
                     <h3>Notifications</h3>
                     <p><span class="badge">2</span></p>

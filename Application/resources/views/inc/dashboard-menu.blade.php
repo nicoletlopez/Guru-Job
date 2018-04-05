@@ -21,6 +21,17 @@
                                     </a>
                                 </li>
                             </ul>
+                            @if(count(auth()->user()->hr->employees)>0)
+                            <h4>Notifications</h4>
+                            <ul class="lest item">
+                                <li>
+                                    <a class="@yield('manage-notifications-active')" href="{{route('notifications.create')}}">
+                                        <span class="ti-bolt"></span>
+                                        Send a Notification
+                                    </a>
+                                </li>
+                            </ul>
+                            @endif
                             <h4>Subject</h4>
                             <ul class="lest item">
                                 <li>
@@ -71,7 +82,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="@yield('notifications-active')" href="{{route('notifications')}}">
+                                    <a class="@yield('notifications-active')" href="{{route('notifications.index')}}">
                                         <span class="ti-bolt"></span>
                                         Notifications
                                         <span class="notinumber">2</span>
