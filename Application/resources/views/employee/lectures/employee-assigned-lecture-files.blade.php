@@ -23,11 +23,7 @@
                                 @foreach($files as $key=>$file)
                                     <div class="col-md-3" style="height:200px;">
                                         <div class="thumbnail">
-                                            <div class="pull-right">
-                                                {!! Form::open(['action'=>['FilesController@deleteLectureFile',$lecture->id,$file->id],'method'=>'POST']) !!}
-                                                @include('inc.button-delete')
-                                                {!! Form::close() !!}
-                                            </div>
+                                            
                                             @if(in_array($fileExts[$key][1],$image))
                                                 <div style="height:90px;"><span
                                                             style="display:inline-block;height:26%;vertical-align:middle;"></span><img
