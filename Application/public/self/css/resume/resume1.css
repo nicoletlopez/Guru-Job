@@ -38,12 +38,14 @@ p {
     overflow:auto;
     background: #f3f3f3;
     margin: 30px auto;
+
 }
 
 .mainDetails {
     padding: 25px 35px;
     border-bottom: 2px solid #cf8a05;
     background: #ededed;
+
 }
 
 #name h1 {
@@ -51,6 +53,7 @@ p {
     font-weight: 700;
     font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
     margin-bottom: -6px;
+    word-wrap:break-spaces;
 }
 
 #name h2 {

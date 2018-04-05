@@ -8,7 +8,7 @@
 
         <!-- Microformats! -->
 
-        <h1 class="fn">{{auth()->user()->name}}</h1>
+        <h1 class="fn" style="word-wrap:break-word;line-height:1;">{{auth()->user()->name}}</h1>
 
         <p>
             Cell: <span class="tel">{{auth()->user()->profile->contact_number}}</span><br/>
