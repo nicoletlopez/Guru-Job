@@ -43,9 +43,12 @@ Route::get('/notifications','DashboardController@notifications')->name('notifica
 Route::resource('lectures','LecturesController');
 Route::get('/lectures/{lecture}/files', 'LecturesController@files');
 Route::get('/lectures/{lecture}/assign', 'LecturesController@assign');
-Route::get('/lectures/{lectrue}/assign/{hr}', 'LecturesController@assignLecture');
-Route::get('/lectures/{lectrue}/unassign/{hr}', 'LecturesController@unassignLecture');
+Route::get('/lectures/{lecture}/assign/{hr}', 'LecturesController@assignLecture');
+Route::get('/lectures/{lecture}/unassign/{hr}', 'LecturesController@unassignLecture');
+
 Route::get('/lectures/{lecture}/share', 'LecturesController@share');
+Route::get('/lectures/{lecture}/share/{hr}', 'LecturesController@shareLecture');
+Route::get('/lectures/{lecture}/unshare/{hr}', 'LecturesController@unshareLecture');
 
 //files
 Route::resource('files','FilesController');
