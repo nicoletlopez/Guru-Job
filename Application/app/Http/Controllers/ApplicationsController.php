@@ -86,7 +86,7 @@ class ApplicationsController extends Controller
         //register person as employee
         $hr = auth()->user()->hr;
         $faculty = Faculty::find($faculty_id);
-        $hr->employees->save($faculty);
+        $hr->employees()->save($faculty);
 
         //updates subject faculty_id field
         $hr_id = auth()->user()->id;
