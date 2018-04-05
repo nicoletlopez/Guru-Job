@@ -9,7 +9,8 @@
     <h3>Share Lecture</h3>
     <hr/>
     @if(count($coworkers) > 0)
-        @foreach($coworkers as $coworker)
+        <?php $key = ($coworkers->currentpage()-1)* $coworkers->perpage() + 1;?>
+        @foreach($coworkers as $key=>$coworker)
             <div class="box col-md-12">
                 <div class="row">
                     <div class="col-md-1">

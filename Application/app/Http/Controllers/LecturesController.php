@@ -273,10 +273,9 @@ class LecturesController extends Controller
         //filters collection to get unique values and remove the faculty who is logged in
         $coworkers = $coworkers->unique()->filter(function ($coworker) use ($faculty_id) {
             return $coworker->user_id != $faculty_id;
-        });
+        })->values();
 
         $context = array(
-            'key' => 0,
             'coworkers' => $this->paginate($coworkers)->withPath('/lectures/'.$lecture->id.'/share'),
             'lecture' => $lecture,
         );
