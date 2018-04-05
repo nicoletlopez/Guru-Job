@@ -21,9 +21,9 @@
                     </div>
                     <div class="col-md-5">
                         <b style="font-size: 20px">{{$coworker->user->name}}</b><br/>
-                        Established on <b
+                        Born on <b
                                 style="font-size: 15px">{{date('F j, Y', strtotime($coworker->user->profile->dob))}}</b><br/>
-                        Located at <b style="font-size:14px">{{$coworker->user->profile->street_address}},</b><br/>
+                        Lives in <b style="font-size:14px">{{$coworker->user->profile->street_address}},</b><br/>
                         <b style="font-size: 14px">{{$coworker->user->profile->city}} City</b><br/>
                         Contact No. <b style="font-size: 14px">{{$coworker->user->profile->contact_number}}</b>
                     </div>
