@@ -44,6 +44,10 @@ class HrDashboardController extends Controller
         );
         return view('hr.profile')->with($context);
     }
+
+    public function manageNotifications(){
+        return view('notifications.notifications-index');
+    }
     public function manageJobs(){
         //$hr=auth()->user()->hr;
 
@@ -59,6 +63,7 @@ class HrDashboardController extends Controller
         );
         return view('hr.manage-jobs')->with($context);
     }
+
 
     /*public function manageApplications(){
         return view('hr.manage-applications');
