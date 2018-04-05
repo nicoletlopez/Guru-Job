@@ -103,7 +103,8 @@ class EmployeesController extends Controller
     public function profile($faculty_id)
     {
         $hr_id = auth()->user()->id;
-        $is_employee = Subject::where(['hr_id'=>$hr_id,'faculty_id'=>$faculty_id])->get()->isNotEmpty();
+        $hr = Hr::find($hr_id);
+        $is_employee = $hr->is_employee($faculty_id)->get()->isNotEmpty();
         if($is_employee){
             $faculty = User::find($faculty_id);
             $profile = $faculty->profile;
