@@ -99,6 +99,9 @@ Route::get('/resumes/{resume}/{template}','ResumesController@show')->name('resum
 //employees
 Route::resource('employees','EmployeesController');
 Route::get('/employees/{faculty}/profile','EmployeesController@profile');
+Route::get('/employees/{faculty}/lectures','EmployeesController@lectures');
+Route::get('/employees/{faculty}/lectures/{lecture}/details','EmployeesController@lectureDetails');
+Route::get('/employees/{faculty}/lectures/{lecture}/files','EmployeesController@lectureFiles');
 
 //paypal;
 Route::get('create_paypal_plan', 'PaypalController@create_plan');
