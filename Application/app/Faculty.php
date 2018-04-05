@@ -111,4 +111,20 @@ class Faculty extends Model
         });
     }
     /*end search methods*/
+
+    public function isAssigned($lecture_id, $faculty_id){
+
+        //Checks if a row exists in user_has_lecture table, where hr_id and  lecture_id are the parameters
+        $faculty = Faculty::whereHas('user',function ($faculty) use ($faculty_id, $lecture_id){
+            $faculty->whereHas('lectures', function ($faculty) use ($faculty_id, $lecture_id){
+                $faculty->where(['user_id'=>$faculty_id, 'lecture_id'=>$lecture_id]);
+            });
+        })->get();
+
+        if(count($faculty)>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
