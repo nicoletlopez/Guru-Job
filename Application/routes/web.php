@@ -61,6 +61,10 @@ Route::get('/hr-dashboard', 'HrDashboardController@index')->name('hr-dashboard')
 Route::get('/school-profile', 'HrDashboardController@profile')->name('hr-profile');
 Route::get('/manage-jobs', 'HrDashboardController@manageJobs')->name('manage-jobs');
 Route::get('/manage-applications','HrDashboardController@manageApplications')->name('manage-applications');
+Route::get('/manage-notifications','HrDashboardController@manageNotifications')->name('manage-notifications');
+
+//notifications
+Route::resource('notifications','NotificationsController');
 
 //subject
 Route::resource('subjects','SubjectsController');
