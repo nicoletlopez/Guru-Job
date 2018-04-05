@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Faculty;
 use App\Hr;
 use App\Http\Requests\CreateLecture;
 use Illuminate\Http\Request;
@@ -224,7 +225,8 @@ class LecturesController extends Controller
         }
 
         $faculty_id = auth()->user()->id;
-        $employers = Hr::employersOf($faculty_id)->paginate(5);
+        $faculty = Faculty::find($faculty_id);
+        $employers = $faculty->employers()->paginate(5);
 
         $context = array(
             'key' => 0,
