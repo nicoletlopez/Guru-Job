@@ -41,6 +41,12 @@
                         @endif
                     </div>
                 </div>
+                <hr/>
+                <p style="margin-bottom: 10px"><strong style="font-size: 20px">This person works at:</strong></p>
+                @foreach($coworker->employers as $employer)
+                    <img width="30" class="img-circle" src="{{$employer->user->profile->picture}}" style="margin-left:30px"/>
+                    <strong style="font-size: 16px">{{$employer->user->name}}</strong>
+                @endforeach
             </div>
         @endforeach
         {{ $coworkers->links() }}
