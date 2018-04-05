@@ -44,7 +44,7 @@
                                             <a href="#" class="employeeTooltip" title="View Documents">
                                                 <span class="ti-briefcase" style="font-size: 40px"></span>
                                             </a>
-                                            <a href="#" class="employeeTooltip" title="View Lectures">
+                                            <a href="/employees/{{$employee->user_id}}/lectures" class="employeeTooltip" title="View Lectures">
                                                     <span class="ti-blackboard" style="font-size: 40px"></span>
                                             </a>
                                         </div>
