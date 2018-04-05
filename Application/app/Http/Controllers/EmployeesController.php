@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Faculty;
+use App\Hr;
+use App\Lecture;
 use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
@@ -18,6 +20,7 @@ class EmployeesController extends Controller
     {
         if(auth()->user()->type === 'HR'){
             //list all of an HR's employees
+            $hr = Hr::find(auth()->user()->id);
             $employees = Faculty::whereEmployerIs(auth()->user()->id)->paginate(5);
 
             $context = [
@@ -111,6 +114,82 @@ class EmployeesController extends Controller
             ];
 
             return view('employee.employee-profile')->with($context);
+        }else{
+            return redirect('/employees');
+        }
+    }
+
+    public function lectures($faculty_id)
+    {
+        $hr_id = auth()->user()->id;
+        $hr = Hr::find($hr_id);
+        $is_employee = $hr->is_employee($faculty_id)->get()->isNotEmpty();
+        if($is_employee){
+            $lecture = $hr->user->lectures->where('faculty_id',$faculty_id);
+
+            $context = [
+                'lectures' => $lecture,
+            ];
+
+            return view('employee.lectures.employee-assigned-lectures')->with($context);
+        }else{
+            return redirect('/employees');
+        }
+    }
+
+    public function lectureDetails($faculty_id, $lecture_id){
+        $hr_id = auth()->user()->id;
+        $hr = Hr::find($hr_id);
+        $is_employee = $hr->is_employee($faculty_id)->get()->isNotEmpty();
+        if($is_employee){
+            $lecture = Lecture::find($lecture_id);
+
+            $context = [
+                'lecture' => $lecture,
+            ];
+
+            return view('employee.lectures.employee-assigned-lecture-details')->with($context);
+        }else{
+            return redirect('/employees');
+        }
+    }
+
+    public function lectureFiles($faculty_id, $lecture_id){
+        $hr_id = auth()->user()->id;
+        $hr = Hr::find($hr_id);
+        $is_employee = $hr->is_employee($faculty_id)->get()->isNotEmpty();
+        if($is_employee){
+            $lecture = Lecture::find($lecture_id);
+
+            $fileExts = [];
+            foreach ($lecture->files as $file)
+            {
+                preg_match("/\.(\w+)(?!.*\.(\w+))/", $file->name, $ext);
+                preg_match("/([^\/]+)(?=\.\w+$)/", $file->name, $name);
+                $fileExts[] = array($name[0], strtolower($ext[1]));
+            }
+
+            $image = ['jpg', 'jpeg', 'png', 'bmp', 'gif'];
+            $video = ['mp4', 'flv', 'wmv', '3gp'];
+            $audio = ['mp3', 'm4a', 'm4p', 'ogg', 'wav'];
+            $word = ['doc', 'docx'];
+            $excel = ['xls', 'xlsx'];
+            $ppt = ['ppt', 'pptx'];
+            $pdf = ['pdf'];
+
+            $context = array(
+                'lecture' => $lecture,
+                'files' => $lecture->files,
+                'fileExts' => $fileExts,
+                'image' => $image,
+                'video' => $video,
+                'audio' => $audio,
+                'word' => $word,
+                'excel' => $excel,
+                'ppt' => $ppt,
+                'pdf' => $pdf,
+            );
+            return view('employee.lectures.employee-assigned-lecture-files')->with($context);
         }else{
             return redirect('/employees');
         }
