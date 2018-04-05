@@ -6,6 +6,9 @@ use App\Hr;
 use App\Http\Requests\CreateLecture;
 use Illuminate\Http\Request;
 use App\Lecture;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -212,7 +215,6 @@ class LecturesController extends Controller
     public function assign($id)
     {
         $lecture = Lecture::find($id);
-        $faculty_id = auth()->user()->id;
         if (!auth()->user())
         {
             return redirect()->route('login');
@@ -221,6 +223,7 @@ class LecturesController extends Controller
             return redirect()->route('lectures.index');
         }
 
+        $faculty_id = auth()->user()->id;
         $employers = Hr::employersOf($faculty_id)->paginate(5);
 
         $context = array(
@@ -256,9 +259,50 @@ class LecturesController extends Controller
             return redirect()->route('lectures.index');
         }
 
+        $faculty_id = auth()->user()->id;
+        //collects all employers of a faculty into a collection
+        $employers = Hr::employersOf($faculty_id)->get();
+        //creates coworkers collection to be passed to method
+        $coworkers = New Collection();
+
+        //collects all employees of all employers of faculty, a.k.a coworkers
+        foreach ($employers as $employer){
+            $coworkers = $coworkers->concat($employer->employees);
+        }
+
+        //filters collection to get unique values and remove the faculty who is logged in
+        $coworkers = $coworkers->unique()->filter(function ($coworker) use ($faculty_id) {
+            return $coworker->user_id != $faculty_id;
+        });
+
         $context = array(
+            'key' => 0,
+            'coworkers' => $this->paginate($coworkers)->withPath('/lectures/'.$lecture->id.'/share'),
             'lecture' => $lecture,
         );
+//        return $coworkers;
         return view('lectures.lecture-share')->with($context);
+    }
+
+    public function shareLecture($lecture_id, $faculty_id)
+    {
+        $lecture = Lecture::find($lecture_id);
+        $lecture->users()->attach($faculty_id);
+        return redirect('/lectures/'.$lecture_id.'/share');
+    }
+
+    public function unshareLecture($lecture_id, $faculty_id)
+    {
+        $lecture = Lecture::find($lecture_id);
+        $lecture->users()->detach($faculty_id);
+        return redirect('/lectures/'.$lecture_id.'/share');
+    }
+
+    //function for paginating Collections that didn't use Laravel ORM
+    private function paginate($items, $perPage = 5, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 }
