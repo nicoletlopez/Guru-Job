@@ -6,7 +6,7 @@
 @section('tab-detail-active') active @endsection
 
 @section('dashboard-content')
-    <a href="#" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <a href="/employees/{{$lecture->faculty_id}}/lectures" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <hr/>
     @include('inc.messages')
     <section class="section job-detail well">

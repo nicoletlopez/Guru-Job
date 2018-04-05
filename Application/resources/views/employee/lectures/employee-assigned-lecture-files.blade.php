@@ -6,7 +6,7 @@
 @section('tab-file-active') active @endsection
 
 @section('dashboard-content')
-    <a href="#" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <a href="/employees/{{$lecture->id}}/lectures" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <hr/>
     @include('inc.messages')
     <section class="section job-detail well">
@@ -23,7 +23,7 @@
                                 @foreach($files as $key=>$file)
                                     <div class="col-md-3" style="height:200px;">
                                         <div class="thumbnail">
-                                            
+
                                             @if(in_array($fileExts[$key][1],$image))
                                                 <div style="height:90px;"><span
                                                             style="display:inline-block;height:26%;vertical-align:middle;"></span><img
