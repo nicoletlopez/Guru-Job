@@ -37,6 +37,12 @@ class Hr extends Model
         return $this->belongsToMany(Faculty::class, 'employee','hr_id','faculty_id');
     }
 
+    public function is_employee($faculty_id)
+    {
+        return $this->belongsToMany(Faculty::class, 'employee','hr_id','faculty_id')
+            ->wherePivot('faculty_id', $faculty_id);
+    }
+
     /*Search methods*/
     public function scopeSearchHr($query, $search_term)
     {
