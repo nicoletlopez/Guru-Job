@@ -21,7 +21,7 @@
                                             <b style="font-size: 20px">#{{++$key}}</b>
                                         </div>
                                         <div class="col-md-2">
-                                            <img src="{{$employee->user->profile->picture}}" height="80" style="border-radius: 8px;"/>
+                                            <img src="{{$employee->user->profile->picture}}" width="100%" style="border-radius: 8px;"/>
                                         </div>
                                         <div class="col-md-5">
                                             <b style="font-size: 20px">{{$employee->user->name}}</b><br/>
@@ -38,7 +38,7 @@
                                             <a href="/employees/{{$employee->user_id}}/profile" class="employeeTooltip" title="View Profile">
                                                 <span class="ti-user" style="font-size: 40px"></span>
                                             </a>
-                                            <a href="#" class="employeeTooltip" title="View Résumé">
+                                            <a href="/employees/{{$employee->user_id}}/show/{{$employee->mainTemplate($employee->user_id)}}" class="employeeTooltip" title="View Résumé">
                                                 <span class="ti-envelope" style="font-size: 40px"></span>
                                             </a>
                                             <a href="/employees/{{$employee->user_id}}/document-spaces" class="employeeTooltip" title="View Documents">
