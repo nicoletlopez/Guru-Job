@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Hr;
 
 class AdminsController extends Controller
 {
@@ -18,6 +19,14 @@ class AdminsController extends Controller
     public function index()
     {
         //
+
+        $schools = Hr::all();
+
+        $context = array(
+            'schools' => $schools,
+        );
+
+        return view('admin.pam-table')->with($context);
     }
 
     /**
