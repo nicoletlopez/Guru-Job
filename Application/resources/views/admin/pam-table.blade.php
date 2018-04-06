@@ -7,27 +7,33 @@
         </h3>
         <table class="table" style="width: 50%">
 
-                <thead>
+            <thead>
+            <tr>
+                <th>School</th>
+                <th>Balance</th>
+                <th>Status</th>
+                <th>Subscribed On</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($schools as $school)
                 <tr>
-                    <th>School</th>
-                    <th>Balance</th>
-                    <th>Status</th>
+                    <td style="vertical-align: middle">
+                        {{$school->user->name}}
+                    </td>
+                    <td style="vertical-align: middle">
+                        {{$school->balance}}
+                    </td>
+                    <td style="vertical-align: middle">
+                        Active
+                    </td>
+                    <td style="vertical-align: middle">
+                        {{$school->user->created_at}}
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="vertical-align: middle">
-                            APC
-                        </td>
-                        <td style="vertical-align: middle">
-                            10000
-                        </td>
-                        <td style="vertical-align: middle">
-                            aw
-                        </td>
-                    </tr>
-                </tbody>
+            @endforeach
+            </tbody>
         </table>
     </div>
 
-    @endsection
+@endsection

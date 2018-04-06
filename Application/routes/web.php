@@ -115,7 +115,7 @@ Route::get('/employees/{faculty}/lectures/{lecture}/details','EmployeesControlle
 Route::get('/employees/{faculty}/lectures/{lecture}/files','EmployeesController@lectureFiles');
 
 //admin
-//Route::resources('admins','AdminsController');
+Route::resource('admins','AdminsController');
 
 //paypal;
 Route::get('create_paypal_plan', 'PaypalController@create_plan');
