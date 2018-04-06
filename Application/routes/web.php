@@ -95,6 +95,9 @@ Route::resource('documents','DocumentsController',['except'=>['store','destroy',
 
 //document spaces
 Route::resource('document-spaces','DocumentSpacesController');
+Route::get('/document-spaces/{documentSpace}/assign', 'DocumentSpacesController@assign');
+Route::get('/document-spaces/{documentSpace}/assign/{hr}', 'DocumentSpacesController@assignDocumentSpace');
+Route::get('/document-spaces/{documentSpace}/unassign/{hr}', 'DocumentSpacesController@unassignDocumentSpace');
 
 //resumes
 Route::resource('resumes','ResumesController',['except'=>['show']]);
