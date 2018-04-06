@@ -85,7 +85,9 @@
                                     <a class="@yield('notifications-active')" href="{{route('notifications.index')}}">
                                         <span class="ti-bolt"></span>
                                         Notifications
-                                        <span class="notinumber">2</span>
+                                        @if(count(auth()->user()->unreadNotifications)>0)
+                                        <span class="notinumber">{{count(auth()->user()->unreadNotifications)}}</span>
+                                        @endif
                                     </a>
                                 </li>
                             </ul>
