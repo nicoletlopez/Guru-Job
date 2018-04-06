@@ -7,13 +7,27 @@
 @section('dashboard-content')
     @include('inc.messages')
     <div class="">
-        <h3>Send a Notification</h3>
+        <h3>Send a Notification to Employees</h3>
     </div>
     <hr/>
     {!! Form::open(['action'=>'NotificationsController@store','method'=>'post']) !!}
     <div class="form-group">
-        {{Form::label('notification','Notification',['class'=>'control-label'])}} <span class="required" style="color:red;">*</span>
-        {{Form::textarea('notification','',['class'=>'form-control','required','maxlength'=>'150','rows'=>'2'])}}
+        {{Form::label('notification','Message',['class'=>'control-label'])}} <span class="required" style="color:red;">*</span>
+        {{Form::textarea('notification','',['class'=>'form-control','required','maxlength'=>'150','rows'=>'2','id'=>''])}}
+        <div id="charNum">150 characters left</div>
+        <script>
+            var textarea = document.querySelector("textarea");
+
+            textarea.addEventListener("input", function(){
+                var maxlength = this.getAttribute("maxlength");
+                var currentLength = this.value.length;
+                if( currentLength >= maxlength ){
+                    $('#charNum').text('You have reached the maximum number of characters');
+                }else{
+                    $('#charNum').text(maxlength - currentLength + " characters left");
+                }
+            });
+        </script>
     </div>
     {{Form::submit('Send Notification',['class'=>'btn btn-success'])}}
     {!! Form::close() !!}
