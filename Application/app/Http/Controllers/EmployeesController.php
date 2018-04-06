@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DocumentSpace;
 use App\Faculty;
 use App\Hr;
 use App\Lecture;
@@ -194,5 +195,67 @@ class EmployeesController extends Controller
         }else{
             return redirect('/employees');
         }
+    }
+
+    public function documentSpaces(){
+        if (!auth()->user())
+        {
+            return redirect()->route('login');
+        } elseif (auth()->user()->hr)
+        {
+            //$documentSpaces=auth()->user()->faculty->documentSpaces;
+
+            /*$documentSpaces = Cache::remember('documentSpaces',20,function()
+            {
+                return auth()->user()->faculty->documentSpaces;
+            });*/
+
+            $documentSpaces = auth()->user()->hr->documentSpaces;
+
+            $context = array(
+                'documentSpaces' => $documentSpaces,
+            );
+            return view('employee.documentspaces.employee-document-spaces')->with($context);
+        }
+    }
+
+    public function showDocumentSpaces($faculty_id, $document_space_id){
+
+        $faculty = Faculty::find($faculty_id);
+        $documentSpace = DocumentSpace::find($document_space_id);
+        $documents = $documentSpace->documents;
+
+        $fileExts = [];
+        foreach ($documentSpace->documents as $file)
+        {
+            preg_match("/\.(\w+)(?!.*\.(\w+))/", $file->name, $ext);
+            preg_match("/([^\/]+)(?=\.\w+$)/", $file->name, $name);
+            $fileExts[] = array($name[0], strtolower($ext[1]));
+        }
+
+        $image = ['jpg', 'jpeg', 'png', 'bmp', 'gif'];
+        $video = ['mp4', 'flv', 'wmv', '3gp'];
+        $audio = ['mp3', 'm4a', 'm4p', 'ogg', 'wav'];
+        $word = ['doc', 'docx'];
+        $excel = ['xls', 'xlsx'];
+        $ppt = ['ppt', 'pptx'];
+        $pdf = ['pdf'];
+
+        $context = array
+        (
+            'faculty' => $faculty,
+            'documentSpace' => $documentSpace,
+            'documents' => $documents,
+            'fileExts' => $fileExts,
+            'image' => $image,
+            'video' => $video,
+            'audio' => $audio,
+            'word' => $word,
+            'excel' => $excel,
+            'ppt' => $ppt,
+            'pdf' => $pdf,
+        );
+
+        return view('employee.documentspaces.employee-document-space-show')->with($context);
     }
 }
