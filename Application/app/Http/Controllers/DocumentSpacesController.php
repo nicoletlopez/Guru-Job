@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use App\DocumentSpace;
+use App\Faculty;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -193,5 +194,39 @@ class DocumentSpacesController extends Controller
         $documentSpace->documents()->delete();
         $documentSpace->delete();
         return redirect()->back()->with('warning', 'Folder ' . $documentSpaceName . ' deleted');
+    }
+
+    public function assign($document_space_id)
+    {
+        if (!auth()->user())
+        {
+            return redirect()->route('login');
+        }
+
+        $document_space = DocumentSpace::find($document_space_id);
+        $faculty_id = auth()->user()->id;
+        $faculty = Faculty::find($faculty_id);
+        $employers = $faculty->employers()->paginate(5);
+
+        $context = array(
+            'key' => 0,
+            'employers' => $employers,
+            'document_space' => $document_space,
+        );
+        return view('documentSpace.documentspace-assign')->with($context);
+    }
+
+    public function assignDocumentSpace($document_space_id, $hr_id)
+    {
+        $document_space = DocumentSpace::find($document_space_id);
+        $document_space->hrs()->attach($hr_id);
+        return redirect('/document-spaces/'.$document_space_id.'/assign');
+    }
+
+    public function unassignDocumentSpace($document_space_id, $hr_id)
+    {
+        $document_space = DocumentSpace::find($document_space_id);
+        $document_space->hrs()->detach($hr_id);
+        return redirect('/document-spaces/'.$document_space_id.'/assign');
     }
 }
