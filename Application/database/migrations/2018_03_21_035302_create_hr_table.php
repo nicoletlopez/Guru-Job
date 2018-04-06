@@ -19,10 +19,15 @@ class CreateHrTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
 
+            //stripe subscription
+            $table->string('stripe_id')->nullable();
+            $table->string('card_brand')->nullable();
+            $table->string('card_last_four')->nullable();
+            $table->timestamp('trial_ends_at')->nullable();
+
             //misc
             $table->primary('user_id');
             $table->index('user_id');
-            //may be useful when searching for those reaching a low level of credit
             $table->index('balance');
         });
     }

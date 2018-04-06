@@ -19,7 +19,6 @@ class AdminsController extends Controller
     public function index()
     {
         //
-
         $schools = Hr::all();
 
         $context = array(
