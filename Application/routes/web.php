@@ -114,10 +114,13 @@ Route::get('/employees/{faculty}/lectures','EmployeesController@lectures');
 Route::get('/employees/{faculty}/lectures/{lecture}/details','EmployeesController@lectureDetails');
 Route::get('/employees/{faculty}/lectures/{lecture}/files','EmployeesController@lectureFiles');
 
+//admin
+//Route::resources('admins','AdminsController');
+
 //paypal;
 Route::get('create_paypal_plan', 'PaypalController@create_plan');
 
-//Route::get('admin')
+
 
 //test
 
