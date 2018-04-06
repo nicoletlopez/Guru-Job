@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\AnyNotification;
+use App\Notifications\NewNotification;
 use App\Profile;
 use App\User;
 use App\Notifications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class NotificationsController extends Controller
 {
@@ -18,7 +19,12 @@ class NotificationsController extends Controller
      */
     public function index()
     {
+
         $user=auth()->user();
+
+        if(!($user->faculty)){
+            return redirect(route('home'));
+        }
 
         #$notifications=Notifications::where('notifiable_id',$user->id)->get();
         $notifications=$user->notifications;
@@ -58,30 +64,23 @@ class NotificationsController extends Controller
         $user=auth()->user();
         $hr=$user->hr;
         $employees=$hr->employees;
-        #$notification=$request->input('notification');
-        $notification=NotificationsController::message($request);
+        $notification=$request->input('notification');
+        #$notification=NotificationsController::message($request);
 
         $users=[];
         foreach($employees as $employee){
             $users[]=$employee->user;
+            Nexmo::message()->send([
+                'to'=>$employee->user->profile->contact_number,
+                'from'=>'639098387649',
+                'text'=>'Hello '. $employee->user->name .', you got a new notification from ' . $user->name . '. Message: '.$notification,
+            ]);
             #$users[]=$employee->user_id;
         }
-        Notification::send($users,new AnyNotification());
+        Notification::send($users,new NewNotification($user,$notification));
 
         return redirect(route('notifications.create'))->with('success','Notification sent to Employees');
     }
-
-    public static function message(Request $request){
-        $notification=$request->input('notification');
-        $hr=auth()->user();
-
-        $data=[
-            'message'=>$notification,
-            'hr'=>$hr,
-        ];
-        return $data;
-    }
-
 
     /**
      * Display the specified resource.
