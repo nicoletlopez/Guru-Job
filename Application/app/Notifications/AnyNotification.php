@@ -18,6 +18,7 @@ class AnyNotification extends Notification
     use Notifiable;
 
 
+    #protected $message;
     /**
      * Create a new notification instance.
      *
@@ -27,7 +28,7 @@ class AnyNotification extends Notification
 
     public function __construct()
     {
-//
+       # $this->message;
     }
 
     /**
@@ -61,11 +62,15 @@ class AnyNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         $data=NotificationsController::message(Request::capture());
         return [
-            'data'=>$data
+            'message'=>$data['message'],
+            'hr'=>$data['hr'],
         ];
+        #return[
+        #    'message'=>$this->message,
+        #];
     }
 }

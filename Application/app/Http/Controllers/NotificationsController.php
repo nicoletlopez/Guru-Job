@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\AnyNotification;
+use App\Profile;
 use App\User;
 use App\Notifications;
 use Illuminate\Http\Request;
@@ -19,10 +20,17 @@ class NotificationsController extends Controller
     {
         $user=auth()->user();
 
-        $notifications=Notifications::where('notifiable_id',$user->id)->get();
+        #$notifications=Notifications::where('notifiable_id',$user->id)->get();
+        $notifications=$user->notifications;
+        $images=[];
+        foreach($notifications as $notification){
+            $images[]=Profile::find($notification->data['hr']['id'])->picture;
+        }
         $context=array(
             'notifications'=>$notifications,
+            'images'=>$images,
         );
+        $user->unreadNotifications->markAsRead();
         return view('notifications.notifications-index')->with($context);
     }
 
@@ -52,8 +60,8 @@ class NotificationsController extends Controller
         $employees=$hr->employees;
         #$notification=$request->input('notification');
         $notification=NotificationsController::message($request);
+
         $users=[];
-#
         foreach($employees as $employee){
             $users[]=$employee->user;
             #$users[]=$employee->user_id;
@@ -65,7 +73,13 @@ class NotificationsController extends Controller
 
     public static function message(Request $request){
         $notification=$request->input('notification');
-        return $notification;
+        $hr=auth()->user();
+
+        $data=[
+            'message'=>$notification,
+            'hr'=>$hr,
+        ];
+        return $data;
     }
 
 
