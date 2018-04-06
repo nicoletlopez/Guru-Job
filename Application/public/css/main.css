@@ -100,11 +100,25 @@ a:focus {
   background: #6DBAAF;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
 }
+.btn-common-inverse:hover,
+.btn-common-inverse:focus {
+  color: #fff;
+  background: #924550;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
 .btn-search-icon:hover {
   opacity: 0.8;
 }
 .btn-common {
   background-color: #6DBAAF;
+  border: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  overflow: hidden;
+  position: relative;
+}
+.btn-common-inverse {
+  background-color: #bd384b;
   border: none;
   border-radius: 50px;
   text-transform: uppercase;
@@ -121,7 +135,7 @@ a:focus {
 }
 .btn-border:hover {
   color: #6DBAAF;
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 6px 0 rgba(109, 186, 175, 0.12), 0 1px 6px 0 rgba(109, 186, 175, 0.12);
 }
 .btn-search {
   padding: 11px;
