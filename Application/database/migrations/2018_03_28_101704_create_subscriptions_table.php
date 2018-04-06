@@ -13,12 +13,25 @@ class CreateSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscriptions', function (Blueprint $table) {
+        //braintree
+        /*Schema::create('subscriptions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('name');
             $table->string('braintree_id');
             $table->string('braintree_plan');
+            $table->integer('quantity');
+            $table->timestamp('trial_ends_at')->nullable();
+            $table->timestamp('ends_at')->nullable();
+            $table->timestamps();
+        });*/
+
+        Schema::create('subscription', function ($table) {
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->string('name');
+            $table->string('stripe_id');
+            $table->string('stripe_plan');
             $table->integer('quantity');
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('ends_at')->nullable();
