@@ -5,6 +5,5 @@
 @section('manage-resumes-active') active @endsection
 
 @section('dashboard-content')
-    @include('inc.messages')
     @include('resumes.resumes-index')
 @endsection
