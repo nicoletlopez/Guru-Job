@@ -38,7 +38,7 @@
                                             <a href="/employees/{{$employee->user_id}}/profile" class="employeeTooltip" title="View Profile">
                                                 <span class="ti-user" style="font-size: 40px"></span>
                                             </a>
-                                            <a href="/employees/{{$employee->user_id}}/show/{{$employee->mainTemplate($employee->user_id)}}" class="employeeTooltip" title="View Résumé">
+                                            <a href="/employees/{{$employee->user_id}}/resume/{{$employee->mainTemplate($employee->user_id)}}" class="employeeTooltip" title="View Résumé">
                                                 <span class="ti-envelope" style="font-size: 40px"></span>
                                             </a>
                                             <a href="/employees/{{$employee->user_id}}/document-spaces" class="employeeTooltip" title="View Documents">
