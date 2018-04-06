@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
 
 class Hr extends Model
 {
     use Notifiable;
+    use Billable;
     //
     protected $table = 'hr';
     protected $primaryKey = 'user_id';
