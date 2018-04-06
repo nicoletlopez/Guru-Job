@@ -16,6 +16,7 @@ class CreateHrHasDocumentSpaceTable extends Migration
         Schema::create('hr_has_document_space', function (Blueprint $table) {
             $table->integer('hr_id')->unsigned();
             $table->integer('document_space_id')->unsigned();
+            $table->timestamps();
 
             $table->foreign('hr_id')->references('user_id')->on('hr');
             $table->foreign('document_space_id')->references('id')->on('document_space');
