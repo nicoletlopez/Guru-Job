@@ -117,6 +117,8 @@ Route::get('/employees/{faculty}/lectures/{lecture}/files','EmployeesController@
 //paypal;
 Route::get('create_paypal_plan', 'PaypalController@create_plan');
 
+//Route::get('admin')
+
 //test
 
 //NOTICE
