@@ -17,7 +17,7 @@ class DocumentSpaceTableSeeder extends Seeder
         foreach($faculties as $faculty)
         {
             factory(App\DocumentSpace::class)->create([
-                'title' => $faculty->name."'s Documents'",
+                'title' => $faculty->name."'s Documents",
                 'desc' => 'This is '.$faculty->name."'s Document Space'",
                 'faculty_id' => $faculty->id,
             ]);
