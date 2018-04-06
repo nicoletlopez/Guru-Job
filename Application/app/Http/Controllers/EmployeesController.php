@@ -6,6 +6,7 @@ use App\DocumentSpace;
 use App\Faculty;
 use App\Hr;
 use App\Lecture;
+use App\Resume;
 use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
@@ -121,6 +122,86 @@ class EmployeesController extends Controller
         }
     }
 
+    public function resume($faculty_id,$template)
+    {
+        $faculty=Faculty::find($faculty_id);
+        $resume=Resume::where(['faculty_id'=>$faculty_id, 'is_main'=>1])->first()   ;
+        $sections=$resume->sections;
+        $context=[
+            'faculty'=>$faculty,
+            'resume'=>$resume,
+            'education'=>$sections[0]->content,
+            'experience'=>$sections[1]->content,
+            'skill'=>$sections[2]->content,
+        ];
+
+        return view('resumes.templates.resume'.$template)->with($context);
+    }
+
+    public function documentSpaces($faculty_id){
+        if (!auth()->user())
+        {
+            return redirect()->route('login');
+        } elseif (auth()->user()->hr)
+        {
+            //$documentSpaces=auth()->user()->faculty->documentSpaces;
+
+            /*$documentSpaces = Cache::remember('documentSpaces',20,function()
+            {
+                return auth()->user()->faculty->documentSpaces;
+            });*/
+
+            $faculty = Faculty::find($faculty_id);
+            $documentSpaces = $faculty->documentSpaces;
+
+            $context = array(
+                'faculty_id' => $faculty_id,
+                'documentSpaces' => $documentSpaces,
+            );
+            return view('employee.documentspaces.employee-document-spaces')->with($context);
+        }
+    }
+
+    public function showDocumentSpaces($faculty_id, $document_space_id){
+
+        $faculty = Faculty::find($faculty_id);
+        $documentSpace = DocumentSpace::find($document_space_id);
+        $documents = $documentSpace->documents;
+
+        $fileExts = [];
+        foreach ($documentSpace->documents as $file)
+        {
+            preg_match("/\.(\w+)(?!.*\.(\w+))/", $file->name, $ext);
+            preg_match("/([^\/]+)(?=\.\w+$)/", $file->name, $name);
+            $fileExts[] = array($name[0], strtolower($ext[1]));
+        }
+
+        $image = ['jpg', 'jpeg', 'png', 'bmp', 'gif'];
+        $video = ['mp4', 'flv', 'wmv', '3gp'];
+        $audio = ['mp3', 'm4a', 'm4p', 'ogg', 'wav'];
+        $word = ['doc', 'docx'];
+        $excel = ['xls', 'xlsx'];
+        $ppt = ['ppt', 'pptx'];
+        $pdf = ['pdf'];
+
+        $context = array
+        (
+            'faculty' => $faculty,
+            'documentSpace' => $documentSpace,
+            'documents' => $documents,
+            'fileExts' => $fileExts,
+            'image' => $image,
+            'video' => $video,
+            'audio' => $audio,
+            'word' => $word,
+            'excel' => $excel,
+            'ppt' => $ppt,
+            'pdf' => $pdf,
+        );
+
+        return view('employee.documentspaces.employee-document-space-show')->with($context);
+    }
+
     public function lectures($faculty_id)
     {
         $hr_id = auth()->user()->id;
@@ -195,69 +276,5 @@ class EmployeesController extends Controller
         }else{
             return redirect('/employees');
         }
-    }
-
-    public function documentSpaces($faculty_id){
-        if (!auth()->user())
-        {
-            return redirect()->route('login');
-        } elseif (auth()->user()->hr)
-        {
-            //$documentSpaces=auth()->user()->faculty->documentSpaces;
-
-            /*$documentSpaces = Cache::remember('documentSpaces',20,function()
-            {
-                return auth()->user()->faculty->documentSpaces;
-            });*/
-
-            $faculty = Faculty::find($faculty_id);
-            $documentSpaces = $faculty->documentSpaces;
-
-            $context = array(
-                'faculty_id' => $faculty_id,
-                'documentSpaces' => $documentSpaces,
-            );
-            return view('employee.documentspaces.employee-document-spaces')->with($context);
-        }
-    }
-
-    public function showDocumentSpaces($faculty_id, $document_space_id){
-
-        $faculty = Faculty::find($faculty_id);
-        $documentSpace = DocumentSpace::find($document_space_id);
-        $documents = $documentSpace->documents;
-
-        $fileExts = [];
-        foreach ($documentSpace->documents as $file)
-        {
-            preg_match("/\.(\w+)(?!.*\.(\w+))/", $file->name, $ext);
-            preg_match("/([^\/]+)(?=\.\w+$)/", $file->name, $name);
-            $fileExts[] = array($name[0], strtolower($ext[1]));
-        }
-
-        $image = ['jpg', 'jpeg', 'png', 'bmp', 'gif'];
-        $video = ['mp4', 'flv', 'wmv', '3gp'];
-        $audio = ['mp3', 'm4a', 'm4p', 'ogg', 'wav'];
-        $word = ['doc', 'docx'];
-        $excel = ['xls', 'xlsx'];
-        $ppt = ['ppt', 'pptx'];
-        $pdf = ['pdf'];
-
-        $context = array
-        (
-            'faculty' => $faculty,
-            'documentSpace' => $documentSpace,
-            'documents' => $documents,
-            'fileExts' => $fileExts,
-            'image' => $image,
-            'video' => $video,
-            'audio' => $audio,
-            'word' => $word,
-            'excel' => $excel,
-            'ppt' => $ppt,
-            'pdf' => $pdf,
-        );
-
-        return view('employee.documentspaces.employee-document-space-show')->with($context);
     }
 }

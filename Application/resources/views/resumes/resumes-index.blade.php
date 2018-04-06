@@ -8,27 +8,28 @@
         </a>
     </h3>
     <hr/>
+    @include('inc.messages')
     @if(count($resumes)>0)
         <div class="row">
             @foreach($resumes as $resume)
                 <div class="col-md-4">
                     <a target="_blank" href="/resumes/{{$resume->id}}/{{$resume->template}}">
-                    <div class="thumbnail-container">
-                        <div class="thumbnail">
-                            <iframe src="/resumes/{{$resume->id}}/{{$resume->template}}" frameborder="0"
-                                    onload="this.style.opacity = 1"></iframe>
+                        <div class="thumbnail-container">
+                            <div class="thumbnail">
+                                <iframe src="/resumes/{{$resume->id}}/{{$resume->template}}" frameborder="0"
+                                        onload="this.style.opacity = 1"></iframe>
+                            </div>
                         </div>
-                    </div>
                     </a>
                     <b>Last Edited at:</b>
                     <p>{{DateTime::createFromFormat('Y-m-d H:i:s',$resume->updated_at)->format('F j, Y \a\t h:i a')}}</p>
-                    <div style="width:60%" class="row">
-                        <div class="col-md-3 col-xs-3">
+                    <div class="row">
+                        <div class="col-md-1 col-xs-3" style="margin-right: 10px">
                             <a class="" target="_blank" href="/resumes/{{$resume->id}}/{{$resume->template}}">
                                 <i style="font-size:30px;" class="ti-eye"></i>
                             </a>
                         </div>
-                        <div class="col-md-3 col-xs-3">
+                        <div class="col-md-1 col-xs-3">
                             <a class="" href="/resumes/{{$resume->id}}/edit" title="Edit Resume">
                                 <i style="font-size:30px;" class="ti-pencil"></i>
                             </a>
@@ -43,7 +44,20 @@
                         </div>
 
                         -->
-                        <div class="col-md-3 col-xs-3">
+                        @if($resume->is_main)
+                            <div class="col-md-offset-1 col-md-1 col-xs-3">
+                                <a class="" title="Main">
+                                    <i style="font-size:30px; color: gold" class="fa fa-star" title="Main"></i>
+                                </a>
+                            </div>
+                        @else
+                            <div class="col-md-offset-1 col-md-1 col-xs-3">
+                                <a class="" href="{{route('resumes.editMain',$resume->id)}}" title="Choose as main">
+                                    <i style="font-size:30px;" class="ti-star"></i>
+                                </a>
+                            </div>
+                        @endif
+                        <div class="col-md-offset-2 col-md-1 col-xs-3">
                             {!! Form::open(['action'=>['ResumesController@destroy',$resume->id],'method'=>'POST']) !!}
                             {{Form::hidden('_method','DELETE')}}
                             <button style="border:none;background-color:transparent;" data-toggle="confirmation"

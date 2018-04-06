@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Faculty;
 use App\Http\Requests\CreateResume;
 use App\Resume;
 use App\Section;
@@ -16,7 +17,7 @@ class ResumesController extends Controller
      */
     public function index()
     {
-        $resumes=auth()->user()->faculty->resumes;
+        $resumes=auth()->user()->faculty->resumes->sortByDesc('created_at');
 
         $context=[
             'resumes'=>$resumes,
@@ -47,10 +48,14 @@ class ResumesController extends Controller
         $education=$request->input('education');
         $experience=$request->input('experience');
         $skill=$request->input('skill');
+        $resumes = Resume::where('faculty_id', $faculty)->get();
 
         $resume=new Resume();
         $resume->faculty_id=$faculty;
         $resume->template=(int)$template[0];
+        if(count($resumes) < 1){
+            $resume->is_main = true;
+        }
         $resume->save();
         $resume_id=$resume->id;
 
@@ -81,9 +86,11 @@ class ResumesController extends Controller
      */
     public function show($id,$template)
     {
+        $faculty=Faculty::find(auth()->user()->id);
         $resume=Resume::find($id);
         $sections=$resume->sections;
         $context=[
+            'faculty'=>$faculty,
             'resume'=>$resume,
             'education'=>$sections[0]->content,
             'experience'=>$sections[1]->content,
@@ -160,5 +167,16 @@ class ResumesController extends Controller
         $resume->sections()->delete();
         $resume->delete();
         return back()->with('warning','Resume deleted');
+    }
+
+    public function editMain($resume_id){
+        $faculty_id = auth()->user()->id;
+        $main = Resume::where(['faculty_id'=>$faculty_id, 'is_main' => 1])->update(['is_main'=>0]);
+        $newMain = Resume::find($resume_id);
+
+        $newMain->is_main = 1;
+        $newMain->save();
+
+        return redirect()->route('resumes.index')->with('success','Main Resume Updated');
     }
 }

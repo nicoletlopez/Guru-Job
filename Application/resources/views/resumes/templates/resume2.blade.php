@@ -2,22 +2,22 @@
 
 <div id="page-wrap">
 
-    <img width="200" src="{{auth()->user()->profile->picture}}" id="pic"/>
+    <img width="200" src="{{$faculty->user->profile->picture}}" id="pic"/>
 
     <div id="contact-info" class="vcard">
 
         <!-- Microformats! -->
 
-        <h1 class="fn" style="word-wrap:break-word;line-height:1;">{{auth()->user()->name}}</h1>
+        <h1 class="fn" style="word-wrap:break-word;line-height:1;">{{$faculty->user->name}}</h1>
 
         <p>
-            Cell: <span class="tel">{{auth()->user()->profile->contact_number}}</span><br/>
-            Email: <a href="mailto:{{auth()->user()->email}}" target="_blank">{{auth()->user()->email}}</a>
+            Cell: <span class="tel">{{$faculty->user->profile->contact_number}}</span><br/>
+            Email: <a href="mailto:{{$faculty->user->email}}" target="_blank">{{$faculty->user->email}}</a>
         </p>
     </div>
 
     <div id="objective">
-            {!! auth()->user()->profile->description !!}
+            {!! $faculty->user->profile->description !!}
     </div>
 
     <div class="clear"></div>

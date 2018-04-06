@@ -102,15 +102,17 @@ Route::get('/document-spaces/{documentSpace}/unassign/{hr}', 'DocumentSpacesCont
 //resumes
 Route::resource('resumes','ResumesController',['except'=>['show']]);
 Route::get('/resumes/{resume}/{template}','ResumesController@show')->name('resumes.show');
+Route::get('/resumes/{resume}/edit/main','ResumesController@editMain')->name('resumes.editMain');
 
 //employees
 Route::resource('employees','EmployeesController');
 Route::get('/employees/{faculty}/profile','EmployeesController@profile');
+Route::get('/employees/{faculty}/resume/{template}','EmployeesController@resume');
+Route::get('/employees/{faculty}/document-spaces','EmployeesController@documentSpaces');
+Route::get('/employees/{faculty}/document-spaces/{documentSpace}','EmployeesController@showDocumentSpaces');
 Route::get('/employees/{faculty}/lectures','EmployeesController@lectures');
 Route::get('/employees/{faculty}/lectures/{lecture}/details','EmployeesController@lectureDetails');
 Route::get('/employees/{faculty}/lectures/{lecture}/files','EmployeesController@lectureFiles');
-Route::get('/employees/{faculty}/document-spaces','EmployeesController@documentSpaces');
-Route::get('/employees/{faculty}/document-spaces/{documentSpace}','EmployeesController@showDocumentSpaces');
 
 //paypal;
 Route::get('create_paypal_plan', 'PaypalController@create_plan');

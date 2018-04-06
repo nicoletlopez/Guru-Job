@@ -129,4 +129,8 @@ class Faculty extends Model
             return false;
         }
     }
+
+    public function mainTemplate($faculty_id){
+        return Resume::where(['faculty_id'=>$faculty_id, 'is_main'=>1])->first()->template;
+    }
 }
