@@ -197,7 +197,7 @@ class EmployeesController extends Controller
         }
     }
 
-    public function documentSpaces(){
+    public function documentSpaces($faculty_id){
         if (!auth()->user())
         {
             return redirect()->route('login');
@@ -210,9 +210,11 @@ class EmployeesController extends Controller
                 return auth()->user()->faculty->documentSpaces;
             });*/
 
-            $documentSpaces = auth()->user()->hr->documentSpaces;
+            $faculty = Faculty::find($faculty_id);
+            $documentSpaces = $faculty->documentSpaces;
 
             $context = array(
+                'faculty_id' => $faculty_id,
                 'documentSpaces' => $documentSpaces,
             );
             return view('employee.documentspaces.employee-document-spaces')->with($context);
