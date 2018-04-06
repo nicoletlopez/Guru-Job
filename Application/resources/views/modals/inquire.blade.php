@@ -8,54 +8,61 @@
                 </button>
                 <h3 class="modal-title" id="myModalLabel">Subscription form</h3>
             </div>
-            <div class="modal-body">
-                <form class="form-ad">
-                    <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Your Email</label>
-                        <input type="text" class="form-control" placeholder="mail@example.com">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Your Name</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    </div>
+            <form class="login-form" method="POST" action="{{ route('register') }}">
+                <div class="modal-body">
+                    {{ csrf_field() }}
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="input-icon">
+                            <i class="ti-user"></i>
+                            <input id="name" type="text" class="form-control" name="name" placeholder="Full Name"
+                                   value="{{ old('name') }}" required autofocus>
 
-                    <div class="divider"><h4>School Details</h4></div>
-                    <div class="form-group">
-                        <label class="control-label">School Name</label>
-                        <input type="text" class="form-control"
-                               placeholder="Enter the name of the school">
-                    </div>
-                    <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Region</label>
-                        <div class="search-category-container">
-                            <label class="styled-select">
-                                <select class="dropdown-product selectpicker">
-                                    <option>Select Region</option>
-                                    <option>Armm</option>
-                                    <option>Bicol Region</option>
-                                    <option>C.A.R</option>
-                                    <option>Cagayan Valley</option>
-                                    <option>Central</option>
-                                    <option>Others</option>
-                                </select>
-                            </label>
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Address</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    </div>
-                </form>
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="input-icon">
+                            <i class="ti-email"></i>
+                            <input id="email" type="email" class="form-control" placeholder="E-mail" name="email"
+                                   value="{{ old('email') }}" required>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-common">Subscribe Now!</button>
-            </div>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="input-icon">
+                            <i class="ti-lock"></i>
+                            <input id="password" type="password" placeholder="Password" class="form-control"
+                                   name="password" required>
+
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <i class="ti-lock"></i>
+                            <input id="password-confirm" type="password" class="form-control"
+                                   placeholder="Confirm password" name="password_confirmation" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-common log-btn">Subscribe Now!</button>
+                </div>
+            </form>
 
         </div>
     </div>
