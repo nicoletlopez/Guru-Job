@@ -36,7 +36,7 @@
                             </a>
                         @else
                             <a href="/lectures/{{$lecture->id}}/unshare/{{$coworker->user_id}}"
-                               class="btn btn-common btn-block">
+                               class="btn btn-common-inverse btn-block">
                                 Remove
                             </a>
                         @endif
