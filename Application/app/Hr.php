@@ -31,7 +31,7 @@ class Hr extends Model
     public function documentSpaces()
     {
         return $this->belongsToMany(DocumentSpace::class, 'hr_has_document_space', 'hr_id',
-            'document_id')->withTimestamps();
+            'document_space_id')->withTimestamps();
     }
 
     public function employees()
@@ -67,6 +67,20 @@ class Hr extends Model
             $hr->whereHas('lectures', function ($hr) use ($hr_id, $lecture_id){
                 $hr->where(['user_id'=>$hr_id, 'lecture_id'=>$lecture_id]);
             });
+        })->get();
+
+        if(count($hr)>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function docIsAssigned($document_space_id, $hr_id){
+
+        //Checks if a row exists in user_has_lecture table, where hr_id and  lecture_id are the parameters
+        $hr = Hr::whereHas('documentSpaces',function ($hr) use ($hr_id, $document_space_id){
+                $hr->where(['hr_id'=>$hr_id, 'document_space_id'=>$document_space_id]);
         })->get();
 
         if(count($hr)>0){
