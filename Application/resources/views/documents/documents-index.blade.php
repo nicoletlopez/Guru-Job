@@ -8,16 +8,23 @@
     <a onclick="goBack()" href="#" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <hr/>
     @include('inc.messages')
-    <section class="section
-     job-detail">
-        <div class="container">
+    <section class="section job-detail well">
             <div class="row">
-                <div class="col-md-9 col-sm-8">
+                <div class="col-md-12 col-sm-8">
                     <div class="content-area">
-                        <h2 class="medium-title">{{$documentSpace->title}}</h2>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h2 class="medium-title">{{$documentSpace->title}}</h2>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="/document-spaces/{{$documentSpace->id}}/assign" class="btn btn-success pull-right">
+                                    Assign Document Space
+                                </a>
+                            </div>
+                        </div>
                         <p>{{$documentSpace->desc}}</p>
                         <br/>
-                        <div class="box col-md-11">
+                        <div class="box col-md-12">
                             <div class="row">
                                 <!--repeat-->
                                 @if(count($documents)>0)
@@ -98,7 +105,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     @include('inc.prompt-delete')
 @endsection
