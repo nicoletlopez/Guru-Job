@@ -89,7 +89,7 @@
                                                         <a class="btn btn-sm btn-primary btn-block"
                                                            href="/documents/{{$documentSpace->id}}/download/{{$document->name}}">Download</a>
                                                     </p>
-                                                    <p style="word-wrap:break-word;">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$document->name),28,'....'.$fileExts[$key][1])}}</p>
+                                                    <p style="word-wrap:break-word;" title="{{$document->name}}">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$document->name),28,'....'.$fileExts[$key][1])}}</p>
                                                 </div>
                                             </div>
                                         </div>
