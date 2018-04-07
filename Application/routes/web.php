@@ -118,8 +118,6 @@ Route::get('/employees/{faculty}/lectures/{lecture}/files','EmployeesController@
 //admin
 Route::resource('admins','AdminsController');
 
-//paypal;
-Route::get('create_paypal_plan', 'PaypalController@create_plan');
 
 
 
