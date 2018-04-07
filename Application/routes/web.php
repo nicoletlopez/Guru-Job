@@ -82,6 +82,7 @@ Route::resource('applications','ApplicationsController');
 Route::get('/applications/{id}/accepted','ApplicationsController@acceptedApplications');
 Route::get('/applications/{job}/{faculty}/hire','ApplicationsController@hire');
 Route::get('/applications/{job}/{faculty}/edit','ApplicationsController@updateApplication');
+Route::get('/applications/{faculty}/resume/{template}','EmployeesController@resume');
 Route::get('/jobs/{job}/applicants','ApplicationsController@applicants')->name('applicants.job');
 Route::get('/jobs/{job}/applicants/search', 'ApplicationsController@search')->name('applicants.search');
 
