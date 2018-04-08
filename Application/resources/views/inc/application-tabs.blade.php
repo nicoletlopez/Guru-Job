@@ -6,7 +6,7 @@
     </li>
     <li class="@yield('tab-accepted-active') applicationTabs">
         <a href="/applications/{{$hr_id}}/accepted" style="text-align: center">
-            Accepted Applications
+            Processing Applications
         </a>
     </li>
 </ul>
