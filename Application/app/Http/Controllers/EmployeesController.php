@@ -151,8 +151,8 @@ class EmployeesController extends Controller
                 return auth()->user()->faculty->documentSpaces;
             });*/
 
-            $faculty = Faculty::find($faculty_id);
-            $documentSpaces = $faculty->documentSpaces;
+            $hr = Hr::find(auth()->user()->id);
+            $documentSpaces = $hr->documentSpaces->where('faculty_id', $faculty_id);
 
             $context = array(
                 'faculty_id' => $faculty_id,
