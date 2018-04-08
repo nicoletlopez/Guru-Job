@@ -14,7 +14,7 @@
                             <p style="margin-bottom: 15px">
                                 <b style="font-size: 20px;">#{{++$key}}</b>
                             </p>
-                            <a href="/applications/{{$applicant->user_id}}/resume/{{$applicant->mainTemplate($applicant->user_id)}}">
+                            <a target="_blank" href="/applications/{{$applicant->user_id}}/resume/{{$applicant->mainTemplate($applicant->user_id)}}">
                                 <span class="ti-envelope" style="font-size: 40px" title="Resume"></span>
                             </a>
                         </div>

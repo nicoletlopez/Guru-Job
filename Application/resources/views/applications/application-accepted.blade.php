@@ -11,7 +11,12 @@
             <div class="box col-md-12">
                 <div class="row">
                     <div class="col-md-1">
-                        <b style="font-size: 20px">#{{++$key}}</b>
+                        <p style="margin-bottom: 15px">
+                            <b style="font-size: 20px;">#{{++$key}}</b>
+                        </p>
+                        <a target="_blank" href="/applications/{{$applicant->user_id}}/resume/{{$applicant->mainTemplate($applicant->user_id)}}">
+                            <span class="ti-envelope" style="font-size: 40px" title="Resume"></span>
+                        </a>
                     </div>
                     <div class="col-md-2">
                         <img src="{{$applicant->user->profile->picture}}" width="100%" style="border-radius: 8px;"/>
