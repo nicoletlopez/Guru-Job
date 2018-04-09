@@ -13,7 +13,7 @@
         apply or create jobs, create an online repository of your credentials, form and share online courses.
         "/>
 
-    <title>Guru App @yield('title')</title>
+    <title>Guru Job @yield('title')</title>
 
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">

@@ -19,7 +19,7 @@
                 {{route('hr-dashboard')}}
                 @endif
                 @endguest
-                        "><h3 style="">Guru Spot</h3></a>
+                        "><h3 style="">Guru Job</h3></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
 
