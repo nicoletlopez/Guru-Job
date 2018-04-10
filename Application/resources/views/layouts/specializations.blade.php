@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 @foreach($allSpecs as $specialization)
                     <div style="word-wrap:break-word;" class="col-md-2 col-sm-3 col-xs-12 f-category">
-                        <a href="/search/jobs?search-term=&region=&specialization={{$specialization->name}}&type=&free-day=&start-time=&end-time=">
+                        <a href="{{route('search')}}?search-term=&region=&specialization={{$specialization->name}}&type=&free-day=&start-time=&end-time=">
                             <div class="icon">
                                 <i class="ti-layout-grid2-alt"></i>
                             </div>
