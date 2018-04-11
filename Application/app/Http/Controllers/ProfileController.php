@@ -42,7 +42,7 @@ class ProfileController extends Controller
     public function store(CreateProfile $request)
     {
         $user=auth()->user();
-        $profile=$user->profile;
+        #$profile=$user->profile;
         $dob=$request->input('dob');
         $address=$request->input('address');
         $city=$request->input('city');
@@ -60,6 +60,9 @@ class ProfileController extends Controller
 
         $profile->save();
 
+        $userObj = User::find($profile->user_id);
+        $userObj->phone_number=$contact;
+        $userObj->save();
         return redirect()->route('resumes.create');
     }
 
@@ -119,6 +122,8 @@ class ProfileController extends Controller
 
 
         $user->name = $name;
+        $user->phone_number=$contact;
+
         $profile->dob=$dob;
         $profile->street_address=$address;
         $profile->city=$city;
