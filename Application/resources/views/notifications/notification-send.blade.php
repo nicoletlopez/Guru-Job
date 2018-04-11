@@ -13,8 +13,9 @@
     {!! Form::open(['action'=>'NotificationsController@store','method'=>'post']) !!}
     <div class="form-group">
         {{Form::label('notification','Message',['class'=>'control-label'])}} <span class="required" style="color:red;">*</span>
-        {{Form::textarea('notification','',['class'=>'form-control','required','maxlength'=>'150','rows'=>'2','id'=>''])}}
-        <div id="charNum">150 characters left</div>
+        <p>This will be sent as SMS, e-mail, and alert to the employees</p>
+        {{Form::textarea('notification','',['class'=>'form-control','required','maxlength'=>'120','rows'=>'2','id'=>''])}}
+        <div id="charNum">120 characters left</div>
         <script>
             var textarea = document.querySelector("textarea");
 
