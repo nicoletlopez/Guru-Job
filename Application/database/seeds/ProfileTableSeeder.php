@@ -60,7 +60,7 @@ class ProfileTableSeeder extends Seeder
         factory(App\Profile::class)->create([
             'user_id' => $pam->id,
             'picture' => '/img/schoolLogo/pamity.png',
-            'contact_number' => '09' . rand(10, 99) . ' ' . rand(100, 999) . ' ' . rand(1000, 9999),
+            'contact_number' => '639088109536',
         ]);
     }
 
