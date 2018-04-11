@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateSubscription;
 use Illuminate\Http\Request;
-
+use App\Mail\NewUserWelcome;
+use App\User;
+use App\Hr;
 class SubscriptionsController extends Controller
 {
     /**
@@ -32,9 +35,23 @@ class SubscriptionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSubscription $request)
     {
         //
+        Mail::to($request->input('email'))->queue(new NewUserWelcome());
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+        //
+        $hr = new Hr();
+        Hr::insert([
+            'stripe_id' => $request->input('credit_card'),
+            'card_brand' => 'VISA',
+            'card_last_four' => '4242',
+        ]);
+
     }
 
     /**
