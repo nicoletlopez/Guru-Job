@@ -40,7 +40,7 @@ class NewNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail','nexmo', 'database'];
     }
 
     /**
@@ -66,13 +66,15 @@ class NewNotification extends Notification implements ShouldQueue
      * @param  mixed $notifiable
      * @return NexmoMessage
      */
-   # public function toNexmo($notifiable)
-   # {
-   #     return (new NexmoMessage())
-   #         ->content('You got a new notification! \n Regards, \n Guru')
-   #         ->from('639165346971')
-   #         ->unicode();
-   # }
+    public function toNexmo($notifiable)
+    {
+        $message=$this->message;
+        $hr=$this->hr->name;
+        return (new NexmoMessage())
+            ->content('"'.$message.'" from, '.$hr)
+            ->from('639165346971')
+            ->unicode();
+    }
 
     /**
      * Get the array representation of the notification.
