@@ -34,16 +34,29 @@ class UserTableSeeder extends Seeder
                 $acronym .= $w[0];
             }
             $acronym = strtolower($acronym);
-            DB::table('users')->insert(
-                [
-                    'name' => $school,
-                    'email' => $acronym . '@mail.com',
-                    'password' => bcrypt('secret'),
-                    'type' => 'HR',
-                    'remember_token' => str_random(10),
-                    'created_at' => date("Y-m-d H:i:s"),
-                    'updated_at' => date("Y-m-d H:i:s"),
-                ]);
+            if($school === 'Asia Pacific College'){
+                DB::table('users')->insert(
+                    [
+                        'name' => $school,
+                        'email' => 'raquelo@apc.edu.ph',
+                        'password' => bcrypt('secret'),
+                        'type' => 'HR',
+                        'remember_token' => str_random(10),
+                        'created_at' => date("Y-m-d H:i:s"),
+                        'updated_at' => date("Y-m-d H:i:s"),
+                    ]);
+            }else{
+                DB::table('users')->insert(
+                    [
+                        'name' => $school,
+                        'email' => $acronym . '@mail.com',
+                        'password' => bcrypt('secret'),
+                        'type' => 'HR',
+                        'remember_token' => str_random(10),
+                        'created_at' => date("Y-m-d H:i:s"),
+                        'updated_at' => date("Y-m-d H:i:s"),
+                    ]);
+            }
         }
 
         factory(App\User::class, 20)->create();
@@ -51,6 +64,14 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Pamity',
             'email' => 'pamity@mail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Raquel',
+            'email' => 'rgofreneo@student.apc.edu.ph',
             'password' => bcrypt('secret'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
