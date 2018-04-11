@@ -42,6 +42,7 @@ class UserTableSeeder extends Seeder
                         'password' => bcrypt('secret'),
                         'type' => 'HR',
                         'remember_token' => str_random(10),
+                        'phone_number' => '09' . rand(10, 99) . ' ' . rand(100, 999) . ' ' . rand(1000, 9999),
                         'created_at' => date("Y-m-d H:i:s"),
                         'updated_at' => date("Y-m-d H:i:s"),
                     ]);
@@ -53,6 +54,7 @@ class UserTableSeeder extends Seeder
                         'password' => bcrypt('secret'),
                         'type' => 'HR',
                         'remember_token' => str_random(10),
+                        'phone_number' => '09' . rand(10, 99) . ' ' . rand(100, 999) . ' ' . rand(1000, 9999),
                         'created_at' => date("Y-m-d H:i:s"),
                         'updated_at' => date("Y-m-d H:i:s"),
                     ]);
@@ -67,14 +69,16 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('secret'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
+            'phone_number' => '639088109536',
         ]);
 
         DB::table('users')->insert([
             'name' => 'Raquel',
-            'email' => 'rgofreneo@student.apc.edu.ph',
+            'email' => 'rofreneo@gmail.com',
             'password' => bcrypt('secret'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
+            'phone_number' => '09' . rand(10, 99) . ' ' . rand(100, 999) . ' ' . rand(1000, 9999),
         ]);
 
 //        for($x =0; $x<50; $x++)
