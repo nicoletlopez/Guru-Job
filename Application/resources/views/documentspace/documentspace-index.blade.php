@@ -27,7 +27,7 @@
                     </a>
                 @endforeach
             @else
-                <h5>No Folders.</h5>
+                <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No Folders yet</h3>
         @endif
         <!--END-->
         </div>

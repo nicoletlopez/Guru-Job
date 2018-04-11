@@ -50,7 +50,7 @@
                         <a href="{{route('jobs.index')}}" class="btn btn-common">Show more jobs</a>
                     @endif
                 @else
-                    <h3>No Jobs Found.</h3>
+                    <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">No Jobs Found.</h3>
                 @endif
             </div>
         </div>

@@ -50,7 +50,7 @@
             </tbody>
         </table>
     @else
-        <h4>No Lectures.</h4>
+        <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No lectures yet</h3>
     @endif
 </div>
 <script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>

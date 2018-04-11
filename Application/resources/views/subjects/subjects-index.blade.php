@@ -56,10 +56,9 @@
                 </tr>
             @endforeach
             @else
-                <h4>No Jobs Posted. <a href="{{route('jobs.create')}}" class="btn btn-common">
+                <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">No Jobs Posted. <a href="{{route('jobs.create')}}" class="btn btn-common">
                         <i class="ti-pencil-alt"></i> Post A Job
-                    </a></h4>
-
+                    </a></h3>
             @endif
             </tbody>
     </table>

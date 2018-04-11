@@ -95,7 +95,8 @@
                                         </div>
                                     @endforeach
                                 @else
-                                    <h5>&nbsp;No Documents</h5>
+                                    <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No Documents yet</h3>
+
                             @endif
                             <!--end-->
                             </div>

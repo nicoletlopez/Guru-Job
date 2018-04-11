@@ -55,10 +55,7 @@
                         @endforeach
                         {{ $employers->links() }}
                     @else
-                        <br/>
-                        <h2 style="text-align: center">You're not hired yet.</h2>
-                        <br/>
-                        <br/>
+                        <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">You're not hired yet</h3>
                     @endif
                 </div>
             </div>

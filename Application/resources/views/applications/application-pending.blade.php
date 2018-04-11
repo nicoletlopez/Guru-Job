@@ -50,9 +50,6 @@
             @endforeach
             {{ $applicants->links() }}
         @else
-            <br/>
-            <h2 style="text-align: center">No Applications Yet</h2>
-            <br/>
-            <br/>
+            <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No applications yet</h3>
         @endif
 @endsection

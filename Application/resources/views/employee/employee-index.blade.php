@@ -12,7 +12,7 @@
                 <div class="content-area">
                     <div class="box col-md-12">
                         <h2>Employees</h2>
-                        <br/>
+                        <hr/>
                         @if(count($employees) > 0)
                             @foreach($employees as $employee)
                                 <div class="box col-md-12">
@@ -92,10 +92,7 @@
                             @endforeach
                             {{ $employees->links() }}
                         @else
-                            <br/>
-                            <h2 style="text-align: center">No Employees Hired Yet</h2>
-                            <br/>
-                            <br/>
+                            <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No employees hired yet</h3>
                         @endif
                     </div>
                 </div>

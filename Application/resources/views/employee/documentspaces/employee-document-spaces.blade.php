@@ -26,9 +26,7 @@
                         </a>
                     @endforeach
                 @else
-                    <br/>
-                    <h3 style="text-align: center">No Folders Assigned to you yet.</h3>
-                    <br/>
+                    <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No folder assigned to you yet</h3>
             @endif
             </div>
         </div>

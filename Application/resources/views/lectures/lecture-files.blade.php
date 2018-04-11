@@ -83,7 +83,7 @@
             @endforeach
         </div>
     @else
-        <h5>No Files Uploaded.</h5>
+        <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No Files Uploaded</h3>
     @endif
     <hr/>
     @include('lectures.lecture-upload')
