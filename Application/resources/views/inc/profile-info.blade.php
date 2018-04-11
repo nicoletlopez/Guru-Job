@@ -1,11 +1,11 @@
 <div class="inner-box my-resume">
     @if(Auth::user()->type == 'HR')
-        <div class="author-resume">
-            <div class="row">
-                <div class="thumb col-md-6">
-                    <img class="" src="{{$profile->picture}}" alt="">
+        <div class="row">
+
+                <div class="thumb col-md-3">
+                    <img class="" height="128" width="128" src="{{$profile->picture}}" alt="">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <h3>{{$user->name}}<a href="#" data-target=".edit-personal-details" data-toggle="modal"><i
                                     class="ti-pencil"></i></a></h3>
                     <p class="sub-title">Established on: {{$date}}</p>
@@ -25,7 +25,7 @@
                     </div>
                     -->
                 </div>
-            </div>
+
         </div>
         <div class="about-me item">
             <h3>About the School <a href="#" data-target=".edit-description" data-toggle="modal"><i
@@ -34,11 +34,11 @@
         </div>
     @else
         @if(Auth::user()->id == $profile->user_id)
-            <div class="author-resume">
-                <div class="thumb">
-                    <img height="128" width="128" src="{{$profile->picture}}" alt="">
+            <div class="row">
+                <div class="thumb col-md-3">
+                    <img class="img-rounded" height="128" width="128" src="{{$profile->picture}}" alt="">
                 </div>
-                <div class="author-info">
+                <div class="col-md-9">
                     <h3>{{$user->name}} <a href="#" data-target=".edit-personal-details" data-toggle="modal"><i
                                     class="ti-pencil"></i></a></h3>
                     <!--<p class="sub-title">UI/UX Designer</p>-->
