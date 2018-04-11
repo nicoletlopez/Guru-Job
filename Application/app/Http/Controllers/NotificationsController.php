@@ -70,12 +70,6 @@ class NotificationsController extends Controller
         $users=[];
         foreach($employees as $employee){
             $users[]=$employee->user;
-            Nexmo::message()->send([
-                'to'=>$employee->user->profile->contact_number,
-                'from'=>'639098387649',
-                'text'=>'Hello '. $employee->user->name .', you got a new notification from ' . $user->name . '. Message: '.$notification,
-            ]);
-            #$users[]=$employee->user_id;
         }
         Notification::send($users,new NewNotification($user,$notification));
 
