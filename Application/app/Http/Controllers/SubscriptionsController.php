@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Mail\NewUserWelcome;
 use App\User;
 use App\Hr;
+use Illuminate\Support\Facades\Mail;
 class SubscriptionsController extends Controller
 {
     /**
@@ -46,12 +47,14 @@ class SubscriptionsController extends Controller
         ]);
         //
         $hr = new Hr();
-        Hr::insert([
-            'stripe_id' => $request->input('credit_card'),
-            'card_brand' => 'VISA',
-            'card_last_four' => '4242',
-        ]);
+        $hr->stripe_id = $request->input('credit_card');
+        $hr->card_brand = 'VISA';
+        $hr->card_last_four = '4242';
+        $hr->save();
 
+        $hr->newSubscription('main','monthly')->create($request->input('credit_card'));
+
+        return redirect()->intended(route('hr-dashboard'));
     }
 
     /**
