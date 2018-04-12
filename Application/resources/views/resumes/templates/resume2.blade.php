@@ -2,7 +2,12 @@
 
 <div id="page-wrap">
 
-    <img width="200" src="{{$faculty->user->profile->picture}}" id="pic"/>
+    <img width="200" src="
+    @if($faculty->user->profile->picture)
+    {{$faculty->user->profile->picture}}
+    @else
+    {{asset('img/default-user.png')}}
+    @endif" id="pic"/>
 
     <div id="contact-info" class="vcard">
 

@@ -67,7 +67,7 @@
                             @endif
                                     " class="">
                                 <img width="18" class="img-circle" src="
-                                @if(isset(Auth::user()->profile))
+                                @if(Auth::user()->profile->picture)
                                         {{Auth::user()->profile->picture}}
                                 @else
                                         {{asset('img/default-user.png')}}

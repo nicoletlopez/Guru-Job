@@ -51,7 +51,7 @@ class ProfileController extends Controller
 
         $profile = new Profile;
         $profile->user_id=$user->id;
-        $profile->picture='https://lorempixel.com/640/480/?81236';
+        #$profile->picture='default-user.png';
         $profile->dob=$dob;
         $profile->street_address=$address;
         $profile->city=$city;

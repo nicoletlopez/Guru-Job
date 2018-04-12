@@ -2,7 +2,12 @@
 <div id="cv" class="">
     <div class="mainDetails">
         <div id="headshot" class="">
-            <img src="{{$faculty->user->profile->picture}}" alt=""/>
+            <img src="
+            @if($faculty->user->profile->picture)
+            {{$faculty->user->profile->picture}}
+            @else
+            {{asset('img/default-user.png')}}
+            @endif" alt=""/>
         </div>
 
         <div id="name">
