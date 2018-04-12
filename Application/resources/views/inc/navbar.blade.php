@@ -1,7 +1,6 @@
 <div class="logo-menu">
     <nav class="navbar navbar-default main-navigation" role="navigation" data-spy="affix" data-offset-top="50">
         <div class="container">
-
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
                     <span class="sr-only">Toggle navigation</span>
@@ -67,10 +66,14 @@
                             @endif
                                     " class="">
                                 <img width="18" class="img-circle" src="
+                                @if(Auth::user()->profile)
                                 @if(Auth::user()->profile->picture)
-                                        {{Auth::user()->profile->picture}}
+                                {{Auth::user()->profile->picture}}
                                 @else
-                                        {{asset('img/default-user.png')}}
+                                {{asset('img/default-user.png')}}
+                                @endif
+                                @else
+                                {{asset('img/default-user.png')}}
                                 @endif
                                         "/>&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
                             </a>
