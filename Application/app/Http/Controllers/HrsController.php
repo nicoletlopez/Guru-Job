@@ -51,11 +51,11 @@ class HrsController extends Controller
         $user->save();
 
         $hr = new Hr();
-        $hr->id = $user->id;
+        $hr->user_id = $user->id;
 
         $hr->save();
 
-        return view('hr.dashboard');
+        redirect()->route('hr-dashboard');
 
     }
 

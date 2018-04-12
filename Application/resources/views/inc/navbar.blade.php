@@ -50,56 +50,55 @@
                     @guest
                         <li class="right"><a href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
                     @else
-                        @if (Auth::user()->type == 'HR')
-                            <li>
-                                <a href="{{route('jobs.create')}}" class="btn btn-common">
-                                    <i class="ti-pencil-alt"></i> Post A Job
-                                </a>
-                            </li>
-                        @endif
-                        <li class="">
-                            <a href="
-                            @if(auth()->user()->type == 'HR')
-                            {{route('hr-dashboard')}}
-                            @elseif(auth()->user()->type == 'FACULTY')
-                            {{route('dashboard')}}
-                            @endif
-                                    " class="">
-                                <img width="18" class="img-circle" src="
-                                @if(Auth::user()->profile)
-                                @if(Auth::user()->profile->picture)
-                                {{Auth::user()->profile->picture}}
-                                @else
-                                {{asset('img/default-user.png')}}
-                                @endif
-                                @else
-                                {{asset('img/default-user.png')}}
-                                @endif
-                                        "/>&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
+                        <li>
+                            <a href="{{route('jobs.create')}}" class="btn btn-common">
+                                <i class="ti-pencil-alt"></i> Post A Job
                             </a>
-
-                            <ul class="dropdown">
-
-                                <li>
-                                    @if (Auth::user()->type == 'FACULTY')
-                                        <a href="{{route('dashboard')}}">Dashboard</a>
-                                    @else
-                                        <a href="{{route('hr-dashboard')}}">Dashboard</a>
-                                    @endif
-                                </li>
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Log Out
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
                         </li>
+                    @endif
+                    <li class="">
+                        <a href="
+                            @if(auth()->user()->type == 'HR')
+                        {{route('hr-dashboard')}}
+                        @elseif(auth()->user()->type == 'FACULTY')
+                        {{route('dashboard')}}
+                        @endif
+                                " class="">
+                            <img width="18" class="img-circle" src="
+                                @if(Auth::user()->profile)
+                            @if(Auth::user()->profile->picture)
+                            {{Auth::user()->profile->picture}}
+                            @else
+                            {{asset('img/default-user.png')}}
+                            @endif
+                            @else
+                            {{asset('img/default-user.png')}}
+                            @endif
+                                    "/>&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown">
+
+                            <li>
+                                @if (Auth::user()->type == 'FACULTY')
+                                    <a href="{{route('dashboard')}}">Dashboard</a>
+                                @else
+                                    <a href="{{route('hr-dashboard')}}">Dashboard</a>
+                                @endif
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    Log Out
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
                     @endguest
                 </ul>
             </div>

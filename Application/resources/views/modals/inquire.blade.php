@@ -15,8 +15,6 @@
                     <div class="row">
                         <div class="col-md-2">
                             {{ Form::label('name', 'Full Name',['class'=>'pull-left','style'=>'font-size: 16px; padding-top: 15px']) }}
-                            <label class="pull-left" for="name" style="font-size: 16px; padding-top: 15px">Full
-                                Name: </label>
                         </div>
                         <div class="col-md-10">
                             <div class="input-icon">
@@ -55,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                {{--<div class="form-group">
                     <div class="row">
                         <div class="col-md-2">
                             <label class="pull-left" for="credit_card" style="font-size: 16px; padding-top: 15px">
@@ -82,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                     <div class="row">
                         <div class="col-md-2">

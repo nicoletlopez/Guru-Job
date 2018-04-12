@@ -129,7 +129,11 @@ Route::resource('admins','AdminsController');
 
 
 //test
-Route::resource('test','TestController');
+Route::get('/test',function()
+{
+    return view('test');
+});
+Route::resource('tests','TestController');
 
 //NOTICE
 # I have commented out these test routes in order to try caching and optimization.

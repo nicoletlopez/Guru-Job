@@ -45,11 +45,17 @@ class JobsController extends Controller
     public function create()
     {
 
+        //check if user is subscribed
+        /*$hr = auth()->user()->hr;
+        if(!$hr->subscribed('main'))
+        {
+            return "STOP YOU ARE UNSUBSCRIBED";
+        }*/
+
         $user = auth()->user();
         //$subjects = Subject::where('hr_id',$user_id)->get();
         $subjects=$user->hr->subjects;
         $jobs=$user->hr->jobs;
-
 
 
         $subjectsUsed=[];
