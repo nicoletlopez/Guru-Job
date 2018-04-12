@@ -15,7 +15,7 @@ class CreateHrTable extends Migration
     {
         Schema::create('hr', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
-            $table->double('balance')->default(0.00)->nullable();
+            //$table->double('balance')->default(0.00)->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
 
