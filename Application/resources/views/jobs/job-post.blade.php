@@ -30,12 +30,6 @@
                     <span class="required" style="color: red">*</span>
                     {{Form::text('title','',['class'=>'form-control','required'])}}
                 </div>
-                <!--
-                <div class="form-group">
-                    <label class="control-label">Location <span>(optional)</span></label>
-                    <input type="text" class="form-control" placeholder="e.g. Manila">
-                </div>
-                -->
                 <div class="form-group">
                     {{Form::label('type','Job Type',['class'=>'control-label'])}}
                     <span class="required" style="color: red">*</span>

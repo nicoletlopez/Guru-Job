@@ -7,6 +7,7 @@ use App\Http\Requests\EditProfile;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -55,13 +56,13 @@ class ProfileController extends Controller
         $profile->dob=$dob;
         $profile->street_address=$address;
         $profile->city=$city;
-        $profile->contact_number=$contact;
+        $profile->contact_number='63'.$contact;
         $profile->description=$description;
 
         $profile->save();
 
         $userObj = User::find($profile->user_id);
-        $userObj->phone_number=$contact;
+        $userObj->phone_number='63'.$contact;
         $userObj->save();
         return redirect()->route('resumes.create');
     }
@@ -85,7 +86,15 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=auth()->user();
+        $profile=Profile::find($id);
+
+        $context=[
+            'profile'=>$profile,
+            'user'=>$user,
+        ];
+
+        return view('profile.profile-edit')->with($context);
     }
 
     /**
@@ -95,9 +104,46 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateProfile $request, $id)
     {
-        //
+        $profile=Profile::find($id);
+        $user=auth()->user();
+        $userName = $user->name;
+        $name = str_replace(' ','_',strtolower($userName));
+        if($request->hasFile('picture')){
+            //Get filename with the extension
+                Storage::delete(public_path().$profile->picture);
+                $fileNameWithExt=$request->file('picture')->getClientOriginalName();
+                $path=$request->file('picture')->storeAs('/public/'.$name,$fileNameWithExt);
+                $imagePath= '/storage/'.$name.'/'.$fileNameWithExt;
+        }
+
+        #$profile=$user->profile;
+        $dob=$request->input('dob');
+        $name = $request->input('name');
+        $address=$request->input('address');
+        $city=$request->input('city');
+        $contact=$request->input('contact');
+        $description=$request->input('description');
+
+
+        if($request->hasFile('picture')) {
+            $profile->picture = $imagePath;
+        }
+        $profile->dob=$dob;
+        $profile->street_address=$address;
+        $profile->city=$city;
+        $profile->contact_number='63'.$contact;
+        $profile->description=$description;
+
+        $profile->save();
+
+        $userObj = User::find($profile->user_id);
+        $userObj->name = $name;
+        $userObj->phone_number='63'.$contact;
+        $userObj->save();
+
+        return redirect()->route('profile')->with('success','Profile updated');
     }
     /**
      * Remove the specified resource from storage.

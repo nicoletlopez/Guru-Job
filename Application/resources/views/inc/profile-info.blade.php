@@ -1,9 +1,12 @@
+@include('inc.messages')
+<a href="/profile/{{$profile->user_id}}/edit/" class="btn btn-primary">Edit Profile</a>
+<br/><br/>
 <div class="inner-box my-resume">
     @if(Auth::user()->type == 'HR')
         <div class="row">
 
             <div class="thumb col-md-3">
-                <img class="img-rounded center-block" height="128" width="128" src="
+                <img class="img-rounded center-block" height="" width="128" src="
                 @if(isset($profile->picture))
                 {{$profile->picture}}
                 @elseif(!($profile->picture))
@@ -12,12 +15,12 @@
                         " alt="">
             </div>
             <div class="col-md-9">
-                <h3>{{$user->name}}<a href="#" data-target=".edit-personal-details" data-toggle="modal"><i
-                                class="ti-pencil"></i></a></h3>
+                <h3>{{$user->name}}<!--<a href="#" data-target=".edit-personal-details" data-toggle="modal">
+                        <i class="ti-pencil"></i></a>--></h3>
                 <p class="sub-title">Established on: {{$date}}</p>
                 <p><span class="address"><i class="ti-home"></i> {{$profile->street_address}}</span></p>
                 <p><span class="address"><i class="ti-location-pin"></i> {{$profile->city}}</span></p>
-                <p><span class="address"><i class="ti-mobile"></i> {{$profile->contact_number}}</span></p>
+                <p><span class="address"><i class="ti-mobile"></i> +{{$profile->contact_number}}</span></p>
                 <!--
                 <div class="social-link">
                     <a class="twitter" target="_blank" data-original-title="twitter" href="#"
@@ -34,15 +37,15 @@
 
         </div>
         <div class="about-me item">
-            <h3>About the School <a href="#" data-target=".edit-description" data-toggle="modal"><i
-                            class="ti-pencil"></i></a></h3>
+            <h3>About the School <!--<a href="#" data-target=".edit-description" data-toggle="modal">
+                    <i class="ti-pencil"></i></a>--></h3>
             <p>{!! $profile->description !!}</p>
         </div>
     @else
         @if(Auth::user()->id == $profile->user_id)
             <div class="row">
                 <div class="thumb col-md-3">
-                    <img class="img-rounded center-block" height="128" width="128" src="
+                    <img class="img-rounded center-block" height="" width="128" src="
                     @if(isset($profile->picture))
                     {{$profile->picture}}
                     @elseif(!($profile->picture))
@@ -50,12 +53,12 @@
                     @endif" alt="">
                 </div>
                 <div class="col-md-9">
-                    <h3>{{$user->name}} <a href="#" data-target=".edit-personal-details" data-toggle="modal"><i
-                                    class="ti-pencil"></i></a></h3>
+                    <h3>{{$user->name}}<!-- <a href="#" data-target=".edit-personal-details" data-toggle="modal"><i
+                                    class="ti-pencil"></i></a>--></h3>
                     <!--<p class="sub-title">UI/UX Designer</p>-->
                     <p><span class="address"><i class="ti-home"></i> {{$profile->street_address}}</span></p>
                     <p><span class="address"><i class="ti-location-pin"></i> {{$profile->city}}</span></p>
-                    <p><span class="address"><i class="ti-mobile"></i> {{$profile->contact_number}}</span></p>
+                    <p><span class="address"><i class="ti-mobile"></i> +{{$profile->contact_number}}</span></p>
                     <!--
                     <div class="social-link">
                         <a class="twitter" target="_blank" data-original-title="twitter" href="#"
@@ -71,7 +74,7 @@
                 </div>
             </div>
             <div class="about-me item">
-                <h3>About <a href="#" data-target=".edit-description" data-toggle="modal"><i class="ti-pencil"></i></a>
+                <h3>About <!--<a href="#" data-target=".edit-description" data-toggle="modal"><i class="ti-pencil"></i></a>-->
                 </h3>
                 {!! $profile->description !!}
             </div>
@@ -112,5 +115,7 @@
 
 
 <!--MODALS-->
+<!--
 @include('profile.profile-edit-personal')
 @include('profile.profile-edit-description')
+-->

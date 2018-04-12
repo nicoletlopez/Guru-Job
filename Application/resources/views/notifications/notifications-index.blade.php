@@ -15,9 +15,9 @@
                     <img class="img-responsive" src="{{$images[$key]}}"/>
 
                 </div>
-                <div class="text-left">
+                <div class="text-left" style="word-wrap:break-word;">
                     <p><b>{{$notification->data['hr']['name']}}</b></p>
-                    <p> {{$notification->data['message']}}</p>
+                    <p>{{$notification->data['message']}}</p>
                     <!--<span class="time"><i class="ti-time"></i>3 Hours ago</span>-->
                 </div>
             </div>

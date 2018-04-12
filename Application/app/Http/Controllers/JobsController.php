@@ -63,7 +63,7 @@ class JobsController extends Controller
             $subjectsUsed[]=$job->subject->id;
         }
         if(!(count($subjects)>count($subjectsUsed))){
-            return redirect(route('subjects.create'))->with('warning','An unused Subject is needed before posting a job');
+            return redirect(route('subjects.index'))->with('warning','An unused Subject is needed before posting a job');
         }
         $context = array(
             'subjectsUsed' => $subjectsUsed,

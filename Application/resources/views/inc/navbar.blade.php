@@ -50,30 +50,31 @@
                     @guest
                         <li class="right"><a href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
                     @else
+                        @if(auth()->user()->type =='HR')
                         <li>
                             <a href="{{route('jobs.create')}}" class="btn btn-common">
                                 <i class="ti-pencil-alt"></i> Post A Job
                             </a>
                         </li>
-                    @endif
+                        @endif
                     <li class="">
                         <a href="
                             @if(auth()->user()->type == 'HR')
-                        {{route('hr-dashboard')}}
+                                {{route('hr-dashboard')}}
                         @elseif(auth()->user()->type == 'FACULTY')
                         {{route('dashboard')}}
                         @endif
                                 " class="">
                             <img width="18" class="img-circle" src="
                                 @if(Auth::user()->profile)
-                            @if(Auth::user()->profile->picture)
-                            {{Auth::user()->profile->picture}}
-                            @else
-                            {{asset('img/default-user.png')}}
-                            @endif
-                            @else
-                            {{asset('img/default-user.png')}}
-                            @endif
+                                    @if(Auth::user()->profile->picture)
+                                        {{Auth::user()->profile->picture}}
+                                    @else
+                                        {{asset('img/default-user.png')}}
+                                    @endif
+                                @else
+                                    {{asset('img/default-user.png')}}
+                                @endif
                                     "/>&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
