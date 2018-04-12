@@ -14,6 +14,7 @@
 Route::get('/','PagesController@index')->name('index');
 
 Auth::routes();
+
 /*
 Route::get('/login','PagesController@login')->name('login');
 Route::get('/register','PagesController@register')->name('register');
@@ -115,8 +116,11 @@ Route::get('/employees/{faculty}/lectures','EmployeesController@lectures');
 Route::get('/employees/{faculty}/lectures/{lecture}/details','EmployeesController@lectureDetails');
 Route::get('/employees/{faculty}/lectures/{lecture}/files','EmployeesController@lectureFiles');
 
-//subcsriptions
+//subscriptions
 Route::resource('subscriptions','SubscriptionsController');
+
+//hrs
+Route::resource('hrs','HrsController');
 
 //admin
 Route::resource('admins','AdminsController');
@@ -125,6 +129,7 @@ Route::resource('admins','AdminsController');
 
 
 //test
+Route::resource('test','TestController');
 
 //NOTICE
 # I have commented out these test routes in order to try caching and optimization.

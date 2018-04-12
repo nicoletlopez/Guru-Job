@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Hr;
+use App\User;
 use Illuminate\Http\Request;
 
 class HrsController extends Controller
@@ -35,6 +37,26 @@ class HrsController extends Controller
     public function store(Request $request)
     {
         //
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = bcrypt($request->input('password'));
+        $type = 'HR';
+
+        $user = new User();
+        $user->name = $name;
+        $user->email = $email;
+        $user->password = $password;
+        $user->type = $type;
+
+        $user->save();
+
+        $hr = new Hr();
+        $hr->id = $user->id;
+
+        $hr->save();
+
+        return view('hr.dashboard');
+
     }
 
     /**

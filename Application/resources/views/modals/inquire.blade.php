@@ -8,12 +8,13 @@
                 </button>
                 <h3 class="modal-title" id="myModalLabel">Subscription form</h3>
             </div>
-            {!! Form::open(['action'=>'SubscriptionsController@store','class'=>'form-ad','method'=>'POST']) !!}
+            {!! Form::open(['action'=>'HrsController@store','class'=>'form-ad','method'=>'POST']) !!}
             <div class="modal-body">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="row">
                         <div class="col-md-2">
+                            {{ Form::label('name', 'Full Name',['class'=>'pull-left','style'=>'font-size: 16px; padding-top: 15px']) }}
                             <label class="pull-left" for="name" style="font-size: 16px; padding-top: 15px">Full
                                 Name: </label>
                         </div>
@@ -119,7 +120,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-common log-btn">Subscribe Now!</button>
+                <button type="submit" class="btn btn-common log-btn">Proceed to Checkout</button>
             </div>
             {!! Form::close() !!}
         </div>
