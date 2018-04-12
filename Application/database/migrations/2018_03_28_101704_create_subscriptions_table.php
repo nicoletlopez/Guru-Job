@@ -26,7 +26,7 @@ class CreateSubscriptionsTable extends Migration
             $table->timestamps();
         });*/
 
-        Schema::create('subscription', function ($table) {
+        Schema::create('subscriptions', function ($table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('name');
