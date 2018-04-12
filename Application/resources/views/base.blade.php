@@ -98,7 +98,8 @@
 <script type="text/javascript" src="{{asset('vendor/bootstrap/js/bootstrap-confirmation.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/countries.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/custom.js')}}"></script>
-<script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/stripe.js')}}"></script>
 <script>
     CKEDITOR.replace('editor0');
     CKEDITOR.replace('editor1');

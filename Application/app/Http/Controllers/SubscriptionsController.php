@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateSubscription;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
-use App\Mail\NewUserWelcome;
-use App\User;
-use App\Hr;
-use Illuminate\Support\Facades\Mail;
+
 class SubscriptionsController extends Controller
 {
     /**
@@ -36,25 +33,10 @@ class SubscriptionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateSubscription $request)
+    public function store(Request $request)
     {
         //
-        Mail::to($request->input('email'))->queue(new NewUserWelcome());
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-        ]);
-        //
-        $hr = new Hr();
-        $hr->stripe_id = $request->input('credit_card');
-        $hr->card_brand = 'VISA';
-        $hr->card_last_four = '4242';
-        $hr->save();
 
-        $hr->newSubscription('main','monthly')->create($request->input('credit_card'));
-
-        return redirect()->intended(route('hr-dashboard'));
     }
 
     /**

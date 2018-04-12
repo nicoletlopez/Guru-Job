@@ -115,7 +115,7 @@ Route::get('/employees/{faculty}/lectures','EmployeesController@lectures');
 Route::get('/employees/{faculty}/lectures/{lecture}/details','EmployeesController@lectureDetails');
 Route::get('/employees/{faculty}/lectures/{lecture}/files','EmployeesController@lectureFiles');
 
-//subscriptions
+//subcsriptions
 Route::resource('subscriptions','SubscriptionsController');
 
 //admin
