@@ -18,7 +18,7 @@
             <div class="thumb col-md-3">
                 <div id="dropzone">
                     <div>Drop/Click</div>
-                    {{Form::file('picture',['accept'=>'image/png,image/jpg,image/bmp'])}}
+                    {{Form::file('picture',['accept'=>'image/png,image/jpeg,image/bmp'])}}
                 </div>
             </div>
             <div class="col-md-9">
@@ -81,14 +81,14 @@
 
                 $('#dropzone').removeClass('hover');
 
-                if (this.accept && $.inArray(file.type, this.accept.split(/, ?/)) == -1) {
+                if (this.accept && $.inArray(file.type, this.accept.split(/, ?/)) === -1) {
                     return alert('File type not allowed.');
                 }
 
                 $('#dropzone').addClass('dropped');
                 $('#dropzone img').remove();
 
-                if ((/^image\/(gif|png|jpeg)$/i).test(file.type)) {
+                if ((/^image\/(gif|png|jpeg|bmp)$/i).test(file.type)) {
                     var reader = new FileReader(file);
 
                     reader.readAsDataURL(file);
