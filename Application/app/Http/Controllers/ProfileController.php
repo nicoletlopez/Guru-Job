@@ -112,7 +112,7 @@ class ProfileController extends Controller
         $name = str_replace(' ','_',strtolower($userName));
         if($request->hasFile('picture')){
             //Get filename with the extension
-                Storage::delete(public_path().$profile->picture);
+                Storage::delete(preg_replace("/storage/",'public',$profile->picture));
                 $fileNameWithExt=$request->file('picture')->getClientOriginalName();
                 $path=$request->file('picture')->storeAs('/public/'.$name,$fileNameWithExt);
                 $imagePath= '/storage/'.$name.'/'.$fileNameWithExt;
