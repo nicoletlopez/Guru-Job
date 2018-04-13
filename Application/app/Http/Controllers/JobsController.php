@@ -46,11 +46,10 @@ class JobsController extends Controller
     {
 
         //check if user is subscribed
-        /*$hr = auth()->user()->hr;
-        if(!$hr->subscribed('main'))
+        if(!auth()->user()->subscribed('monthly'))
         {
-            return "STOP YOU ARE UNSUBSCRIBED";
-        }*/
+            return redirect()->back()->with('warning','Please subscribe before posting new jobs');
+        }
 
         $user = auth()->user();
         //$subjects = Subject::where('hr_id',$user_id)->get();
