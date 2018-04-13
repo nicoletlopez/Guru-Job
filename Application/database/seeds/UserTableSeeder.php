@@ -42,7 +42,7 @@ class UserTableSeeder extends Seeder
                         'password' => bcrypt('secret'),
                         'type' => 'HR',
                         'remember_token' => str_random(10),
-                        'phone_number' => '09' . rand(10, 99) . ' ' . rand(100, 999) . ' ' . rand(1000, 9999),
+                        'phone_number' => '639' . rand(100000000, 999999999),
                         'created_at' => date("Y-m-d H:i:s"),
                         'updated_at' => date("Y-m-d H:i:s"),
                     ]);
@@ -54,7 +54,7 @@ class UserTableSeeder extends Seeder
                         'password' => bcrypt('secret'),
                         'type' => 'HR',
                         'remember_token' => str_random(10),
-                        'phone_number' => '09' . rand(10, 99) . ' ' . rand(100, 999) . ' ' . rand(1000, 9999),
+                        'phone_number' => '639' . rand(100000000, 999999999),
                         'created_at' => date("Y-m-d H:i:s"),
                         'updated_at' => date("Y-m-d H:i:s"),
                     ]);
@@ -65,11 +65,12 @@ class UserTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Pamity',
-            'email' => 'pamity@mail.com',
+            'email' => 'japarado@student.apc.edu.ph',
             'password' => bcrypt('secret'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'phone_number' => '639088109536',
+            'phone_number' => '639' . rand(100000000, 999999999),
+            'remember_token' => str_random(10),
         ]);
 
         DB::table('users')->insert([
@@ -78,7 +79,8 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('secret'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
-            'phone_number' => '09' . rand(10, 99) . ' ' . rand(100, 999) . ' ' . rand(1000, 9999),
+            'phone_number' => '639088109536',
+            'remember_token' => str_random(10),
         ]);
 
 //        for($x =0; $x<50; $x++)

@@ -21,15 +21,15 @@ class ProfileTableSeeder extends Seeder
                 'picture' => $pics[$x],
                 'description' => $descriptions[$x],
                 'region' => $regions[$x],
-                'contact_number' => '09' . rand(10, 99) . ' ' . rand(100, 999) . ' ' . rand(1000, 9999)
+                'contact_number' => '639' . rand(100000000, 999999999),
             ]);
         }
 
-        $fprofiles = User::where('type', '=', 'FACULTY')->where('name', '<>', 'Pamity')->get();
+        $fprofiles = User::where('type', '=', 'FACULTY')->where('name', '<>', 'Pamity')->where('name','<>','Raquel')->get();
         foreach ($fprofiles as $fprofile) {
             factory(App\Profile::class)->create([
                 'user_id' => $fprofile->id,
-                'contact_number' => '09' . rand(10, 99) . ' ' . rand(100, 999) . ' ' . rand(1000, 9999)
+                'contact_number' => '639' . rand(100000000, 999999999),
             ]);
 
             $resume = factory(App\Resume::class)->create([
@@ -60,6 +60,13 @@ class ProfileTableSeeder extends Seeder
         factory(App\Profile::class)->create([
             'user_id' => $pam->id,
             'picture' => '/img/schoolLogo/pamity.png',
+            'contact_number' => '639088109536',
+        ]);
+
+        $oracle = User::where('name', '=', 'Raquel')->first();
+        factory(App\Profile::class)->create([
+            'user_id' => $oracle->id,
+            'picture' => 'http://lorempixel.com/400/200/people/9/',
             'contact_number' => '639088109536',
         ]);
     }
