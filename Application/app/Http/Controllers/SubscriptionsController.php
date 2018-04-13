@@ -40,7 +40,7 @@ class SubscriptionsController extends Controller
         $user = auth()->user();
         $stripeToken = $request->input('stripeToken');
 
-        $user->newSubscription('monthly','plan_Cf5OBwXG38CypI')->create($stripeToken, []);
+        $user->newSubscription('monthly','plan_CfmOZQVPd5qIg5')->create($stripeToken, []);
 
         return redirect()->route('hr-dashboard');
     }
