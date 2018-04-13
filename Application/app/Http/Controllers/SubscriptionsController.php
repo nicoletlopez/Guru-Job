@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\User;
 use Illuminate\Http\Request;
 
 class SubscriptionsController extends Controller
@@ -39,9 +40,9 @@ class SubscriptionsController extends Controller
         $user = auth()->user();
         $stripeToken = $request->input('stripeToken');
 
-        $user->newSubscription('main','monthly')->create($stripeToken);
+        $user->newSubscription('monthly','plan_Cf5OBwXG38CypI')->create($stripeToken, []);
 
-        return back();
+        return redirect()->route('hr-dashboard');
     }
 
     /**

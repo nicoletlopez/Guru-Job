@@ -51,7 +51,7 @@
                         <li class="right"><a href="{{route('login')}}"><i class="ti-lock"></i> Log In</a></li>
                     @else
                         @if(auth()->user()->type =='HR')
-                            @if(!auth()->user()->subscribed('main'))
+                            @if(!auth()->user()->subscribed('monthly'))
                                 <li>
                                 {!! Form::open(['action'=>'SubscriptionsController@store','method'=>'POST']) !!}
                                     <script
