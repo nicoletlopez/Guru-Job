@@ -9,7 +9,6 @@ use Laravel\Cashier\Billable;
 class Hr extends Model
 {
     use Notifiable;
-    use Billable;
     //
     protected $table = 'hr';
     protected $primaryKey = 'user_id';
