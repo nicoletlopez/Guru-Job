@@ -34,7 +34,7 @@
     <div class="form-group">
         {{Form::label('description','Description',['class'=>'control-label'])}} <span class="required"
                                                                                       style="color: red">*</span>
-        {{Form::textarea('description','',['id'=>'editor0','class'=>'form-control','placeholder'=>'Subject Description','required'])}}
+        {{Form::textarea('description','',['id'=>'','class'=>'form-control','placeholder'=>'Subject Description','required'])}}
     </div>
 
     {{Form::label('days','Class Schedule',['class'=>'control-label'])}} <span class="required"

@@ -56,8 +56,8 @@
                 </tr>
             @endforeach
             @else
-                <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">No Jobs Posted. <a href="{{route('jobs.create')}}" class="btn btn-common">
-                        <i class="ti-pencil-alt"></i> Post A Job
+                <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">No Subjects Created. <a href="{{route('subjects.create')}}" class="btn btn-common">
+                        <i class="fa fa-plus-square"></i> Create A Subject
                     </a></h3>
             @endif
             </tbody>
