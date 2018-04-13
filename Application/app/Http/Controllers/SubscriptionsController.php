@@ -36,7 +36,12 @@ class SubscriptionsController extends Controller
     public function store(Request $request)
     {
         //
+        $user = auth()->user();
+        $stripeToken = $request->input('stripeToken');
 
+        $user->newSubscription('main','monthly')->create($stripeToken);
+
+        return back();
     }
 
     /**
