@@ -118,7 +118,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-common log-btn">Proceed to Checkout</button>
+                <button type="submit" class="btn btn-common log-btn">Register</button>
             </div>
             {!! Form::close() !!}
         </div>
