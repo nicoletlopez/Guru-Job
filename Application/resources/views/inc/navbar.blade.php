@@ -57,7 +57,7 @@
                                     <script
                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                             data-key="{{env('STRIPE_KEY')}}"
-                                            data-amount="999"
+                                            data-amount="1999"
                                             data-name="Guru Job"
                                             data-description="Job Portal for Teachers"
                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
