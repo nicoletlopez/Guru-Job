@@ -79,9 +79,8 @@ class ApplicationsController extends Controller
 
     public function hire($job_id,$faculty_id)
     {
-        //deletes application row
+        //get job row
         $job = Job::find($job_id);
-        $job->applicants()->detach($faculty_id);
 
         //register person as employee
         $hr = auth()->user()->hr;
@@ -93,6 +92,10 @@ class ApplicationsController extends Controller
         $subject = Subject::whereJob($job_id)->first();
         $subject->faculty_id = $faculty_id;
         $subject->save();
+
+        //deletes job after a person is hired
+        $job->applicants()->detach();
+        $job->delete();
 
         return redirect('/applications/'.$hr_id.'/accepted');
     }
