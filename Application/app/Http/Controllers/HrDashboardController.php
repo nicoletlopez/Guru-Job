@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
@@ -44,6 +45,10 @@ class HrDashboardController extends Controller
         );
         return view('hr.profile')->with($context);
     }
+
+    public function manageNotifications(){
+        return view('notifications.notifications-index');
+    }
     public function manageJobs(){
         //$hr=auth()->user()->hr;
 
@@ -59,6 +64,7 @@ class HrDashboardController extends Controller
         );
         return view('hr.manage-jobs')->with($context);
     }
+
 
     /*public function manageApplications(){
         return view('hr.manage-applications');

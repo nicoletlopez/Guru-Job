@@ -13,7 +13,7 @@
         apply or create jobs, create an online repository of your credentials, form and share online courses.
         "/>
 
-    <title>Guru App @yield('title')</title>
+    <title>Guru Job @yield('title')</title>
 
     <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}"/>
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
@@ -98,7 +98,8 @@
 <script type="text/javascript" src="{{asset('vendor/bootstrap/js/bootstrap-confirmation.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/countries.js')}}"></script>
 <script type="text/javascript" src="{{asset('self/js/custom.js')}}"></script>
-<script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/stripe.js')}}"></script>
 <script>
     CKEDITOR.replace('editor0');
     CKEDITOR.replace('editor1');

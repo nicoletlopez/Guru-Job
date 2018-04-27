@@ -30,9 +30,23 @@ class CreateSubject extends FormRequest
      */
     public function rules()
     {
+        return [
+            'name'=>'required',
+            'description'=>'required',
+            'specializations'=>'required',
+            'days'=>'required',
+            'times-from'=>'required',
+            'times-to'=>'required',
+        ];
+    }
+    public function messages()
+    {
         $messages =
             [
-
+                'name.required' => 'Name is required',
+                'description.required' => 'Description is required',
+                'specializations.required' => 'A Specialization is required',
+                //add times-from should be earlier than times-to
             ];
         return $messages;
     }

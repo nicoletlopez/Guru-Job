@@ -1,3 +1,4 @@
+<?php use App\Http\Controllers\JobsController; ?>
 @extends('base')
 @section('title')- Post a Job @endsection
 @section('current') Post a Job @endsection
@@ -8,7 +9,7 @@
 
     <div class="modal-dialog modal-lg">
         @include('inc.messages')
-        <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+        <a onclick="goBack()" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
         <br/>
         <br/>
         <div class="modal-content">
@@ -29,41 +30,34 @@
                     <span class="required" style="color: red">*</span>
                     {{Form::text('title','',['class'=>'form-control','required'])}}
                 </div>
-                <!--
-                <div class="form-group">
-                    <label class="control-label">Location <span>(optional)</span></label>
-                    <input type="text" class="form-control" placeholder="e.g. Manila">
-                </div>
-                -->
                 <div class="form-group">
                     {{Form::label('type','Job Type',['class'=>'control-label'])}}
                     <span class="required" style="color: red">*</span>
                     <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','FT',['type'=>"radio"])}}Full-Time</label>
+                        <label style="color:black;">{{Form::radio('type','FT',false,['type'=>"radio"])}}Full-Time</label>
                     </div>
                     <div class="radio">
-                        <label style="color:black;">{{Form::radio('type','PT',['type'=>"radio"])}}Part-Time</label>
+                        <label style="color:black;">{{Form::radio('type','PT',false,['type'=>"radio"])}}Part-Time</label>
                     </div>
                 </div>
                 <div class="form-group">
                     {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
                     <span class="required" style="color: red">*</span>
-                    @if(count($subjects)>0)
+                    @if(count($subjects)>count($subjectsUsed))
                         @foreach($subjects as $subject)
-                            <div class="checkbox">
-                                <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,false,['type'=>"checkbox"])}}{{$subject->name}}</label>
+                            <div class="radio{{in_array($subject->id,JobsController::getUsedSubjects()) ? ' hidden' : ''}}">
+                                <label style="color:black;">{{Form::radio('subject',$subject->id,false,['type'=>"radio"])}}{{$subject->name}}</label>
                             </div>
                         @endforeach
                     @else
+
                         <p>
-                            <b style="font-size: 16px">
-                                Please Create a Subject First
-                                <a href="#" data-toggle="tooltip" title="Create Subject"
+                                <a href="{{route('subjects.create')}}" data-toggle="tooltip" title="Create Subject"
                                    style="vertical-align: center">
-                                    <i style="font-size:30px; margin: 0;" class="fa fa-plus-square-o"></i>
+                                    &#8862; <b>Please Create a Subject First</b>
                                 </a>
-                            </b>
                         </p>
+
                     @endif
                 </div>
                 <div class="row">

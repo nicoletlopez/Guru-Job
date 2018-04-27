@@ -5,19 +5,26 @@
 @section('manage-documents-active') active @endsection
 
 @section('dashboard-content')
-    <a href="{{route('document-spaces.index')}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <a onclick="goBack()" href="#" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
     <hr/>
     @include('inc.messages')
-    <section class="section
-     job-detail">
-        <div class="container">
+    <section class="section job-detail well">
             <div class="row">
-                <div class="col-md-9 col-sm-8">
+                <div class="col-md-12 col-sm-8">
                     <div class="content-area">
-                        <h2 class="medium-title">{{$documentSpace->title}}</h2>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h2 class="medium-title">{{$documentSpace->title}}</h2>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="/document-spaces/{{$documentSpace->id}}/assign" class="btn btn-success pull-right">
+                                    Assign Document Space
+                                </a>
+                            </div>
+                        </div>
                         <p>{{$documentSpace->desc}}</p>
                         <br/>
-                        <div class="box col-md-11">
+                        <div class="box col-md-12">
                             <div class="row">
                                 <!--repeat-->
                                 @if(count($documents)>0)
@@ -82,13 +89,14 @@
                                                         <a class="btn btn-sm btn-primary btn-block"
                                                            href="/documents/{{$documentSpace->id}}/download/{{$document->name}}">Download</a>
                                                     </p>
-                                                    <p style="word-wrap:break-word;">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$document->name),28,'....'.$fileExts[$key][1])}}</p>
+                                                    <p style="word-wrap:break-word;" title="{{$document->name}}">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$document->name),28,'....'.$fileExts[$key][1])}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
                                 @else
-                                    <h5>&nbsp;No Documents</h5>
+                                    <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No Documents yet</h3>
+
                             @endif
                             <!--end-->
                             </div>
@@ -98,7 +106,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     @include('inc.prompt-delete')
 @endsection

@@ -30,17 +30,22 @@ p {
 }
 
 #cv {
-    width: 90%;
+    width: 100%;
     max-width: 800px;
-    height:670px;
+    height:auto;
+    min-height:825px;
+    /*display:block;*/
+    overflow:auto;
     background: #f3f3f3;
     margin: 30px auto;
+
 }
 
 .mainDetails {
     padding: 25px 35px;
     border-bottom: 2px solid #cf8a05;
     background: #ededed;
+
 }
 
 #name h1 {
@@ -48,6 +53,7 @@ p {
     font-weight: 700;
     font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
     margin-bottom: -6px;
+    word-wrap:break-spaces;
 }
 
 #name h2 {
@@ -173,16 +179,12 @@ section:last-child {
         column-count: 2;
     }
 }
-
+/*
 @media all and (max-width: 601px) {
     #cv {
         width: 95%;
         margin: 10px auto;
         min-width: 280px;
-    }
-
-    #headshot {
-        display: none;
     }
 
     #name, #contactDetails {
@@ -232,7 +234,7 @@ section:last-child {
         margin-bottom: 4px;
     }
 }
-
+*/
 @media print {
     #cv {
         width: 100%;

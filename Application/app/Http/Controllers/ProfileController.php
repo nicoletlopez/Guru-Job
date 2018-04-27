@@ -7,6 +7,7 @@ use App\Http\Requests\EditProfile;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -42,7 +43,7 @@ class ProfileController extends Controller
     public function store(CreateProfile $request)
     {
         $user=auth()->user();
-        $profile=$user->profile;
+        #$profile=$user->profile;
         $dob=$request->input('dob');
         $address=$request->input('address');
         $city=$request->input('city');
@@ -51,16 +52,19 @@ class ProfileController extends Controller
 
         $profile = new Profile;
         $profile->user_id=$user->id;
-        $profile->picture='https://lorempixel.com/640/480/?81236';
+        #$profile->picture='default-user.png';
         $profile->dob=$dob;
         $profile->street_address=$address;
         $profile->city=$city;
-        $profile->contact_number=$contact;
+        $profile->contact_number='63'.$contact;
         $profile->description=$description;
 
         $profile->save();
 
-        return redirect()->route('profile');
+        $userObj = User::find($profile->user_id);
+        $userObj->phone_number='63'.$contact;
+        $userObj->save();
+        return redirect()->route('resumes.create');
     }
 
     /**
@@ -82,7 +86,15 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=auth()->user();
+        $profile=Profile::find($id);
+
+        $context=[
+            'profile'=>$profile,
+            'user'=>$user,
+        ];
+
+        return view('profile.profile-edit')->with($context);
     }
 
     /**
@@ -92,9 +104,46 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateProfile $request, $id)
     {
-        //
+        $profile=Profile::find($id);
+        $user=auth()->user();
+        $userName = $user->name;
+        $name = str_replace(' ','_',strtolower($userName));
+        if($request->hasFile('picture')){
+            //Get filename with the extension
+                Storage::delete(preg_replace("/storage/",'public',$profile->picture,1));
+                $fileNameWithExt=$request->file('picture')->getClientOriginalName();
+                $path=$request->file('picture')->storeAs('/public/'.$name,$fileNameWithExt);
+                $imagePath= '/storage/'.$name.'/'.$fileNameWithExt;
+        }
+
+        #$profile=$user->profile;
+        $dob=$request->input('dob');
+        $name = $request->input('name');
+        $address=$request->input('address');
+        $city=$request->input('city');
+        $contact=$request->input('contact');
+        $description=$request->input('description');
+
+
+        if($request->hasFile('picture')) {
+            $profile->picture = $imagePath;
+        }
+        $profile->dob=$dob;
+        $profile->street_address=$address;
+        $profile->city=$city;
+        $profile->contact_number='63'.$contact;
+        $profile->description=$description;
+
+        $profile->save();
+
+        $userObj = User::find($profile->user_id);
+        $userObj->name = $name;
+        $userObj->phone_number='63'.$contact;
+        $userObj->save();
+
+        return redirect()->route('profile')->with('success','Profile updated');
     }
     /**
      * Remove the specified resource from storage.
@@ -119,6 +168,8 @@ class ProfileController extends Controller
 
 
         $user->name = $name;
+        $user->phone_number=$contact;
+
         $profile->dob=$dob;
         $profile->street_address=$address;
         $profile->city=$city;

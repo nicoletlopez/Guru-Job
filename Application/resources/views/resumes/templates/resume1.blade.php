@@ -2,19 +2,24 @@
 <div id="cv" class="">
     <div class="mainDetails">
         <div id="headshot" class="">
-            <img src="{{auth()->user()->profile->picture}}" alt="" />
+            <img src="
+            @if($faculty->user->profile->picture)
+            {{$faculty->user->profile->picture}}
+            @else
+            {{asset('img/default-user.png')}}
+            @endif" alt=""/>
         </div>
 
         <div id="name">
-            <h1 class="">{{auth()->user()->name}}</h1>
+            <h1 class="">{{$faculty->user->name}}</h1>
             <!--<h2 class="">Job Title</h2>-->
         </div>
 
         <div id="contactDetails" class="">
             <ul>
-                <li>e: <a href="mailto:{{auth()->user()->email}}" target="_blank">{{auth()->user()->email}}</a></li>
+                <li>e: <a href="mailto:{{$faculty->user->email}}" target="_blank">{{$faculty->user->email}}</a></li>
                 <!--<li>w: <a href="http://www.bloggs.com">www.bloggs.com</a></li>-->
-                <li>m: {{auth()->user()->profile->contact_number}}</li>
+                <li>m: {{$faculty->user->profile->contact_number}}</li>
             </ul>
         </div>
         <div class="clear"></div>
@@ -28,7 +33,7 @@
                 </div>
 
                 <div class="sectionContent">
-                    {!! auth()->user()->profile->description !!}
+                    {!! $faculty->user->profile->description !!}
                 </div>
             </article>
             <div class="clear"></div>
@@ -66,8 +71,6 @@
             </div>
             <div class="clear"></div>
         </section>
-
-
         <section>
             <div class="sectionTitle">
                 <h1>Skills</h1>

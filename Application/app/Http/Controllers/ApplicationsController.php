@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Faculty;
+use App\Hr;
+use App\Mail\AcceptApplicationNotification;
 use App\Mail\AcceptJobNotification;
+use App\Subject;
+use App\User;
 use Illuminate\Http\Request;
 use App\Job;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -20,12 +25,12 @@ class ApplicationsController extends Controller
      */
     public function index()
     {
-        $id = auth()->user()->id;
-        $jobs = Job::where('user_id',$id)->get();
+        $hr = auth()->user()->id;
+        $jobs = Job::where('hr_id', $hr)->get();
         $applicants = new Collection();
 
-        foreach ($jobs as $job){
-            $concat = $job->applicants->map(function ($applicant) use ($job){
+        foreach ($jobs as $job) {
+            $concat = $job->pendingApplicants->map(function ($applicant) use ($job) {
                 $applicant['job_title'] = $job->title;
                 return $applicant;
             });
@@ -37,10 +42,62 @@ class ApplicationsController extends Controller
 
         $context =
             [
-                'applicants'=>$this->paginate($applicants)->withPath('applications')
+                'key' => 0,
+                'hr_id' => $hr,
+                'applicants' => $this->paginate($applicants)->withPath('applications')
+            ];
+//        return var_dump($applicants);
+        return view('applications.application-pending')->with($context);
+    }
+
+    public function acceptedApplications()
+    {
+        $hr = auth()->user()->id;
+        $jobs = Job::where('hr_id', $hr)->get();
+        $applicants = new Collection();
+
+        foreach ($jobs as $job) {
+            $concat = $job->acceptedApplicants->map(function ($applicant) use ($job) {
+                $applicant['job_title'] = $job->title;
+                return $applicant;
+            });
+
+            $applicants = $applicants->concat($concat);
+        }
+
+        $applicants = $applicants->sortByDesc('pivot.updated_at');
+
+        $context =
+            [
+                'key' => 0,
+                'hr_id' => $hr,
+                'applicants' => $this->paginate($applicants)->withPath('applications')
             ];
 
-        return view('hr.manage-applications')->with($context);
+        return view('applications.application-accepted')->with($context);
+    }
+
+    public function hire($job_id,$faculty_id)
+    {
+        //get job row
+        $job = Job::find($job_id);
+
+        //register person as employee
+        $hr = auth()->user()->hr;
+        $faculty = Faculty::find($faculty_id);
+        $hr->employees()->save($faculty);
+
+        //updates subject faculty_id field
+        $hr_id = auth()->user()->id;
+        $subject = Subject::whereJob($job_id)->first();
+        $subject->faculty_id = $faculty_id;
+        $subject->save();
+
+        //deletes job after a person is hired
+        $job->applicants()->detach();
+        $job->delete();
+
+        return redirect('/applications/'.$hr_id.'/accepted');
     }
 
     /**
@@ -56,32 +113,39 @@ class ApplicationsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
-        $faculty = auth()->user()->faculty;
-        $user = $faculty->user;
-        $job =  Job::find($request->input('job-id'));
-        $job->applicants()->save($faculty);
-        $job->save();
+        if(!auth()->guest()) {
+            if (!(auth()->user()->profile)) {
+                return redirect()->route('profile.create')->with('error', 'Create a Profile First');
+            } elseif (count(auth()->user()->faculty->resumes) == 0) {
+                return redirect()->route('resumes.create')->with('error', 'Create a Resume First');
+            }
 
-        //refresh the cached applications as a new one has been made
+            $faculty = auth()->user()->faculty;
+            $user = $faculty->user;
+            $job = Job::find($request->input('job-id'));
+            $job->applicants()->save($faculty);
+            $job->save();
+
+            //refresh the cached applications as a new one has been made
 
 
-        $school = $job->hr->user;
+            $school = $job->hr->user;
 
-        Mail::to($job->hr->user->email)->queue(new AcceptJobNotification($job, $user, $school));
+            Mail::to($job->hr->user->email)->queue(new AcceptJobNotification($job, $user, $school));
 
-        return back();
+            return back();
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -92,7 +156,7 @@ class ApplicationsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -103,8 +167,8 @@ class ApplicationsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -115,7 +179,7 @@ class ApplicationsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -123,11 +187,12 @@ class ApplicationsController extends Controller
         //
     }
 
-    public function applicants($id){
+    public function applicants($id)
+    {
         $job = Job::find($id);
         $hr = auth()->user()->id;
 
-        if($job->user_id != $hr){
+        if ($job->hr_id != $hr) {
             return redirect()->intended(route('manage-jobs'));
         }
 
@@ -135,40 +200,56 @@ class ApplicationsController extends Controller
 
         $context =
             [
-                'job'=>$job->title,
-                'id'=>$job->id,
-                'applicants'=>$applicants,
+                'job' => $job->title,
+                'id' => $job->id,
+                'applicants' => $applicants,
             ];
         return view('jobs.applications.applicants')->with($context);
     }
 
-    public function search(Request $request, $id){
+    public function search(Request $request, $id)
+    {
         $job = Job::find($id);
         $needle = $request->input('search-term');
 
         $faculties = $job->applicants;
         $applicants = array();
 
-        foreach($faculties as $faculty){
+        foreach ($faculties as $faculty) {
             $haystack = $faculty->user->name;
-            if(stripos(strtolower($haystack),strtolower($needle))  !== false){
-                array_push($applicants,$faculty);
+            if (stripos(strtolower($haystack), strtolower($needle)) !== false) {
+                array_push($applicants, $faculty);
             }
         }
 
-        if(is_null($needle)){
+        if (is_null($needle)) {
             $applicants = $faculties;
-        }else{
+        } else {
             $applicants = collect($applicants);
         }
 
         $context = [
-            'job'=>$job->title,
-            'id'=>$job->id,
-            'applicants'=>$applicants,
+            'job' => $job->title,
+            'id' => $job->id,
+            'applicants' => $applicants,
         ];
 
         return view('jobs.applications.applicants')->with($context);
+    }
+
+    public function updateApplication($job_id, $faculty_id)
+    {
+        $job = Job::find($job_id);
+        $user = User::find($faculty_id);
+        $school = User::find($hr = auth()->user()->id);
+        $application = $job->applicants->where('user_id', $faculty_id)->first();
+        $application->pivot->accepted = true;
+        $application->pivot->save();
+
+        Mail::to($job->applicants->where('user_id',$faculty_id)->first()->user->email)
+            ->queue(new AcceptApplicationNotification($job, $user, $school));
+
+        return $this->index();
     }
 
     //function for paginating Collections that didn't use Laravel ORM

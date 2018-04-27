@@ -34,26 +34,53 @@ class UserTableSeeder extends Seeder
                 $acronym .= $w[0];
             }
             $acronym = strtolower($acronym);
-            DB::table('users')->insert(
-                [
-                    'name' => $school,
-                    'email' => $acronym . '@mail.com',
-                    'password' => bcrypt('secret'),
-                    'type' => 'HR',
-                    'remember_token' => str_random(10),
-                    'created_at' => date("Y-m-d H:i:s"),
-                    'updated_at' => date("Y-m-d H:i:s"),
-                ]);
+            if($school === 'Asia Pacific College'){
+                DB::table('users')->insert(
+                    [
+                        'name' => $school,
+                        'email' => 'raquelo@apc.edu.ph',
+                        'password' => bcrypt('secret'),
+                        'type' => 'HR',
+                        'remember_token' => str_random(10),
+                        'phone_number' => '639' . rand(100000000, 999999999),
+                        'created_at' => date("Y-m-d H:i:s"),
+                        'updated_at' => date("Y-m-d H:i:s"),
+                    ]);
+            }else{
+                DB::table('users')->insert(
+                    [
+                        'name' => $school,
+                        'email' => $acronym . '@mail.com',
+                        'password' => bcrypt('secret'),
+                        'type' => 'HR',
+                        'remember_token' => str_random(10),
+                        'phone_number' => '639' . rand(100000000, 999999999),
+                        'created_at' => date("Y-m-d H:i:s"),
+                        'updated_at' => date("Y-m-d H:i:s"),
+                    ]);
+            }
         }
 
         factory(App\User::class, 20)->create();
 
         DB::table('users')->insert([
             'name' => 'Pamity',
-            'email' => 'pamity@mail.com',
+            'email' => 'japarado@student.apc.edu.ph',
             'password' => bcrypt('secret'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
+            'phone_number' => '639' . rand(100000000, 999999999),
+            'remember_token' => str_random(10),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Raquel',
+            'email' => 'rofreneo@gmail.com',
+            'password' => bcrypt('secret'),
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s"),
+            'phone_number' => '639088109536',
+            'remember_token' => str_random(10),
         ]);
 
 //        for($x =0; $x<50; $x++)

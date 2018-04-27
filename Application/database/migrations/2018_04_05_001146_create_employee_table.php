@@ -14,17 +14,17 @@ class CreateEmployeeTable extends Migration
     public function up()
     {
         Schema::create('employee', function (Blueprint $table) {
-            $table->integer('hr_id')->unsigned();
             $table->integer('faculty_id')->unsigned();
+            $table->integer('hr_id')->unsigned();
 
-            $table->foreign('hr_id')->references('user_id')->on('hr');
             $table->foreign('faculty_id')->references('user_id')->on('faculty');
+            $table->foreign('hr_id')->references('user_id')->on('hr');
 
             $table->timestamps();
 
             //misc
-            $table->primary(['hr_id','faculty_id']);
-            $table->index(['hr_id','faculty_id']);
+            $table->primary(['faculty_id','hr_id']);
+            $table->index(['faculty_id','hr_id']);
         });
     }
 

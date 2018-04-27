@@ -1,26 +1,25 @@
-@extends('hr.dashboard-menu')
-@section('title')- Manage Applications @endsection
-@section('current') Manage Applications @endsection
+@extends('layouts.applications')
+@section('title')- Accepted Applicants @endsection
+@section('current') Accpeted Applicants @endsection
 @section('current-header') Manage Applications @endsection
-@section('manage-applications-active') active @endsection
+@section('tab-accepted-active') active @endsection
 
-@section('dashboard-content')
-
-    <div class="job-alerts-item candidates">
-        <div class="row">
-            <div class="col-md-5">
-                <h3 class="alerts-title">Manage applications</h3>
-            </div>
-        </div>
-        <br/>
-        @foreach($applicants as $key=>$applicant)
+@section('active-tab-content')
+    <br/>
+    @if(count($applicants) > 0)
+        @foreach($applicants as $applicant)
             <div class="box col-md-12">
                 <div class="row">
                     <div class="col-md-1">
-                        <b style="font-size: 20px">#{{++$key}}</b>
+                        <p style="margin-bottom: 15px">
+                            <b style="font-size: 20px;">#{{++$key}}</b>
+                        </p>
+                        <a target="_blank" href="/applications/{{$applicant->user_id}}/resume/{{$applicant->mainTemplate($applicant->user_id)}}">
+                            <span class="ti-envelope" style="font-size: 40px" title="Resume"></span>
+                        </a>
                     </div>
                     <div class="col-md-2">
-                        <img src="{{$applicant->user->profile->picture}}" height="80" style="border-radius: 8px;"/>
+                        <img src="{{$applicant->user->profile->picture}}" width="100%" style="border-radius: 8px;"/>
                     </div>
                     <div class="col-md-5">
                         <b style="font-size: 20px">{{$applicant->user->name}}</b><br/>
@@ -30,11 +29,14 @@
                         Contact No. <b style="font-size: 14px">{{$applicant->user->profile->contact_number}}</b>
                     </div>
                     <div class="col-md-4">
-                        <b style="font-size: 14px">Date Applied:</b><br/>
+                        <b style="font-size: 14px">Date Accepted:</b><br/>
                         <b style="font-size: 14px">{{date('F j, Y \a\t g:i a', strtotime($applicant->pivot->created_at))}}</b><br/>
                         {{--                    <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
                         <br/>
-                        <a href="#" class="btn btn-common btn-block">Accept Application</a>
+                        <a href="/applications/{{$applicant->pivot->job_id}}/{{$applicant->pivot->faculty_id}}/hire"
+                           class="btn btn-common btn-block">
+                            Hire Applicant
+                        </a>
                     </div>
                 </div>
                 <hr/>
@@ -45,18 +47,9 @@
                     </a>
                 </p>
             </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
         @endforeach
         {{ $applicants->links() }}
-    </div>
-
+    @else
+        <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No accepted applicant yet</h3>
+    @endif
 @endsection

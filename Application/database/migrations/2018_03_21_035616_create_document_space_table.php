@@ -19,13 +19,14 @@ class CreateDocumentSpaceTable extends Migration
             //enable for mysql
             //$table->string('desc');
             $table->text('desc');
-            $table->integer('user_id')->unsigned();
+            $table->integer('faculty_id')->unsigned();
 
-            $table->foreign('user_id')->references('user_id')->on('faculty');
+            $table->foreign('faculty_id')->references('user_id')->on('faculty');
             $table->timestamps();
 
             //misc
             $table->index('id');
+            $table->index('faculty_id');
             $table->index(['title','desc']);
         });
     }

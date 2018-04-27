@@ -1,4 +1,5 @@
 <section id="pricing-table" class="section">
+    <br/><br/>
     <div class="container">
         <div class="row">
             <!--
@@ -60,4 +61,5 @@
             </div>
         </div>
     </div>
+    <br/><br/>
 </section>

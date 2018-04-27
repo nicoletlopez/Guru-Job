@@ -14,14 +14,15 @@ class CreateHrHasDocumentSpaceTable extends Migration
     public function up()
     {
         Schema::create('hr_has_document_space', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('hr_id')->unsigned();
             $table->integer('document_space_id')->unsigned();
+            $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('hr');
+            $table->foreign('hr_id')->references('user_id')->on('hr');
             $table->foreign('document_space_id')->references('id')->on('document_space');
 
-            $table->primary(['user_id','document_space_id']);
-            $table->index(['user_id','document_space_id']);
+            $table->primary(['hr_id','document_space_id']);
+            $table->index(['hr_id','document_space_id']);
         });
     }
 

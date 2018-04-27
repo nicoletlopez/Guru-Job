@@ -6,6 +6,9 @@
 
 
 @section('active-tab-content')
+    <div class="medium-title" style="font-size: 15px;padding-bottom: 15px">
+        <h3>{{$lecture->title}}</h3>
+    </div>
     <br/>
     <h3>Files</h3>
     <hr/>
@@ -72,7 +75,7 @@
                                 <a class="btn btn-sm btn-primary btn-block"
                                    href="/lectures/{{$lecture->id}}/files/download/{{$file->name}}">Download</a>
                             </p>
-                            <p style="word-wrap:break-word;">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$file->name),28,'....'.$fileExts[$key][1])}}</p>
+                            <p style="word-wrap:break-word;" title="{{$file->name}}">{{str_limit(preg_replace("/(_)(\d+)(?!.*(_)(\d+))/",'',$file->name),28,'....'.$fileExts[$key][1])}}</p>
                         </div>
                     </div>
                 </div>
@@ -80,7 +83,7 @@
             @endforeach
         </div>
     @else
-        <h5>No Files Uploaded.</h5>
+        <h3 style="text-align: center; margin-top: 20px; margin-bottom: 20px">&nbsp;No Files Uploaded</h3>
     @endif
     <hr/>
     @include('lectures.lecture-upload')

@@ -6,7 +6,6 @@
     </div>
 @endsection
 @section('content')
-    @include('layouts.jobs')
     @include('layouts.specializations')
     @include('layouts.pricing')
 @endsection

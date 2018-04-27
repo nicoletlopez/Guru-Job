@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewUserWelcome;
-
+use Illuminate\Http\Request;
+use App\Hr;
 
 class RegisterController extends Controller
 {

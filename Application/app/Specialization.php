@@ -14,12 +14,12 @@ class Specialization extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class,'subject_has_specialization','specialization_id','subject_id');
+        return $this->belongsToMany(Subject::class,'subject_has_specialization','specialization_id','subject_id')->withTimestamps();
     }
 
     public function faculty()
     {
-        return $this->belongsToMany(Faculty::class,'faculty_has_specialization','specialization_id','user_id');
+        return $this->belongsToMany(Faculty::class,'faculty_has_specialization','specialization_id','faculty_id');
     }
 }
 ?>

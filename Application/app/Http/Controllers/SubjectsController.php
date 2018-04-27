@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSubject;
-use App\Skill;
+use App\Specialization;
 use App\Subject;
 use App\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class SubjectsController extends Controller
 {
@@ -23,11 +24,11 @@ class SubjectsController extends Controller
 
     public function index()
     {
-        $user=auth()->user()->id;
-        $subjects = Subject::where('user_id',$user)->orderBy('created_at','desc')->paginate(10);
+        $user_id = auth()->user()->id;
+        $subjects = Subject::where('hr_id', $user_id)->orderBy('created_at', 'desc')->paginate(10);
         $context =
             [
-                'subjects'=>$subjects,
+                'subjects' => $subjects,
             ];
         return view('hr.manage-subjects')->with($context);
     }
@@ -40,63 +41,73 @@ class SubjectsController extends Controller
     public function create()
     {
         //
-        $skills = Skill::all();
-        $context = ['skills'=>$skills];
+        $specializations = Specialization::all();
+        $context = ['specializations' => $specializations];
         return view('subjects.subject-create')->with($context);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateSubject $request)
     {
 
-        $user_id = auth()->user()->id;
-        $name = $request ->input('name');
+        $hr_id = auth()->user()->id;
+        $name = $request->input('name');
         $desc = $request->input('description');
-        $start_time = $request->input('time-from');
-        $end_time = $request->input('time-to');
-        $skills = $request->input('skills');
-        $days = $request->input('days');
 
+        $specializations = $request->input('specializations');
+
+        $days = $request->input('days');
+        $start_time = $request->input('times-from');
+        $end_time = $request->input('times-to');
+
+        //Insert subject row
         $subject = new Subject();
-        $subject->user_id = auth()->user()->id;
+        $subject->hr_id = $hr_id;
         $subject->name = $name;
         $subject->desc = $desc;
         $subject->save();
 
-
-        $schedule=new Schedule();
-        $schedule->subject_id=$subject->id;
-        $schedule->start = $start_time;
-        $schedule->end = $end_time;
-        $subject->day = $days;
+        //insert specializations
 
 
+        $subject->specializations()->attach($specializations);
 
-        foreach($skills as $skill)
-        {
-            $subject->attach($skill->id);
+
+        foreach ($days as $key => $day) {
+            $schedule = new Schedule();
+            $schedule->subject_id = $subject->id;
+            $schedule->day = $day;
+            $schedule->start = $start_time[$key];
+            $schedule->end = $end_time[$key];
+            $schedule->save();
         }
 
+        return redirect('/subjects/' . $subject->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $subject=Subject::find($id);
-        $schedules=$subject->schedules;
-        $context=array(
-            'subject'=>$subject,
-            'schedules'=>$schedules,
+        $subject = Subject::find($id);
+        if(!$subject){
+            return redirect(route('subjects.index'));
+        }
+        $schedules = $subject->schedules;
+        $specializations = $subject->specializations;
+        $context = array(
+            'subject' => $subject,
+            'schedules' => $schedules,
+            'specializations' => $specializations,
         );
         return view('subjects.subject-details')->with($context);
     }
@@ -104,22 +115,26 @@ class SubjectsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $skills = Skill::all();
-        $subject=Subject::find($id);
-        $daysSelected=$subject->schedule()->day;
-        $daysData = array();
-        foreach ($daysSelected as $daySelected) {
-            $daysData[] = $daySelected->id;
+        $subject = Subject::find($id);
+        $specializationsSelected = $subject->specializations;
+        $specializations = Specialization::all();
+        $schedules = $subject->schedules;
+
+        $specializationData = [];
+        foreach ($specializationsSelected as $specializationSelected) {
+            $specializationData[] = $specializationSelected->id;
         }
+
         $context = [
-            'skills'=>$skills,
-            'subject'=>$subject,
-            'daysData'=>$daysData,
+            'specializations' => $specializations,
+            'subject' => $subject,
+            'specializationData' => $specializationData,
+            'schedules' => $schedules,
         ];
         return view('subjects.subject-edit')->with($context);
     }
@@ -127,25 +142,59 @@ class SubjectsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateSubject $request, $id)
     {
-        //
+        $name = $request->input('name');
+        $desc = $request->input('description');
+
+        $specializations = $request->input('specializations');
+
+        $days = $request->input('days');
+        $start_time = $request->input('times-from');
+        $end_time = $request->input('times-to');
+
+        //Update subject row
+        $subject = Subject::find($id);
+        $subject->name = $name;
+        $subject->desc = $desc;
+        $subject->save();
+
+        //update specializations
+
+        $subject->specializations()->sync($specializations);
+
+        $subject->schedules()->delete();
+
+        foreach ($days as $key => $day) {
+            $schedule = new Schedule();
+            $schedule->subject_id = $subject->id;
+            $schedule->day = $day;
+            $schedule->start = $start_time[$key];
+            $schedule->end = $end_time[$key];
+            $schedule->save();
+        }
+        return redirect('/subjects/' . $subject->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $subject=Subject::find($id);
+        $subject = Subject::find($id);
+        if (isset($subject->job)) {
+            $subject->job->delete();
+            $subject->delete();
+            return redirect(route('subjects.index'))->with('warning', 'Subject and Job deleted');
+        }
         $subject->delete();
-        return back();
+        return redirect(route('subjects.index'))->with('warning', 'Subject deleted');
     }
 }

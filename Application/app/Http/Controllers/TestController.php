@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class TestController extends Controller
 {
-    public function index(Request $request)
+    public function store(Request $request)
     {
         /*$search_term = $request->input('search');
         $hrs = Hr::searchHr($search_term)->get();
@@ -18,8 +18,9 @@ class TestController extends Controller
         );
         return view('jasonsInvasion.search_result')->with($context);*/
 
-        $contents = Storage::disk('local')->download('public/lectures/lecture_files_21/django(1)_1520498804.pdf');
+        //$contents = Storage::disk('local')->download('public/lectures/lecture_files_21/django(1)_1520498804.pdf');
 
-        return $contents;
+        //return $contents;
+        dd($request->all());
     }
 }

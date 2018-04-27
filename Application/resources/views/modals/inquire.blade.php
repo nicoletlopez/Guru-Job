@@ -8,55 +8,119 @@
                 </button>
                 <h3 class="modal-title" id="myModalLabel">Subscription form</h3>
             </div>
+            {!! Form::open(['action'=>'HrsController@store','class'=>'form-ad','method'=>'POST']) !!}
             <div class="modal-body">
-                <form class="form-ad">
+                {{ csrf_field() }}
+                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Your Email</label>
-                        <input type="text" class="form-control" placeholder="mail@example.com">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Your Name</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    </div>
+                        <div class="col-md-2">
+                            {{ Form::label('name', 'Full Name',['class'=>'pull-left','style'=>'font-size: 16px; padding-top: 15px']) }}
+                        </div>
+                        <div class="col-md-10">
+                            <div class="input-icon">
+                                <i class="ti-user"></i>
+                                <input id="name" type="text" class="form-control" name="name"
+                                       value="{{ old('name') }}" required autofocus>
 
-                    <div class="divider"><h4>School Details</h4></div>
-                    <div class="form-group">
-                        <label class="control-label">School Name</label>
-                        <input type="text" class="form-control"
-                               placeholder="Enter the name of the school">
-                    </div>
-                    <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Region</label>
-                        <div class="search-category-container">
-                            <label class="styled-select">
-                                <select class="dropdown-product selectpicker">
-                                    <option>Select Region</option>
-                                    <option>Armm</option>
-                                    <option>Bicol Region</option>
-                                    <option>C.A.R</option>
-                                    <option>Cagayan Valley</option>
-                                    <option>Central</option>
-                                    <option>Others</option>
-                                </select>
-                            </label>
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                         <strong>{{ $errors->first('name') }}</strong>
+                                     </span>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Address</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    </div>
-                </form>
+                </div>
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="pull-left" for="email" style="font-size: 16px; padding-top: 15px">
+                                E-mail:
+                            </label>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="input-icon">
+                                <i class="ti-email"></i>
+                                <input id="email" type="email" class="form-control" name="email"
+                                       value="{{ old('email') }}" required>
 
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                         <strong>{{ $errors->first('email') }}</strong>
+                                     </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{--<div class="form-group">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="pull-left" for="credit_card" style="font-size: 16px; padding-top: 15px">
+                                Credit Card:
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-icon">
+                                <i class="ti-credit-card"></i>
+                                <input id="password-confirm" type="text" class="form-control"
+                                       name="credit_card" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="pull-left" for="expiry_date" style="font-size: 16px; padding-top: 15px">
+                                Expiry Date:
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-icon">
+                                <i class="ti-calendar"></i>
+                                <input id="expiry-date" type="date" class="form-control"
+                                       placeholder="Expiry Date" name="expiry_date" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>--}}
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="pull-left" for="password" style="font-size: 16px; padding-top: 15px">
+                                Password:
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-icon">
+                                <i class="ti-lock"></i>
+                                <input id="password" type="password" placeholder="Password" class="form-control"
+                                       name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                         <strong>{{ $errors->first('password') }}</strong>
+                                     </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="pull-left" for="password-confirm" style="font-size: 16px; padding-top: 15px">
+                                Confirm:
+                            </label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-icon">
+                                <i class="ti-lock"></i>
+                                <input id="password-confirm" type="password" class="form-control"
+                                       placeholder="Confirm password" name="password_confirmation" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-common">Subscribe Now!</button>
+                <button type="submit" class="btn btn-common log-btn">Register</button>
             </div>
-
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

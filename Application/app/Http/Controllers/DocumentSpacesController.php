@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use App\DocumentSpace;
+use App\Faculty;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -58,21 +59,21 @@ class DocumentSpacesController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $user_name = str_replace(' ', '_', $user->name);
-        $userId = $user->id;
-        $documentSpaceName = strtoupper($request->input('documentSpaceName'));
-
+        $user_name = str_replace(' ', '_', strtolower($user->name));
+        $faculty_id = $user->id;
+        $name=$request->input('documentSpaceName');
+        $documentSpaceName = str_replace(' ','_',strtolower($request->input('documentSpaceName')));
         //check if the chosen name has duplicates
-        if (DB::table('document_space')->where('user_id', $userId)->where('title', $documentSpaceName)->exists())
+        if (DB::table('document_space')->where('faculty_id', $faculty_id)->where(strtolower('title'), strtolower($name))->exists())
         {
             return back()->with('error', 'A document space of the same name already exists!');
         }
 
         //create the directory entry in the database
         $documentSpace = new DocumentSpace();
-        $documentSpace->title = $documentSpaceName;
+        $documentSpace->title = $name;
         $documentSpace->desc = 'New Folder';
-        $documentSpace->user_id = $userId;
+        $documentSpace->faculty_id = $faculty_id;
         $documentSpace->save();
 
         //create the directory in the storage
@@ -193,5 +194,39 @@ class DocumentSpacesController extends Controller
         $documentSpace->documents()->delete();
         $documentSpace->delete();
         return redirect()->back()->with('warning', 'Folder ' . $documentSpaceName . ' deleted');
+    }
+
+    public function assign($document_space_id)
+    {
+        if (!auth()->user())
+        {
+            return redirect()->route('login');
+        }
+
+        $document_space = DocumentSpace::find($document_space_id);
+        $faculty_id = auth()->user()->id;
+        $faculty = Faculty::find($faculty_id);
+        $employers = $faculty->employers()->paginate(5);
+
+        $context = array(
+            'key' => 0,
+            'employers' => $employers,
+            'document_space' => $document_space,
+        );
+        return view('documentSpace.documentspace-assign')->with($context);
+    }
+
+    public function assignDocumentSpace($document_space_id, $hr_id)
+    {
+        $document_space = DocumentSpace::find($document_space_id);
+        $document_space->hrs()->attach($hr_id);
+        return redirect('/document-spaces/'.$document_space_id.'/assign');
+    }
+
+    public function unassignDocumentSpace($document_space_id, $hr_id)
+    {
+        $document_space = DocumentSpace::find($document_space_id);
+        $document_space->hrs()->detach($hr_id);
+        return redirect('/document-spaces/'.$document_space_id.'/assign');
     }
 }

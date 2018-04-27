@@ -100,11 +100,25 @@ a:focus {
   background: #6DBAAF;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
 }
+.btn-common-inverse:hover,
+.btn-common-inverse:focus {
+  color: #fff;
+  background: #924550;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
 .btn-search-icon:hover {
   opacity: 0.8;
 }
 .btn-common {
   background-color: #6DBAAF;
+  border: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  overflow: hidden;
+  position: relative;
+}
+.btn-common-inverse {
+  background-color: #bd384b;
   border: none;
   border-radius: 50px;
   text-transform: uppercase;
@@ -121,7 +135,7 @@ a:focus {
 }
 .btn-border:hover {
   color: #6DBAAF;
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 6px 0 rgba(109, 186, 175, 0.12), 0 1px 6px 0 rgba(109, 186, 175, 0.12);
 }
 .btn-search {
   padding: 11px;
@@ -183,7 +197,7 @@ a:focus {
 .medium-title {
   font-size: 24px;
   padding: 10px 0;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   position: relative;
 }
 .medium-title:before {
@@ -1168,7 +1182,7 @@ label {
 }
 .f-category h3 {
   font-size: 16px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   line-height: 32px;
   -webkit-transition: all .3s linear;
   -moz-transition: all .3s linear;
@@ -3455,12 +3469,42 @@ ul.nav-tabs li a{
 }
 
 .lectureTabs {
-    width: 25%;
-    padding: 0 !important;
-    margin: 0 !important;
-    border-bottom-color: transparent;
+  width: 25%;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-bottom-color: transparent;
 }
 .lectureTabs > a{
+  font-size: 20px;
+  font-weight: bold;
+}
+.assignedLectureTabs {
+  width: 50%;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-bottom-color: transparent;
+}
+.assignedLectureTabs > a{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.applicationTabs {
+  width: 50%;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-bottom-color: transparent;
+}
+.applicationTabs > a{
+  font-size: 20px;
+  font-weight: bold;
+}
+.employeeTooltip{
+    font-size: 40px;
+}
+.jobTooltip{
+    font-size: 25px;
+}
+.subjectTooltip{
     font-size: 20px;
-    font-weight: bold;
 }

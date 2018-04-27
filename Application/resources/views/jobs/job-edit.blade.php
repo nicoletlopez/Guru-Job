@@ -1,3 +1,4 @@
+<?php use App\Http\Controllers\JobsController; ?>
 @extends('hr.dashboard-menu')
 @section('title')- Update Job @endsection
 @section('current') Update Job @endsection
@@ -6,7 +7,7 @@
 
 @section('dashboard-content')
     <div class="modal-dialog modal-lg">
-        <a href="{{url()->previous()}}" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+        <a onclick="goBack()" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
         <div class="modal-content">
 
             <div class="modal-header">
@@ -43,9 +44,12 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('subject','Subject/s',['class'=>'control-label'])}}
+                    <div class="radio">
+                    <label style="color:black;">{{Form::radio('subject',$jobSubject->id,true,['type'=>"radio"])}}{{$jobSubject->name}}</label>
+                    </div>
                     @foreach($subjects as $subject)
-                        <div class="checkbox">
-                            <label style="color:black;">{{Form::checkbox('subjects[]',$subject->id,in_array($subject->id,$subjectData),['type'=>"checkbox"])}}{{$subject->name}}</label>
+                        <div class="radio{{in_array($subject->id,JobsController::getUsedSubjects()) ? ' hidden' : ''}}">
+                            <label style="color:black;">{{Form::radio('subject',$subject->id,false,['type'=>"radio"])}}{{$subject->name}}</label>
                         </div>
                     @endforeach
                 </div>

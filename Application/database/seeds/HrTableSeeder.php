@@ -18,7 +18,6 @@ class HrTableSeeder extends Seeder
         {
             DB::table('hr')->insert([
                 'user_id' => $hr->id,
-                'balance' => random_int(1000,3000)
             ]);
         }
     }

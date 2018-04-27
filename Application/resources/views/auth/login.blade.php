@@ -3,7 +3,7 @@
 @section('current') Log In @endsection
 @section('current-header') Log In @endsection
 @section('content')
-@include('inc.header')
+    @include('inc.header')
     <div id="content" class="my-account">
         <div class="container">
             <div class="row">
@@ -12,7 +12,7 @@
                     <div class="my-account-form">
                         <ul class="cd-switcher">
                             <li><a>LOGIN</a></li>
-                            <li><a  class="selected" href="{{route('register')}}">REGISTER</a></li>
+                            <li><a class="selected" href="{{route('register')}}">REGISTER</a></li>
                         </ul>
                         <div id="cd-login" style="border:3px solid #6DBAAF;" class="is-selected">
                             <div class="page-login-form">
@@ -22,7 +22,8 @@
                                         <div class="input-icon">
                                             <i class="ti-user"></i>
                                             <!--<input type="text" id="sender-email" class="form-control" name="email" placeholder="Username">-->
-                                            <input id="email" type="email" class="form-control" placeholder="E-mail" name="email" value="{{ old('email') }}" required autofocus>
+                                            <input id="email" type="email" class="form-control" placeholder="E-mail"
+                                                   name="email" value="{{ old('email') }}" required autofocus>
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -36,7 +37,8 @@
                                         <div class="input-icon">
                                             <i class="ti-lock"></i>
                                             <!--<input type="password" class="form-control" placeholder="Password">-->
-                                            <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
+                                            <input id="password" type="password" class="form-control"
+                                                   placeholder="Password" name="password" required>
 
                                             @if ($errors->has('password'))
                                                 <span class="help-block">
@@ -49,9 +51,11 @@
 
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                            <input type="checkbox"
+                                                   name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                                         </label>
-                                        <p class="cd-form-bottom-message"><a href="{{ route('password.request') }}">Lost your password?</a></p>
+                                        <p class="cd-form-bottom-message"><a href="{{ route('password.request') }}">Lost
+                                                your password?</a></p>
                                     </div>
 
                                 </form>

@@ -14,16 +14,17 @@ class CreateApplicationTable extends Migration
     public function up()
     {
         Schema::create('application', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('faculty_id')->unsigned();
+            $table->boolean('accepted')->unsigned()->default(false);
             $table->integer('job_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('faculty');
+            $table->foreign('faculty_id')->references('user_id')->on('faculty');
             $table->foreign('job_id')->references('id')->on('job');
 
             //misc
-            $table->primary(['user_id','job_id']);
-            $table->index('user_id');
+            $table->primary(['faculty_id','job_id']);
+            $table->index('faculty_id');
             $table->index('job_id');
         });
     }

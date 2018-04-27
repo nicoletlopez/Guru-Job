@@ -21,21 +21,24 @@
             <div class="modal-body">
                 <div class="form-group">
                 {{Form::label('dob','Date of Birth',['class'=>'control-label'])}}
-                {{Form::date('dob','',['class'=>'form-control'])}}
+                {{Form::date('dob',date("Y").'-12-31',['class'=>'form-control','min'=>'1900-12-31','max'=>date("Y").'-12-31','required'])}}
                 </div>
                 <div class="row">
                 <div class="form-group col-md-6">
                     {{Form::label('address','Address',['class'=>'control-label'])}}
-                    {{Form::text('address','',['class'=>'form-control'])}}
+                    {{Form::text('address','',['class'=>'form-control','required'])}}
                 </div>
                 <div class="form-group col-md-6">
                     {{Form::label('city','City',['class'=>'control-label'])}}
-                    {{Form::text('city','',['class'=>'form-control'])}}
+                    {{Form::text('city','',['class'=>'form-control','required'])}}
                 </div>
                 </div>
                 <div class="form-group">
-                    {{Form::label('contact','Contact Number',['class'=>'control-label'])}}
-                    {{Form::text('contact','',['class'=>'form-control'])}}
+                    {{Form::label('contact','Mobile Number',['class'=>'control-label'])}}
+                    <div class="form-inline">
+                    {{Form::label('','+63',['class'=>'control-label'])}}
+                    {{Form::text('contact','',['id'=>'contact','class'=>'form-control','data-inputmask'=>'"mask":"9999999999"','required'])}}
+                    </div>
                 </div>
                 <div class="form-group">
                     {{Form::label('description','About',['class'=>'control-label'])}}
@@ -49,4 +52,15 @@
             {!! Form::close() !!}
         </div>
     </div>
+    <script type="text/javascript" src="{{asset('js/jquery/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/jquery.inputmask/dist/inputmask/phone-codes/phone.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/jquery.inputmask/dist/inputmask/phone-codes/phone-be.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/jquery.inputmask/dist/inputmask/phone-codes/phone-ru.js')}}"></script>
+    <script type="text/javascript" src="{{asset('vendor/jquery.inputmask/dist/min/inputmask/bindings/inputmask.binding.min.js')}}"></script>
+<script>
+   ////$(document).ready(function(){
+   //    $("#contact").inputmask("9999999999");
+   //});
+</script>
 @endsection

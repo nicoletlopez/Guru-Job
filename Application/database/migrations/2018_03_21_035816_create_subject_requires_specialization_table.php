@@ -20,6 +20,7 @@ class CreateSubjectRequiresSpecializationTable extends Migration
             $table->foreign('subject_id')->references('id')->on('subject');
             $table->foreign('specialization_id')->references('id')->on('specialization');
 
+            $table->timestamps();
             //misc
             $table->primary(['subject_id','specialization_id']);
             $table->index(['subject_id','specialization_id']);

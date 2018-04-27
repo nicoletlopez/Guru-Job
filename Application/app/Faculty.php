@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App;
+use Illuminate\Notifications\Notifiable;
 
 class Faculty extends Model
 {
+    use Notifiable;
     //
     protected $table = 'faculty';
     protected $primaryKey = 'user_id';
@@ -35,13 +37,18 @@ class Faculty extends Model
 
     public function jobs()
     {
-        return $this->belongsToMany(Job::class, 'application', 'user_id', 'job_id')
-            ->withTimestamps();
+        return $this->belongsToMany(Job::class, 'application', 'faculty_id', 'job_id')
+            ->withPivot('accepted')->withTimestamps();
     }
 
     public function specializations()
     {
-        return $this->belongsToMany(Specialization::class, 'faculty_has_specialization', 'user_id', 'specialization_id');
+        return $this->belongsToMany(Specialization::class, 'faculty_has_specialization', 'faculty_id', 'specialization_id');
+    }
+
+    public function employers()
+    {
+        return $this->belongsToMany(Hr::class,'employee','faculty_id','hr_id');
     }
 
     //only the lectures that this certain faculty owns
@@ -52,12 +59,12 @@ class Faculty extends Model
 
     public function documentSpaces()
     {
-        return $this->hasMany(DocumentSpace::class, 'user_id', 'user_id')->orderBy('created_at', 'desc');
+        return $this->hasMany(DocumentSpace::class, 'faculty_id', 'user_id')->orderBy('created_at', 'desc');
     }
 
-    public function employers()
+    public function subjects()
     {
-        return $this->belongsToMany(Hr::class, 'employee', 'faculty_id', 'hr_id')->withTimestamps();
+        return $this->hasMany(Subject::class,'faculty_id','user_id');
     }
 
     /*search methods*/
@@ -99,5 +106,31 @@ class Faculty extends Model
             });
         });
     }
+
+    public function scopeWhereEmployerIs($query,$hr_id){
+        return $query->whereHas('subjects', function ($query) use ($hr_id){
+            $query->where('hr_id',$hr_id);
+        });
+    }
     /*end search methods*/
+
+    public function isAssigned($lecture_id, $faculty_id){
+
+        //Checks if a row exists in user_has_lecture table, where hr_id and  lecture_id are the parameters
+        $faculty = Faculty::whereHas('user',function ($faculty) use ($faculty_id, $lecture_id){
+            $faculty->whereHas('lectures', function ($faculty) use ($faculty_id, $lecture_id){
+                $faculty->where(['user_id'=>$faculty_id, 'lecture_id'=>$lecture_id]);
+            });
+        })->get();
+
+        if(count($faculty)>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function mainTemplate($faculty_id){
+        return Resume::where(['faculty_id'=>$faculty_id, 'is_main'=>1])->first()->template;
+    }
 }

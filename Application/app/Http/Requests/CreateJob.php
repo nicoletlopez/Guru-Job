@@ -33,7 +33,7 @@ class CreateJob extends FormRequest
         return [
             'title'=>'required',
             'type'=>'required',
-            'subjects'=>'required',
+            'subject'=>'required',
             'min-salary'=>'required|numeric',
             'max-salary'=>'required|numeric|min:'.floatval($this->input('min-salary')),
             'description'=>'required',
@@ -45,7 +45,7 @@ class CreateJob extends FormRequest
             [
                 'title.required' => 'Title is required',
                 'type.required' => 'Type is required',
-                'subjects.required'=>'Subject/s is required',
+                'subject.required'=>'Subject/s required',
                 'min-salary.required' => 'Minimum Salary is required',
                 'max-salary.required' => 'Maximum Salary is required',
                 'max-salary.min' => 'Maximum salary cannot be less than the minimum',

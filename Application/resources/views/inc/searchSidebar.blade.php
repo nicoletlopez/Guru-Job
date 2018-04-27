@@ -1,5 +1,5 @@
 <div class="well">
-    {!! Form::open(['route'=>'search','method'=>'GET']) !!}
+    {!! Form::open(['action'=>'JobsController@search','method'=>'GET']) !!}
     <h3>Search Criteria</h3>
     <br/>
     {{--Search Term--}}
@@ -36,12 +36,7 @@
     <div class="form-group">
         <div class="search-category-container">
             {{Form::label('specialization-label', 'Select Specialization')}}
-            {{Form::select('specialization',
-            [null=>'All Specializations',
-            'JAVA'=>'Java',
-            'DATA'=>'Data Networks',
-            'EMB'=>'Embedded Networks',],
-            null,
+            {{Form::select('specialization' , $specializations, null,
             ['class'=>'dropdown-product selectpicker'])}}
         </div>
     </div>
@@ -76,11 +71,11 @@
         <div class="row">
             <div class="col-md-6">
                 {{Form::label('work-time-from-label', 'Work Time From')}}
-                {{Form::time('start-time','',['class'=>'form-control','step'=>'900'])}}
+                {{Form::time('start-time','00:00',['class'=>'form-control','step'=>'900'])}}
             </div>
             <div class="col-md-6">
                 {{Form::label('work-time-to-label', 'Work Time To')}}
-                {{Form::time('end-time','',['class'=>'form-control','step'=>'900'])}}
+                {{Form::time('end-time','23:45',['class'=>'form-control','step'=>'900'])}}
             </div>
         </div>
     </div>

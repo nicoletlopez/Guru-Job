@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateJob;
 use App\Http\Requests\EditJob;
 use App\Mail\NewJobNotification;
+use App\Specialization;
 use App\Subject;
 use App\User;
 use Illuminate\Http\Request;
@@ -27,8 +28,11 @@ class JobsController extends Controller
        );
         */
         $jobs = Job::orderBy('created_at', 'desc')->paginate(4);
+        $specializations = Specialization::pluck('name','name');
+        $specializations->prepend('All Specializations','')->all();
         $context = array(
             'jobs' => $jobs,
+            'specializations' => $specializations,
         );
         return view('jobs.job-listings')->with($context);
     }
@@ -40,10 +44,30 @@ class JobsController extends Controller
      */
     public function create()
     {
-        $id = auth()->user()->id;
-        $subjects = Subject::where('user_id',$id)->whereNull('job_id')->get();
+
+        //check if user is subscribed
+        if(!auth()->user()->subscribed('monthly'))
+        {
+            return redirect()->back()->with('warning','Please subscribe before posting new jobs');
+        }
+
+        $user = auth()->user();
+        //$subjects = Subject::where('hr_id',$user_id)->get();
+        $subjects=$user->hr->subjects;
+        $jobs=$user->hr->jobs;
+
+
+        $subjectsUsed=[];
+        foreach($jobs as $job){
+            $subjectsUsed[]=$job->subject->id;
+        }
+        if(!(count($subjects)>count($subjectsUsed))){
+            return redirect(route('subjects.index'))->with('warning','An unused Subject is needed before posting a job');
+        }
         $context = array(
-            'subjects' => $subjects,
+            'subjectsUsed' => $subjectsUsed,
+            'subjects'=>$subjects,
+            'jobs'=>$jobs,
         );
 
 
@@ -65,25 +89,18 @@ class JobsController extends Controller
         $minSalary = $request->input('min-salary');
         $maxSalary = $request->input('max-salary');
         $desc = $request->input('description');
+        $subject_id = $request->input('subject');
 
         $job = new Job;
-        $job->user_id = $user_id;
+        $job->hr_id = $user_id;
         $job->title = $title;
         $job->desc = $desc;
         $job->type = $type;
         $job->floor_salary = $minSalary;
         $job->ceiling_salary = $maxSalary;
+        $job->subject_id = $subject_id;
 
         $job->save();
-
-        //Edit the foreign keys of the chosen subjects as children of the new job
-        $subject_ids = $request->input('subjects');
-
-        foreach ($subject_ids as $subject_id) {
-            $subject = Subject::find($subject_id);
-            $subject->job_id = $job->id;
-            $subject->save();
-        }
 
         $users = User::where('type', '=', 'FACULTY')->get();
         $school = $request->user();
@@ -101,18 +118,23 @@ class JobsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public
-    function show($id)
+    public function show($id)
     {
+        /*
         if(!auth()->guest()) {
             if (!auth()->user()->profile) {
                 return redirect()->route('profile.create')->with('error', 'Create a Profile First');
             }
         }
+        */
+
+        $job = Job::find($id);
+        $subject = $job->subject;
+
         $context = array(
             //'applicationData'=>$applicationData,
-            'job' => Job::find($id),
-            'subjects' => Job::find($id)->subjects,
+            'job' => $job,
+            'subject' => $subject,
             'date' => Controller::formatDate(Job::find($id)->hr->user->profile->dob),
         );
         return view('jobs.job-details')->with($context);
@@ -129,16 +151,20 @@ class JobsController extends Controller
         $hr = auth()->user()->hr;
         $job = Job::find($id);
         $subjects = $hr->subjects;
-        $subjectsSelected = $job->subjects;
+        $jobSubject=$job->subject;
+        //$subjectsSelected = $job->subject;
         $subjectData = array();
+        /*
         foreach ($subjectsSelected as $subjectSelected) {
             $subjectData[] = $subjectSelected->id;
         }
+        */
         $jobType = $job->type;
         $context = array(
             'job' => Job::find($id),
             'subjects' => $subjects,
-            'subjectData' => $subjectData,
+            //'subjectData' => $subjectData,
+            'jobSubject'=>$jobSubject,
             'jobType' => $jobType,
         );
         return view('jobs.job-edit')->with($context);
@@ -157,31 +183,19 @@ class JobsController extends Controller
         $job = Job::find($id);
         $title = $request->input('title');
         $type = $request->input('type');
-        $salary = $request->input('salary');
+        //$salary = $request->input('salary');
         $desc = $request->input('description');
         $minSalary = $request->input('min-salary');
         $maxSalary = $request->input('max-salary');
+        $subject=$request->input('subject');
 
+        $job->subject_id=$subject;
         $job->title = $title;
         $job->desc = $desc;
         $job->type = $type;
         $job->floor_salary = $minSalary;
         $job->ceiling_salary = $maxSalary;
         $job->save();
-
-
-        $subject_ids = $request->input('subjects');
-        $subjects = $job->subjects;
-        foreach ($subjects as $subject) {
-            $subject->job_id = null;
-            $subject->save();
-        }
-
-        foreach ($subject_ids as $subject_id) {
-            $subject = Subject::find($subject_id);
-            $subject->job_id = $job->id;
-            $subject->save();
-        }
 
         return redirect('/jobs/' . $job->id);
 
@@ -204,6 +218,7 @@ class JobsController extends Controller
 
     public function apply(Request $request, $id)
     {
+
         $user = $request->user();
         $job = Job::find($id);
         $school = User::find($job->user_id);
@@ -271,8 +286,12 @@ class JobsController extends Controller
             $jobs = Job::orderBy('created_at', 'desc');
         }
 
+        $specializations = Specialization::pluck('name','name');
+        $specializations->prepend('All Specializations','')->all();
+
         $context = array(
-            'jobs' => $jobs->paginate(),
+            'jobs' => $jobs->paginate(8),
+            'specializations' => $specializations,
         );
         return view('jobs.job-listings')->with($context);
     }
@@ -285,6 +304,16 @@ class JobsController extends Controller
             $applicationData[] = $jobApplied->id;
         }
         return $applicationData;
+    }
+
+    public static function getUsedSubjects(){
+        $jobs = auth()->user()->hr->jobs;
+        $subjectData=array();
+        foreach($jobs as $job){
+            $subject=$job->subject->id;
+            $subjectData[]=$subject;
+        }
+        return $subjectData;
     }
 
 }
